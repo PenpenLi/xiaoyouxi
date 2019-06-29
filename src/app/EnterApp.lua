@@ -28,7 +28,7 @@ end
 function EnterApp:create()
 	print(">>>>>EnterApp:create<<<<<<")
 	self:loadAppFile()
-	local scene = require("app.scenes.ZhanDouScene").new()
+	local scene = require("app.scenes.ZuQiuScene").new()
 	return scene
 end
 
@@ -79,6 +79,10 @@ function EnterApp:run()
 
 	-- -- 进入战斗场景
 	-- local scene = require("app.scenes.ZhanDouScene").new()
+	-- display.runScene(scene)
+
+	-- -- 进入足球场景
+	-- local scene = require("app.scenes.ZuQiuScene").new()
 	-- display.runScene(scene)
 end
 

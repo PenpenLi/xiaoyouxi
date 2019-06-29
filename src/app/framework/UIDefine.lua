@@ -172,17 +172,25 @@ UIDefine.LayerFlag = {
 -- 	LiuJu_UI            = { layer = import("app.viewssanguo.GameLiuJu"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "SanGuo_LiuJu_UI"    			    },
 -- }
 
--- 战斗的ui
-UIDefine.ZHANDOU_KEY   	= {
-	Loading_UI 			= { layer = import("app.viewszhandou.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Loading_UI" 		        },
-	Start_UI 			= { layer = import("app.viewszhandou.GameStart"),	    		flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Start_UI"                   },
-	Play_UI             = { layer = import("app.viewszhandou.GamePlay"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Play_UI"    			    },
-	Help_UI 			= { layer = import("app.viewszhandou.GameHelp"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Help_UI"    			    },
-	Voice_UI	        = { layer = import("app.viewszhandou.GameVoiceSet"),	        flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Voice_UI"    		     	},
-	Shop_UI	    	    = { layer = import("app.viewszhandou.GameShop"),		        flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Shop_UI"    		   	  	},
-	Buy_UI	    	    = { layer = import("app.viewszhandou.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Buy_UI"    		   		  	},
-	Pause_UI	    	= { layer = import("app.viewszhandou.GamePause"),		      	flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Pause_UI"    		   		},
-	Win_UI              = { layer = import("app.viewszhandou.GameWin"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Win_UI"    			        },
-	Lose_UI             = { layer = import("app.viewszhandou.GameLose"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Lose_UI"    			    },
+-- -- 战斗的ui
+-- UIDefine.ZHANDOU_KEY   	= {
+-- 	Loading_UI 			= { layer = import("app.viewszhandou.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Loading_UI" 		        },
+-- 	Start_UI 			= { layer = import("app.viewszhandou.GameStart"),	    		flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Start_UI"                   },
+-- 	Play_UI             = { layer = import("app.viewszhandou.GamePlay"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Play_UI"    			    },
+-- 	Help_UI 			= { layer = import("app.viewszhandou.GameHelp"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Help_UI"    			    },
+-- 	Voice_UI	        = { layer = import("app.viewszhandou.GameVoiceSet"),	        flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Voice_UI"    		     	},
+-- 	Shop_UI	    	    = { layer = import("app.viewszhandou.GameShop"),		        flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Shop_UI"    		   	  	},
+-- 	Buy_UI	    	    = { layer = import("app.viewszhandou.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Buy_UI"    		   		  	},
+-- 	Pause_UI	    	= { layer = import("app.viewszhandou.GamePause"),		      	flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Pause_UI"    		   		},
+-- 	Win_UI              = { layer = import("app.viewszhandou.GameWin"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Win_UI"    			        },
+-- 	Lose_UI             = { layer = import("app.viewszhandou.GameLose"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Lose_UI"    			    },
+-- }
+
+-- 足球的ui
+UIDefine.ZUQIU_KEY	= {
+	Loading_UI 			= { layer = import("app.viewszuqiu.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Loading_UI" 			  	    },
 }
+
+
+
 rawset(_G,"UIDefine",UIDefine)
