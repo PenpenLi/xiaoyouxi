@@ -25,6 +25,7 @@ end
 
 function ZuQiuScene:loadAppFile()
 	-- import("app.viewszhandou.config.zhandou_config")
+	-- xxcc 
 end
 
 
