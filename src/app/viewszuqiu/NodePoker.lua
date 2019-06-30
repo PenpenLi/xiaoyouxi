@@ -4,27 +4,27 @@
 local NodePoker = class( "NodePoker",BaseNode )
 
 
-function NodePoker:ctor( parentPanel )
+function NodePoker:ctor( parentPanel,numIndex )
+	assert( parentPanel," !! parentPanel is nil !! " )
+	assert( numIndex > 0," !! numIndex is error !! " )
+
 	self._parentPanel = parentPanel
+	self._numIndex = numIndex
 	NodePoker.super.ctor( self,"NodePoker" )
+
+	assert( zuqiu_card_config[numIndex]," !! error numIndex = "..numIndex.." !! ")
+
+	self._cardNum = zuqiu_card_config[numIndex].num
 
 	self._image = ccui.ImageView:create( "image/poker/bei.png",1 )
 	self:addChild( self._image )
+	self._image:setScale( 0.86 )
 end
 
 
-function NodePoker:loadDataUI( numIndex )
-	assert( numIndex," !! numIndex is nil !! ")
-	self._numIndex = numIndex
-
-	if self._numIndex == 0 then
-		self._cardNum = 0
-		self._image:loadTexture( "image/poker/bei.png",1 )
-	else
-		self._cardNum = zuqiu_card_config[numIndex].num
-		local path = zuqiu_card_config[numIndex].path
-		self._image:loadTexture( path,1 )
-	end
+function NodePoker:showPoker()
+	local path = zuqiu_card_config[self._numIndex].path
+	self._image:loadTexture( path,1 )
 end
 
 

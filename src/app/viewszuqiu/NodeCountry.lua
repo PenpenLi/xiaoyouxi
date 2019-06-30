@@ -33,7 +33,7 @@ function NodeCountry:touchIcon( event )
 		self.Icon:setScale(1)
 		local index = self._index
 		removeUIFromScene( UIDefine.ZUQIU_KEY.Start_UI )
-		addUIToScene( UIDefine.ZUQIU_KEY.Play_UI,index )
+		addUIToScene( UIDefine.ZUQIU_KEY.Play_UI,{ country_index = index } )
 	elseif event.name == "outsideend" then
 	end
 end

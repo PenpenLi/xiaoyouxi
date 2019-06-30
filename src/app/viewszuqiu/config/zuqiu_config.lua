@@ -75,13 +75,61 @@ local zuqiu_card_config = {
 	[68]	 = { path = "image/poker/heitao8.png", 		num = 8,	color = 4},
 	[69]	 = { path = "image/poker/heitao9.png", 		num = 9,	color = 4},
 	[70]	 = { path = "image/poker/heitao9.png", 		num = 9,	color = 4},
-	[72]	 = { path = "image/poker/heitao10.png", 	num = 10,	color = 4},
+	[71]	 = { path = "image/poker/heitao10.png", 	num = 10,	color = 4},
 	[72]	 = { path = "image/poker/heitao10.png", 	num = 10,	color = 4},
 }
 
 
+-- 开局 为玩家和player随机poker
+zuqiu_card_config.getRandomPokerByBegan = function( stage )
+	assert( stage," !! stage is nil !! " )
+	local ai_poker = {}
+	local player_poker = {}
+	
+	-- 根据等级为ai随机相同的花色
+	local huase_num = 0
+	if stage == 4 then
+		huase_num = 5
+	elseif stage == 5 then
+		huase_num = 8
+	elseif stage == 6 then
+		huase_num = 10
+	else
+		huase_num = 2
+	end
 
+	local random_all = getRandomArray( 1,#zuqiu_card_config )
+	local random_huase = getRandomArray( 55,#zuqiu_card_config )
 
+	for i = 1,huase_num do
+		table.insert( ai_poker,random_huase[i] )
+	end
+	local random_all_left = {}
+	local left_need = 40 - huase_num
+
+	for i,v in ipairs( random_all ) do
+		if #random_all_left < left_need then
+			for a,b in ipairs( ai_poker ) do
+				if v ~= b then
+					table.insert( random_all_left,v )
+					break
+				end
+			end
+		end
+	end
+
+	-- ai 和 玩家 随机20张
+	local ai_need = 20 - huase_num
+	for i = 1,#random_all_left do
+		if i <= ai_need then
+			table.insert( ai_poker,random_all_left[i] )
+		else
+			table.insert( player_poker,random_all_left[i] )
+		end
+	end
+
+	return ai_poker,player_poker
+end
 
 
 
