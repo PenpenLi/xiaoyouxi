@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>image/poker/meihua4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{681,256},{126,172}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{126,172}</string>
+			</dict>
+			<key>image/poker/meihua5.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{853,256},{126,172}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{126,172}</string>
+			</dict>
+			<key>image/poker/meihua6.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{681,382},{126,172}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{126,172}</string>
+			</dict>
+			<key>image/poker/meihua7.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{853,428},{126,172}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{126,172}</string>
+			</dict>
+			<key>image/poker/meihua8.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,404},{126,172}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{126,172}</string>
+			</dict>
+			<key>image/poker/meihua9.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{126,404},{126,172}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{126,172}</string>
+			</dict>
+			<key>image/poker/meihuaa.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{298,404},{126,172}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{126,172}</string>
+			</dict>
+			<key>image/poker/meihuaj.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{470,404},{126,172}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{126,172}</string>
+			</dict>
+			<key>image/poker/meihuak.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{642,508},{126,172}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{126,172}</string>
+			</dict>
+			<key>image/poker/meihuaq.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{814,600},{126,172}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{126,172}</string>
+			</dict>
+			<key>image/start/xiong.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{681,0},{275,256}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{275,256}</string>
+			</dict>
+			<key>image/win/bg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,0},{681,404}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{681,404}</string>
+			</dict>
+			<key>image/help/previous.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,576},{190,73}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{190,73}</string>
+			</dict>
+			<key>image/help/gotit.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{252,530},{190,73}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{190,73}</string>
+			</dict>
+			<key>image/play/mengban.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{126,530},{126,172}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{126,172}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>Plist4.png</string>
+			<key>realTextureFileName</key>
+			<string>Plist4.png</string>
+			<key>size</key>
+			<string>{1024,1024}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>1024</integer>
+			<key>height</key>
+			<integer>1024</integer>
+		</dict>
+	</dict>
+</plist>
