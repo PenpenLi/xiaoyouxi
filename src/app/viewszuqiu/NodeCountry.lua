@@ -3,10 +3,8 @@
 local NodeCountry = class( "NodeCountry",BaseNode )
 
 
-function NodeCountry:ctor( param,index )
+function NodeCountry:ctor( index )
 	self._config = country_config.europe
-	-- dump( country_config,"----------------country_config = ")
-	-- dump( self._config[1].icon,"-----------------country_config.europe = ")
 
 	self._index = index
 	NodeCountry.super.ctor( self,"NodeCountry" )
@@ -22,14 +20,22 @@ end
 
 function NodeCountry:loadDataUi( index )
 	assert( index," !! index is nil !! " )
-
 	self.Icon:loadTexture( self._config[index].icon,1 )
 	self.ImageText:loadTexture( self._config[index].text,1 )
 end
 
-function NodeCountry:touchIcon()
-	-- removeUIFromScene( UIDefine.ZUQIU_KEY.Start_UI )
-	-- addUIToScene( UIDefine.ZUQIU_KEY.Play_UI,self._index )
+function NodeCountry:touchIcon( event )
+	if event.name == "began" then
+		self.Icon:setScale(1.2)
+		return true
+	elseif event.name == "moved" then
+	elseif event.name == "ended" then
+		self.Icon:setScale(1)
+		local index = self._index
+		removeUIFromScene( UIDefine.ZUQIU_KEY.Start_UI )
+		addUIToScene( UIDefine.ZUQIU_KEY.Play_UI,index )
+	elseif event.name == "outsideend" then
+	end
 end
 
 
