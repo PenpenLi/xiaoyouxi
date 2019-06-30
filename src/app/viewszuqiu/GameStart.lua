@@ -1,5 +1,5 @@
 
-
+local nodeCountry = import( ".NodeCountry")
 local GameStart = class("GameStart",BaseLayer)
 
 function GameStart:ctor( param )
@@ -7,6 +7,8 @@ function GameStart:ctor( param )
     assert( param.name," !! param.name is nil !! ")
     GameStart.super.ctor( self,param.name )
     self:addCsb( "csbzuqiu/Start.csb" )
+
+
 
     -- -- 开始
     -- self:addNodeClick( self.ButtonStart,{ 
@@ -22,6 +24,31 @@ function GameStart:ctor( param )
         endCallBack = function() self:set() end
     })
 
+    self:loadUi()
+
+end
+
+function GameStart:loadUi(  )
+    local node1 = nodeCountry.new( self,1 )
+    self.ImageChooseBg:addChild( node1 )
+    node1:setPosition( 248,367 )--372,367---248,235
+    -- dump( cc.p(node1:getPosition()),"-------------pos = ")
+    local x = 248
+    local y = 367
+    self._number = 1--记录几号球队
+    for i = 1,3 do
+        for j = 1,6 do
+            local node = nodeCountry.new( self,self._number )
+            self.ImageChooseBg:addChild( node )
+            node:setPosition( x + j * 123 - 123,y - i * 122 + 122)
+            -- dump( cc.p(node:getPosition()),"-------------pospppppp = ")
+
+            self._number = self._number + 1
+            if self._number > 16 then
+                return
+            end
+        end
+    end
 end
 
 function GameStart:onEnter()
