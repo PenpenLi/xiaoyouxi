@@ -189,7 +189,9 @@ UIDefine.LayerFlag = {
 -- 足球的ui
 UIDefine.ZUQIU_KEY	= {
 	Loading_UI 			= { layer = import("app.viewszuqiu.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Loading_UI" 			  	    },
-	Start_UI 			= { layer = import("app.viewszuqiu.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Start_UI"                   },
+	Start_UI 			= { layer = import("app.viewszuqiu.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Start_UI"                     },
+	Help_UI 			= { layer = import("app.viewszuqiu.GameHelp"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Help_UI"    			   		},
+	Voice_UI	        = { layer = import("app.viewszuqiu.GameVoiceSet"),	      		flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Voice_UI"    			     	},
 }
 
 

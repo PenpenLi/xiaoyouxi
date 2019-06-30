@@ -4,6 +4,7 @@ local NodeCountry = class( "NodeCountry",BaseNode )
 
 
 function NodeCountry:ctor( param,index )
+    NodeCountry.super.ctor( self,param.name )
 	self._config = country_config.europe
 	-- dump( country_config,"----------------country_config = ")
 	-- dump( self._config[1].icon,"-----------------country_config.europe = ")

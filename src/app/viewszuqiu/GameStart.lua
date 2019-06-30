@@ -71,11 +71,11 @@ function GameStart:start()
 end
 
 function GameStart:help()
-    -- addUIToScene( UIDefine.ZHIPAI_KEY.Help_UI )
+    addUIToScene( UIDefine.ZUQIU_KEY.Help_UI )
 end
 
 function GameStart:set()
-    -- addUIToScene( UIDefine.ZHIPAI_KEY.Voice_UI )
+    addUIToScene( UIDefine.ZUQIU_KEY.Voice_UI )
 end
 
 return GameStart
