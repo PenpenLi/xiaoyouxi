@@ -35,7 +35,7 @@ function ZuQiuScene:onEnter()
 end
 
 function ZuQiuScene:getSceneName()
-	return "ZhanDouScene"
+	return "ZuQiuScene"
 end
 
 function ZuQiuScene:getUIManager()
