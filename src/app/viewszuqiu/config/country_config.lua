@@ -22,4 +22,17 @@ country_config.europe  = {
 	
 }
 
+-- ai 随机一个国家球队 (去掉玩家选中的球队中剩余的随机)
+country_config.getAiRandomCountry = function( playerCountryIndex )
+	assert( playerCountryIndex," !! playerCountryIndex is nil !! " )
+	local country_index = {}
+	for i = 1,#country_config.europe do
+		if i ~= playerCountryIndex then
+			table.insert( country_index,i )
+		end
+	end
+	local index = random( 1,#country_index )
+	return country_index[index]
+end
+
 rawset(_G,"country_config",country_config)

@@ -192,6 +192,7 @@ UIDefine.ZUQIU_KEY	= {
 	Start_UI 			= { layer = import("app.viewszuqiu.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Start_UI"                     },
 	Help_UI 			= { layer = import("app.viewszuqiu.GameHelp"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Help_UI"    			   		},
 	Voice_UI	        = { layer = import("app.viewszuqiu.GameVoiceSet"),	      		flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Voice_UI"    			     	},
+	Play_UI             = { layer = import("app.viewszuqiu.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Play_UI"    			   		},
 }
 
 
