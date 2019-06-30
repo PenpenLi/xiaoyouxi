@@ -7,6 +7,17 @@
 			<key>image/lose/yifu.png</key>
 			<dict>
 				<key>frame</key>
+				<string>{{449,834},{166,188}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{166,188}</string>
+			</dict>
+			<key>image/lose/yifu2.png</key>
+			<dict>
+				<key>frame</key>
 				<string>{{587,368},{166,188}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
@@ -15,69 +26,58 @@
 				<key>sourceSize</key>
 				<string>{166,188}</string>
 			</dict>
-			<key>image/lose/yifu2.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{403,355},{166,188}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{166,188}</string>
-			</dict>
 			<key>image/play/Bringalong1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{587,753},{179,64}}</string>
+				<string>{{665,722},{107,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
-				<string>{179,64}</string>
+				<string>{107,38}</string>
 			</dict>
 			<key>image/play/Bringalong2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{757,628},{179,63}}</string>
+				<string>{{857,307},{106,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
-				<string>{179,63}</string>
+				<string>{106,38}</string>
 			</dict>
 			<key>image/play/Bringalong3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{873,691},{179,63}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{179,63}</string>
-			</dict>
-			<key>image/play/Bringalong4.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{936,812},{179,63}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{179,63}</string>
-			</dict>
-			<key>image/play/Final.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{757,546},{184,82}}</string>
+				<string>{{772,718},{107,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
+				<key>sourceSize</key>
+				<string>{107,38}</string>
+			</dict>
+			<key>image/play/Bringalong4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{559,722},{106,39}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{106,39}</string>
+			</dict>
+			<key>image/play/Final.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{775,343},{184,82}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
 				<key>sourceSize</key>
 				<string>{184,82}</string>
 			</dict>
@@ -106,7 +106,7 @@
 			<key>image/play/Groupstage3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{848,257},{184,84}}</string>
+				<string>{{735,534},{184,84}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -117,7 +117,7 @@
 			<key>image/play/help.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{615,700},{46,46}}</string>
+				<string>{{936,414},{46,46}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -139,18 +139,18 @@
 			<key>image/play/pokerbg.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{242,834},{163,213}}</string>
+				<string>{{569,207},{147,180}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<true />
 				<key>sourceSize</key>
-				<string>{163,213}</string>
+				<string>{147,180}</string>
 			</dict>
 			<key>image/play/Quarter final.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{936,628},{184,82}}</string>
+				<string>{{819,527},{184,82}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -161,7 +161,7 @@
 			<key>image/play/SemiFinals.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{791,691},{184,82}}</string>
+				<string>{{879,711},{184,82}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -172,18 +172,18 @@
 			<key>image/play/vs.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{569,207},{210,112}}</string>
+				<string>{{403,543},{210,112}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{210,112}</string>
 			</dict>
 			<key>image/play/ying.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{455,834},{161,207}}</string>
+				<string>{{242,834},{161,207}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -194,7 +194,7 @@
 			<key>image/play/yinyue.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{661,700},{46,46}}</string>
+				<string>{{954,460},{46,46}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -205,22 +205,22 @@
 			<key>image/play/zq.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{796,301},{46,53}}</string>
+				<string>{{901,492},{46,53}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{46,53}</string>
 			</dict>
 			<key>image/play/zq2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{569,700},{46,53}}</string>
+				<string>{{936,368},{46,53}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{46,53}</string>
 			</dict>
@@ -238,7 +238,7 @@
 			<key>image/set/close.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{707,700},{46,46}}</string>
+				<string>{{954,506},{46,46}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -260,7 +260,7 @@
 			<key>image/set/guan.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{293,997},{54,20}}</string>
+				<string>{{293,995},{54,20}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -271,7 +271,7 @@
 			<key>image/set/kai.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{347,997},{54,20}}</string>
+				<string>{{347,995},{54,20}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -282,18 +282,18 @@
 			<key>image/set/kgbg.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{675,319},{121,37}}</string>
+				<string>{{515,543},{121,37}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{121,37}</string>
 			</dict>
 			<key>image/set/Music.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{556,319},{119,34}}</string>
+				<string>{{799,273},{119,34}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -359,7 +359,7 @@
 			<key>image/win/10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{753,700},{38,39}}</string>
+				<string>{{894,207},{38,39}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -370,7 +370,7 @@
 			<key>image/win/jia.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{401,997},{23,23}}</string>
+				<string>{{401,995},{23,23}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -381,40 +381,40 @@
 			<key>image/win/jinbi.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{779,257},{69,44}}</string>
+				<string>{{515,664},{69,44}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{69,44}</string>
 			</dict>
 			<key>image/win/next.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{775,356},{190,73}}</string>
+				<string>{{587,761},{190,73}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{190,73}</string>
 			</dict>
 			<key>image/win/pax.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{779,207},{136,50}}</string>
+				<string>{{749,207},{136,50}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{136,50}</string>
 			</dict>
 			<key>image/win/qiu.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{848,441},{79,79}}</string>
+				<string>{{857,413},{79,79}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -458,18 +458,18 @@
 			<key>image/win/yifu.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{569,534},{166,188}}</string>
+				<string>{{403,355},{166,188}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{166,188}</string>
 			</dict>
 			<key>image/win/yifu2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{403,543},{166,188}}</string>
+				<string>{{569,534},{166,188}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -480,11 +480,11 @@
 			<key>image/win/ying.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{932,368},{66,95}}</string>
+				<string>{{799,207},{66,95}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{66,95}</string>
 			</dict>
