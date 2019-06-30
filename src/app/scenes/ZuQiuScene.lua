@@ -24,7 +24,8 @@ end
 
 
 function ZuQiuScene:loadAppFile()
-	-- import("app.viewszhandou.config.zhandou_config")
+	import("app.viewszuqiu.config.zuqiu_config")
+	import("app.viewszuqiu.config.country_config")
 end
 
 
