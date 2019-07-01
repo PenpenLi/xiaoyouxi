@@ -82,6 +82,11 @@ function GameHelp:loadUi(  )
 
 end
 
+function GameHelp:onEnter( ... )
+	GameHelp.super.onEnter( self )
+	casecadeFadeInNode( self.ImageShadow,0.5,150 )
+	casecadeFadeInNode( self.Bg,0.5 )
+end
 
 function GameHelp:close(  )
 	removeUIFromScene( UIDefine.ZUQIU_KEY.Help_UI )
