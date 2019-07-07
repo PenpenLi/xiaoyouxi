@@ -18,17 +18,6 @@
 			<key>image/poker/meihua5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{858,259},{126,172}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{126,172}</string>
-			</dict>
-			<key>image/poker/meihua6.png</key>
-			<dict>
-				<key>frame</key>
 				<string>{{684,387},{126,172}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
@@ -37,10 +26,21 @@
 				<key>sourceSize</key>
 				<string>{126,172}</string>
 			</dict>
+			<key>image/poker/meihua6.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{890,481},{126,172}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{126,172}</string>
+			</dict>
 			<key>image/poker/meihua7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{858,433},{126,172}}</string>
+				<string>{{1,655},{126,172}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -51,7 +51,18 @@
 			<key>image/poker/meihua8.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,407},{126,172}}</string>
+				<string>{{1,515},{126,172}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{126,172}</string>
+			</dict>
+			<key>image/poker/meihua9.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,829},{126,172}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -59,32 +70,21 @@
 				<key>sourceSize</key>
 				<string>{126,172}</string>
 			</dict>
-			<key>image/poker/meihua9.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{129,407},{126,172}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{126,172}</string>
-			</dict>
 			<key>image/poker/meihuaa.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{303,407},{126,172}}</string>
+				<string>{{129,643},{126,172}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{126,172}</string>
 			</dict>
 			<key>image/poker/meihuaj.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{477,407},{126,172}}</string>
+				<string>{{175,515},{126,172}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -95,18 +95,18 @@
 			<key>image/poker/meihuak.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{651,515},{126,172}}</string>
+				<string>{{129,817},{126,172}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{126,172}</string>
 			</dict>
 			<key>image/poker/meihuaq.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{825,607},{126,172}}</string>
+				<string>{{349,407},{126,172}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -139,29 +139,29 @@
 			<key>image/help/previous.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{605,643},{190,73}}</string>
+				<string>{{858,259},{190,73}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{190,73}</string>
 			</dict>
 			<key>image/help/gotit.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{257,663},{190,73}}</string>
+				<string>{{933,289},{190,73}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{190,73}</string>
 			</dict>
 			<key>image/play/mengban.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{129,535},{126,172}}</string>
+				<string>{{523,407},{126,172}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -172,18 +172,18 @@
 			<key>image/poker/meihua10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,581},{126,172}}</string>
+				<string>{{349,535},{126,172}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{126,172}</string>
 			</dict>
 			<key>image/poker/meihua2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{257,535},{126,172}}</string>
+				<string>{{651,515},{126,172}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -194,24 +194,46 @@
 			<key>image/poker/meihua3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{431,535},{126,172}}</string>
+				<string>{{523,581},{126,172}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{126,172}</string>
 			</dict>
 			<key>image/play/hg.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{961,1},{30,30}}</string>
+				<string>{{858,451},{30,30}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{30,30}</string>
+			</dict>
+			<key>image/play/pass.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{961,1},{142,37}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{142,37}</string>
+			</dict>
+			<key>image/play/pass2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{961,145},{142,37}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{142,37}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>
