@@ -21,12 +21,15 @@ function NodePoker:ctor( parentPanel,numIndex )
 	self:addChild( self._yinying )
 	self._yinying:setScale( 0.86 )
 	self._yinying:setVisible( false )
+
+	self._showBei = false
 end
 
 
 function NodePoker:showPoker()
 	local path = zuqiu_card_config[self._numIndex].path
 	self._image:loadTexture( path,1 )
+	self._showBei = false
 end
 
 function NodePoker:setSeatPos( seatPos )
@@ -43,6 +46,14 @@ function NodePoker:getCardNum()
 	return self._cardNum
 end
 
+function NodePoker:showBei()
+	self._image:loadTexture( "image/poker/bei.png",1 )
+	self._showBei = true
+end
+
+function NodePoker:isShowBei()
+	return self._showBei
+end
 
 function NodePoker:getNumIndex()
 	return self._numIndex
