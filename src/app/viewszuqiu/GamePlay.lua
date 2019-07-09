@@ -972,6 +972,10 @@ function GamePlay:excuteAIWinPokerAction()
 				performWithDelay( self,function()
 					self:aiOutCard()
 				end,0.5 )
+
+				-- 足球移动动画
+				local meta = 146.5 / 13
+				
 			end
 		end
 		-- 移动玩家的出牌到ai的牌堆
@@ -979,7 +983,6 @@ function GamePlay:excuteAIWinPokerAction()
 	end
 	-- 移动ai的出牌到ai的牌堆
 	self:moveCardsFromOutToPaiDui( self._aiOutCards,self.ImageBeiAI,self._aiPaiDuiCards,call_move_player,true,0.2 )
-	
 end
 
 function GamePlay:excutePlayerWinPokerAction()
@@ -1057,8 +1060,10 @@ end
 function GamePlay:isGameOver( winType )
 	if winType == 1 then
 		-- ai 赢
+		addUIToScene( UIDefine.ZUQIU_KEY.Lose_UI )
 	elseif winType == 2 then
 		-- 玩家赢
+		addUIToScene( UIDefine.ZUQIU_KEY.Win_UI )
 	end
 end
 
