@@ -7,9 +7,9 @@ local STAGE_ICON = {
 	[1]  = "image/play/Groupstage1.png",
 	[2]  = "image/play/Groupstage2.png",
 	[3]  = "image/play/Groupstage3.png",
-	[4]  = "image/pay/Quarterfinal.png",
-	[5]  = "image/pay/SemiFinals.png",
-	[6]  = "image/pay/Final.png"
+	[4]  = "image/play/Quarterfinal.png",
+	[5]  = "image/play/SemiFinals.png",
+	[6]  = "image/play/Final.png"
 }
 
 function GamePlay:ctor( param )
@@ -21,6 +21,21 @@ function GamePlay:ctor( param )
     -- pass 
     self:addNodeClick( self.ButtonPass,{ 
         endCallBack = function() self:clickPass() end,
+    })
+
+    -- music
+    self:addNodeClick( self.ButtonYinYue,{
+    	endCallBack = function() self:clickMusic() end,
+    })
+
+    -- back
+    self:addNodeClick( self.ButtonBack,{
+    	endCallBack = function() self:clickBack() end,
+    })
+
+    -- help
+    self:addNodeClick( self.ButtonHelp,{
+    	endCallBack = function() self:clickHelp() end,
     })
 
     -- 隐藏定位的poker
@@ -44,10 +59,7 @@ function GamePlay:ctor( param )
     self._playerPokerAngle = { -19,-14,-5,5,14,19 }
     self._aiPokerAngle = { 19,14,5,-5,-14,-19 }
     self._countryIndex = param.data.country_index
-    self._stage = 1
-    if param.data.stage then
-    	self._stage = param.data.stage
-    end
+    self._stage = G_GetModel("Model_ZuQiu"):getStage()
 
     self._aiPaiDuiCards = {}
     self._playerPaiDuiCards = {}
@@ -81,7 +93,7 @@ function GamePlay:loadDataUI()
 	local ai_country_index = country_config.getAiRandomCountry( self._countryIndex ) 
 	self.ImageCountry2:loadTexture( country_config.europe[ai_country_index].icon,1 )
 	-- 第几场
-	self.ImageStage:loadTexture( STAGE_ICON[self._stage] )
+	self.ImageStage:loadTexture( STAGE_ICON[self._stage],1 )
 end
 
 function GamePlay:createBeiPoker()
@@ -170,12 +182,15 @@ function GamePlay:playerMoCard( numIndex,seatPos,actionTime )
 	assert( actionTime," !! actionTime is nil !! " )
 	assert( #self._playerPaiDuiCards > 0, " !! player pai dui not has card !! " )
 
+	if G_GetModel("Model_Sound"):isVoiceOpen() then
+		audio.playSound("zqmp3/sendpoker.mp3", false)
+	end
+
 	-- 移除顶部poker
 	local poker = self._playerPaiDuiCards[#self._playerPaiDuiCards]
 	self._playerPaiDuiCards[#self._playerPaiDuiCards] = nil
 	poker:removeFromParent()
 
-	print("---------------> 玩家牌堆还有牌的数量是:"..#self._playerPaiDuiCards)
 
 	-- 创建poker到手牌
 	local pos = cc.p( self.ImageBeiPlayer:getPosition() )
@@ -203,12 +218,14 @@ function GamePlay:aiMoCard( numIndex,seatPos,actionTime )
 	assert( actionTime," !! actionTime is nil !! " )
 	assert( #self._aiPaiDuiCards > 0, " !! ai pai dui not has card !! " )
 
+	if G_GetModel("Model_Sound"):isVoiceOpen() then
+		audio.playSound("zqmp3/sendpoker.mp3", false)
+	end
+
 	-- 移除顶部poker
 	local poker = self._aiPaiDuiCards[#self._aiPaiDuiCards]
 	self._aiPaiDuiCards[#self._aiPaiDuiCards] = nil
 	poker:removeFromParent()
-
-	print("---------------> ai牌堆还有牌的数量是:"..#self._aiPaiDuiCards)
 
 	-- 创建poker到手牌
 	local pos = cc.p( self.ImageBeiAI:getPosition() )
@@ -229,7 +246,6 @@ end
 -- ai出牌逻辑
 function GamePlay:aiOutCard()
 	local out_poker = nil
-
 	-- 是否选择花色最多的
 	local select_most_huase = true
 	if #self._aiOutCards > 0 then
@@ -240,31 +256,48 @@ function GamePlay:aiOutCard()
 	end
 
 	if select_most_huase then
-		-- 1: 桌面上没有牌 选择花色最多的牌出
-		local hua_se = {}
-		for i,v in ipairs( self._aiHandCards ) do
-			local color = zuqiu_card_config[v:getNumIndex()].color
-			if not hua_se[color] then
-				hua_se[color] = 1
-			else
-				hua_se[color] = hua_se[color] + 1
-			end
-		end
-		local max_count,max_color = 0,0
-		for k,v in pairs( hua_se ) do
-			if v > max_count then
-				max_count = v
-				max_color = k
-			end
-		end
-		-- 在花色中选择点数最大的
-		local max_card_num = 0
-		for i,v in ipairs( self._aiHandCards ) do
-			local color = zuqiu_card_config[v:getNumIndex()].color
-			if color == max_color then
-				if v:getCardNum() > max_card_num then
+		local player_total_num = self:calPlayerOutTotalNum()
+		if player_total_num > 0 then
+			-- 选择点数比玩家大的牌
+			for i,v in pairs( self._aiHandCards ) do
+				if v:getCardNum() >= player_total_num then
 					out_poker = v
-					max_card_num = v:getCardNum()
+					break
+				end
+			end
+			-- 如果不存在点数最大的 随机一张
+			if out_poker == nil then
+				out_poker = self._aiHandCards[1]
+			end
+		else
+			-- 1: 桌面上没有牌 选择花色最多的牌出
+			local hua_se = {}
+			for i,v in ipairs( self._aiHandCards ) do
+				local color = zuqiu_card_config[v:getNumIndex()].color
+				if not hua_se[color] then
+					hua_se[color] = 1
+				else
+					hua_se[color] = hua_se[color] + 1
+				end
+			end
+			local max_count,max_color = 0,0
+			for k,v in pairs( hua_se ) do
+				if v > max_count then
+					max_count = v
+					max_color = k
+				end
+			end
+			-- 在花色中选择点数最大的
+			local max_card_num = 0
+			for i,v in pairs( self._aiHandCards ) do
+				local color = zuqiu_card_config[v:getNumIndex()].color
+				if color == max_color then
+					-- if v:getCardNum() > max_card_num then
+					-- 	out_poker = v
+					-- 	max_card_num = v:getCardNum()
+					-- end
+					out_poker = v
+					break
 				end
 			end
 		end
@@ -295,6 +328,17 @@ function GamePlay:aiOutCard()
 						out_poker = v
 						break
 					end
+				end
+			end
+		end
+		-- 3:寻找相同花色的
+		if out_poker == nil then
+			for i,v in ipairs( self._aiHandCards ) do
+				local v_color = zuqiu_card_config[v:getNumIndex()].color
+				if v_color == color then
+					-- 出牌
+					out_poker = v
+					break
 				end
 			end
 		end
@@ -351,20 +395,34 @@ function GamePlay:aiOutCard()
 		end
 	end )
 	local call_move_over = cc.CallFunc:create( function()
-		-- 1:是否需要pmax
+		-- 1:是否输牌
+		local ai_total_num = self:calAiOutTotalNum()
+		local player_total_num = self:calPlayerOutTotalNum()
+		if ai_total_num < player_total_num then
+			self:excutePlayerWinPokerAction()
+			return
+		end
+		-- 2:是否输牌
+		if #self._aiPaiDuiCards <= 0 and #self._aiHandCards <= 4 then
+			self:excutePlayerWinPokerAction()
+			return
+		end
+
+		-- 3:是否需要pmax
 		local is_pmax = self:checkPMax()
 		if is_pmax then
 			-- 播放pax动画
 			self:excutePMaxAction( 1 )
 			return
 		end
-		-- 2:是否赢牌( 玩家不能出牌 且大于玩家的点数 就赢牌)
+
+		-- 4:是否赢牌( 玩家不能出牌 且大于玩家的点数 就赢牌)
 		if self:checkAIWinPoker() then
 			-- 执行赢牌动画
 			self:excuteAIWinPokerAction()
 			return
 		end
-		-- 3:刷新玩家手牌的op icon 等待玩家出牌
+		-- 5:刷新玩家手牌的op icon 等待玩家出牌
 		self:turnPlayerOutCard()
 	end )
 	new_poker:runAction( cc.Sequence:create({ move_to,call_ai_mo,call_move_over}) )
@@ -470,11 +528,9 @@ function GamePlay:playerOutCard( poker )
 	local delay = cc.DelayTime:create( 0.5 )
 	local call_move_over = cc.CallFunc:create( function()
 		self:hideOpIcon()
-		-- 1:是否需要pmax
-		local is_pmax = self:checkPMax()
-		if is_pmax then
-			-- 播放pax动画
-			self:excutePMaxAction( 2 )
+		-- 1:自己是否输牌
+		if #self._playerPaiDuiCards <= 0 and #self._playerHandCards <= 4 then
+			self:excuteAIWinPokerAction()
 			return
 		end
 		-- 2:ai是否赢牌
@@ -484,13 +540,20 @@ function GamePlay:playerOutCard( poker )
 			self:excuteAIWinPokerAction()
 			return
 		end
-		-- 3:自己是否赢牌( ao不能出牌 且大于ai的点数 就赢牌)
+		-- 3:是否需要pmax
+		local is_pmax = self:checkPMax()
+		if is_pmax then
+			-- 播放pax动画
+			self:excutePMaxAction( 2 )
+			return
+		end
+		-- 4:自己是否赢牌( ai不能出牌 且大于ai的点数 就赢牌)
 		if self:checkPlayerWinPoker() then
 			-- 执行赢牌动画
 			self:excutePlayerWinPokerAction()
 			return
 		end
-		-- 4:通知ai出牌
+		-- 5:通知ai出牌
 		self:aiOutCard()
 	end )
 	local seq = cc.Sequence:create({ move_to,call_player_mo,delay,call_move_over })
@@ -581,7 +644,7 @@ function GamePlay:moveSortHandCardByPaiDuiNoCards( source,actionTime,pokerPos,po
 	if #source == 0 then
 		return
 	end
-	local new_setPos = 0
+	local new_setPos = 1
 	if #source == 1 or #source == 2 then
 		-- 当剩一张牌的时候
 		new_setPos = 3
@@ -592,11 +655,12 @@ function GamePlay:moveSortHandCardByPaiDuiNoCards( source,actionTime,pokerPos,po
 	end
 
 	for i,v in ipairs( source ) do
-		new_setPos = new_setPos + i - 1
-		v:setSeatPos( new_setPos )
-		local new_pos = pokerPos[ new_setPos ]
+		local nnew_seat_pos = new_setPos + i - 1
+		v:setSeatPos( nnew_seat_pos )
+		local new_pos = pokerPos[ nnew_seat_pos ]
+
 		local move_to = cc.MoveTo:create( actionTime,new_pos )
-		local rotate_to = cc.RotateTo:create( actionTime,pokerAngle[new_setPos] )
+		local rotate_to = cc.RotateTo:create( actionTime,pokerAngle[nnew_seat_pos] )
 		local spawn = cc.Spawn:create({ move_to,rotate_to })
 		v:runAction( spawn )
 	end
@@ -661,11 +725,17 @@ function GamePlay:excutePMaxAction( intType )
 						v:runAction( cc.Sequence:create( { move_to,call_bei } ) )
 					end
 					if intType == 1 then
+						if #self._aiPaiDuiCards <= 0 then
+							self:moveSortHandCardByPaiDuiNoCards( self._playerHandCards,0.4,self._playerPokerPos,self._playerPokerAngle )
+						end
 						-- 0.5秒之后 ai出牌
 						performWithDelay( self,function()
 							self:aiOutCard()
 						end,0.5 )
 					else
+						if #self._playerPaiDuiCards <= 0 then
+							self:moveSortHandCardByPaiDuiNoCards( self._playerHandCards,0.4,self._playerPokerPos,self._playerPokerAngle )
+						end
 						-- 等待玩家出牌
 						performWithDelay( self,function()
 							self:turnPlayerOutCard()
@@ -691,76 +761,92 @@ function GamePlay:createPokerToOut( paiDuiCards,handCards,outCards,outPos,callBa
 	assert( paidui_count + hands_count >= 3," !! error,this logic not exist !! " )
 	local hands_need_out = 3 - paidui_count
 	if hands_need_out > 0 then
-		for i = 1,paidui_count do
-			local poker = paiDuiCards[#paiDuiCards]
-			paiDuiCards[#paiDuiCards] = nil
-			local numIndex = poker:getNumIndex()
-			local world_pos = poker:getParent():convertToWorldSpace( cc.p(poker:getPosition()) )
-			local start_pos = self._csbNode:convertToNodeSpace( world_pos )
-			poker:removeFromParent()
-
-			if outPos == self._outPlayerPos then
-				print("---------------> 玩家牌堆还有牌的数量是:"..#self._playerPaiDuiCards)
-			else
-				print("---------------> ai牌堆还有牌的数量是:"..#self._aiPaiDuiCards)
-			end
-
-
-			-- 创建牌 执行出牌动画
-			local new_poker = NodePoker.new( self,numIndex )
-			self._csbNode:addChild( new_poker )
-			new_poker:setPosition( start_pos )
-			new_poker:showPoker()
-			outCards[#outCards + 1] = new_poker
-			local dest_pos = cc.p( outPos.x + ( i - 1 ) * 35,outPos.y )
-			local delay = cc.DelayTime:create( 0.1 * ( i - 1 ) )
-			local move_to = cc.MoveTo:create( 0.3,dest_pos )
-			local call_send = cc.CallFunc:create( function()
-				if i == paidui_count then
-					-- 从手牌中发牌
-					for j = 1,hands_need_out do
-						local hand_poker = handCards[j]
-						handCards[j] = nil
-						local hadNumIndex = hand_poker:getNumIndex()
-						local hand_world_pos = hand_poker:getParent():convertToWorldSpace( cc.p(hand_poker:getPosition()) )
-						local hand_start_pos = self._csbNode:convertToNodeSpace( hand_world_pos )
-						hand_poker:removeFromParent()
-						-- 创建牌 执行出牌动画
-						local hand_new_poker = NodePoker.new( self,hadNumIndex )
-						self._csbNode:addChild( hand_new_poker )
-						hand_new_poker:setPosition( hand_start_pos )
-						hand_new_poker:showPoker()
-						outCards[#outCards + 1] = hand_new_poker
-
-						local hand_dest_pos = cc.p( outPos.x + ( i - 1 + j ) * 35,outPos.y )
-						local hand_delay = cc.DelayTime:create( 0.1 * ( i - 1 + j ) )
-						local hand_move_to = cc.MoveTo:create( 0.3,hand_dest_pos )
-						local call_hand_send = cc.CallFunc:create( function()
-							if j == hands_need_out and callBack then
-								callBack()
-							end
-						end )
-						hand_new_poker:runAction( cc.Sequence:create( { hand_delay,hand_move_to,call_hand_send } ) )
+		-- 从手牌中发牌
+		local call_send_byhand = function()
+			table.sort( handCards,function( a,b )
+				return a:getSeatPos() < b:getSeatPos()
+			end )
+			for j = 1,hands_need_out do
+				if G_GetModel("Model_Sound"):isVoiceOpen() then
+					audio.playSound("zqmp3/sendpoker.mp3", false)
+				end
+				local hand_poker = handCards[j]
+				local hadNumIndex = hand_poker:getNumIndex()
+				local hand_world_pos = hand_poker:getParent():convertToWorldSpace( cc.p(hand_poker:getPosition()) )
+				local hand_start_pos = self._csbNode:convertToNodeSpace( hand_world_pos )
+				hand_poker:removeFromParent()
+				-- 移除该指针
+				for c,d in ipairs( handCards ) do
+					if d == hand_poker then
+						table.remove( handCards,c )
+						break
 					end
 				end
-			end )
-			new_poker:runAction( cc.Sequence:create( { delay,move_to,call_send } ) )
+				-- 创建牌 执行出牌动画
+				local hand_new_poker = NodePoker.new( self,hadNumIndex )
+				self._csbNode:addChild( hand_new_poker )
+				hand_new_poker:setPosition( hand_start_pos )
+				hand_new_poker:showPoker()
+				outCards[#outCards + 1] = hand_new_poker
+
+				local hand_dest_pos = cc.p( outPos.x + ( paidui_count - 1 + j ) * 35,outPos.y )
+				local hand_delay = cc.DelayTime:create( 0.1 * ( paidui_count - 1 + j ) )
+				local hand_move_to = cc.MoveTo:create( 0.3,hand_dest_pos )
+				local call_hand_send = cc.CallFunc:create( function()
+					if j == hands_need_out and callBack then
+						table.sort( handCards,function( a,b )
+							return a:getSeatPos() < b:getSeatPos()
+						end )
+						callBack()
+					end
+				end )
+				hand_new_poker:runAction( cc.Sequence:create( { hand_delay,hand_move_to,call_hand_send } ) )
+			end
+		end
+		if paidui_count > 0 then
+			for i = 1,paidui_count do
+				if G_GetModel("Model_Sound"):isVoiceOpen() then
+					audio.playSound("zqmp3/sendpoker.mp3", false)
+				end
+				local poker = paiDuiCards[#paiDuiCards]
+				paiDuiCards[#paiDuiCards] = nil
+				local numIndex = poker:getNumIndex()
+				local world_pos = poker:getParent():convertToWorldSpace( cc.p(poker:getPosition()) )
+				local start_pos = self._csbNode:convertToNodeSpace( world_pos )
+				poker:removeFromParent()
+
+				-- 创建牌 执行出牌动画
+				local new_poker = NodePoker.new( self,numIndex )
+				self._csbNode:addChild( new_poker )
+				new_poker:setPosition( start_pos )
+				new_poker:showPoker()
+				outCards[#outCards + 1] = new_poker
+				local dest_pos = cc.p( outPos.x + ( i - 1 ) * 35,outPos.y )
+				local delay = cc.DelayTime:create( 0.1 * ( i - 1 ) )
+				local move_to = cc.MoveTo:create( 0.3,dest_pos )
+				local call_send = cc.CallFunc:create( function()
+					if i == paidui_count then
+						call_send_byhand()
+					end
+				end )
+				new_poker:runAction( cc.Sequence:create( { delay,move_to,call_send } ) )
+			end
+		else
+			call_send_byhand()
 		end
 	else
 		-- 全部从牌堆发牌
 		for i = 1,3 do
+			if G_GetModel("Model_Sound"):isVoiceOpen() then
+				audio.playSound("zqmp3/sendpoker.mp3", false)
+			end
+
 			local poker = paiDuiCards[#paiDuiCards]
 			paiDuiCards[#paiDuiCards] = nil
 			local numIndex = poker:getNumIndex()
 			local world_pos = poker:getParent():convertToWorldSpace( cc.p(poker:getPosition()) )
 			local start_pos = self._csbNode:convertToNodeSpace( world_pos )
 			poker:removeFromParent()
-
-			if outPos == self._outPlayerPos then
-				print("---------------> 玩家牌堆还有牌的数量是:"..#self._playerPaiDuiCards)
-			else
-				print("---------------> ai牌堆还有牌的数量是:"..#self._aiPaiDuiCards)
-			end
 
 			-- 创建牌 执行出牌动画
 			local new_poker = NodePoker.new( self,numIndex )
@@ -835,19 +921,20 @@ function GamePlay:loadPlayerOpIcon()
 		for i = 1,6 do
 			if self._playerHandCards[i] then
 				local player_color = zuqiu_card_config[self._playerHandCards[i]:getNumIndex()].color
+				local player_num = zuqiu_card_config[self._playerHandCards[i]:getNumIndex()].num
 				if out_color then
 					if player_color == out_color then
-						local player_num = zuqiu_card_config[self._playerHandCards[i]:getNumIndex()].num
 						if ai_total_num < player_num + player_total_num then
 							local seat_pos = self._playerHandCards[i]:getSeatPos()
 							self["ImageCanOut"..seat_pos]:setVisible( true )
-						elseif ai_total_num > player_num + player_total_num then
-							-- if player_total_num > 0 then
-							-- 	self._playerHandCards[i]:setYinYingVisible( true )
-							-- end
 						end
 					else
 						self._playerHandCards[i]:setYinYingVisible( true )
+					end
+				else
+					if ai_total_num < player_num + player_total_num then
+						local seat_pos = self._playerHandCards[i]:getSeatPos()
+						self["ImageCanOut"..seat_pos]:setVisible( true )
 					end
 				end
 			end
@@ -951,9 +1038,11 @@ function GamePlay:checkPlayerWinPoker()
 		for i,v in ipairs( self._aiHandCards ) do
 			local color = zuqiu_card_config[v:getNumIndex()].color
 			if color == ai_out_color then
-				if v:getCardNum() + ai_total_num >= player_total_num then
-					return false
-				end
+				-- if v:getCardNum() + ai_total_num >= player_total_num then
+				-- 	return false
+				-- end
+				-- 只要还有该花色 就出牌
+				return false
 			end
 		end
 		return true
@@ -964,18 +1053,18 @@ end
 function GamePlay:excuteAIWinPokerAction()
 	local call_move_player = function()
 		local call_ai_out = function()
+			-- 足球移动动画
+			self:footBallAction()
 			-- ai出牌
 			-- 检查ai是否赢得游戏
 			if #self._playerPaiDuiCards <= 1 then
 				self:isGameOver(1)
 			else
 				performWithDelay( self,function()
-					self:aiOutCard()
+					--检查是否需要补牌
+					local call_out_back = function() self:aiOutCard() end
+					self:sendCardByWin( self._aiPaiDuiCards,self._aiHandCards,call_out_back,false )
 				end,0.5 )
-
-				-- 足球移动动画
-				local meta = 146.5 / 13
-				
 			end
 		end
 		-- 移动玩家的出牌到ai的牌堆
@@ -988,12 +1077,15 @@ end
 function GamePlay:excutePlayerWinPokerAction()
 	local call_move_player = function()
 		local call_player_out = function()
+			-- 足球移动动画
+			self:footBallAction()
 			-- 玩家出牌
 			if #self._aiPaiDuiCards <= 1 then
 				self:isGameOver(2)
 			else
 				performWithDelay( self,function()
-					self:turnPlayerOutCard()
+					local call_out_back = function() self:turnPlayerOutCard() end
+					self:sendCardByWin( self._playerPaiDuiCards,self._playerHandCards,call_out_back,true )
 				end,0.5 )
 			end
 		end
@@ -1059,11 +1151,26 @@ end
 
 function GamePlay:isGameOver( winType )
 	if winType == 1 then
+		if G_GetModel("Model_Sound"):isVoiceOpen() then
+			audio.playSound("zqmp3/lose.mp3", false)
+		end
 		-- ai 赢
-		addUIToScene( UIDefine.ZUQIU_KEY.Lose_UI )
+		G_GetModel("Model_ZuQiu"):setCoin( 1 )
+		local call_back = function() 
+			addUIToScene( UIDefine.ZUQIU_KEY.Lose_UI,{ country_index = self._countryIndex } )
+		end
+		self:gameOverFootBallAction( self.NodeLoseQiuPos,call_back )
 	elseif winType == 2 then
+		if G_GetModel("Model_Sound"):isVoiceOpen() then
+			audio.playSound("zqmp3/win.mp3", false)
+		end
 		-- 玩家赢
-		addUIToScene( UIDefine.ZUQIU_KEY.Win_UI )
+		G_GetModel("Model_ZuQiu"):setCoin( 10 )
+		G_GetModel("Model_ZuQiu"):setStage()
+		local call_back = function()
+			addUIToScene( UIDefine.ZUQIU_KEY.Win_UI,{ country_index = self._countryIndex } )
+		end
+		self:gameOverFootBallAction( self.NodeWinQiuPos,call_back )
 	end
 end
 
@@ -1087,11 +1194,100 @@ function GamePlay:showPass()
 	end
 end
 
+function GamePlay:footBallAction()
+	local meta = 146.5 / 13
+	local move_dis_num = 14 - #self._playerPaiDuiCards
+	local dis_y = meta * move_dis_num
+	local pos_y = 146.5 - dis_y
+	local pos_x = self.ImageQiu:getPositionX()
+	self.ImageQiu:runAction( cc.MoveTo:create( 0.3,cc.p( pos_x,pos_y ) ))
+end
+
 function GamePlay:hidePass()
 	self.ButtonPass:setVisible( false )
 	if self._schedulePassMark then
 		self:stopSchedule()
 	end
+end
+
+function GamePlay:gameOverFootBallAction( node,callBack )
+	local size = cc.Director:getInstance():getWinSize()
+	local img = ccui.ImageView:create( "image/play/zq.png",1 )
+	node:addChild( img )
+	local stack_pos	= node:convertToNodeSpace( cc.p(size.width / 2,size.height / 2) )
+	img:setPosition( stack_pos )
+	local goal = size.height / 7
+	local move_to = cc.MoveTo:create( 0.6,cc.p( 0,0 ))
+	local move_by = cc.MoveBy:create( 0.2,cc.p( 0,-goal ))
+	local move_by_1 = cc.MoveBy:create( 0.15,cc.p( 0,goal/5*4 ))
+	local move_by_2 = cc.MoveBy:create( 0.1,cc.p( 0,-goal/5*3 ))
+	local move_by_3 = cc.MoveBy:create( 0.05,cc.p( 0,goal/5*1 ))
+	local fade_out = cc.FadeOut:create( 0.2 )
+	local call_back = cc.CallFunc:create( callBack )
+	local sequence = cc.Sequence:create( move_to,move_by,move_by_1,move_by_2,move_by_3,fade_out,call_back )
+	img:runAction( sequence )
+end
+
+-- 每次赢牌之后 判断手牌 是否需要重新发牌
+function GamePlay:sendCardByWin( paiDuiCards,hands,callBack,isPlayer )
+	assert( paiDuiCards," !! paiDuiCards is nil !! " )
+	assert( hands," !! hands is nil !! " )
+	assert( callBack," !! callBack is nil !! " )
+	-- 手牌有6张 不需要
+	if #hands == 6 then
+		callBack()
+		return
+	end
+	-- 找出缺牌的位置
+	local has_seat = {}
+	for i,v in ipairs( hands ) do
+		table.insert( has_seat,v:getSeatPos() )
+	end
+	local no_seat = {}
+	for i = 1,6 do
+		local has = false
+		for a,b in ipairs( has_seat ) do
+			if b == i then
+				has = true
+			end
+		end
+		if not has then
+			table.insert( no_seat,i )
+		end
+	end
+	local count = 0
+	if #paiDuiCards > #no_seat then
+		count = #no_seat
+	else
+		count = #paiDuiCards
+	end
+	local action_time = 0.5
+	-- 为缺牌的位置执行发牌动画
+	local actions = {}
+	for i = 1,count do
+		local top_numIndex = paiDuiCards[#paiDuiCards - (i-1)]:getNumIndex()
+		local delay = cc.DelayTime:create( (i - 1) * action_time + 0.1 )
+		local call_send = cc.CallFunc:create( function()
+			if isPlayer then
+				-- 玩家
+				self:playerMoCard( top_numIndex,no_seat[i],action_time )
+			else
+				-- AI
+				self:aiMoCard( top_numIndex,no_seat[i],action_time )
+			end
+		end )
+		table.insert( actions,delay )
+		table.insert( actions,call_send )
+		if i == count then
+			local delay2 = cc.DelayTime:create( 0.6 )
+			local call_bback = cc.CallFunc:create( function()
+				callBack()
+			end)
+			table.insert( actions,delay2 )
+			table.insert( actions,call_bback )
+		end
+	end
+	self:runAction( cc.Sequence:create( actions ) )
 end
 
 function GamePlay:clickPass()
@@ -1100,5 +1296,17 @@ function GamePlay:clickPass()
 	self:excuteAIWinPokerAction()
 end
 
+function GamePlay:clickMusic()
+	addUIToScene( UIDefine.ZUQIU_KEY.Voice_UI )
+end
+
+function GamePlay:clickBack()
+	removeUIFromScene( UIDefine.ZUQIU_KEY.Play_UI )
+	addUIToScene( UIDefine.ZUQIU_KEY.Start_UI )
+end
+
+function GamePlay:clickHelp()
+	addUIToScene( UIDefine.ZUQIU_KEY.Help_UI )
+end
 
 return GamePlay
