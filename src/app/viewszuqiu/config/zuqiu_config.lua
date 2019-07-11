@@ -99,7 +99,7 @@ zuqiu_card_config.getRandomPokerByBegan = function( stage )
 	end
 
 	local random_all = getRandomArray( 1,#zuqiu_card_config )
-	local random_huase = getRandomArray( 55,#zuqiu_card_config )
+	local random_huase = getRandomArray( 61,#zuqiu_card_config )
 
 	for i = 1,huase_num do
 		table.insert( ai_poker,random_huase[i] )
