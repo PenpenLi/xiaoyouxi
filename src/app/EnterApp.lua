@@ -28,7 +28,7 @@ end
 function EnterApp:create()
 	print(">>>>>EnterApp:create<<<<<<")
 	self:loadAppFile()
-	local scene = require("app.scenes.ZuQiuScene").new()
+	local scene = require("app.scenes.SuoHaScene").new()
 	return scene
 end
 
@@ -84,6 +84,12 @@ function EnterApp:run()
 	-- -- 进入足球场景
 	-- local scene = require("app.scenes.ZuQiuScene").new()
 	-- display.runScene(scene)
+
+	-- -- 进入梭哈场景
+	-- local scene = require("app.scenes.SuoHaScene").new()
+	-- display.runScene(scene)
+
+
 end
 
 

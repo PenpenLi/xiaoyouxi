@@ -55,6 +55,8 @@ function Model_Sound:isMusicOpen()
 			self._musicState = user_default:getIntegerForKey("zhandouMusicState", 1)
 		elseif scene_name == "ZuQiuScene" then
 			self._musicState = user_default:getIntegerForKey("zuqiuMusicState", 1)
+		elseif scene_name == "SuoHaScene" then
+			self._musicState = user_default:getIntegerForKey("suohaMusicState", 1)
 		end
 	end
 	return self._musicState == 1
@@ -86,6 +88,8 @@ function Model_Sound:setMusicState( state )
 		user_default:setIntegerForKey("zhandouMusicState", state)
 	elseif scene_name == "ZuQiuScene" then
 		user_default:setIntegerForKey("zuqiuMusicState", state)
+	elseif scene_name == "SuoHaScene" then
+		user_default:setIntegerForKey("suohaMusicState", state)
 	end
 end
 
@@ -114,6 +118,8 @@ function Model_Sound:isVoiceOpen()
 			self._voiceState = user_default:getIntegerForKey("zhandouVoiceState", 1)
 		elseif scene_name == "ZuQiuScene" then
 			self._voiceState = user_default:getIntegerForKey("zuqiuVoiceState", 1)
+		elseif scene_name == "SuoHaScene" then
+			self._voiceState = user_default:getIntegerForKey("suohaVoiceState", 1)
 		end
 
 	end
@@ -147,6 +153,8 @@ function Model_Sound:setVoiceState( state )
 		user_default:setIntegerForKey("zhandouVoiceState", state)
 	elseif scene_name == "ZuQiuScene" then
 		user_default:setIntegerForKey("zuqiuVoiceState", state)
+	elseif scene_name == "SuoHaScene" then
+		user_default:setIntegerForKey("suohaVoiceState", state)
 	end
 end
 
@@ -198,6 +206,10 @@ function Model_Sound:playBgMusic()
 		if self:isMusicOpen() then
 			audio.playMusic("zqmp3/music.mp3",true)
 		end
+	elseif scene_name == "SuoHaScene" then
+		if self:isMusicOpen() then
+			audio.playMusic("shmp3/music.mp3",true)
+		end
 	end
 end
 
@@ -224,6 +236,8 @@ function Model_Sound:stopPlayBgMusic()
 	elseif scene_name == "ZhanDouScene" then
 		audio.stopMusic(false)
 	elseif scene_name == "ZuQiuScene" then
+		audio.stopMusic(false)
+	elseif scene_name == "SuoHaScene" then
 		audio.stopMusic(false)
 	end
 end
@@ -280,6 +294,10 @@ function Model_Sound:playVoice( voicePath )
 	elseif scene_name == "ZuQiuScene" then
 		if self:isVoiceOpen() then
 			audio.playSound("zqmp3/button.mp3", false)
+		end
+	elseif scene_name == "SuoHaScene" then
+		if self:isVoiceOpen() then
+			audio.playSound("shmp3/button.mp3", false)
 		end
 	end
 end
