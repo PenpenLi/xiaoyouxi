@@ -233,7 +233,7 @@ function GamePlay:aiMoCard( numIndex,seatPos,actionTime )
 	local new_poker = NodePoker.new( self,numIndex )
 	self._csbNode:addChild( new_poker )
 	new_poker._image:getVirtualRenderer():getSprite():setFlippedY( true )
-	new_poker:showPoker()
+	-- new_poker:showPoker()
 	new_poker:setSeatPos( seatPos )
 	self._aiHandCards[#self._aiHandCards + 1] = new_poker
 	new_poker:setPosition( pos )
@@ -395,37 +395,45 @@ function GamePlay:aiOutCard()
 		end
 	end )
 	local call_move_over = cc.CallFunc:create( function()
-		-- 1:是否输牌
-		local ai_total_num = self:calAiOutTotalNum()
-		local player_total_num = self:calPlayerOutTotalNum()
-		if ai_total_num < player_total_num then
-			self:excutePlayerWinPokerAction()
-			return
-		end
-		-- 2:是否输牌
-		if #self._aiPaiDuiCards <= 0 and #self._aiHandCards <= 4 then
-			self:excutePlayerWinPokerAction()
-			return
-		end
-
-		-- 3:是否需要pmax
-		local is_pmax = self:checkPMax()
-		if is_pmax then
-			-- 播放pax动画
-			self:excutePMaxAction( 1 )
-			return
-		end
-
-		-- 4:是否赢牌( 玩家不能出牌 且大于玩家的点数 就赢牌)
-		if self:checkAIWinPoker() then
-			-- 执行赢牌动画
-			self:excuteAIWinPokerAction()
-			return
-		end
-		-- 5:刷新玩家手牌的op icon 等待玩家出牌
-		self:turnPlayerOutCard()
+		self:aiOutCardDoneLogic()
 	end )
 	new_poker:runAction( cc.Sequence:create({ move_to,call_ai_mo,call_move_over}) )
+end
+
+-- ai 出完牌后的逻辑
+function GamePlay:aiOutCardDoneLogic()
+	-- 1:没有牌了 输牌
+	if #self._aiPaiDuiCards <= 0 and #self._aiHandCards <= 0 then
+		self:excutePlayerWinPokerAction()
+		return
+	end
+	-- 2:出牌小于玩家的出牌 输牌
+	local ai_total_num = self:calAiOutTotalNum()
+	local player_total_num = self:calPlayerOutTotalNum()
+	if ai_total_num < player_total_num then
+		self:excutePlayerWinPokerAction()
+		return
+	end
+	-- 3:是否需要pmax
+	local is_pmax = self:checkPMax()
+	if is_pmax then
+		-- 手牌小于三张 直接输
+		if #self._aiHandCards < 3 then
+			self:excutePlayerWinPokerAction()
+			return
+		end
+		-- 播放pax动画
+		self:excutePMaxAction( 1 )
+		return
+	end
+	-- 4:是否赢牌( 玩家不能出牌 且大于玩家的点数 就赢牌)
+	if self:checkAIWinPoker() then
+		-- 执行赢牌动画
+		self:excuteAIWinPokerAction()
+		return
+	end
+	-- 5:刷新玩家手牌的op icon 等待玩家出牌
+	self:turnPlayerOutCard()
 end
 
 -- 轮到玩家出牌
@@ -528,36 +536,46 @@ function GamePlay:playerOutCard( poker )
 	local delay = cc.DelayTime:create( 0.5 )
 	local call_move_over = cc.CallFunc:create( function()
 		self:hideOpIcon()
-		-- 1:自己是否输牌
-		if #self._playerPaiDuiCards <= 0 and #self._playerHandCards <= 4 then
-			self:excuteAIWinPokerAction()
-			return
-		end
-		-- 2:ai是否赢牌
-		local ai_total_num = self:calAiOutTotalNum()
-		local player_total_num = self:calPlayerOutTotalNum()
-		if ai_total_num > player_total_num then
-			self:excuteAIWinPokerAction()
-			return
-		end
-		-- 3:是否需要pmax
-		local is_pmax = self:checkPMax()
-		if is_pmax then
-			-- 播放pax动画
-			self:excutePMaxAction( 2 )
-			return
-		end
-		-- 4:自己是否赢牌( ai不能出牌 且大于ai的点数 就赢牌)
-		if self:checkPlayerWinPoker() then
-			-- 执行赢牌动画
-			self:excutePlayerWinPokerAction()
-			return
-		end
-		-- 5:通知ai出牌
-		self:aiOutCard()
+		self:playerOutCardDoneLogic()
 	end )
 	local seq = cc.Sequence:create({ move_to,call_player_mo,delay,call_move_over })
 	new_poker:runAction( seq )
+end
+
+-- player 出完牌后的逻辑
+function GamePlay:playerOutCardDoneLogic()
+	-- 1:没有牌 自己输牌
+	if #self._playerPaiDuiCards <= 0 and #self._playerHandCards <= 0 then
+		self:excuteAIWinPokerAction()
+		return
+	end
+	-- 2:ai赢牌
+	local ai_total_num = self:calAiOutTotalNum()
+	local player_total_num = self:calPlayerOutTotalNum()
+	if ai_total_num > player_total_num then
+		self:excuteAIWinPokerAction()
+		return
+	end
+	-- 3:是否需要pmax
+	local is_pmax = self:checkPMax()
+	if is_pmax then
+		-- 手牌小于三张 直接输
+		if #self._playerHandCards < 3 then
+			self:excuteAIWinPokerAction()
+			return
+		end
+		-- 播放pax动画
+		self:excutePMaxAction( 2 )
+		return
+	end
+	-- 4:自己是否赢牌( ai不能出牌 且大于ai的点数 就赢牌)
+	if self:checkPlayerWinPoker() then
+		-- 执行赢牌动画
+		self:excutePlayerWinPokerAction()
+		return
+	end
+	-- 5:通知ai出牌
+	self:aiOutCard()
 end
 
 -- 在牌堆有牌的情况下 ai排序手中牌
@@ -724,22 +742,36 @@ function GamePlay:excutePMaxAction( intType )
 						end )
 						v:runAction( cc.Sequence:create( { move_to,call_bei } ) )
 					end
+
+					if #self._aiPaiDuiCards <= 0 and #self._aiHandCards > 0 then
+						self:moveSortHandCardByPaiDuiNoCards( self._aiHandCards,0.4,self._aiPokerPos,self._aiPokerAngle )
+					end
+
+					if #self._playerPaiDuiCards <= 0 and #self._playerHandCards > 0 then
+						self:moveSortHandCardByPaiDuiNoCards( self._playerHandCards,0.4,self._playerPokerPos,self._playerPokerAngle )
+					end
+
 					if intType == 1 then
-						if #self._aiPaiDuiCards <= 0 then
-							self:moveSortHandCardByPaiDuiNoCards( self._playerHandCards,0.4,self._playerPokerPos,self._playerPokerAngle )
+						if #self._aiHandCards > 0 then
+							-- 0.5秒之后 ai出牌
+							performWithDelay( self,function()
+								self:aiOutCard()
+							end,0.5 )
+						else
+							-- ai 直接输牌
+							self:excutePlayerWinPokerAction()
 						end
-						-- 0.5秒之后 ai出牌
-						performWithDelay( self,function()
-							self:aiOutCard()
-						end,0.5 )
 					else
-						if #self._playerPaiDuiCards <= 0 then
-							self:moveSortHandCardByPaiDuiNoCards( self._playerHandCards,0.4,self._playerPokerPos,self._playerPokerAngle )
+						
+						if #self._playerHandCards > 0 then
+							-- 等待玩家出牌
+							performWithDelay( self,function()
+								self:turnPlayerOutCard()
+							end,0.5 )
+						else
+							-- 玩家直接输牌
+							self:excuteAIWinPokerAction()
 						end
-						-- 等待玩家出牌
-						performWithDelay( self,function()
-							self:turnPlayerOutCard()
-						end,0.5 )
 					end
 				end,1 )
 			end
@@ -881,7 +913,7 @@ function GamePlay:loadPlayerOpIcon()
 
 		local top_out_poker = self._playerOutCards[#self._playerOutCards]
 		local out_color = nil
-		if top_out_poker then
+		if top_out_poker and (not top_out_poker:isShowBei()) then
 			out_color = zuqiu_card_config[top_out_poker:getNumIndex()].color
 		end
 
@@ -1195,7 +1227,7 @@ function GamePlay:showPass()
 end
 
 function GamePlay:footBallAction()
-	local meta = 146.5 / 13
+	local meta = 146.5 / 16
 	local move_dis_num = 14 - #self._playerPaiDuiCards
 	local dis_y = meta * move_dis_num
 	local pos_y = 146.5 - dis_y
