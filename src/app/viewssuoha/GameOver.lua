@@ -6,6 +6,7 @@ function GameOver:ctor( param )
 	assert( param," !! param is nil !! " )
 	assert( param.name," !! param.name is nil !! " )
 	GameOver.super.ctor( self,param.name )
+	self._score = param.data
 
 	self._layer = cc.LayerColor:create( cc.c4b( 0,0,0,150 ))
 	self:addChild( self._layer )
@@ -26,11 +27,15 @@ function GameOver:ctor( param )
 end
 
 function GameOver:menu( ... )
-	-- body
+	removeUIFromScene( UIDefine.SUOHA_KEY.Over_UI )
+	removeUIFromScene( UIDefine.SUOHA_KEY.Play_UI )
+	addUIToScene( UIDefine.SUOHA_KEY.Start_UI )
 end
 
 function GameOver:playAgain( ... )
-	-- body
+	removeUIFromScene( UIDefine.SUOHA_KEY.Over_UI )
+	removeUIFromScene( UIDefine.SUOHA_KEY.Play_UI )
+	addUIToScene( UIDefine.SUOHA_KEY.Play_UI )
 end
 
 function GameOver:onEnter()
@@ -41,8 +46,8 @@ function GameOver:onEnter()
 	self:loadUi()
 end
 
-function GameOver:loadUi( ... )
-	
+function GameOver:loadUi()
+	self.TextScore:setString( self._score )
 end
 
 

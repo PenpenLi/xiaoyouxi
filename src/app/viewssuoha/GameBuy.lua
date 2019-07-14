@@ -67,6 +67,8 @@ end
 function GameBuy:buy( index )
 	local model = G_GetModel("Model_SuoHa"):getInstance()
 	model:setCoin( self.Coin[index] )
+	EventManager:getInstance():dispatchInnerEvent( InnerProtocol.INNER_EVENT_SUOHA_BUY_COIN )
+	self:close()
 end
 
 

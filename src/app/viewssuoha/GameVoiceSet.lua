@@ -36,15 +36,17 @@ end
 function GameVoiceSet:loadUi()
 	local start = G_GetModel("Model_Sound"):getInstance():isMusicOpen()
 	if start then
-		self.ButtonMusic:loadTexture( "image/set/on.png" )
+		self.ButtonMusic:loadTexture( "image/set/on.png",1 )
+		print( " ----------------->>>on" )
 	else
-		self.ButtonMusic:loadTexture( "image/set/off.png" )
+		self.ButtonMusic:loadTexture( "image/set/off.png",1 )
+		print( " ----------------->>>off" )
 	end
 	start = G_GetModel("Model_Sound"):getInstance():isVoiceOpen()
 	if start then
-		self.ButtonSound:loadTexture( "image/set/on.png" )
+		self.ButtonSound:loadTexture( "image/set/on.png",1 )
 	else
-		self.ButtonSound:loadTexture( "image/set/off.png" )
+		self.ButtonSound:loadTexture( "image/set/off.png",1 )
 	end
 end
 

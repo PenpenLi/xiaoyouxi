@@ -45,7 +45,7 @@ end
 function GameStart:loadCoin(  )
 
 	local coin = G_GetModel("Model_SuoHa"):getInstance():getCoin()
-	dump( coin,"-----------coin = ")
+	-- dump( coin,"-----------coin = ")
 end
 function GameStart:onEnter( ... )
 	GameStart.super.onEnter( self )
@@ -72,6 +72,7 @@ function GameStart:loadMusic()
 end
 
 function GameStart:start()
+	removeUIFromScene( UIDefine.SUOHA_KEY.Start_UI )
 	addUIToScene( UIDefine.SUOHA_KEY.Play_UI )
 end
 function GameStart:rules()
