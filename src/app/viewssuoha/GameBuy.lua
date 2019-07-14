@@ -65,14 +65,19 @@ function GameBuy:close()
 end
 
 function GameBuy:buy( index )
+	-- 调用sdk
+
+	-- 这里用于测试 请在调用完sdk后 回调 buyCoinCallBack
+	self:buyCoinCallBack()
+end
+
+
+function GameBuy:buyCoinCallBack()
 	local model = G_GetModel("Model_SuoHa"):getInstance()
 	model:setCoin( self.Coin[index] )
 	EventManager:getInstance():dispatchInnerEvent( InnerProtocol.INNER_EVENT_SUOHA_BUY_COIN )
 	self:close()
 end
-
-
-
 
 
 
