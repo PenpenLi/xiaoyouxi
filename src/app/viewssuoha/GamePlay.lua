@@ -166,6 +166,12 @@ end
 
 function GamePlay:putPokerEnd( poker )
 	assert( poker," !! poker is nil !! " )
+
+	if G_GetModel("Model_Sound"):isVoiceOpen() then
+		audio.playSound("shmp3/sendPoker.mp3", false)
+	end
+
+
 	local poker_box = poker._img:getBoundingBox()
 	local poker_newPos = cc.p(poker._img:getPosition() )
 	local poker_newWorldPos = poker._img:getParent():convertToWorldSpace( poker_newPos )

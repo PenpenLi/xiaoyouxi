@@ -50,6 +50,9 @@ function NodePoker:touchCard( event )
 	elseif event.name == "ended" then
 		self._parentPanel:putPokerEnd( self )
 	elseif event.name == "outsideend" then
+		if G_GetModel("Model_Sound"):isVoiceOpen() then
+			audio.playSound("shmp3/sendPoker.mp3", false)
+		end
 		self:backToOriginalPos()
 	end
 end
