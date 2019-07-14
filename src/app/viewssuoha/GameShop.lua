@@ -32,7 +32,7 @@ function GameShop:onEnter()
 	GameShop.super.onEnter( self )
 
 	casecadeFadeInNode( self._layer,0.5,150 )
-	casecadeFadeInNode( self._csbNode,5 )
+	casecadeFadeInNode( self._csbNode,0.5 )
 end
 
 function GameShop:loadUi()
