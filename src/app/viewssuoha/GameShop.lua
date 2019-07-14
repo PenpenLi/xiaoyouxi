@@ -20,6 +20,8 @@ function GameShop:ctor( param )
 			self:close()
 		end
 	})
+
+	self:loadUi()
 end
 
 function GameShop:close()
@@ -30,9 +32,7 @@ function GameShop:onEnter()
 	GameShop.super.onEnter( self )
 
 	casecadeFadeInNode( self._layer,0.5,150 )
-	casecadeFadeInNode( self._csbNode,0.5 )
-
-	self:loadUi()
+	casecadeFadeInNode( self._csbNode,5 )
 end
 
 function GameShop:loadUi()
