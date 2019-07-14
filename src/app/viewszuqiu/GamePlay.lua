@@ -361,6 +361,7 @@ function GamePlay:aiOutCard()
 			break
 		end
 	end
+
 	-- 出一张牌后 排序
 	table.sort( self._aiHandCards,function( a,b )
 		return a:getSeatPos() < b:getSeatPos() 
@@ -798,6 +799,8 @@ function GamePlay:createPokerToOut( paiDuiCards,handCards,outCards,outPos,callBa
 			table.sort( handCards,function( a,b )
 				return a:getSeatPos() < b:getSeatPos()
 			end )
+
+			local remove_pointer = {}
 			for j = 1,hands_need_out do
 				if G_GetModel("Model_Sound"):isVoiceOpen() then
 					audio.playSound("zqmp3/sendpoker.mp3", false)
@@ -807,13 +810,9 @@ function GamePlay:createPokerToOut( paiDuiCards,handCards,outCards,outPos,callBa
 				local hand_world_pos = hand_poker:getParent():convertToWorldSpace( cc.p(hand_poker:getPosition()) )
 				local hand_start_pos = self._csbNode:convertToNodeSpace( hand_world_pos )
 				hand_poker:removeFromParent()
-				-- 移除该指针
-				for c,d in ipairs( handCards ) do
-					if d == hand_poker then
-						table.remove( handCards,c )
-						break
-					end
-				end
+				-- 记录要移除该指针
+				table.insert( remove_pointer,handCards[j] )
+
 				-- 创建牌 执行出牌动画
 				local hand_new_poker = NodePoker.new( self,hadNumIndex )
 				self._csbNode:addChild( hand_new_poker )
@@ -826,6 +825,15 @@ function GamePlay:createPokerToOut( paiDuiCards,handCards,outCards,outPos,callBa
 				local hand_move_to = cc.MoveTo:create( 0.3,hand_dest_pos )
 				local call_hand_send = cc.CallFunc:create( function()
 					if j == hands_need_out and callBack then
+						-- 移除指针
+						for q,w in ipairs( remove_pointer ) do
+							for e,r in ipairs( handCards ) do
+								if w == r then
+									table.remove( handCards,e )
+									break
+								end
+							end
+						end
 						table.sort( handCards,function( a,b )
 							return a:getSeatPos() < b:getSeatPos()
 						end )
@@ -1298,7 +1306,7 @@ function GamePlay:sendCardByWin( paiDuiCards,hands,callBack,isPlayer )
 	local actions = {}
 	for i = 1,count do
 		local top_numIndex = paiDuiCards[#paiDuiCards - (i-1)]:getNumIndex()
-		local delay = cc.DelayTime:create( (i - 1) * action_time + 0.1 )
+		local delay = cc.DelayTime:create( action_time + 0.1 )
 		local call_send = cc.CallFunc:create( function()
 			if isPlayer then
 				-- 玩家

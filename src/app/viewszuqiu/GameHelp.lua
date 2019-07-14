@@ -84,8 +84,10 @@ end
 
 function GameHelp:onEnter( ... )
 	GameHelp.super.onEnter( self )
-	casecadeFadeInNode( self.ImageShadow,0.5,150 )
+	casecadeFadeInNode( self.ImageBearLeft,0.5,200 )
 	casecadeFadeInNode( self.Bg,0.5 )
+	casecadeFadeInNode( self.Bg,0.5 )
+	casecadeFadeInNode( self.ImageBearRight,0.5 )
 end
 
 function GameHelp:close(  )
