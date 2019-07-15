@@ -115,6 +115,7 @@ end
 function GamePlay:loadText()
 	for i=1,12 do
 		self["TextScore"..i]:setString( 0 )
+		
 	end
 	self.TextScoreSum:setString( 0 )
 	local coin = G_GetModel("Model_SuoHa"):getCoin()
@@ -262,8 +263,9 @@ end
 function GamePlay:putPokerDoneLogic()
 	local sum_score = 0
 	for i,v in ipairs( self._panelsLogic ) do
-		local score = self:calScore( v )
+		local score,name = self:calScore( v )
 		self["TextScore"..i]:setString( score )
+		self["TextName"..i]:setString( name )
 		sum_score = sum_score + score
 	end
 	self.TextScoreSum:setString( sum_score )
@@ -294,12 +296,12 @@ function GamePlay:calScore( panelAry )
 			and pokers[1]:getColor() == pokers[4]:getColor() and pokers[1]:getColor() == pokers[5]:getColor() then
 			if pokers[1]:getCardNum() + 1 == pokers[2]:getCardNum() and pokers[1]:getCardNum() + 2 == pokers[3]:getCardNum() 
 				and pokers[1]:getCardNum() + 3 == pokers[4]:getCardNum() and pokers[1]:getCardNum() + 4 == pokers[5]:getCardNum() then
-				return 1800
+				return 1800,"Straight Flush"
 			elseif pokers[1]:getCardNum() == 1 and pokers[2]:getCardNum() == 10 and pokers[3]:getCardNum() == 11 
 					and pokers[4]:getCardNum() == 12 and pokers[5]:getCardNum() == 13 then
-				return 1800
+				return 1800,"Straight Flush"
 			else
-				return 1000
+				return 1000,"Flush"
 			end
 		end
 	end
@@ -309,7 +311,7 @@ function GamePlay:calScore( panelAry )
 			and pokers[1]:getCardNum() + 3 == pokers[4]:getCardNum() and pokers[1]:getCardNum() + 4 == pokers[5]:getCardNum())
 			or (pokers[1]:getCardNum() == 1 and pokers[2]:getCardNum() == 10 and pokers[3]:getCardNum() == 11 
 					and pokers[4]:getCardNum() == 12 and pokers[5]:getCardNum() == 13) then
-			return 800
+			return 800,"Straight"
 		end
 	end
 
@@ -329,21 +331,21 @@ function GamePlay:calScore( panelAry )
 			table.insert( temp_poker_same,v )
 		end
 		if ( temp_poker_same[1] == 2 and temp_poker_same[2] == 3 ) or ( temp_poker_same[1] == 3 and temp_poker_same[2] == 2 ) then
-			return 1200
+			return 1200,"Fullhouse"
 		end
 	end
 
 	-- 5:判断4条
 	for k,v in pairs( poker_same ) do
 		if v == 4 then
-			return 1500
+			return 1500,"Four of a Kind"
 		end
 	end
 
 	-- 6:判断3条----依赖前面判断
 	for k,v in pairs( poker_same ) do
 		if v == 3 then
-			return 600
+			return 600,"Three of a kind"
 		end
 	end
 	--7:判断两对----依赖前面判断
@@ -354,11 +356,11 @@ function GamePlay:calScore( panelAry )
 		end
 	end
 	if table.nums( two_pairs ) == 2 then 
-		return 400
+		return 400,"Two Pairs"
 	end
 	--判斷一对
 	if table.nums( two_pairs ) == 1 then 
-		return 200
+		return 200,"One Pair"
 	end
 
 

@@ -57,6 +57,8 @@ function Model_Sound:isMusicOpen()
 			self._musicState = user_default:getIntegerForKey("zuqiuMusicState", 1)
 		elseif scene_name == "SuoHaScene" then
 			self._musicState = user_default:getIntegerForKey("suohaMusicState", 1)
+		elseif scene_name == "EightScene" then
+			self._musicState = user_default:getIntegerForKey("eightMusicState", 1)
 		end
 	end
 	return self._musicState == 1
@@ -90,6 +92,8 @@ function Model_Sound:setMusicState( state )
 		user_default:setIntegerForKey("zuqiuMusicState", state)
 	elseif scene_name == "SuoHaScene" then
 		user_default:setIntegerForKey("suohaMusicState", state)
+	elseif scene_name == "EightScene" then
+		user_default:setIntegerForKey("eightMusicState", state)
 	end
 end
 
@@ -120,6 +124,8 @@ function Model_Sound:isVoiceOpen()
 			self._voiceState = user_default:getIntegerForKey("zuqiuVoiceState", 1)
 		elseif scene_name == "SuoHaScene" then
 			self._voiceState = user_default:getIntegerForKey("suohaVoiceState", 1)
+		elseif scene_name == "EightScene" then
+			self._voiceState = user_default:getIntegerForKey("eightVoiceState", 1)
 		end
 
 	end
@@ -155,6 +161,8 @@ function Model_Sound:setVoiceState( state )
 		user_default:setIntegerForKey("zuqiuVoiceState", state)
 	elseif scene_name == "SuoHaScene" then
 		user_default:setIntegerForKey("suohaVoiceState", state)
+	elseif scene_name == "EightScene" then
+		user_default:setIntegerForKey("eightVoiceState", state)
 	end
 end
 
@@ -210,7 +218,13 @@ function Model_Sound:playBgMusic()
 		if self:isMusicOpen() then
 			audio.playMusic("shmp3/music.mp3",true)
 		end
+	elseif scene_name == "EightScene" then
+		if self:isMusicOpen() then
+			audio.playMusic("emp3/music.mp3",true)
+		end
 	end
+
+
 end
 
 function Model_Sound:stopPlayBgMusic()
@@ -238,6 +252,8 @@ function Model_Sound:stopPlayBgMusic()
 	elseif scene_name == "ZuQiuScene" then
 		audio.stopMusic(false)
 	elseif scene_name == "SuoHaScene" then
+		audio.stopMusic(false)
+	elseif scene_name == "EightScene" then
 		audio.stopMusic(false)
 	end
 end
@@ -298,6 +314,10 @@ function Model_Sound:playVoice( voicePath )
 	elseif scene_name == "SuoHaScene" then
 		if self:isVoiceOpen() then
 			audio.playSound("shmp3/button.mp3", false)
+		end
+	elseif scene_name == "EightScene" then
+		if self:isVoiceOpen() then
+			audio.playSound("emp3/button.mp3", false)
 		end
 	end
 end

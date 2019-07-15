@@ -212,4 +212,16 @@ UIDefine.SUOHA_KEY	= {
 	Rank_UI 			= { layer = import("app.viewssuoha.Leaderboard"),         		flag = UIDefine.LayerFlag.Main.name,	name = "SuoHa_Rank_UI"				    	},
 }
 
+-- -- 8点的ui
+-- UIDefine.EIGHT_KEY	= {
+-- 	Loading_UI 			= { layer = import("app.viewseight.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Loading_UI" 			  	    },
+-- 	Start_UI 			= { layer = import("app.viewseight.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Start_UI"                     },
+-- 	Help_UI 			= { layer = import("app.viewseight.GameHelp"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Help_UI"    			   		},
+-- 	Over_UI             = { layer = import("app.viewseight.GameOver"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Over_UI"    			        },
+-- 	Voice_UI	        = { layer = import("app.viewseight.GameVoiceSet"),	      		flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Voice_UI"    			     	},
+-- 	Shop_UI	    	    = { layer = import("app.viewseight.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Shop_UI"    		   		  	},
+-- 	Buy_UI	    	    = { layer = import("app.viewseight.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Buy_UI"    		   		  	},
+-- 	Play_UI             = { layer = import("app.viewseight.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Play_UI"    			   		},
+-- }
+
 rawset(_G,"UIDefine",UIDefine)
