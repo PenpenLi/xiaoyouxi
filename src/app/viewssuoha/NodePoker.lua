@@ -49,6 +49,10 @@ function NodePoker:touchCard( event )
 		self._img:setPosition( self._img_began_pos.x + eff_x,self._img_began_pos.y + eff_y )
 	elseif event.name == "ended" then
 		self._parentPanel:putPokerEnd( self )
+	elseif event.name == "outsidemoved" then
+		local touch_newPos = cc.p( event.x,event.y )
+		local node_pos = self:convertToNodeSpace( touch_newPos )
+		self._img:setPosition( node_pos )
 	elseif event.name == "outsideend" then
 		if G_GetModel("Model_Sound"):isVoiceOpen() then
 			audio.playSound("shmp3/sendPoker.mp3", false)
