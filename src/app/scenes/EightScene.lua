@@ -20,7 +20,7 @@ function EightScene:loadAppFile()
 end
 
 function EightScene:onEnter()
-	addUIToScene( UIDefine.EIGHT_KEY.Loading_UI )
+	addUIToScene( UIDefine.EIGHT_KEY.Play_UI )
 end
 
 function EightScene:getSceneName()

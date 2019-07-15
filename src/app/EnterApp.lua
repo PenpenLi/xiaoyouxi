@@ -28,7 +28,7 @@ end
 function EnterApp:create()
 	print(">>>>>EnterApp:create<<<<<<")
 	self:loadAppFile()
-	local scene = require("app.scenes.SuoHaScene").new()
+	local scene = require("app.scenes.EightScene").new()
 	return scene
 end
 
@@ -89,7 +89,9 @@ function EnterApp:run()
 	-- local scene = require("app.scenes.SuoHaScene").new()
 	-- display.runScene(scene)
 
-
+	-- -- 进入8点纸牌场景
+	-- local scene = require("app.scenes.EightScene").new()
+	-- display.runScene(scene)
 end
 
 
