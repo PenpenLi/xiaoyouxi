@@ -115,7 +115,7 @@ end
 function GamePlay:loadText()
 	for i=1,12 do
 		self["TextScore"..i]:setString( 0 )
-		
+		self["TextName"..i]:setString( "nothing" )
 	end
 	self.TextScoreSum:setString( 0 )
 	local coin = G_GetModel("Model_SuoHa"):getCoin()
@@ -265,7 +265,12 @@ function GamePlay:putPokerDoneLogic()
 	for i,v in ipairs( self._panelsLogic ) do
 		local score,name = self:calScore( v )
 		self["TextScore"..i]:setString( score )
-		self["TextName"..i]:setString( name )
+		if name == nil then
+			self["TextName"..i]:setString( "nothing" )
+		else
+			self["TextName"..i]:setString( name )
+		end
+		
 		sum_score = sum_score + score
 	end
 	self.TextScoreSum:setString( sum_score )
