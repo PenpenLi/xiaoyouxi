@@ -20,14 +20,14 @@ function EightScene:loadAppFile()
 end
 
 function EightScene:onEnter()
-	addUIToScene( UIDefine.EIGHT_KEY.Play_UI )
+	addUIToScene( UIDefine.EIGHT_KEY.Loading_UI )
 end
 
 function EightScene:getSceneName()
 	return "EightScene"
 end
 
-function EightScene()
+function EightScene:getUIManager()
 	return self._uiManager
 end
 
