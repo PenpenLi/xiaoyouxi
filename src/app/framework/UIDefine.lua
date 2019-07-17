@@ -215,7 +215,7 @@ UIDefine.LayerFlag = {
 -- 8点的ui
 UIDefine.EIGHT_KEY	= {
 	Loading_UI 			= { layer = import("app.viewseight.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Loading_UI" 			  	    },
-	-- Start_UI 			= { layer = import("app.viewseight.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Start_UI"                     },
+	Start_UI 			= { layer = import("app.viewseight.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Start_UI"                     },
 	-- Help_UI 			= { layer = import("app.viewseight.GameHelp"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Help_UI"    			   		},
 	-- Over_UI             = { layer = import("app.viewseight.GameOver"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Over_UI"    			        },
 	-- Voice_UI	        = { layer = import("app.viewseight.GameVoiceSet"),	      		flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Voice_UI"    			     	},

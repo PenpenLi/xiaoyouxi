@@ -14,6 +14,7 @@ function GameLoading:ctor( param )
     self._plist = {
 		"csbeight/Plist1.plist",
 		"csbeight/Plist2.plist",
+		"csbeight/Plist3.plist"
 	}
 	self._music = {
 		"emp3/music.mp3",
@@ -57,8 +58,8 @@ function GameLoading:loadEffect()
 		if index > #self._sound then
 			self:unSchedule()
 			removeUIFromScene( UIDefine.EIGHT_KEY.Loading_UI )
-			-- addUIToScene( UIDefine.EIGHT_KEY.Start_UI )
-			addUIToScene( UIDefine.EIGHT_KEY.Play_UI )
+			addUIToScene( UIDefine.EIGHT_KEY.Start_UI )
+			-- addUIToScene( UIDefine.EIGHT_KEY.Play_UI )
 		end
 	end,0.02 )
 end
