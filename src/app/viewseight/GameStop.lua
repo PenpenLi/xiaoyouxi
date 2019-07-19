@@ -81,7 +81,7 @@ function GameStop:setSound()
 		self.ButtonSound:loadTexture( "image/stop/SoundOff.png" )
 		user_default:setVoiceState( user_default.State.Closed )
 	else
-		self.ButtonSound:loadTexture( "image/stop/SoundOff.png" )
+		self.ButtonSound:loadTexture( "image/stop/SoundOn.png" )
 		user_default:setVoiceState( user_default.State.Open )
 	end
 end
