@@ -19,7 +19,7 @@ function Model_Eight:getCoin()
 	if self._coin == nil then
 		local user_default = cc.UserDefault:getInstance()
 		self._coin = user_default:getIntegerForKey( "eightCoin",50 )
-		user_default:setIntegerForKey( "eightCoin",50 )
+		user_default:setIntegerForKey( "eightCoin",self._coin )
 	end
 	return self._coin
 end

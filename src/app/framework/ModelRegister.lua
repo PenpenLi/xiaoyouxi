@@ -40,6 +40,7 @@ function ModelRegister:registAll()
 	self:registerModel(require("app.mode.Model_ZhanDou"),"Model_ZhanDou")
 	self:registerModel(require("app.mode.Model_SuoHa"),"Model_SuoHa")
 	self:registerModel(require("app.mode.Model_ZuQiu"),"Model_ZuQiu")
+	self:registerModel(require("app.mode.Model_Eight"),"Model_Eight")
 	print("Model 加载读取完毕!所需秒:"..(os.clock() - _t))
 end
 

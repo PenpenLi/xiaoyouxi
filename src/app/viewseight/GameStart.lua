@@ -24,23 +24,32 @@ function GameStart:ctor( param )
 			self:store()
 		end
 	})
+
+	self:loadCoin()
+end
+
+function GameStart:loadCoin()
+	G_GetModel("Model_Eight"):getInstance():getCoin()
 end
 
 function GameStart:onEnter()
 	GameStart.super.onEnter( self )
 	casecadeFadeInNode( self._csbNode,0.5 )
+
+	G_GetModel( "Model_Sound" ):playBgMusic()
+
 end
 
 function GameStart:play()
-	-- body
+	-- addUIToScene( UIDefine.EIGHT_KEY.Stop_UI )
 end
 
 function GameStart:help()
-	-- body
+	addUIToScene( UIDefine.EIGHT_KEY.Help_UI )
 end
 
 function GameStart:store()
-	-- body
+	addUIToScene( UIDefine.EIGHT_KEY.Shop_UI )
 end
 
 
