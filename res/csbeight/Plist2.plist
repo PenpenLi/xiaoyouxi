@@ -48,6 +48,50 @@
 				<key>sourceSize</key>
 				<string>{310,101}</string>
 			</dict>
+			<key>image/stop/MusicOn.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{325,1},{310,101}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{310,101}</string>
+			</dict>
+			<key>image/stop/SoundOff.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{325,313},{310,101}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{310,101}</string>
+			</dict>
+			<key>image/stop/SoundOn.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{325,416},{310,101}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{310,101}</string>
+			</dict>
+			<key>image/stop/MusicOff.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{637,1},{310,101}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{310,101}</string>
+			</dict>
 		</dict>
 		<key>metadata</key>
 		<dict>
