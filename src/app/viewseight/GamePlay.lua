@@ -43,6 +43,7 @@ function GamePlay:sendCardToPlayer( seatPos,callBack )
 	assert( seatPos," !! seatPos is nil !! " )
 	assert( #self._allPokerNode > 0," !! pai dui card length must be > 0 !! " )
 	local top_poker = self._allPokerNode[#self._allPokerNode]
+	self._allPokerNode[#self._allPokerNode] = nil
 	local world_pos = top_poker:getParent():convertToWorldSpace( cc.p( top_poker:getPosition() ) )
 	top_poker:retain()
 	top_poker:removeFromParent()
