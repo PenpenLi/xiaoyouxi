@@ -41,7 +41,7 @@ function GameStart:onEnter()
 end
 
 function GameStart:play()
-	-- addUIToScene( UIDefine.EIGHT_KEY.Stop_UI )
+	addUIToScene( UIDefine.EIGHT_KEY.Play_UI )
 end
 
 function GameStart:help()

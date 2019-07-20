@@ -32,7 +32,7 @@ function NodeShop:ctor( parentPanel,index )
 
 	self:loadUi( index )
 
-	TouchNode.extends( self.bg, function(event)-----------讲讲这个触摸？？？？？？
+	TouchNode.extends( self.bg, function(event)
 		return self:touchCard( event ) 
 	end )
 end
@@ -52,7 +52,9 @@ function NodeShop:touchCard( event )
 		
     elseif event.name == "ended" then
     	self:buyCoin()
-    	audio.playSound("emp3/button.mp3", false)
+    	if G_GetModel("Model_Sound"):isVoiceOpen() then
+    		audio.playSound("emp3/button.mp3", false)
+    	end
     elseif event.name == "outsideend" then
     	
     end
