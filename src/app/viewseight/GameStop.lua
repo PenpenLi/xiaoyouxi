@@ -64,7 +64,7 @@ function GameStop:setMusic()
 	local is_open = user_default:isMusicOpen()
 	if is_open then
 		self.ButtonMusic:loadTexture( "image/stop/MusicOn.png" )
-		graySprite( self.ButtonMusic:getVirtualRenderer():getSprite() )
+		graySprite( self.ButtonMusic:getVirtualRenderer():getSprite() )-----变灰
 		user_default:setMusicState( G_GetModel("Model_Sound").State.Closed )
 		user_default:stopPlayBgMusic()
 	else
