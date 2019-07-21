@@ -171,7 +171,9 @@ function GamePlay:sendCardToPlayer( seatPos,callBack,isPlayerVoice )
 	local node_pos = self["AINodePoker"..seatPos]:convertToNodeSpace( world_pos )
 	top_poker:setPosition( node_pos )
 	-- 明牌
-	top_poker:showPoker()
+	if seatPos == 4 then
+		top_poker:showPoker()
+	end
 
 	if seatPos == 1 then
 		top_poker:setRotation( 90 )
@@ -394,7 +396,7 @@ function GamePlay:isPalyerCanOut()
 	local out_color = out_childs[#out_childs]:getColor()
 	local out_num = out_childs[#out_childs]:getCardNum()
 	for i = 1,#childs do
-		if childs[i]:getColor() == out_color or out_num == childs[i]:getCardNum() then
+		if childs[i]:getColor() == out_color or out_num == childs[i]:getCardNum() or childs[i]:getCardNum() == 8 then
 			return true
 		end
 	end
@@ -432,6 +434,7 @@ function GamePlay:outPokerFromPlayer( poker,seatPos,callBack )
 	
 	-- poker:setRotation( 0 )
 	poker:setLocalZOrder( 100 )
+	poker:showPoker()
 	local rotate_to = cc.RotateTo:create( 0.5,0 )
 	local move_to = cc.MoveTo:create( 0.5,outTo_pos )
 	local spawn = cc.Spawn:create( rotate_to,move_to )
