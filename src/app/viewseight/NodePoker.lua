@@ -68,6 +68,10 @@ function NodePoker:getNumIndex()
 	return self._numIndex
 end
 
+function NodePoker:setNumIndex( numIndex )
+	self._numIndex = numIndex
+end
+
 function NodePoker:getPokerImg()
 	return self._img
 end

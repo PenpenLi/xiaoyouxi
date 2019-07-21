@@ -60,24 +60,28 @@ end
 function GameChoice:touchFk( seatPos )
 	self._poker:getPokerImg():loadTexture( "image/poker/fangkuai8.png",1 )
 	self._poker:setColor( 2 )
+	self._poker:setNumIndex( 21 )
 	self._parent:selectEightPokerDone( self._poker,seatPos )
 	self:close()
 end
 function GameChoice:touchMh( seatPos )
 	self._poker:getPokerImg():loadTexture( "image/poker/meihua8.png",1 )
 	self._poker:setColor( 1 )
+	self._poker:setNumIndex( 8 )
 	self._parent:selectEightPokerDone( self._poker,seatPos )
 	self:close()
 end
 function GameChoice:touchHt( seatPos )
 	self._poker:getPokerImg():loadTexture( "image/poker/heitao8.png",1 )
 	self._poker:setColor( 3 )
+	self._poker:setNumIndex( 33 )
 	self._parent:selectEightPokerDone( self._poker,seatPos )
 	self:close()
 end
 function GameChoice:touchTx( seatPos )
 	self._poker:getPokerImg():loadTexture( "image/poker/hongxin8.png",1 )
 	self._poker:setColor( 4 )
+	self._poker:setNumIndex( 46 )
 	self._parent:selectEightPokerDone( self._poker,seatPos )
 	self:close()
 end
