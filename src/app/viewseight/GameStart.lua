@@ -41,7 +41,13 @@ function GameStart:onEnter()
 end
 
 function GameStart:play()
-	addUIToScene( UIDefine.EIGHT_KEY.Play_UI )
+	local coin = G_GetModel("Model_Eight"):getCoin()
+	if coin <= 0 then
+		addUIToScene( UIDefine.EIGHT_KEY.Shop_UI )
+	else
+		addUIToScene( UIDefine.EIGHT_KEY.Play_UI )
+	end
+	
 end
 
 function GameStart:help()

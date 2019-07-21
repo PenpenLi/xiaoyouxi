@@ -287,4 +287,13 @@ function TouchNode.extends(node, hdl, touchOutside , isNoTouchClipping)
     return listener
 end
 
+function TouchNode.removeListener( node )
+    assert( node.listener, " !! listener is nil !! " )
+    assert( node.__extend_touch_node, " !! __extend_touch_node is nil !! " )
+    node.__extend_touch_node = nil
+    local dispater = cc.Director:getInstance():getEventDispatcher()
+    dispater:removeEventListener( node.listener )
+    node.listener = nil
+end
+
 rawset(_G, "TouchNode", TouchNode)

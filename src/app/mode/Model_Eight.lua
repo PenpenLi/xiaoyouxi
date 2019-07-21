@@ -27,6 +27,9 @@ end
 function Model_Eight:setCoin( addCoin )
 	assert( addCoin," !! addCoin is nil !! " )
 	self._coin = self:getCoin() + addCoin
+	if self._coin < 0 then
+		self._coin = 0
+	end
 	local user_default = cc.UserDefault:getInstance()
 	user_default:setIntegerForKey( "eightCoin",self._coin )
 end
