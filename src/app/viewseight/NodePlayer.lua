@@ -41,9 +41,9 @@ function NodePlayer:setCoinString( addCoin )
 	if self._seatPos == 4 then
 		G_GetModel("Model_Eight"):setCoin( addCoin )
 		local coin = G_GetModel("Model_Eight"):getCoin()
-		self.TextCoin:setString( coin )
+		self.TextCoin:setString( addCoin )
 	else
-		self.TextCoin:setString( 10000 + addCoin )
+		self.TextCoin:setString( addCoin )
 	end
 end
 
