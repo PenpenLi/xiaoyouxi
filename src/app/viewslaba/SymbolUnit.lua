@@ -10,7 +10,7 @@ local SymbolUnit = class("SymbolUnit",BaseNode)
 function SymbolUnit:ctor( size )
 	SymbolUnit.super.ctor( self )
 	self:setContentSize( size )
-	self:addCsb( "csblaba/NodeElement.csb" )
+	self:addCsb( "NodeElement.csb" )
 
 	local element_size = self.NodeElement:getContentSize()
 	self._csbNode:setPosition( (size.width - element_size.width) / 2,( size.height - element_size.height) / 2 )

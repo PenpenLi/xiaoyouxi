@@ -14,7 +14,11 @@ function CSBUtil.readLayerCSB(csbFilePath, owner)
     CSBUtil.addOwnerVariable( owner,csb_node )
     csb_node:setContentSize(display.size)
     ccui.Helper:doLayout(csb_node)
-    return csb_node
+
+    local csb_act = cc.CSLoader:createTimeline(csbFilePath)
+    csb_node:runAction(csb_act)
+
+    return csb_node,csb_act
 end
 
 function CSBUtil.readNodeCSB(csbFilePath, owner)
@@ -23,7 +27,11 @@ function CSBUtil.readNodeCSB(csbFilePath, owner)
     -- 读取csb
     local csb_node = cc.CSLoader:createNode(csbFilePath)
     CSBUtil.addOwnerVariable( owner,csb_node )
-    return csb_node
+
+    local csb_act = cc.CSLoader:createTimeline(csbFilePath)
+    csb_node:runAction(csb_act)
+
+    return csb_node,csb_act
 end
 
 function CSBUtil.addOwnerVariable( owner,node )

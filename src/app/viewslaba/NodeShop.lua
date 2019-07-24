@@ -35,7 +35,8 @@ NodeShop.QIAN = {
 function NodeShop:ctor( parentPanel,index )
 	self._parentPanel = parentPanel
 	NodeShop.super.ctor( self,"NodeShop" )
-	self:addCsb( "csblaba/NodeShop.csb" )
+
+	self:addCsb( "NodeShop.csb" )
 
 	self:loadDataUi( index )
 
@@ -49,7 +50,15 @@ function NodeShop:loadDataUi( index )
 	self._index = index
 	self.ImageLess:loadTexture( NodeShop.ICON[index],1 )
 	self.ImageLessbg:loadTexture( NodeShop.TITLE[index],1 )
-	self.Text1:setString( NodeShop.COIN[index].."金币")
+
+	local coin_str = ""
+	if laba_config.lang == 1 then
+		coin_str = "金币"
+	else
+		coin_str = "coin"
+	end
+
+	self.Text1:setString( NodeShop.COIN[index]..coin_str )
 	self.ImageSix:loadTexture( NodeShop.QIAN[index],1 )
 end
 

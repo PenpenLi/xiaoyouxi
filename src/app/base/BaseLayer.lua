@@ -18,7 +18,7 @@ function BaseLayer:addCsb( fileName,zOrder )
     if self._csbNode then
         return
     end
-    self._csbNode = CSBUtil.readLayerCSB( fileName,self )
+    self._csbNode,self._csbAct = CSBUtil.readLayerCSB( fileName,self )
     
     if zOrder then
         self:addChild( self._csbNode,zOrder )

@@ -5,9 +5,6 @@
 -- Desc:	成语接龙场景
 
 
-cc.FileUtils:getInstance():addSearchPath("res/csblaba")
-
-
 local UIManager = import("app.framework.UIManager")
 
 local LaBaScene = class("LaBaScene",function()
@@ -25,6 +22,12 @@ end
 
 function LaBaScene:loadAppFile()
 	import("app.viewslaba.config.laba_config")
+
+	if laba_config.lang == 1 then
+		cc.FileUtils:getInstance():addSearchPath("res/csblaba")
+	else
+		cc.FileUtils:getInstance():addSearchPath("res/csblabaenglish")
+	end
 end
 
 

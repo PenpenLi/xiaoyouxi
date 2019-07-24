@@ -131,16 +131,16 @@ UIDefine.LayerFlag = {
 -- 	Buy_UI 				= { layer = import("app.viewsjunshi.GameBuy"),         			flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Buy_UI"				        },
 -- }
 
--- -- 拉霸的ui
--- UIDefine.LABA_KEY   = {
--- 	Loading_UI 			= { layer = import("app.viewslaba.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "LaBa_Loading_UI" 			        },
--- 	Start_UI 			= { layer = import("app.viewslaba.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "LaBa_Start_UI"                      },
--- 	Play_UI             = { layer = import("app.viewslaba.GamePlay"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "LaBa_Play_UI"    			        },
--- 	Help_UI 			= { layer = import("app.viewslaba.GameHelp"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "LaBa_Help_UI"    			        },
--- 	Voice_UI	        = { layer = import("app.viewslaba.GameVoiceSet"),		        flag = UIDefine.LayerFlag.Main.name ,	name = "LaBa_Voice_UI"    		     	  	},
--- 	Shop_UI	       		= { layer = import("app.viewslaba.GameShop"),		            flag = UIDefine.LayerFlag.Main.name ,	name = "LaBa_Shop_UI"    		            },
--- 	Buy_UI 				= { layer = import("app.viewslaba.GameBuy"),         			flag = UIDefine.LayerFlag.Main.name ,	name = "LaBa_Buy_UI"				        },
--- }
+-- 拉霸的ui
+UIDefine.LABA_KEY   = {
+	Loading_UI 			= { layer = import("app.viewslaba.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "LaBa_Loading_UI" 			        },
+	Start_UI 			= { layer = import("app.viewslaba.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "LaBa_Start_UI"                      },
+	Play_UI             = { layer = import("app.viewslaba.GamePlay"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "LaBa_Play_UI"    			        },
+	Help_UI 			= { layer = import("app.viewslaba.GameHelp"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "LaBa_Help_UI"    			        },
+	Voice_UI	        = { layer = import("app.viewslaba.GameVoiceSet"),		        flag = UIDefine.LayerFlag.Main.name ,	name = "LaBa_Voice_UI"    		     	  	},
+	Shop_UI	       		= { layer = import("app.viewslaba.GameShop"),		            flag = UIDefine.LayerFlag.Main.name ,	name = "LaBa_Shop_UI"    		            },
+	Buy_UI 				= { layer = import("app.viewslaba.GameBuy"),         			flag = UIDefine.LayerFlag.Main.name ,	name = "LaBa_Buy_UI"				        },
+}
 
 -- -- 纸牌21点的ui
 -- UIDefine.ZHIPAI_KEY    = {
@@ -212,19 +212,19 @@ UIDefine.LayerFlag = {
 -- 	Rank_UI 			= { layer = import("app.viewssuoha.Leaderboard"),         		flag = UIDefine.LayerFlag.Main.name,	name = "SuoHa_Rank_UI"				    	},
 -- }
 
--- 8点的ui
-UIDefine.EIGHT_KEY	= {
-	Loading_UI 			= { layer = import("app.viewseight.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Loading_UI" 			  	    },
-	Start_UI 			= { layer = import("app.viewseight.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Start_UI"                     },
-	Help_UI 			= { layer = import("app.viewseight.GameHelp"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Help_UI"    			   		},
-	Over_UI             = { layer = import("app.viewseight.GameOver"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Over_UI"    			        },
-	Stop_UI	       		= { layer = import("app.viewseight.GameStop"),	      			flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Stop_UI"    			     	},
-	Shop_UI	    	    = { layer = import("app.viewseight.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Shop_UI"    		   		  	},
-	Buy_UI	    	    = { layer = import("app.viewseight.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Buy_UI"    		   		  	},
-	Play_UI             = { layer = import("app.viewseight.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Play_UI"    			   		},
-	Choice_UI           = { layer = import("app.viewseight.GameChoice"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Choice_UI"    		 		},
-	Disband_UI          = { layer = import("app.viewseight.GameDisband"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Disband_UI"    				},
-}
+-- -- 8点的ui
+-- UIDefine.EIGHT_KEY	= {
+-- 	Loading_UI 			= { layer = import("app.viewseight.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Loading_UI" 			  	    },
+-- 	Start_UI 			= { layer = import("app.viewseight.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Start_UI"                     },
+-- 	Help_UI 			= { layer = import("app.viewseight.GameHelp"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Help_UI"    			   		},
+-- 	Over_UI             = { layer = import("app.viewseight.GameOver"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Over_UI"    			        },
+-- 	Stop_UI	       		= { layer = import("app.viewseight.GameStop"),	      			flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Stop_UI"    			     	},
+-- 	Shop_UI	    	    = { layer = import("app.viewseight.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Shop_UI"    		   		  	},
+-- 	Buy_UI	    	    = { layer = import("app.viewseight.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Buy_UI"    		   		  	},
+-- 	Play_UI             = { layer = import("app.viewseight.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Play_UI"    			   		},
+-- 	Choice_UI           = { layer = import("app.viewseight.GameChoice"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Choice_UI"    		 		},
+-- 	Disband_UI          = { layer = import("app.viewseight.GameDisband"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Disband_UI"    				},
+-- }
 
 -- -- 8点的ui
 -- UIDefine.LIKUI_KEY	= {

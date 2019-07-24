@@ -9,7 +9,8 @@ function GamePlay:ctor( param )
     assert( param," !! param is nil !! ")
     assert( param.name," !! param.name is nil !! ")
     GamePlay.super.ctor( self,param.name )
-    self:addCsb( "csblaba/Game.csb" )
+
+    self:addCsb( "Game.csb" )
 
     self._reelUnitList 	= {}										-- Reels管理列表 --
     self._reelCount   	= laba_config.reel_count					-- Reel的数量
@@ -145,6 +146,9 @@ function GamePlay:startRoll()
 	end
 
 	if self:canRoll() then
+		-- 播放人物动画
+		self._csbAct:play("animation0",false)
+
 		self.TextWin:setString(0)
 		self:hideAllMaoPaDeng()
 		graySprite( self.ButtonStartbg:getVirtualRenderer():getSprite() )
@@ -242,14 +246,20 @@ function GamePlay:calResult()
 	local coin = G_GetModel("Model_LaBa"):getCoin()
 	self.TextHasCoin:setString( coin )
 
+	if get_coin > 0 then
+		self:getCoinAction()
+		self._csbAct:play("animation0",false)
+	end
+
 	if G_GetModel("Model_Sound"):isVoiceOpen() then
 		if get_coin > 0 then
 			audio.playSound("labamp3/reward.mp3", false)
-			self:getCoinAction()
 		else
 			audio.playSound("labamp3/noreward.mp3", false)
 		end
 	end
+
+
 
 	-- 2:播放跑马灯
 	local actions = {}
@@ -272,7 +282,7 @@ function GamePlay:calResult()
 	if #actions > 0 then
 		local seq = cc.Sequence:create( actions )
 		local rep = cc.RepeatForever:create( seq )
-		self.ImageLogo:runAction( rep )
+		self.ImageDollar2:runAction( rep )
 	end
 end
 
@@ -331,7 +341,7 @@ end
 
 
 function GamePlay:hideAllMaoPaDeng()
-	self.ImageLogo:stopAllActions()
+	self.ImageDollar2:stopAllActions()
 	for i,v in pairs( self._paoMaDengList ) do
 		for a,b in pairs( v ) do
 			b:setVisible( false )

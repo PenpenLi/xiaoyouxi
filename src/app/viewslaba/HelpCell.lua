@@ -5,7 +5,8 @@ local HelpCell  = class("HelpCell",BaseNode)
 function HelpCell:ctor( parentPanel )
 	self._parentPanel = parentPanel
 	HelpCell.super.ctor( self,"HelpCell" )
-	self:addCsb( "csblaba/NodeTable.csb" )
+
+    self:addCsb( "NodeTable.csb" )
 end
 
 function HelpCell:loadDataUi( data,index )
