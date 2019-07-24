@@ -29,6 +29,7 @@ function GameStart:ctor( param )
 end
 
 function GameStart:loadCoin()
+	G_GetModel("Model_Eight"):getInstance():resetAICoin()
 	G_GetModel("Model_Eight"):getInstance():getCoin()
 end
 

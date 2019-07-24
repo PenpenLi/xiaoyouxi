@@ -31,8 +31,15 @@ function NodePlayer:loadUi(  )
 	if self._seatPos == 4 then
 		local coin = G_GetModel("Model_Eight"):getCoin()
 		self.TextCoin:setString( coin )
-	else
-		self.TextCoin:setString( 10000 )
+	elseif self._seatPos == 1 then
+		local coin1 = G_GetModel("Model_Eight"):getCoin1()
+		self.TextCoin:setString( coin1 )
+	elseif self._seatPos == 2 then
+		local coin2 = G_GetModel("Model_Eight"):getCoin2()
+		self.TextCoin:setString( coin2 )
+	elseif self._seatPos == 3 then
+		local coin3 = G_GetModel("Model_Eight"):getCoin3()
+		self.TextCoin:setString( coin3 )
 	end
 	
 end
@@ -42,7 +49,17 @@ function NodePlayer:setCoinString( addCoin )
 		G_GetModel("Model_Eight"):setCoin( addCoin )
 		local coin = G_GetModel("Model_Eight"):getCoin()
 		self.TextCoin:setString( addCoin )
-	else
+	elseif self._seatPos == 1 then
+		G_GetModel("Model_Eight"):setCoin1( addCoin )
+		local coin = G_GetModel("Model_Eight"):getCoin1()
+		self.TextCoin:setString( addCoin )
+	elseif self._seatPos == 2 then
+		G_GetModel("Model_Eight"):setCoin2( addCoin )
+		local coin = G_GetModel("Model_Eight"):getCoin2()
+		self.TextCoin:setString( addCoin )
+	elseif self._seatPos == 3 then
+		G_GetModel("Model_Eight"):setCoin3( addCoin )
+		local coin = G_GetModel("Model_Eight"):getCoin3()
 		self.TextCoin:setString( addCoin )
 	end
 end

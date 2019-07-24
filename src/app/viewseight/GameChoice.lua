@@ -62,6 +62,8 @@ function GameChoice:touchFk( seatPos )
 	self._poker:setColor( 2 )
 	self._poker:setNumIndex( 21 )
 	self._parent:selectEightPokerDone( self._poker,seatPos )
+	-- 恢复玩家手上牌大小
+	self._poker:setScale( 1 )
 	self:close()
 end
 function GameChoice:touchMh( seatPos )
@@ -69,6 +71,8 @@ function GameChoice:touchMh( seatPos )
 	self._poker:setColor( 1 )
 	self._poker:setNumIndex( 8 )
 	self._parent:selectEightPokerDone( self._poker,seatPos )
+	-- 恢复玩家手上牌大小
+	self._poker:setScale( 1 )
 	self:close()
 end
 function GameChoice:touchHt( seatPos )
@@ -76,6 +80,8 @@ function GameChoice:touchHt( seatPos )
 	self._poker:setColor( 3 )
 	self._poker:setNumIndex( 33 )
 	self._parent:selectEightPokerDone( self._poker,seatPos )
+	-- 恢复玩家手上牌大小
+	self._poker:setScale( 1 )
 	self:close()
 end
 function GameChoice:touchTx( seatPos )
@@ -83,6 +89,8 @@ function GameChoice:touchTx( seatPos )
 	self._poker:setColor( 4 )
 	self._poker:setNumIndex( 46 )
 	self._parent:selectEightPokerDone( self._poker,seatPos )
+	-- 恢复玩家手上牌大小
+	self._poker:setScale( 1 )
 	self:close()
 end
 

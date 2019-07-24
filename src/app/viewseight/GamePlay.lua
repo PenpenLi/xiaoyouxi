@@ -173,6 +173,7 @@ function GamePlay:sendCardToPlayer( seatPos,callBack,isPlayerVoice )
 	-- 明牌
 	if seatPos == 4 then
 		top_poker:showPoker()
+
 	end
 
 	if seatPos == 1 then
@@ -183,16 +184,25 @@ function GamePlay:sendCardToPlayer( seatPos,callBack,isPlayerVoice )
 		top_poker:setRotation( 270 )
 	else
 		top_poker:setRotation( 0 )
+		-- 玩家牌放大1.2倍
+		-- top_poker:setScale( 1.2 )
 	end
 	
 	local move_to = cc.MoveTo:create( 0.3,cc.p(0,0) )
+	local scale_to = cc.ScaleTo:create( 0.1,1.2 )
+	local spawn = cc.Spawn:create( move_to,scale_to )
 	local call_func = cc.CallFunc:create( function()
 		self:sortCardPosByColor( seatPos )
 		if callBack then
 			callBack()
 		end
 	end )
-	top_poker:runAction( cc.Sequence:create( { move_to,call_func } ) )
+	-- 发牌到玩家手上放大1.2倍
+	if seatPos == 4 then
+		top_poker:runAction( cc.Sequence:create( { spawn,call_func } ) )
+	else
+		top_poker:runAction( cc.Sequence:create( { move_to,call_func } ) )
+	end
 end
 
 function GamePlay:sortCardPosByColor( seatPos )
@@ -221,6 +231,10 @@ function GamePlay:sortCardPosByColor( seatPos )
 		end
 	end
 	if seatPos == 2 or seatPos == 4 then
+		-- 玩家手牌放大间距
+		if seatPos == 4 then
+			self._handPokerWidth = self._handPokerWidth * 1.2
+		end
 		local meta_width = ( self._handPokerWidth - size.width ) / 7
 		local start_pos = meta_width * #childs / 2
 		for i,v in ipairs( childs ) do
@@ -228,8 +242,13 @@ function GamePlay:sortCardPosByColor( seatPos )
 				v:setLocalZOrder( i )
 			else
 				v:setLocalZOrder( 9 - i )
+				-- meta_width = meta_width * 1.2
 			end
 			v:setPositionX( start_pos - ( i - 1 ) * meta_width )
+		end
+		-- 间距恢复
+		if seatPos == 4 then
+			self._handPokerWidth = self._handPokerWidth / 1.2
 		end
 	end
 end
@@ -309,6 +328,7 @@ function GamePlay:aiOutCard( seatPos )
 end
 
 function GamePlay:playerOutCard( poker )
+	
 	-- 播放音效
 	local effect_isOpen = G_GetModel("Model_Sound"):isVoiceOpen()
 	if effect_isOpen then
@@ -330,6 +350,8 @@ function GamePlay:playerOutCard( poker )
 		self:outPokerFromPlayer( poker,4,function ()
 			self:outPokerDoneLogic( 4 )
 		end)
+		-- 恢复玩家手上牌大小
+		-- poker:setScale( 1 )
 		return
 	end
 	
@@ -340,6 +362,8 @@ function GamePlay:playerOutCard( poker )
 		self:outPokerFromPlayer( poker,4,function ()
 			self:outPokerDoneLogic( 4 )
 		end)
+		-- 恢复玩家手上牌大小
+		-- poker:setScale( 1 )
 		return
 	end
 	
@@ -438,6 +462,8 @@ function GamePlay:outPokerFromPlayer( poker,seatPos,callBack )
 	local rotate_to = cc.RotateTo:create( 0.5,0 )
 	local move_to = cc.MoveTo:create( 0.5,outTo_pos )
 	local spawn = cc.Spawn:create( rotate_to,move_to )
+	local scale_to = cc.ScaleTo:create( 0.5,1 )
+	local spawn1 = cc.Spawn:create( rotate_to,move_to,scale_to )
 	local call = cc.CallFunc:create(function ()
 		poker:retain()
 		poker:removeFromParent()
@@ -449,7 +475,12 @@ function GamePlay:outPokerFromPlayer( poker,seatPos,callBack )
 			callBack()
 		end
 	end)
-	poker:runAction( cc.Sequence:create({ spawn,call }))
+	-- 玩家手牌打出去恢复大小
+	if seatPos == 4 then
+		poker:runAction( cc.Sequence:create({ spawn1,call }))
+	else
+		poker:runAction( cc.Sequence:create({ spawn,call }))
+	end
 end
 
 function GamePlay:outPokerDoneLogic( seatPos )
