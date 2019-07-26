@@ -54,7 +54,6 @@ function ModelRegister:registerModel( modelCls, modelName )
 end
 
 function ModelRegister:getModel( modelName )
-	dump( modelName,"---------modelName = ")
 	assert( modelName," !! modelName is nil !! ")
 	assert( self._modelsList[modelName]," !! model is nil !! ")
 	return self._modelsList[modelName]

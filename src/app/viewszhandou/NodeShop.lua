@@ -100,7 +100,7 @@ NodeShop.gold = {
 	30,60,100
 }
 NodeShop.dollar = {
-	"1$","2$","3$"
+	"6$","12$","18$"
 }
 
 function NodeShop:ctor( parentPanel,index )
