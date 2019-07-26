@@ -18,12 +18,14 @@ function GameBuy:ctor( param )
     assert( param," !! param is nil !! ")
     assert( param.name," !! param.name is nil !! ")
     GameBuy.super.ctor( self,param.name )
+    self._layer = cc.LayerColor:create( cc.c4b( 0,0,0,150 ))
+    self:addChild( self._layer )
 
     self._param = param
 
     self._index = param.data
 
-    self:addCsb( "csbjunshi/Buy.csb" )
+    self:addCsb( "Buy.csb" )
 
     -- 关闭
     self:addNodeClick( self.ButtonClose,{ 
@@ -40,6 +42,7 @@ end
 function GameBuy:onEnter()
     GameBuy.super.onEnter( self )
     casecadeFadeInNode( self.Bg,0.5 )
+    casecadeFadeInNode( self._layer,0.5,150 )
 
     -- 设置文本
     self.Text_1:setString( string.format("Does it cost $%s",self.QIAN[ self._index ]) )

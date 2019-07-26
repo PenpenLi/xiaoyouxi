@@ -5,7 +5,7 @@
 -- Desc:	成语接龙场景
 
 
-cc.FileUtils:getInstance():addSearchPath("res/csbjunshi")
+-- cc.FileUtils:getInstance():addSearchPath("res/csbjunshi")
 
 
 local UIManager = import("app.framework.UIManager")
@@ -25,6 +25,11 @@ end
 
 function JunShiScene:loadAppFile()
 	import("app.viewsjunshi.config.js_config")
+	if js_card_lang == 1 then
+		cc.FileUtils:getInstance():addSearchPath("res/csbjunshi")
+	else
+		cc.FileUtils:getInstance():addSearchPath("res/csbjinniu")
+	end
 end
 
 

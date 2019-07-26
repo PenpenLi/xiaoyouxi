@@ -9,7 +9,7 @@ function SelectPeople:ctor( param )
     assert( param," !! param is nil !! ")
     assert( param.name," !! param.name is nil !! ")
     SelectPeople.super.ctor( self,param.name )
-    self:addCsb( "csbjunshi/SelectPeople.csb" )
+    self:addCsb( "SelectPeople.csb" )
 
     for i = 1,6 do
     	self:addNodeClick( self["Button"..i],{ 

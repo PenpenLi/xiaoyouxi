@@ -11,7 +11,7 @@ function RankMain:ctor( param )
     self:addChild( layer,1 )
     self._layer = layer
 
-    self:addCsb( "csbjunshi/Rank.csb",2 )
+    self:addCsb( "Rank.csb",2 )
 
     -- 关闭
     self:addNodeClick( self.ButtonClose,{ 

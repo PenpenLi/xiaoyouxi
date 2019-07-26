@@ -11,7 +11,7 @@ function GamePlay:ctor( param )
 
     self._playerPeopleIndex = param.data
 
-    self:addCsb( "csbjunshi/Play.csb" )
+    self:addCsb( "Play.csb" )
     self:addNodeClick( self["ButtonClose"],{ 
         endCallBack = function() self:close() end
     })
@@ -113,6 +113,7 @@ function GamePlay:loadAiPlayerIcon()
 	self._aiPeopleIndex = {}
 	for i = 1,3 do
 		self._aiPeopleIndex[i] = ai_people[i]
+		self["AIIcon"..i]:ignoreContentAdaptWithSize( true )
 		self["AIIcon"..i]:loadTexture( js_select_people_path[ai_people[i]],1 )
 	end
 end
@@ -177,7 +178,7 @@ function GamePlay:sendCardAction( seatPos )
 	assert( seatPos," !! seatPos is nil !! " )
 
 	local end_point = clone( self._aiPlayerPosition[ seatPos ] )
-	end_point.x = end_point.x + (#self._aiPlayerPoker[seatPos]) * self._aiCardSpace
+	end_point.x = end_point.x + (#self._aiPlayerPoker[seatPos]) * self:getPokerDiffSpace( seatPos )
 
 	local start_point = cc.p( self.PokerNode:getPosition() )
 	-- 创建一个背的牌 执行动画
@@ -201,6 +202,18 @@ function GamePlay:sendCardAction( seatPos )
 	poker_img:runAction( seq )
 end
 
+-- 获取牌间距
+function GamePlay:getPokerDiffSpace( seatPos )
+	assert( seatPos," !! seatPos is nil  !! " )
+	if js_card_lang ~= 3 then
+		return self._aiCardSpace
+	end
+	if seatPos ~= 4 then
+		return self._aiCardSpace
+	end
+	return 80
+end
+
 function GamePlay:createCardToAiOrPlayer( seatPos )
 	assert( seatPos," !! seatPos is nil !! " )
 
@@ -222,7 +235,7 @@ function GamePlay:createCardToAiOrPlayer( seatPos )
 	end
 
 	local end_point = clone( self._aiPlayerPosition[ seatPos ] )
-	end_point.x = end_point.x + (#self._aiPlayerPoker[seatPos]) * self._aiCardSpace
+	end_point.x = end_point.x + (#self._aiPlayerPoker[seatPos]) * self:getPokerDiffSpace( seatPos )
 
 	local node_pos = parent:convertToNodeSpace( end_point )
 	poker_card:setPosition( node_pos )
@@ -293,6 +306,8 @@ function GamePlay:moCard()
 				if #self._aiPlayerPoker[self._pointer] > 0 then
 					-- 创建手指
 					self:createPointer()
+				else
+					self:aiOutCard()
 				end
 			end
 		else
@@ -417,7 +432,7 @@ function GamePlay:resetPokerPostion( seatPos )
 	assert( seatPos," !! seatPos is nil !! " )
 	for i,v in ipairs( self._aiPlayerPoker[seatPos] ) do
 		local end_point = clone( self._aiPlayerPosition[ seatPos ] )
-		end_point.x = end_point.x + ( i - 1 ) * self._aiCardSpace
+		end_point.x = end_point.x + ( i - 1 ) * self:getPokerDiffSpace( seatPos )
 		end_point.y = end_point.y - 20
 		local node_pos = v:getParent():convertToNodeSpace( end_point )
 

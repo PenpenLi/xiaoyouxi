@@ -12,7 +12,7 @@ function ChooseCard:ctor( param )
     self:addChild( layer )
     self._layer = layer
 
-    self:addCsb( "csbjunshi/SelectCard.csb" )
+    self:addCsb( "SelectCard.csb" )
 
     for i = 1,6 do
         self:addNodeClick( self["Button"..i],{ 

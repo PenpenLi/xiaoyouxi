@@ -88,7 +88,7 @@ local js_card_people_path = {
 	[8] = "image/poker/poker7.png",
 }
 
-local js_card_lang = 1	-- 1:英语 2:中文
+local js_card_lang = 3	-- 1:英语 2:中文 3:金牛
 
 
 rawset(_G,"js_num_config",js_num_config)

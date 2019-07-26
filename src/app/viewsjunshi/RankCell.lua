@@ -5,7 +5,7 @@ local RankCell  = class("RankCell",BaseNode)
 function RankCell:ctor( parentPanel )
 	self._parentPanel = parentPanel
 	RankCell.super.ctor( self,"RankCell" )
-	self:addCsb( "csbjunshi/NodeRank.csb" )
+	self:addCsb( "NodeRank.csb" )
 end
 
 function RankCell:loadDataUi( data,index )

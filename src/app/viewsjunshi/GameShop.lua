@@ -14,7 +14,7 @@ function GameShop:ctor( param )
     self._layer = layer
 
 
-    self:addCsb( "csbjunshi/Shop.csb" )
+    self:addCsb( "Shop.csb" )
 
     -- 关闭
     self:addNodeClick( self.ButtonClose,{ 

@@ -14,7 +14,7 @@ function GameVoiceSet:ctor( param )
     self:addChild( layer,1 )
     self._layer = layer
 
-    self:addCsb( "csbjunshi/VoiceSet.csb",2 )
+    self:addCsb( "VoiceSet.csb",2 )
 
     -- 关闭
     self:addNodeClick( self.ButtonClose,{ 

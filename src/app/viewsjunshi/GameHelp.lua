@@ -12,7 +12,7 @@ function GameHelp:ctor( param )
     self:addChild( layer )
     self._layer = layer
 
-    self:addCsb( "csbjunshi/Help.csb" )
+    self:addCsb( "Help.csb" )
 
     -- 关闭
     self:addNodeClick( self.ButtonClose,{ 

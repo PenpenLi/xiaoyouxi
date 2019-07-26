@@ -12,7 +12,7 @@ function GameOver:ctor( param )
     self:addChild( layer )
     self._layer = layer
 
-    self:addCsb( "csbjunshi/Over.csb" )
+    self:addCsb( "Over.csb" )
 
     -- 关闭
     self:addNodeClick( self.ButtonClose,{ 

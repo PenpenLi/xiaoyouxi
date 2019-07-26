@@ -6,7 +6,7 @@ local PokerNode = class("PokerNode",BaseNode)
 function PokerNode:ctor( parentPanel,mType )
 	self._parentPanel = parentPanel
 	PokerNode.super.ctor( self,"PokerNode" )
-	self:addCsb( "csbjunshi/NodePoker.csb" )
+	self:addCsb( "NodePoker.csb" )
 
 	self._mType = mType
 

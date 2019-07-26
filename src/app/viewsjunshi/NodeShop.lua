@@ -29,7 +29,7 @@ NodeShop.QIAN = {
 function NodeShop:ctor( parentPanel,index )
 	self._parentPanel = parentPanel
 	NodeShop.super.ctor( self,"NodeShop" )
-	self:addCsb( "csbjunshi/NodeShop.csb" )
+	self:addCsb( "NodeShop.csb" )
 
 	self:loadDataUi( index )
 
