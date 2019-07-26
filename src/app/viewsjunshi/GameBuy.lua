@@ -45,8 +45,13 @@ function GameBuy:onEnter()
     casecadeFadeInNode( self._layer,0.5,150 )
 
     -- 设置文本
-    self.Text_1:setString( string.format("Does it cost $%s",self.QIAN[ self._index ]) )
-    self.Text_2:setString( string.format("to buy %s copper coins?",self.COIN[ self._index ]) )
+    if js_card_lang == 1 then
+        self.Text_1:setString( string.format("Does it cost $%s",self.QIAN[ self._index ]) )
+        self.Text_2:setString( string.format("to buy %s copper coins?",self.COIN[ self._index ]) )
+    else
+        self.Text_1:setString( string.format("是否花费 ￥%s",self.QIAN[ self._index ]) )
+        self.Text_2:setString( string.format("购买 %s 铜币?",self.COIN[ self._index ]) )
+    end
 end
 
 function GameBuy:buy()
