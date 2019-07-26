@@ -13,7 +13,7 @@ function GamePause:ctor( param )
 
     self._parent = param.data.layer
 
-    self:addCsb( "csbzhandou/Pause.csb" )
+    self:addCsb( "Pause.csb" )
 
     self:addNodeClick( self.ButtonQuit,{ 
         endCallBack = function() 

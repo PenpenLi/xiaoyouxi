@@ -109,7 +109,7 @@ function NodeShop:ctor( parentPanel,index )
 	self._index = index
 	
 	NodeShop.super.ctor( self,"NodeShop")
-	self:addCsb( "csbzhandou/NodeShop.csb" )
+	self:addCsb( "NodeShop.csb" )
 
 	self.TextGold:setString( self.gold[index] )
 	self.ImageCoin:loadTexture( self.coin[index],1 )

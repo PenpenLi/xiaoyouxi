@@ -9,7 +9,7 @@ function GameWin:ctor( param )
     self._param = param
 
 
-    self:addCsb( "csbzhandou/Win.csb" )
+    self:addCsb( "Win.csb" )
 
     -- 再来一局
     self:addNodeClick( self.ButtonNext,{ 

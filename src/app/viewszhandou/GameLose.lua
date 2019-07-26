@@ -6,7 +6,7 @@ function GameLose:ctor( param )
     assert( param.name," !! param.name is nil !! ")
     GameLose.super.ctor( self,param.name )
     self._param = param
-    self:addCsb( "csbzhandou/Lose.csb" )
+    self:addCsb( "Lose.csb" )
     -- 再来一局
     self:addNodeClick( self.ButtonNext,{ 
         endCallBack = function() self:again() end

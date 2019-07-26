@@ -4,23 +4,25 @@ local Model_LiKui = class( "Model_LiKui" )
 
 function Model_LiKui:ctor()
 	self._recordList = nil
+	self._coin = nil
 	self:getRecordList()
-	self:reset()
+	-- self:reset()
 end
 
-function Model_LiKui:reset()
-	self._coin = nil
-end
+-- function Model_LiKui:reset()
+-- 	self._coin = nil
+-- end
 
 function Model_LiKui:getInstance()
 	if not self._instance then
 		self._instance = Model_LiKui.new()
-	else
-		return self._instance
 	end
+	return self._instance
+	
 end
 
 function Model_LiKui:getCoin()
+	-- print( "-----?????????")
 	if self._coin == nil then
 		local user_default = cc.UserDefault:getInstance()
 		self._coin = user_default:getIntegerForKey( "likuiCoin",50 )

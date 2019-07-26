@@ -5,7 +5,7 @@
 -- Desc:	战斗场景
 
 
-cc.FileUtils:getInstance():addSearchPath("res/csbzhandou")
+
 
 
 local UIManager = import("app.framework.UIManager")
@@ -25,6 +25,13 @@ end
 
 function ZhanDouScene:loadAppFile()
 	import("app.viewszhandou.config.zhandou_config")
+
+	if zhandou_config.lang == 1 then
+		cc.FileUtils:getInstance():addSearchPath("res/csbzhandouchinese")
+	else
+		cc.FileUtils:getInstance():addSearchPath("res/csbzhandou")
+	end
+
 end
 
 

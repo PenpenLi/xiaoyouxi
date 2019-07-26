@@ -12,7 +12,7 @@ function GameVoiceSet:ctor( param )
     self:addChild( layer )
     self._layer = layer
 
-    self:addCsb( "csbzhandou/Set.csb")
+    self:addCsb( "Set.csb")
 
     self:addNodeClick( self.ButtonMusic,{
     	endCallBack = function ()
@@ -31,34 +31,64 @@ end
 
 function GameVoiceSet:loadUi()
 	local is_open = G_GetModel( "Model_Sound" ):isMusicOpen()
-	if is_open then
-		self.ButtonMusic:loadTexture( "image/set/kaibg.png",1 )
-		self.ImageMusic:loadTexture( "image/set/kai.png",1 )
-		self.ImageMusic:setPositionX( 38 )
+	if zhandou_config.lang == 1 then
+		if is_open then
+			self.ButtonMusic:loadTexture( "image/set/kaibg.png",1 )
+			self.ImageMusic:loadTexture( "image/set/kai.png",1 )
+			self.ImageMusic:setPositionX( 32 )
+		else
+			self.ButtonMusic:loadTexture( "image/set/guanbg.png",1 )
+			self.ImageMusic:loadTexture( "image/set/guan.png",1 )
+			self.ImageMusic:setPositionX( 122 )
+		end
 	else
-		self.ButtonMusic:loadTexture( "image/set/guanbg.png",1 )
-		self.ImageMusic:loadTexture( "image/set/guan.png",1 )
-		self.ImageMusic:setPositionX( 187 )
+		if is_open then
+			self.ButtonMusic:loadTexture( "image/set/kaibg.png",1 )
+			self.ImageMusic:loadTexture( "image/set/kai.png",1 )
+			self.ImageMusic:setPositionX( 38 )
+		else
+			self.ButtonMusic:loadTexture( "image/set/guanbg.png",1 )
+			self.ImageMusic:loadTexture( "image/set/guan.png",1 )
+			self.ImageMusic:setPositionX( 187 )
+		end
 	end
 end
 
 function GameVoiceSet:setMusic()
 	local model = G_GetModel( "Model_Sound" )
 	local is_open = model:isMusicOpen()
-	if is_open then
-		self.ButtonMusic:loadTexture( "image/set/guanbg.png",1 )
-		self.ImageMusic:loadTexture( "image/set/guan.png",1 )
-		self.ImageMusic:setPositionX( 187 )
-		model:setMusicState( model.State.Closed )
-		model:stopPlayBgMusic()
-		model:setVoiceState( model.State.Closed )
+	if zhandou_config.lang == 1 then
+		if is_open then
+			self.ButtonMusic:loadTexture( "image/set/guanbg.png",1 )
+			self.ImageMusic:loadTexture( "image/set/guan.png",1 )
+			self.ImageMusic:setPositionX( 122 )
+			model:setMusicState( model.State.Closed )
+			model:stopPlayBgMusic()
+			model:setVoiceState( model.State.Closed )
+		else
+			self.ButtonMusic:loadTexture( "image/set/kaibg.png",1 )
+			self.ImageMusic:loadTexture( "image/set/kai.png",1 )
+			self.ImageMusic:setPositionX( 32 )
+			model:setMusicState( model.State.Open )
+			model:playBgMusic()
+			model:setVoiceState( model.State.Open )
+		end
 	else
-		self.ButtonMusic:loadTexture( "image/set/kaibg.png",1 )
-		self.ImageMusic:loadTexture( "image/set/kai.png",1 )
-		self.ImageMusic:setPositionX( 38 )
-		model:setMusicState( model.State.Open )
-		model:playBgMusic()
-		model:setVoiceState( model.State.Open )
+		if is_open then
+			self.ButtonMusic:loadTexture( "image/set/guanbg.png",1 )
+			self.ImageMusic:loadTexture( "image/set/guan.png",1 )
+			self.ImageMusic:setPositionX( 187 )
+			model:setMusicState( model.State.Closed )
+			model:stopPlayBgMusic()
+			model:setVoiceState( model.State.Closed )
+		else
+			self.ButtonMusic:loadTexture( "image/set/kaibg.png",1 )
+			self.ImageMusic:loadTexture( "image/set/kai.png",1 )
+			self.ImageMusic:setPositionX( 38 )
+			model:setMusicState( model.State.Open )
+			model:playBgMusic()
+			model:setVoiceState( model.State.Open )
+		end
 	end
 end
 

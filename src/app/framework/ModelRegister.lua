@@ -41,7 +41,7 @@ function ModelRegister:registAll()
 	self:registerModel(require("app.mode.Model_SuoHa"),"Model_SuoHa")
 	self:registerModel(require("app.mode.Model_ZuQiu"),"Model_ZuQiu")
 	self:registerModel(require("app.mode.Model_Eight"),"Model_Eight")
-	self:registerModel(require("app.mode.Model_Eight"),"Model_LiKui")
+	self:registerModel(require("app.mode.Model_LiKui"),"Model_LiKui")
 	print("Model 加载读取完毕!所需秒:"..(os.clock() - _t))
 end
 
@@ -54,6 +54,7 @@ function ModelRegister:registerModel( modelCls, modelName )
 end
 
 function ModelRegister:getModel( modelName )
+	dump( modelName,"---------modelName = ")
 	assert( modelName," !! modelName is nil !! ")
 	assert( self._modelsList[modelName]," !! model is nil !! ")
 	return self._modelsList[modelName]

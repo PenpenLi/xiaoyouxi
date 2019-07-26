@@ -15,7 +15,7 @@ function GameShop:ctor( param )
     self._layer = layer
 
 
-    self:addCsb( "csbzhandou/Shop.csb" )
+    self:addCsb( "Shop.csb" )
 
     -- local coin = {
     -- 	"image/shop/30jb.png",

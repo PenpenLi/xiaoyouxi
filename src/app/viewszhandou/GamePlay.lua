@@ -8,7 +8,7 @@ function GamePlay:ctor( param )
     assert( param," !! param is nil !! ")
     assert( param.name," !! param.name is nil !! ")
     GamePlay.super.ctor( self,param.name )
-    self:addCsb( "csbzhandou/Play.csb" )
+    self:addCsb( "Play.csb" )
 
     self:addNodeClick( self["ButtonReplace"],{ 
         endCallBack = function() self:replaceCard() end
@@ -222,7 +222,12 @@ function GamePlay:pointerAction()
 	self.ImagePointer:stopAllActions()
 	local delay_time = cc.DelayTime:create( 1 )
 	local call_pos = cc.CallFunc:create( function()
-		local posx = random(380,880)
+		local posx = nil
+		if zhandou_config.lang == 1 then
+			posx = random(400,1000)
+		else
+			posx = random(380,880)
+		end
 		self.ImagePointer:setPositionX( posx )
 	end )
 	local seq = cc.Sequence:create({ delay_time,call_pos })
@@ -394,7 +399,11 @@ function GamePlay:aiMoveCard( poker,destPanel,outPos )
 	poker:addChild( pointer_img )
 	local poker_size = poker:getContentSize()
 	pointer_img:setPosition( cc.p(poker_size.width / 2,poker_size.height) )
-	pointer_img:setRotation(-135)
+	if zhandou_config.lang == 1 then
+		pointer_img:setRotation( 45 )
+	else
+		pointer_img:setRotation(-135)
+	end
 	self.ImagePointer:setVisible( false )
 	
 

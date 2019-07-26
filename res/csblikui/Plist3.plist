@@ -7,13 +7,24 @@
 			<key>image/frame/likui2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,0},{430,530}}</string>
+				<string>{{1,560},{430,530}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{430,530}</string>
+			</dict>
+			<key>image/over/likui.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1},{476,557}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
-				<string>{430,530}</string>
+				<string>{476,557}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>
@@ -25,12 +36,12 @@
 			<key>realTextureFileName</key>
 			<string>Plist3.png</string>
 			<key>size</key>
-			<string>{512,1024}</string>
+			<string>{1024,1024}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>512</integer>
+			<integer>1024</integer>
 			<key>height</key>
 			<integer>1024</integer>
 		</dict>

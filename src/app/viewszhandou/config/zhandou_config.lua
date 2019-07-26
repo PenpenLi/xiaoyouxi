@@ -2,6 +2,7 @@
 
 local zhandou_config = {}
 
+zhandou_config.lang = 1  --1,中文   2,英文
 
 zhandou_config.poker_config = {
 	[1]  	= "image/poker/meihuaa.png",

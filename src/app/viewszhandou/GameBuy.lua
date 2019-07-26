@@ -24,7 +24,7 @@ function GameBuy:ctor( param )
     self:addChild( layer )
     self._layer = layer
 
-    self:addCsb( "csbzhandou/Buy.csb" )
+    self:addCsb( "Buy.csb" )
 
     self:addNodeClick( self.ButtonClose,{
     	endCallBack = function ()
