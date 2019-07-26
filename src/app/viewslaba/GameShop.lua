@@ -12,7 +12,7 @@ function GameShop:ctor( param )
 	self:addChild( layer )
 	self._layer = layer
 
-	self:addCsb( "csblaba/Shop.csb" )
+	self:addCsb( "Shop.csb" )
 
 	self:addNodeClick( self.ButtonClose,{
 		endCallBack = function() self:close() end

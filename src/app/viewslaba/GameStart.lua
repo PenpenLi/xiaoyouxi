@@ -6,7 +6,9 @@ function GameStart:ctor( param )
     assert( param," !! param is nil !! ")
     assert( param.name," !! param.name is nil !! ")
     GameStart.super.ctor( self,param.name )
-    self:addCsb( "csblaba/Start.csb" )
+
+    self:addCsb( "Start.csb" )
+
 
     -- 开始
     self:addNodeClick( self.ButtonStart,{ 

@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>image/game/win.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{952,250},{99,40}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{99,40}</string>
+			</dict>
+			<key>image/game/winbg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{823,1},{405,127}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{405,127}</string>
+			</dict>
+			<key>image/game/xiazhubg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{823,408},{405,127}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{405,127}</string>
+			</dict>
+			<key>image/game/dollar.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{69,815},{61,60}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{61,60}</string>
+			</dict>
+			<key>image/element/bianpao.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,878},{125,125}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{125,125}</string>
+			</dict>
+			<key>image/element/caishen.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{128,878},{125,125}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{125,125}</string>
+			</dict>
+			<key>image/element/denglong.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{255,878},{125,125}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{125,125}</string>
+			</dict>
+			<key>image/element/J.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{382,878},{125,125}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{125,125}</string>
+			</dict>
+			<key>image/element/K.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{509,878},{125,125}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{125,125}</string>
+			</dict>
+			<key>image/element/Q.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{636,878},{125,125}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{125,125}</string>
+			</dict>
+			<key>image/help/close.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,815},{66,59}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{66,59}</string>
+			</dict>
+			<key>image/help/heng.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1003,1},{875,2}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{875,2}</string>
+			</dict>
+			<key>image/help/shu.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1007,1},{2,280}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{2,280}</string>
+			</dict>
+			<key>image/help/wupinbg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{952,1},{247,49}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{247,49}</string>
+			</dict>
+			<key>image/element/eight.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{763,878},{125,125}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{125,125}</string>
+			</dict>
+			<key>image/element/nine.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{890,878},{125,125}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{125,125}</string>
+			</dict>
+			<key>image/element/ten.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,539},{125,125}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{125,125}</string>
+			</dict>
+			<key>image/game/gamebg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1},{820,536}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{820,536}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>Plist3.png</string>
+			<key>realTextureFileName</key>
+			<string>Plist3.png</string>
+			<key>size</key>
+			<string>{1024,1024}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>1024</integer>
+			<key>height</key>
+			<integer>1024</integer>
+		</dict>
+	</dict>
+</plist>

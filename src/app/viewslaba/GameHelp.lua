@@ -14,8 +14,7 @@ function GameHelp:ctor( param )
     self:addChild( layer )
     self._layer = layer
 
-    self:addCsb( "csblaba/Help.csb" )
-
+    self:addCsb( "Help.csb" )
     -- 关闭
     self:addNodeClick( self.ButtonCloseHelp,{ 
         endCallBack = function() self:close() end

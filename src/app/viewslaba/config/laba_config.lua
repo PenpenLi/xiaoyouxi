@@ -5,6 +5,8 @@ local laba_config = {}
 -- 滚轴的数量
 laba_config.reel_count = 5
 
+laba_config.lang = 2 	-- 1:中文版 2:英文版
+
 
 -- 滚轴数据配置
 laba_config.reel_config = {

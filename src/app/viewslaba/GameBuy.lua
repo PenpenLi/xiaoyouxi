@@ -23,7 +23,7 @@ function GameBuy:ctor( param )
 
     self._index = param.data
 
-    self:addCsb( "csblaba/Buy.csb" )
+    self:addCsb( "Buy.csb" )
 
     -- 关闭
     self:addNodeClick( self.ButtonNo,{ 
@@ -42,7 +42,11 @@ function GameBuy:onEnter()
     casecadeFadeInNode( self.ImageBuybg,0.5 )
 
     -- 设置文本
-    self.Text_1:setString( string.format("是否花费%s元购买%s铜币",self.QIAN[ self._index ],self.COIN[ self._index ]) )
+    if laba_config.lang == 1 then
+        self.Text_1:setString( string.format("是否花费%s元购买%s铜币",self.QIAN[ self._index ],self.COIN[ self._index ]) )
+    else
+        self.Text_1:setString( string.format("Does it cost %s$ to buy %s coin",self.QIAN[ self._index ],self.COIN[ self._index ]) )
+    end
 end
 
 function GameBuy:buy()

@@ -26,7 +26,7 @@ function BaseNode:addCsb( fileName,zOrder )
     if self._csbNode then
         return
     end
-    self._csbNode = CSBUtil.readNodeCSB( fileName,self )
+    self._csbNode,self._csbAct = CSBUtil.readNodeCSB( fileName,self )
     
     if zOrder then
         self:addChild( self._csbNode,zOrder )

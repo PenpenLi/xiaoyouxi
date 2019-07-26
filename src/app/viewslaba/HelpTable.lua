@@ -5,22 +5,40 @@ local HelpTable = class("HelpTable",BaseTable)
 
 
 function HelpTable:setViewData()
-    self._viewData = {
-        { "财神",12,6,3 },
-        { "鞭炮",10,5,3 },
-        { "灯笼",10,4,3 },
-        { "Q",4,2,2 },
-        { "K",8,3,2 },
-        { "J",4,2,1 },
-        { 10,4,2,1 },
-        { 9,3,2,1 },
-        { 8,3,2,1 },
-    }
+    if laba_config.lang == 1 then
+        self._viewData = {
+            { "财神",12,6,3 },
+            { "鞭炮",10,5,3 },
+            { "灯笼",10,4,3 },
+            { "K",8,3,2 },
+            { "Q",4,2,2 },
+            { "J",4,2,1 },
+            { 10,4,2,1 },
+            { 9,3,2,1 },
+            { 8,3,2,1 },
+        }
+    else
+        self._viewData = {
+            { "Yacht",12,6,3 },
+            { "SportsCar",10,5,3 },
+            { "Gold",10,4,3 },
+            { "K",8,3,2 },
+            { "Q",4,2,2 },
+            { "J",4,2,1 },
+            { "Champagne",4,2,1 },
+            { "Watch",3,2,1 },
+            { "A",3,2,1 },
+        }
+    end
 end
 
 
 function HelpTable:cellSizeForTable(table,idx)
-    return 954, 53
+    if laba_config.lang == 1 then
+        return 954, 53
+    else
+        return 874, 55
+    end
 end
 
 
