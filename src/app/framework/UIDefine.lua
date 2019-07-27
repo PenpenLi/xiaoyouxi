@@ -233,7 +233,7 @@ UIDefine.JUNSHI_KEY = {
 -- 	-- Help_UI 			= { layer = import("app.viewslikui.GameHelp"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Help_UI"    			   		},
 -- 	-- Over_UI             = { layer = import("app.viewslikui.GameOver"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Over_UI"    			        },
 -- 	-- Stop_UI	       		= { layer = import("app.viewslikui.GameStop"),	      			flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Stop_UI"    			     	},
--- 	-- Shop_UI	    	    = { layer = import("app.viewslikui.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Shop_UI"    		   		  	},
+-- 	Shop_UI	    	    = { layer = import("app.viewslikui.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Shop_UI"    		   		  	},
 -- 	-- Buy_UI	    	    = { layer = import("app.viewslikui.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Buy_UI"    		   		  	},
 -- 	-- Play_UI             = { layer = import("app.viewslikui.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Play_UI"    			   		},
 -- 	-- Choice_UI           = { layer = import("app.viewslikui.GameChoice"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Choice_UI"    		 		},
