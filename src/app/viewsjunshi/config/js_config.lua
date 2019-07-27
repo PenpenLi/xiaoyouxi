@@ -69,6 +69,15 @@ local js_select_people_path = {
 	[6] = "image/people/pangtong.png",
 }
 
+local js_game_people_path = {
+	[1] = "image/game/guojia.png",
+	[2] = "image/game/lusu.png",
+	[3] = "image/game/simayi.png",
+	[4] = "image/game/zugeliang.png",
+	[5] = "image/game/zhouyu.png",
+	[6] = "image/game/pangtong.png",
+}
+
 local js_over_people_path = {
 	[1] = "image/over/guojiatx.png",
 	[2] = "image/over/lusutx.png",
@@ -98,3 +107,4 @@ rawset(_G,"js_card_people_path",js_card_people_path)
 rawset(_G,"js_select_people_path",js_select_people_path)
 rawset(_G,"js_over_people_path",js_over_people_path)
 rawset(_G,"js_card_lang",js_card_lang)
+rawset(_G,"js_game_people_path",js_game_people_path)

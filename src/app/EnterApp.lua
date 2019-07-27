@@ -28,7 +28,7 @@ end
 function EnterApp:create()
 	print(">>>>>EnterApp:create<<<<<<")
 	self:loadAppFile()
-	local scene = require("app.scenes.LiKuiScene").new()
+	local scene = require("app.scenes.JunShiScene").new()
 	return scene
 end
 
