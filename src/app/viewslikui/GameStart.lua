@@ -20,7 +20,22 @@ function GameStart:ctor( param )
     		self:right()
     	end
     })
-    dump( self.Panel1:getPositionX(),"---------=" )
+    self:addNodeClick( self.ButtonSound,{
+    	endCallBack = function ()
+    		self:setSound()
+    	end
+    })
+    self:addNodeClick( self.ButtonMusic,{
+    	endCallBack = function ()
+    		self:setMusic()
+    	end
+    })
+    self:addNodeClick( self.ButtonShop,{
+    	endCallBack = function ()
+    		self:openStore()
+    	end
+    })
+    -- dump( self.Panel1:getPositionX(),"---------=" )
 
     self:loadUi()
 end
@@ -29,14 +44,22 @@ function GameStart:loadUi()
 	local coin = G_GetModel("Model_LiKui"):getInstance():getCoin()
 	self.TextCoin:setString( coin )
 
-	local state = G_GetModel("Model_Sound"):isMusicOpen()
+	local state = G_GetModel("Model_Sound"):isVoiceOpen()
 	if state then
 		self.ButtonSound:loadTexture( "image/start/sound.png",1 )
 	else
 		self.ButtonSound:loadTexture( "image/start/sound.png",1 )
 		-- 变灰
+		graySprite( self.ButtonSound:getVirtualRenderer():getSprite() )
 	end
-
+	state = G_GetModel("Model_Sound"):isMusicOpen()
+	if state then
+		self.ButtonMusic:loadTexture( "image/start/music.png",1 )
+	else
+		self.ButtonMusic:loadTexture( "image/start/music.png",1 )
+		-- 变灰
+		graySprite( self.ButtonMusic:getVirtualRenderer():getSprite() )
+	end
 end
 
 function GameStart:onEnter()
@@ -85,8 +108,37 @@ function GameStart:right()
 	end
 end
 
-
-
+function GameStart:setMusic()
+	local model = G_GetModel("Model_Sound"):getInstance()
+	local is_open = model:isMusicOpen()
+	if is_open then
+		self.ButtonMusic:loadTexture( "image/start/music.png",1 )
+		-- 变灰
+		graySprite( self.ButtonMusic:getVirtualRenderer():getSprite() )
+		model:setMusicState( model.State.Closed )
+		model:stopPlayBgMusic()
+	else
+		self.ButtonMusic:loadTexture( "image/start/music.png",1 )
+		model:setMusicState( model.State.Open )
+		model:playBgMusic()
+	end
+end
+function GameStart:setSound()
+	local model = G_GetModel("Model_Sound"):getInstance()
+	local is_open = model:isVoiceOpen()
+	if is_open then
+		self.ButtonSound:loadTexture( "image/start/sound.png",1 )
+		-- 变灰
+		graySprite( self.ButtonSound:getVirtualRenderer():getSprite() )
+		model:setVoiceState( model.State.Closed )
+	else
+		self.ButtonSound:loadTexture( "image/start/sound.png",1 )
+		model:setVoiceState( model.State.Open )
+	end
+end
+function GameStart:openStore()
+	addUIToScene( UIDefine.LIKUI_KEY.Shop_UI )
+end
 
 
 
