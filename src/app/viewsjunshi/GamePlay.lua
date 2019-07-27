@@ -120,6 +120,7 @@ function GamePlay:loadAiPlayerIcon()
 		self._aiPeopleIndex[i] = ai_people[i]
 		self["AIIcon"..i]:ignoreContentAdaptWithSize( true )
 		self["AIIcon"..i]:loadTexture( js_game_people_path[ai_people[i]],1 )
+		self["AIIcon"..i]:setLocalZOrder( 10 )
 
 		if js_card_lang == 3 then
 			-- self["AIIcon"..i]:setScale( 0.8 )
