@@ -102,6 +102,11 @@ function GamePlay:loadAiPlayerIcon()
 	-- 初始化玩家人物的icon
 	self.PlayerIcon:loadTexture( js_select_people_path[self._playerPeopleIndex],1 )
 	self.PlayerIcon:ignoreContentAdaptWithSize( true )
+
+	if js_card_lang == 3 then
+		self.PlayerIcon:setScale( 0.8 )
+	end
+
 	-- ai的人物icon
 	local ai_random = getRandomArray( 1,6 )
 	local ai_people = {}
@@ -115,6 +120,10 @@ function GamePlay:loadAiPlayerIcon()
 		self._aiPeopleIndex[i] = ai_people[i]
 		self["AIIcon"..i]:ignoreContentAdaptWithSize( true )
 		self["AIIcon"..i]:loadTexture( js_select_people_path[ai_people[i]],1 )
+
+		if js_card_lang == 3 then
+			self["AIIcon"..i]:setScale( 0.8 )
+		end
 	end
 end
 
