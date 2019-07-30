@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>imagedating/hall/jinbi.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{558,484},{313,157}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{313,157}</string>
+			</dict>
+			<key>imagedating/hall/recharge.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{160,799},{156,172}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{156,172}</string>
+			</dict>
+			<key>imagedating/hall/set.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,799},{157,172}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{157,172}</string>
+			</dict>
+			<key>imagedating/set/close.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{913,251},{78,153}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{78,153}</string>
+			</dict>
+			<key>imagedating/set/off.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{891,583},{169,58}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{169,58}</string>
+			</dict>
+			<key>imagedating/set/on.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{831,428},{173,58}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{173,58}</string>
+			</dict>
+			<key>imagedating/set/title_set.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{951,583},{81,43}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{81,43}</string>
+			</dict>
+			<key>imagedating/set/yinxiao.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1003,1},{39,19}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{39,19}</string>
+			</dict>
+			<key>imagedating/set/yinyue.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1003,42},{38,19}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{38,19}</string>
+			</dict>
+			<key>imagedating/shop/bg_jinbi.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{913,1},{248,88}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{248,88}</string>
+			</dict>
+			<key>imagedating/shop/bg_recharge.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{558,1},{270,353}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{270,353}</string>
+			</dict>
+			<key>imagedating/shop/Btn_recharge.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{911,406},{175,68}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{175,68}</string>
+			</dict>
+			<key>imagedating/shop/close.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{831,273},{78,153}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{78,153}</string>
+			</dict>
+			<key>imagedating/shop/product1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{717,603},{255,166}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{255,166}</string>
+			</dict>
+			<key>imagedating/shop/product2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{558,273},{271,209}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{271,209}</string>
+			</dict>
+			<key>imagedating/shop/title_shop.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{981,406},{81,42}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{81,42}</string>
+			</dict>
+			<key>imagedating/set/bg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1},{555,505}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{555,505}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>DaTingPlist1.png</string>
+			<key>realTextureFileName</key>
+			<string>DaTingPlist1.png</string>
+			<key>size</key>
+			<string>{1024,1024}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>1024</integer>
+			<key>height</key>
+			<integer>1024</integer>
+		</dict>
+	</dict>
+</plist>
