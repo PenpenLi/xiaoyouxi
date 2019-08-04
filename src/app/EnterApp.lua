@@ -28,7 +28,7 @@ end
 function EnterApp:create()
 	print(">>>>>EnterApp:create<<<<<<")
 	self:loadAppFile()
-	local scene = require("app.scenes.ZuQiuScene").new()
+	local scene = require("app.scenes.LiKuiScene").new()
 	return scene
 end
 
@@ -95,6 +95,10 @@ function EnterApp:run()
 
 	-- -- 合集游戏的场景
 	-- local scene = require("app.scenes.HeJiScene").new()
+	-- display.runScene(scene)
+
+	-- -- 李逵扑克
+	-- local scene = require("app.scenes.LiKuiScene").new()
 	-- display.runScene(scene)
 end
 

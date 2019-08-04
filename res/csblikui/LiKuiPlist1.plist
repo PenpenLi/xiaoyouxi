@@ -516,9 +516,9 @@
 			<key>format</key>
 			<integer>2</integer>
 			<key>textureFileName</key>
-			<string>Plist1.png</string>
+			<string>LiKuiPlist1.png</string>
 			<key>realTextureFileName</key>
-			<string>Plist1.png</string>
+			<string>LiKuiPlist1.png</string>
 			<key>size</key>
 			<string>{1024,1024}</string>
 		</dict>

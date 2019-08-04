@@ -40,7 +40,6 @@ function GameStart:ctor( param )
     		self:play()
     	end
     })
-    -- dump( self.Panel1:getPositionX(),"---------=" )
 
     self:loadUi()
 end
@@ -98,8 +97,7 @@ function GameStart:loadHelp()
 	end,2 )
 end
 function GameStart:left()
-	if self.Panel1:getPositionX() < 0 then-----------------if self.Panel1:getPositionX() == -715 then这个条件有什么问题
-		print( "-----------1111111111")
+	if self.Panel1:getPositionX() < 0 then
 		local left_moveby = cc.MoveBy:create( 0.5,cc.p( 715,0 ))
 		local right_moveby = cc.MoveBy:create( 0.5,cc.p( 715,0 ))
 		-- local apawn = cc.Spawn:create( left_moveby,right_moveby )
@@ -108,8 +106,7 @@ function GameStart:left()
 	end
 end
 function GameStart:right()
-	if self.Panel2:getPositionX() > 0 then-----------------------if self.Panel1:getPositionX() == 0 then和上面一样有什么问题，打印出来值是这个
-		print( "-----------1111111111")
+	if self.Panel2:getPositionX() > 0 then
 		local left_moveby = cc.MoveBy:create( 0.5,cc.p( -715,0 ))
 		local right_moveby = cc.MoveBy:create( 0.5,cc.p( -715,0 ))
 		-- local apawn = cc.Spawn:create( left_moveby,right_moveby )

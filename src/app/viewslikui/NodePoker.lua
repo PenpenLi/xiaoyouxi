@@ -9,14 +9,14 @@ function NodePoker:ctor( panelParent,numberIndex )
 	NodePoker.super.ctor( self,"NodePoker" )
 	self._panelParent = panelParent
 	self._numberIndex = numberIndex
-	self._img = ccui.ImageView:create( likui_config.poker[numberIndex].path )
 
-	self:addChild( self._img )
-	self._img:setVisible( false )
+	self:addCsb("csblikui/NodePoker.csb")
 
-	self._imgBack = ccui.ImageView:create( "image/poker/bei.png" )
-	self:addChild( self._imgBack )
+	self.Icon:setVisible( false )
+	self.ImageQuan2:setVisible( false )
+	self.ImageQuan1:setVisible( false )
 
+	self.Icon:loadTexture( likui_config.poker[self._numberIndex].path,1 )
 end
 
 function NodePoker:showPoker()
@@ -30,36 +30,37 @@ function NodePoker:getColorIndex()
 	return likui_config.poker[self._numberIndex].color
 end
 -- 获取牌的值
-function NodePoker:getNumberOfBigOrSmall( ... )
+function NodePoker:getNumberOfBigOrSmall()
 	return likui_config.poker[self._numberIndex].num
+end
+
+function NodePoker:showQuan1( value )
+	self.ImageQuan1:setVisible( value )
+end
+
+function NodePoker:showQuan2( value )
+	self.ImageQuan2:setVisible( value )
 end
 
 function NodePoker:showObtAniUseScaleTo( time )
 	assert( time," !! time is nil!! " )
+	self.Icon:setVisible( false )
 	local call_front = cc.CallFunc:create( function()
-		self._img:setScaleX( 0 )
-		self._img:setSkewY( -10 )
+		self.Icon:setScaleX( 0 )
+		self.Icon:setSkewY( -10 )
 		local scale_front = cc.ScaleTo:create(time,1,1)
 		local skew1 = cc.SkewTo:create( time, 0, 0 )
 		local spawn_front = cc.Spawn:create({ scale_front,skew1 })
 		local pSeqFront = cc.Sequence:create({ cc.Show:create(),spawn_front })
-		self._img:runAction(pSeqFront)
+		self.Icon:runAction(pSeqFront)
 	end )
 
 	local skew1 = cc.SkewTo:create( time, 0, -10 )
 	local scale_to = cc.ScaleTo:create(time,0,1)
 	local spawn_back = cc.Spawn:create({ scale_to,skew1 })
 	local pBackSeq = cc.Sequence:create({spawn_back,cc.Hide:create(),call_front})
-	self._imgBack:runAction( pBackSeq )
+	self.ImageBei:runAction( pBackSeq )
 end
--- function NodePoker:AISendPokerShowAnction( time )
--- 	assert( time," !! time is nil !! " )
--- 	local scale_to = cc.ScaleTo:create( time,0.6 )
-
--- end
-
-
-
 
 
 
