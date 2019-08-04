@@ -40,11 +40,11 @@
 			<key>imagetwntyone/start/gongzhu .png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{687,307},{78,143}}</string>
+				<string>{{740,154},{78,143}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{78,143}</string>
 			</dict>
@@ -73,7 +73,7 @@
 			<key>imagetwntyone/start/shangcheng.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{537,317},{105,104}}</string>
+				<string>{{740,641},{105,104}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -84,11 +84,11 @@
 			<key>imagetwntyone/start/shezhi.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{644,387},{105,104}}</string>
+				<string>{{537,1},{105,104}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{105,104}</string>
 			</dict>
@@ -150,18 +150,18 @@
 			<key>imagetwntyone/game/gongzhu1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{713,154},{81,148}}</string>
+				<string>{{657,1},{81,148}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{81,148}</string>
 			</dict>
 			<key>imagetwntyone/game/gongzhu2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{537,1},{81,148}}</string>
+				<string>{{657,151},{81,148}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -172,18 +172,18 @@
 			<key>imagetwntyone/game/gongzhu3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{620,1},{81,148}}</string>
+				<string>{{657,301},{81,148}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{81,148}</string>
 			</dict>
 			<key>imagetwntyone/game/gongzhu4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{537,151},{81,148}}</string>
+				<string>{{657,475},{81,148}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -194,7 +194,7 @@
 			<key>imagetwntyone/game/gongzhu5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{537,234},{81,148}}</string>
+				<string>{{713,558},{81,148}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -249,11 +249,11 @@
 			<key>imagetwntyone/game/qs3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{687,237},{68,174}}</string>
+				<string>{{807,299},{68,174}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{68,174}</string>
 			</dict>
@@ -282,7 +282,7 @@
 			<key>imagetwntyone/game/hand.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{537,423},{98,79}}</string>
+				<string>{{537,384},{98,79}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -293,24 +293,57 @@
 			<key>imagetwntyone/game/back.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{637,494},{65,64}}</string>
+				<string>{{637,384},{65,64}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{65,64}</string>
 			</dict>
 			<key>imagetwntyone/game/help.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{704,494},{65,64}}</string>
+				<string>{{703,384},{65,64}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{65,64}</string>
+			</dict>
+			<key>imagetwntyone/game/yinyue.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{807,475},{68,71}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{68,71}</string>
+			</dict>
+			<key>imagetwntyone/game/music.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{537,499},{58,59}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
-				<string>{65,64}</string>
+				<string>{58,59}</string>
+			</dict>
+			<key>imagetwntyone/game/music2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{597,499},{58,59}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{58,59}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>

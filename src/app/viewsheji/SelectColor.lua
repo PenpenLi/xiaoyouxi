@@ -13,8 +13,7 @@ function SelectColor:ctor( param )
     local layer = cc.LayerColor:create( cc.c4b( 0,0,0,150 ) )
     self:addChild( layer )
     
-    self:addCsb( "csbsanguo/Select.csb" )
-
+    self:addCsb( "csbheji/csbsanguo/Select.csb" )
 
     self._callBack = param.data.callBack
 
@@ -30,7 +29,7 @@ end
 function SelectColor:clickSelect( index )
     local color_num_index = 96 + index * 2
     self._callBack( color_num_index )
-    removeUIFromScene( UIDefine.SANGUO_KEY.Select_UI )
+    removeUIFromScene( UIDefine.HEJI_KEY.SanGuo_Select_UI )
 end
 
 

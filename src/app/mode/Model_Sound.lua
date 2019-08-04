@@ -244,7 +244,7 @@ function Model_Sound:playBgMusic()
 		end
 	elseif scene_name == "HeJiScene" then
 		if self:isMusicOpen() then
-			audio.playMusic("csbheji/csbsanguo/sgmp3/bg.mp3",true)
+			audio.playMusic("csbheji/csbdating/dtmp3/music.mp3",true)
 		end
 	end
 

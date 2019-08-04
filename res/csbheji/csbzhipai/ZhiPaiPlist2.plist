@@ -95,7 +95,7 @@
 			<key>imagezhipai/game/guanka.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{965,843},{48,22}}</string>
+				<string>{{965,847},{48,22}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -106,7 +106,7 @@
 			<key>imagezhipai/game/jinbi.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{965,786},{55,55}}</string>
+				<string>{{767,604},{55,55}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -183,7 +183,7 @@
 			<key>imagezhipai/game/zanting.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{774,604},{70,74}}</string>
+				<string>{{774,661},{70,74}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -267,6 +267,39 @@
 				<true />
 				<key>sourceSize</key>
 				<string>{74,90}</string>
+			</dict>
+			<key>imagezhipai/game/yinyue.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{774,733},{68,71}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{68,71}</string>
+			</dict>
+			<key>imagezhipai/game/music.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{965,786},{58,59}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{58,59}</string>
+			</dict>
+			<key>imagezhipai/game/music2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{707,604},{58,59}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{58,59}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>

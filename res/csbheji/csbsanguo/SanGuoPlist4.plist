@@ -136,6 +136,39 @@
 				<key>sourceSize</key>
 				<string>{206,108}</string>
 			</dict>
+			<key>imagesanguo/play/bangzhu.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{689,94},{88,88}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{88,88}</string>
+			</dict>
+			<key>imagesanguo/play/music.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{763,184},{58,59}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{58,59}</string>
+			</dict>
+			<key>imagesanguo/play/music2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{779,94},{58,59}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{58,59}</string>
+			</dict>
 		</dict>
 		<key>metadata</key>
 		<dict>

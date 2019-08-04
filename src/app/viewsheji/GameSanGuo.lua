@@ -15,11 +15,16 @@ function GameSanGuo:ctor( param )
     self:addNodeClick( self["ButtonClose"],{ 
         endCallBack = function() self:close() end
     })
+    self:addNodeClick( self["ButtonHelp"],{ 
+        endCallBack = function() self:help() end
+    })
 
-
-
+    self:addNodeClick( self["ButtonMusic"],{ 
+        endCallBack = function() self:setMusic() end
+    })
+    -- self._musicStart = 1
     -- 打开音效
-    self.ButtonMusic:setVisible( false )
+    -- self.ButtonMusic:setVisible( false )
 
     -- 隐藏方向
     for i = 1,4 do
@@ -42,6 +47,14 @@ function GameSanGuo:onEnter()
 	performWithDelay( self,function()
 		self:sendCardAction()
 	end,0.7 )
+
+	if G_GetModel("Model_Sound"):isMusicOpen() then
+		audio.playMusic("csbheji/csbsanguo/sgmp3/bg.mp3",true)
+		self.ButtonMusic:loadTexture( "imagesanguo/play/music.png",1 )
+	else
+		self.ButtonMusic:loadTexture( "imagesanguo/play/music2.png",1 )
+		-- graySprite( self.ButtonMusic:getVirtualRenderer():getSprite() )
+	end
 end
 
 
@@ -728,8 +741,24 @@ function GameSanGuo:clearPlayerSecect()
 end
 
 function GameSanGuo:close()
+	audio.stopMusic(false)
 	removeUIFromScene( UIDefine.HEJI_KEY.SanGuo_UI )
     addUIToScene( UIDefine.HEJI_KEY.Start_UI )
+end
+function GameSanGuo:help()
+	addUIToScene( UIDefine.HEJI_KEY.SanGuo_Help_UI )
+end
+function GameSanGuo:setMusic()
+	if G_GetModel("Model_Sound"):isMusicOpen() then
+		audio.stopMusic(false)
+		G_GetModel("Model_Sound"):setMusicState( G_GetModel("Model_Sound").State.Closed )
+		self.ButtonMusic:loadTexture( "imagesanguo/play/music2.png",1 )
+		-- graySprite( self.ButtonMusic:getVirtualRenderer():getSprite() )
+	else
+		audio.playMusic("csbheji/csbsanguo/sgmp3/bg.mp3",true)
+		G_GetModel("Model_Sound"):setMusicState( G_GetModel("Model_Sound").State.Open )
+		self.ButtonMusic:loadTexture( "imagesanguo/play/music.png",1 )
+	end
 end
 
 

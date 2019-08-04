@@ -26,16 +26,28 @@ function GameTwentyOne:ctor( param )
 
     self:addNodeClick( self.ButtonBack,{
     	endCallBack = function() 
+    		audio.stopMusic(false)
     		removeUIFromScene( UIDefine.HEJI_KEY.GameTwentyOne_UI )
     		addUIToScene( UIDefine.HEJI_KEY.Start_UI )
     	end
     })
+    self:addNodeClick( self["ButtonMusic"],{ 
+        endCallBack = function() self:setMusic() end
+    })
+    -- self._musicStart = 1
 end
 
 
 function GameTwentyOne:onEnter()
 	GameTwentyOne.super.onEnter( self )
 	self:loadUIData()
+	if G_GetModel("Model_Sound"):isMusicOpen() then
+		audio.playMusic("csbheji/csbtwentyone/tomp3/dating.mp3",true)
+		self.ButtonMusic:loadTexture( "imagetwntyone/game/music.png",1 )
+	else
+		self.ButtonMusic:loadTexture( "imagetwntyone/game/music2.png",1 )
+		-- graySprite( self.ButtonMusic:getVirtualRenderer():getSprite() )
+	end
 end
 
 function GameTwentyOne:loadUIData()
@@ -433,11 +445,11 @@ end
 
 function GameTwentyOne:refreshPoker()
 	local has_coin = G_GetModel("Model_Heji"):getCoin()
-	if has_coin >= 100 then
+	if has_coin >= 10 then
 		-- 将当前扑克插入
 		table.insert( self._pokerAllData,self._curPokerNum )
 		-- 去掉金币
-		G_GetModel("Model_Heji"):setCoin( -100 )
+		G_GetModel("Model_Heji"):setCoin( -10 )
 		local coin = G_GetModel("Model_Heji"):getCoin()
 		self.TextCoin:setString( coin )
 
@@ -498,5 +510,17 @@ function GameTwentyOne:addListener()
 	end )
 end
 
+function GameTwentyOne:setMusic()
+	if G_GetModel("Model_Sound"):isMusicOpen() then
+		audio.stopMusic(false)
+		G_GetModel("Model_Sound"):setMusicState( G_GetModel("Model_Sound").State.Closed )
+		self.ButtonMusic:loadTexture( "imagetwntyone/game/music2.png",1 )
+		-- graySprite( self.ButtonMusic:getVirtualRenderer():getSprite() )
+	else
+		audio.playMusic("csbheji/csbtwentyone/tomp3/dating.mp3",true)
+		G_GetModel("Model_Sound"):setMusicState( G_GetModel("Model_Sound").State.Open )
+		self.ButtonMusic:loadTexture( "imagetwntyone/game/music.png",1 )
+	end
+end
 
 return GameTwentyOne

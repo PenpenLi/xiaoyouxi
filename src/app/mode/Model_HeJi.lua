@@ -18,7 +18,7 @@ end
 function Model_Heji:getCoin()
 	if self._coin == nil then
 		local user_default = cc.UserDefault:getInstance()
-		self._coin = user_default:getIntegerForKey( "hejiCoin",50 )
+		self._coin = user_default:getIntegerForKey( "hejiCoin",500 )
 		user_default:setIntegerForKey( "hejiCoin",self._coin )
 	end
 	return self._coin

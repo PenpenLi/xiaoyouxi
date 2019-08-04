@@ -29,6 +29,18 @@ function GameZhiPai:ctor( param )
     self:addNodeClick( self.ButtonPause,{
         endCallBack = function() self:pauseGame() end
     })
+    self.ButtonPause:setVisible( false )
+
+    self:addNodeClick( self.ButtonHelp,{
+        endCallBack = function() self:help() end
+    })
+    self:addNodeClick( self.ButtonBack,{
+        endCallBack = function() self:back() end
+    })
+    self:addNodeClick( self["ButtonMusic"],{ 
+        endCallBack = function() self:setMusic() end
+    })
+    -- self._musicStart = 1
 
     -- 行的node
     self._rowPanels = {
@@ -98,6 +110,13 @@ function GameZhiPai:onEnter()
             self:gameOver()
         end
     end,1 )
+    if G_GetModel("Model_Sound"):isMusicOpen() then
+        audio.playMusic("csbheji/csbzhipai/zpmp3/mainScene.mp3",true)
+        self.ButtonMusic:loadTexture( "imagezhipai/game/music.png",1 )
+    else
+        self.ButtonMusic:loadTexture( "imagezhipai/game/music2.png",1 )
+        -- graySprite( self.ButtonMusic:getVirtualRenderer():getSprite() )
+    end
 end
 
 
@@ -455,7 +474,7 @@ function GameZhiPai:clickRefreshCard()
     end
 
     -- 设置金币
-    G_GetModel("Model_ZhiPai"):setCoin( -10 )
+    G_GetModel("Model_Heji"):setCoin( -10 )
     local has_coin = G_GetModel("Model_Heji"):getCoin()
     self.TextCoin:setString( has_coin )
 
@@ -472,6 +491,24 @@ function GameZhiPai:pauseGame()
     addUIToScene( UIDefine.HEJI_KEY.ZhiPai_Pause_UI,{ layer = self } )
 end
 
-
-
+function GameZhiPai:help()
+    addUIToScene( UIDefine.HEJI_KEY.ZhiPai_Help_UI )
+end
+function GameZhiPai:back()
+    audio.stopMusic(false)
+    removeUIFromScene( UIDefine.HEJI_KEY.GameZhiPai_UI )
+    addUIToScene( UIDefine.HEJI_KEY.Start_UI )
+end
+function GameZhiPai:setMusic()
+    if G_GetModel("Model_Sound"):isMusicOpen() then
+        audio.stopMusic(false)
+        G_GetModel("Model_Sound"):setMusicState( G_GetModel("Model_Sound").State.Closed )
+        self.ButtonMusic:loadTexture( "imagezhipai/game/music2.png",1 )
+        -- graySprite( self.ButtonMusic:getVirtualRenderer():getSprite() )
+    else
+        audio.playMusic("csbheji/csbzhipai/zpmp3/mainScene.mp3",true)
+        G_GetModel("Model_Sound"):setMusicState( G_GetModel("Model_Sound").State.Open )
+        self.ButtonMusic:loadTexture( "imagezhipai/game/music.png",1 )
+    end
+end
 return GameZhiPai
