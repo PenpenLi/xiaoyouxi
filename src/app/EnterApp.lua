@@ -92,6 +92,10 @@ function EnterApp:run()
 	-- -- 进入8点纸牌场景
 	-- local scene = require("app.scenes.EightScene").new()
 	-- display.runScene(scene)
+
+	-- -- 合集游戏的场景
+	-- local scene = require("app.scenes.HeJiScene").new()
+	-- display.runScene(scene)
 end
 
 

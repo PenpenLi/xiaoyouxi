@@ -240,4 +240,28 @@ UIDefine.ZUQIU_KEY	= {
 -- 	-- Disband_UI          = { layer = import("app.viewslikui.GameDisband"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Disband_UI"    				},
 -- }
 
+-- -- 三个游戏的合集
+-- UIDefine.HEJI_KEY    = {
+-- 	Loading_UI 			= { layer = import("app.viewsheji.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "HeJi_Loading_UI" 			  	    },
+-- 	Start_UI 			= { layer = import("app.viewsheji.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "HeJi_Start_UI"                      },
+-- 	Voice_UI	        = { layer = import("app.viewsheji.GameVoiceSet"),	      		flag = UIDefine.LayerFlag.Main.name,	name = "heJi_Voice_UI"    			     	},
+-- 	Shop_UI	    	    = { layer = import("app.viewsheji.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "heJi_Shop_UI"    		   		  	},
+-- 	SanGuo_UI           = { layer = import("app.viewsheji.GameSanGuo"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "HeJi_SanGuo_UI"                     },
+-- 	SanGuo_Select_UI    = { layer = import("app.viewsheji.SelectColor"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "HeJi_SelectColor_UI"    			},
+-- 	SanGuo_Win_UI       = { layer = import("app.viewsheji.GameSanGuoWin"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "HeJi_SanGuo_Win_UI"    			    },
+-- 	SanGuo_Lose_UI      = { layer = import("app.viewsheji.GameSanGuoLose"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "HeJi_SanGuo_Lose_UI"    			},
+-- 	SanGuo_LiuJu_UI     = { layer = import("app.viewsheji.GameSanGuoLiuJu"),		    flag = UIDefine.LayerFlag.Main.name,	name = "HeJi_SanGuo_LiuJu_UI"    			},
+-- 	SanGuo_Help_UI 		= { layer = import("app.viewsheji.GameSanGuoHelp"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "HeJi_SanGuo_Help_UI"    			        },
+-- 	GameTwentyOne_UI 	= { layer = import("app.viewsheji.GameTwentyOne"),	    		flag = UIDefine.LayerFlag.Main.name,	name = "HeJi_GameTwentyOne_UI"              },
+-- 	TwentyOne_Help_UI   = { layer = import("app.viewsheji.GameTwentyOneHelp"),	    	flag = UIDefine.LayerFlag.Main.name,	name = "HeJi_TwentyOne_Help_UI"             },
+-- 	TwentyOne_Pass_UI   = { layer = import("app.viewsheji.GameTwentyOnePass"),		    flag = UIDefine.LayerFlag.Main.name,	name = "HeJi_TwentyOne_Pass_UI"    			},
+-- 	TwentyOne_Over_UI   = { layer = import("app.viewsheji.GameTwentyOneOver"),		    flag = UIDefine.LayerFlag.Main.name,	name = "HeJi_TwentyOne_Over_UI"    			},
+-- 	GameZhiPai_UI 	    = { layer = import("app.viewsheji.GameZhiPai"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "HeJi_GameZhiPai_UI"                 },
+-- 	ZhiPai_Over_UI   	= { layer = import("app.viewsheji.GameZhiPaiOver"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "HeJi_ZhiPai_Over_UI"    			},
+-- 	ZhiPai_Pass_UI   	= { layer = import("app.viewsheji.GameZhiPaiPass"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "HeJi_ZhiPai_Pass_UI"    			},
+-- 	ZhiPai_Pause_UI	    = { layer = import("app.viewsheji.GameZhiPaiPause"),		    flag = UIDefine.LayerFlag.Main.name,	name = "HeJi_ZhiPai_Pause_UI"    		    },
+-- 	ZhiPai_Help_UI      = { layer = import("app.viewsheji.GameZhiPaiHelp"),	    	    flag = UIDefine.LayerFlag.Main.name,	name = "HeJi_ZhiPai_Help_UI"                },
+
+-- }
+
 rawset(_G,"UIDefine",UIDefine)

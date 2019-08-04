@@ -61,6 +61,8 @@ function Model_Sound:isMusicOpen()
 			self._musicState = user_default:getIntegerForKey("eightMusicState", 1)
 		elseif scene_name == "LiKuiScene" then
 			self._musicState = user_default:getIntegerForKey("likuiMusicState", 1)
+		elseif scene_name == "HeJiScene" then
+			self._musicState = user_default:getIntegerForKey("hejiMusicState", 1)
 		end
 	end
 	return self._musicState == 1
@@ -98,6 +100,8 @@ function Model_Sound:setMusicState( state )
 		user_default:setIntegerForKey("eightMusicState", state)
 	elseif scene_name == "LiKuiScene" then
 		user_default:setIntegerForKey("likuiMusicState", state)
+	elseif scene_name == "HeJiScene" then
+		user_default:setIntegerForKey("hejiMusicState", state)
 	end
 end
 
@@ -132,6 +136,8 @@ function Model_Sound:isVoiceOpen()
 			self._voiceState = user_default:getIntegerForKey("eightVoiceState", 1)
 		elseif scene_name == "LiKuiScene" then
 			self._voiceState = user_default:getIntegerForKey("likuiVoiceState", 1)
+		elseif scene_name == "HeJiScene" then
+			self._voiceState = user_default:getIntegerForKey("hejiVoiceState", 1)
 		end
 
 	end
@@ -171,6 +177,8 @@ function Model_Sound:setVoiceState( state )
 		user_default:setIntegerForKey("eightVoiceState", state)
 	elseif scene_name == "LiKuiScene" then
 		user_default:setIntegerForKey("likuiVoiceState", state)
+	elseif scene_name == "HeJiScene" then
+		user_default:setIntegerForKey("hejiVoiceState", state)
 	end
 end
 
@@ -234,6 +242,10 @@ function Model_Sound:playBgMusic()
 		if self:isMusicOpen() then
 			audio.playMusic("lkmp3/music.mp3",true)
 		end
+	elseif scene_name == "HeJiScene" then
+		if self:isMusicOpen() then
+			audio.playMusic("csbheji/csbdating/dtmp3/music.mp3",true)
+		end
 	end
 
 
@@ -268,6 +280,8 @@ function Model_Sound:stopPlayBgMusic()
 	elseif scene_name == "EightScene" then
 		audio.stopMusic(false)
 	elseif scene_name == "LiKuiScene" then
+		audio.stopMusic(false)
+	elseif scene_name == "HeJiScene" then
 		audio.stopMusic(false)
 	end
 end
@@ -336,6 +350,10 @@ function Model_Sound:playVoice( voicePath )
 	elseif scene_name == "LiKuiScene" then
 		if self:isVoiceOpen() then
 			audio.playSound("lkmp3/button.mp3", false)
+		end
+	elseif scene_name == "HeJiScene" then
+		if self:isVoiceOpen() then
+			audio.playSound("csbheji/csbsanguo/sgmp3/button.mp3", false)
 		end
 	end
 end
