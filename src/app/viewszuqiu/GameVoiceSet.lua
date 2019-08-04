@@ -9,7 +9,7 @@ function GameVoiceSet:ctor( param )
     GameVoiceSet.super.ctor( self,param.name )
 
 
-    self:addCsb( "csbzuqiu/Set.csb" )
+    self:addCsb( "Set.csb" )
 	
 	self:addNodeClick( self.ButtonClose,{
 		endCallBack = function ()

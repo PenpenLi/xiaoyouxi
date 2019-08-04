@@ -16,7 +16,7 @@ function GamePlay:ctor( param )
     assert( param," !! param is nil !! ")
     assert( param.name," !! param.name is nil !! ")
     GamePlay.super.ctor( self,param.name )
-    self:addCsb( "csbzuqiu/Play.csb" )
+    self:addCsb( "Play.csb" )
 
     -- pass 
     self:addNodeClick( self.ButtonPass,{ 

@@ -9,7 +9,7 @@ function NodeCountry:ctor( index )
 	self._index = index
 	NodeCountry.super.ctor( self,"NodeCountry" )
 
-	self:addCsb( "csbzuqiu/Country.csb" )
+	self:addCsb( "Country.csb" )
 	self:loadDataUi( index )
 
 	TouchNode.extends( self.Icon,function (event)

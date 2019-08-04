@@ -5,7 +5,7 @@
 -- Desc:	战斗场景
 
 
-cc.FileUtils:getInstance():addSearchPath("res/csbzuqiu")
+-- cc.FileUtils:getInstance():addSearchPath("res/csbzuqiu")
 
 
 local UIManager = import("app.framework.UIManager")
@@ -26,6 +26,11 @@ end
 function ZuQiuScene:loadAppFile()
 	import("app.viewszuqiu.config.zuqiu_config")
 	import("app.viewszuqiu.config.country_config")
+	if zuqiu_card_lang == 1 then
+		cc.FileUtils:getInstance():addSearchPath("res/csbrehuodougongniu")
+	else
+		cc.FileUtils:getInstance():addSearchPath("res/csbzuqiu")
+	end
 end
 
 

@@ -7,7 +7,7 @@ function GameHelp:ctor( param )
     assert( param.name," !! param.name is nil !! ")
     GameHelp.super.ctor( self,param.name )
 
-    self:addCsb( "csbzuqiu/Help.csb" )
+    self:addCsb( "Help.csb" )
     self.ImagePoker:ignoreContentAdaptWithSize( true )--换图时忽略大小。
 
     self._curPageIndex = 1
@@ -45,7 +45,11 @@ function GameHelp:loadUi(  )
 		self.ImageTwo:loadTexture( "image/help/lan2.png",1 )
 		self.ImageThree:loadTexture( "image/help/lan3.png",1 )
 		self.ButtonPrevious:setVisible( false )
-		self.ButtonNext:loadTexture( "image/lose/next.png",1 )
+		if zuqiu_card_lang == 1 then
+			self.ButtonNext:loadTexture( "image/help/next.png",1 )
+		else
+			self.ButtonNext:loadTexture( "image/lose/next.png",1 )
+		end
 		self.ImageLong:setVisible( false )
 		self.ImageHg1:setVisible( true )
 		self.ImageHg:setVisible( false )
@@ -57,7 +61,11 @@ function GameHelp:loadUi(  )
 		self.ImageTwo:loadTexture( "image/help/lv2.png",1 )
 		self.ImageThree:loadTexture( "image/help/lan3.png",1 )
 		self.ButtonPrevious:setVisible( true )
-		self.ButtonNext:loadTexture( "image/lose/next.png",1 )
+		if zuqiu_card_lang == 1 then
+			self.ButtonNext:loadTexture( "image/help/next.png",1 )
+		else
+			self.ButtonNext:loadTexture( "image/lose/next.png",1 )
+		end
 		self.ImageLong:setVisible( true )
 		self.ImageHg1:setVisible( false )
 		self.ImageHg:setVisible( true )
@@ -84,10 +92,14 @@ end
 
 function GameHelp:onEnter( ... )
 	GameHelp.super.onEnter( self )
-	casecadeFadeInNode( self.ImageBearLeft,0.5,200 )
+	
 	casecadeFadeInNode( self.Bg,0.5 )
-	casecadeFadeInNode( self.Bg,0.5 )
-	casecadeFadeInNode( self.ImageBearRight,0.5 )
+	-- casecadeFadeInNode( self.Bg,0.5 )
+	if zuqiu_card_lang == 1 then
+	else
+		casecadeFadeInNode( self.ImageBearLeft,0.5,200 )
+		casecadeFadeInNode( self.ImageBearRight,0.5 )
+	end
 end
 
 function GameHelp:close(  )

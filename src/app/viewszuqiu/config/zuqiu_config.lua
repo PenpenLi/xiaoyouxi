@@ -79,7 +79,7 @@ local zuqiu_card_config = {
 	[72]	 = { path = "image/poker/heitao10.png", 	num = 10,	color = 4},
 }
 
-
+local zuqiu_card_lang = 1   -- 1,热火斗公牛，2,足球------------country_config，ZuQiuScene，GameStart:loadUi
 -- 开局 为玩家和player随机poker
 zuqiu_card_config.getRandomPokerByBegan = function( stage )
 	assert( stage," !! stage is nil !! " )
@@ -135,4 +135,5 @@ end
 
 
 
+rawset(_G,"zuqiu_card_lang",zuqiu_card_lang)
 rawset(_G,"zuqiu_card_config",zuqiu_card_config)

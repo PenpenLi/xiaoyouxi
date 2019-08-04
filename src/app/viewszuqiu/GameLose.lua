@@ -8,7 +8,7 @@ function GameLose:ctor( param )
     assert( param.name," !! param.name is nil !! ")
     GameLose.super.ctor( self,param.name )
     self._countryIndex = param.data.country_index
-    self:addCsb( "csbzuqiu/Lose.csb" )
+    self:addCsb( "Lose.csb" )
     self:addNodeClick( self.ButtonNext,{
     	endCallBack = function ()
     		self:next()

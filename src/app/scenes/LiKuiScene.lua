@@ -22,7 +22,7 @@ end
 
 
 function LiKuiScene:loadAppFile()
-	-- import( "app.viewslikui.config.likui_config" )
+	import( "app.viewslikui.config.likui_config" )
 end
 
 function LiKuiScene:onEnter()

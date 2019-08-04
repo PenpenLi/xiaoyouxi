@@ -35,6 +35,11 @@ function GameStart:ctor( param )
     		self:openStore()
     	end
     })
+    self:addNodeClick( self.ButtonPlay,{
+    	endCallBack = function ()
+    		self:play()
+    	end
+    })
     -- dump( self.Panel1:getPositionX(),"---------=" )
 
     self:loadUi()
@@ -43,6 +48,11 @@ end
 function GameStart:loadUi()
 	local coin = G_GetModel("Model_LiKui"):getInstance():getCoin()
 	self.TextCoin:setString( coin )
+	-- 添加监听
+	self:addMsgListener( InnerProtocol.INNER_EVENT_LIKUI_BUY,function ()
+		local coin = G_GetModel("Model_LiKui"):getInstance():getCoin()
+		self.TextCoin:setString( coin )
+	end )
 
 	local state = G_GetModel("Model_Sound"):isVoiceOpen()
 	if state then
@@ -138,6 +148,10 @@ function GameStart:setSound()
 end
 function GameStart:openStore()
 	addUIToScene( UIDefine.LIKUI_KEY.Shop_UI )
+end
+function GameStart:play()
+	addUIToScene( UIDefine.LIKUI_KEY.Play_UI )
+	removeUIFromScene( UIDefine.LIKUI_KEY.Start_UI )
 end
 
 

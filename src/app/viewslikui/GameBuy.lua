@@ -17,29 +17,48 @@ function GameBuy:ctor( param )
 
 	self:addCsb( "Buy.csb" )
 
+	self:addNodeClick( self.ButtonYes,{
+		endCallBack = function ()
+			self:yes()
+		end
+	})
+	self:addNodeClick( self.ButtonNo,{
+		endCallBack = function ()
+			self:no()
+		end
+	})
 
 	self:loadUi()
 end
 
 function GameBuy:loadUi()
-	self.Text:setString( "您将花费%d元购买%d金币",self._money[self._index],self._coin[self._index] )
+	print( "--------------= "..self._money[self._index] )
+	self.Text:setString( string.format("您将花费%s元购买%s金币",self._money[self._index],self._coin[self._index]) )
 end
 
 function GameBuy:onEnter()
 	GameBuy.super.onEnter( self )
 
 	casecadeFadeInNode( self._csbNode,0.5 )
+
 end
 
+function GameBuy:yes()
+	-- 调用sdk
 
+    -- 这里是用于测试 请在调用完sdk后 回调 buyCoinCallBack 
+    self:buyCoinCallBack()
+end
 
+function GameBuy:no()
+	-- removeUIFromScene( UIDefine.LIKUI_KEY.Shop_UI )
+	removeUIFromScene( UIDefine.LIKUI_KEY.Buy_UI )
+end
 
-
-
-
-
-
-
-
+function GameBuy:buyCoinCallBack()
+	G_GetModel("Model_LiKui"):getInstance():setCoin( self._coin[self._index] )
+	-- local coin = G_GetModel("Model_LiKui"):Instance():getCoin()
+	EventManager:getInstance():dispatchInnerEvent( InnerProtocol.INNER_EVENT_LIKUI_BUY )
+end
 
 return GameBuy

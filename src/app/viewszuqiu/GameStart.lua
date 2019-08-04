@@ -6,7 +6,7 @@ function GameStart:ctor( param )
     assert( param," !! param is nil !! ")
     assert( param.name," !! param.name is nil !! ")
     GameStart.super.ctor( self,param.name )
-    self:addCsb( "csbzuqiu/Start.csb" )
+    self:addCsb( "Start.csb" )
 
     -- 帮助
     self:addNodeClick( self.ButtonHelp,{ 
@@ -26,13 +26,25 @@ function GameStart:loadUi(  )
     local y = 367
     self._number = 1--记录几号球队
     for i = 1,3 do
-        for j = 1,6 do
-            local node = NodeCountry.new( self._number )
-            self.ImageChooseBg:addChild( node )
-            node:setPosition( x + j * 123 - 123,y - i * 122 + 122)
-            self._number = self._number + 1
-            if self._number > 16 then
-                return
+        if zuqiu_card_lang == 1 then
+            for j = 1,5 do
+                local node = NodeCountry.new( self._number )
+                self.ImageChooseBg:addChild( node )
+                node:setPosition( x + j * 123 - 123,y - i * 122 + 122)
+                self._number = self._number + 1
+                if self._number > 16 then
+                    return
+                end
+            end
+        else
+            for j = 1,6 do
+                local node = NodeCountry.new( self._number )
+                self.ImageChooseBg:addChild( node )
+                node:setPosition( x + j * 123 - 123,y - i * 122 + 122)
+                self._number = self._number + 1
+                if self._number > 16 then
+                    return
+                end
             end
         end
     end

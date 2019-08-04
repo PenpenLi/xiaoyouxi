@@ -9,6 +9,12 @@ function GameShop:ctor( param )
 
 	self:addCsb( "Shop.csb" )
 
+	self:addNodeClick( self.ButtonClose,{
+		endCallBack = function ()
+			self:close()
+		end
+	})
+
 	self:loadUi()
 end
 
@@ -25,7 +31,9 @@ function GameShop:onEnter()
 	casecadeFadeInNode( self._csbNode,0.5 )
 end
 
-
+function GameShop:close()
+	removeUIFromScene( UIDefine.LIKUI_KEY.Shop_UI )
+end
 
 
 

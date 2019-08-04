@@ -12,13 +12,13 @@ function GameLoading:ctor( param )
 	assert( param.name," !! param.name is nil !! " )
 	GameLoading.super.ctor( self,param.name )
 
-	self:addCsb( "csbzuqiu/Loading.csb" )
+	self:addCsb( "Loading.csb" )
 
 	self._plist = {
-		"csbzuqiu/Plist1.plist",
-		"csbzuqiu/Plist2.plist",
-		"csbzuqiu/Plist3.plist",
-		"csbzuqiu/Plist4.plist"
+		"Plist1.plist",
+		"Plist2.plist",
+		"Plist3.plist",
+		"Plist4.plist"
 	}
 	self._music = {
 		"zqmp3/music.mp3"

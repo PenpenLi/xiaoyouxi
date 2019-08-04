@@ -10,7 +10,7 @@ function GameWin:ctor( param )
     self._countryIndex = param.data.country_index
     self._layer = cc.LayerColor:create( cc.c4b( 0,0,0,150 ))
     self:addChild( self._layer )
-    self:addCsb( "csbzuqiu/Win.csb" )
+    self:addCsb( "Win.csb" )
     self:addNodeClick( self.ButtonNext,{
     	endCallBack = function ()
     		self:next()
