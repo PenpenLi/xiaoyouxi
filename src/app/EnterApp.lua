@@ -96,6 +96,10 @@ function EnterApp:run()
 	-- -- 合集游戏的场景
 	-- local scene = require("app.scenes.HeJiScene").new()
 	-- display.runScene(scene)
+
+	-- -- 李逵扑克
+	-- local scene = require("app.scenes.LiKuiScene").new()
+	-- display.runScene(scene)
 end
 
 

@@ -9,12 +9,13 @@ function GameLoading:ctor( param )
     assert( param.name," !! param.name is nil !! ")
     GameLoading.super.ctor( self,param.name )
 
-    self:addCsb( "csbeight/Loading.csb" )
+    self:addCsb( "csblikui/Loading.csb" )
 
     self._plist = {
-		"csblikui/Plist1.plist",
-		"csblikui/Plist2.plist",
-		"csblikui/Plist3.plist"
+		"csblikui/LiKuiPlist1.plist",
+		"csblikui/LiKuiPlist2.plist",
+		"csblikui/LiKuiPlist3.plist",
+		"csblikui/LiKuiPlist4.plist"
 	}
 	self._music = {
 		"lkmp3/music.mp3",
@@ -28,7 +29,6 @@ function GameLoading:ctor( param )
 end
 
 function GameLoading:loadPlist()
-	print( "-------------1" )
 	local index = 1
 	self:schedule( function ()
 		cc.SpriteFrameCache:getInstance():addSpriteFrames( self._plist[index] )
@@ -41,7 +41,6 @@ function GameLoading:loadPlist()
 end
 
 function GameLoading:loadMusic()
-	print( "-------------1" )
 	local index = 1
 	self:schedule( function ()
 		audio.preloadMusic( self._music[index] )
@@ -58,11 +57,9 @@ function GameLoading:loadEffect()
 	self:schedule( function ()
 		audio.preloadSound( self._sound[index] )
 		-- audio.preloadSound( self._sound[index] )
-		print( "-------------2" )
 		index = index + 1
 		if index > #self._sound then
 			self:unSchedule()
-			print( "-------------1" )
 			removeUIFromScene( UIDefine.LIKUI_KEY.Loading_UI )
 			addUIToScene( UIDefine.LIKUI_KEY.Start_UI )
 		end
