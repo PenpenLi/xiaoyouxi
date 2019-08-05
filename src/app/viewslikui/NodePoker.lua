@@ -69,23 +69,21 @@ function NodePoker:addPokerClick()
 	end )
 	self.PanelPoker.listener:setSwallowTouches(true)
 end
+
 function NodePoker:removePokerClick()
 	TouchNode.removeListener( self.PanelPoker )
 end
+
 function NodePoker:touchCard( event )
 	if event.name == "began" then
-		-- print("---------------------666666")
 		return true
 	elseif event.name == "moved" then
 		
 	elseif event.name == "ended" then
-		-- local poker = self.PanelPoker:getParent()
-		-- local node = poker:getParent()
-		local node = self:getParent()
-		dump( node,"----------------node = " )
-		self._panelParent:playerSendPoker( node,0.2 )
-		-- self._parentPanel:playerOutCard( self )
-		print("---------------------123456")
+		-- local node = self:getParent()
+		-- dump( node,"----------------node = " )
+		-- self._panelParent:playerSendPoker( node,0.2 )
+		print("---------------------123456 = "..self:getNumberOfBigOrSmall())
 	end
 end
 

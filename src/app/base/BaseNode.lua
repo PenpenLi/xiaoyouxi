@@ -40,6 +40,13 @@ function BaseNode:addListener()
 
 end
 
+function BaseNode:playCsbAction( actionName,loop,func )
+    if not self._csbAct then
+        return
+    end
+    playCsbActionForKey( self._csbAct,actionName,loop,func )
+end
+
 -- 注册消息
 function BaseNode:addMsgListener( eventName,listener )
     if self._eventListener[eventName] then

@@ -291,6 +291,51 @@ local function G_AddNodeClick( node,param )
 	end )
 end
 
+--获取当前播放动画持续时间
+local function csbActionGetDuration(csbAct,fps)
+    if not fps then
+        fps=30
+    end
+    
+    local frameTime=csbAct:getEndFrame()-csbAct:getStartFrame()
+    if not frameTime or frameTime<0 or frameTime>9999 then
+        frameTime=0
+    end
+    local time=frameTime/fps
+    return time
+end
+
+--结束回调
+local function playCsbEndActionCallFunc(csbAct,func,fps)
+    if not csbAct then
+        return
+    end
+    if func then
+        local time= csbActionGetDuration(csbAct,fps)
+        performWithDelay(csbAct:getTarget(),func,time)
+    end
+end
+
+--根据时间线播放动画
+local function playCsbActionForKey(csbAct,key,loop,func)
+    if not csbAct then
+        return
+    end
+    if loop then
+        loop=true
+    else
+        loop=false
+    end
+    xpcall(function()
+        csbAct:play(key, loop)
+    end,function()
+        print("util_csbPlayForKey ="..key)
+    end)
+    if func then
+        playCsbEndActionCallFunc(csbAct,func)
+    end
+end
+
 
 rawset(_G, "addUIToScene", addUIToScene)
 rawset(_G, "removeUIFromScene", removeUIFromScene)
@@ -310,3 +355,5 @@ rawset(_G, "dynamicUpdateNum", dynamicUpdateNum)
 rawset(_G, "formatMinuTimeStr", formatMinuTimeStr)
 rawset(_G, "G_ShowTips", G_ShowTips)
 rawset(_G, "G_AddNodeClick", G_AddNodeClick)
+rawset(_G, "playCsbEndActionCallFunc", playCsbEndActionCallFunc)
+rawset(_G, "playCsbActionForKey", playCsbActionForKey)
