@@ -53,7 +53,7 @@ function GamePlay:hideAIHandAndPoker()
 	for i = 1,10 do
 		self["ImageAIpoker"..i]:setVisible( false )
 	end
-	self.SpriteFist:setVisible( false )
+	-- self.SpriteFist:setVisible( false )
 	self.ImageAIHand1:setVisible( false )
 end
 -- 初次发牌
@@ -64,8 +64,8 @@ function GamePlay:firstSendPoker()
 		local delay = cc.DelayTime:create( 0.3 )
 		table.insert( actions,delay )
 		local call = cc.CallFunc:create( function()
-			self:playerSendPoker( time )
-			self:AISendPoker( time )
+			self:playerSendPoker( self.NodeStack,time )
+			self:AISendPoker( self.NodeStack,time )
 		end )
 		table.insert( actions,call )
 		
@@ -73,7 +73,8 @@ function GamePlay:firstSendPoker()
 			local delay2 = cc.DelayTime:create( 0.5 )
 			table.insert( actions,delay2 )
 			local call_sort = cc.CallFunc:create( function ()
-				self:playerHandPokerSort()
+				-- self:playerHandPokerSort()
+				self:firstLaterDraw()
 			end)
 			table.insert( actions,call_sort )
 		end
@@ -81,8 +82,8 @@ function GamePlay:firstSendPoker()
 	self:runAction( cc.Sequence:create( actions ) )
 end
 
-function GamePlay:AISendPoker( time )
-	local stack_childs = self.NodeStack:getChildren()
+function GamePlay:AISendPoker( node,time )
+	local stack_childs = node:getChildren()
 	local top_poker = stack_childs[#stack_childs]
 	local img_startPos = cc.p( top_poker:getPosition())
 	local img_startWorldPos = top_poker:getParent():convertToWorldSpace( img_startPos )
@@ -118,14 +119,14 @@ function GamePlay:AIPokerMove( top_poker,time )
 		end
 		
 		if ai_numPoker == 1 then
-			local hand_pos = cc.p(self.ImageAIHand:getPosition())
-			self.ImageAIHand:setVisible( true )
-			self.ImageAIHand:setPositionX( hand_pos.x + 150 )
-			self.ImageAIHand:setRotation( -60 )
+			local hand_pos = cc.p(self.ImageAIHand1:getPosition())
+			self.ImageAIHand1:setVisible( true )
+			self.ImageAIHand1:setPositionX( hand_pos.x + 150 )
+			self.ImageAIHand1:setRotation( -60 )
 			local hand_rotate = cc.RotateTo:create( time,0 )
 			local hand_move_to = cc.MoveTo:create( time,hand_pos )
 			local hand_spawn = cc.Spawn:create( { hand_rotate,hand_move_to } )
-			self.ImageAIHand:runAction( hand_spawn )
+			self.ImageAIHand1:runAction( hand_spawn )
 
 			local img = ccui.ImageView:create( "image/poker/bei.png" )
 			self:addChild( img )
@@ -154,8 +155,10 @@ function GamePlay:getiRotate()
 	return rot - #ai_childs * 3
 end
 
-function GamePlay:playerSendPoker( time )
-	local stack_childs = self.NodeStack:getChildren()
+function GamePlay:playerSendPoker( node,time )
+	dump( node,"----------node???????")
+	local stack_childs = node:getChildren()
+
 	local img_startPos = cc.p(stack_childs[#stack_childs]:getPosition())
 	
 	local img_startWorldPos = stack_childs[#stack_childs]:getParent():convertToWorldSpace( img_startPos )
@@ -172,13 +175,23 @@ function GamePlay:playerSendPoker( time )
 	local x_pos = self:playerHandPokerSpaceBetween( #player_childs )
 	local position_end = cc.p( x_pos,0 )
 
-	self:playerPokerMove( top_poker,position_end,time )
+	self:playerPokerMove( node,top_poker,position_end,time )
 end
 
-function GamePlay:playerPokerMove( poker,position,time )
+function GamePlay:playerPokerMove( node,poker,position,time )
+
 	local move_to = cc.MoveTo:create( time * 2,position )
-	poker:runAction( move_to )
-	poker:showObtAniUseScaleTo( time )
+	local call = cc.CallFunc:create( function ( ... )
+		if #self.PlayerHandPoker:getChildren() >= 10 then
+			self:playerHandPokerSort()-- 有点重复了
+		end
+	end)
+	local seq = cc.Sequence:create( { move_to,call } )
+	poker:runAction( seq )
+	
+	if node == self.NodeStack then
+		poker:showObtAniUseScaleTo( time )
+	end
 end
 
 
@@ -263,6 +276,10 @@ end
 -- 判断玩家或AI手牌收集情况，玩家或AI的node里的孩子列表(已经排序)，重新排序
 function GamePlay:getPlayerEffectiveData()
 	local player_childs = self.PlayerHandPoker:getChildren()
+	-- dump( player_childs[10],"-----------player_childs[10]:getNumberOfBigOrSmall() = ")
+	-- if #player_childs == 11 then
+	-- 	dump( player_childs[11],"-----------player_childs[11]:getNumberOfBigOrSmall() = ")
+	-- end
 
 	table.sort( player_childs, function ( a,b )
 		if a:getNumberOfBigOrSmall() ~= b:getNumberOfBigOrSmall() then
@@ -311,14 +328,36 @@ function GamePlay:getPlayerEffectiveData()
 			end
 		end
 	end
-	dump( tierce_ary,"------------------> tierce_ary = " )
-	dump( four_ary,"------------------> four_ary = " )
-	dump( three_ary,"------------------> three_ary = " )
-	dump( new_source,"------------------> new_source = " )
+	-- dump( tierce_ary,"------------------> tierce_ary = " )
+	-- dump( four_ary,"------------------> four_ary = " )
+	-- dump( three_ary,"------------------> three_ary = " )
+	-- dump( new_source,"------------------> new_source = " )
 	return tierce_ary,four_ary,three_ary,new_source
 end
 
-
+-- 初次发完牌后牌堆翻牌
+function GamePlay:firstLaterDraw()
+	local pokers = self.NodeStack:getChildren()
+	local top_poker = pokers[#pokers]
+	local position_began = cc.p( top_poker:getPosition()) 
+	local position_world = top_poker:getParent():convertToWorldSpace( position_began )
+	local position_nodeBegan = self.NodeOutCard:convertToNodeSpace( position_world )
+	top_poker:retain()
+	top_poker:removeFromParent()
+	self.NodeOutCard:addChild( top_poker )
+	top_poker:release()
+	table.remove( pokers,#pokers )
+	top_poker:setPosition( position_nodeBegan )
+	local position_end = cc.p( 0,0 )
+	self:playerPokerMove( self.NodeStack,top_poker,position_end,0.1 )
+	-- 注册点击
+	top_poker:addPokerClick()
+	-- 显示
+	self.ImagePassOrShow:setVisible( true )
+	self.ImageDeadCardBg:setVisible( true )
+	pokers[#pokers]:addPokerClick()
+	-- top_poker:removePokerClick()
+end
 
 
 
@@ -458,19 +497,31 @@ end
 function GamePlay:frameAnimation()
 	local index = 1
 	local time = -1
+	local likui = 1
 	self:schedule( function()
+		-- if likui == 1 then
+		-- 	self.SpriteLikui:setSpriteFrame( "image/frame/likui1.png",1 )
+		-- elseif likui == 3 then
+		-- 	self.SpriteLikui:setSpriteFrame( "image/frame/likui2.png",1 )
+		-- elseif likui == 4 then
+		-- 	self.SpriteLikui:setSpriteFrame( "image/frame/likui3.png",1 )
+		-- end
+
 		-- 当AI摸牌，停止计时器，停止帧动画------------放这里好像还是有点问题，看是否放摸牌的时候
 		if #self.AIHandPokerIn:getChildren() == 11 then
+			-- 隐藏帧动画2的手
+			self.ImageAIHand:setVisible( false )
+
 			self:unSchedule()
 			return
 		end
 		-- 播放人物动画
 		if time == -1 then
 			if #self.AIHandPokerIn:getChildren() == 10 then
-				-- 显示帧动画2的图
-				self.SpriteFist:setVisible( false )
+				-- 隐藏帧动画2的图
+				-- self.SpriteFist:setVisible( false )
 				self.ImageAIHand:setVisible( false )
-				-- 隐藏帧动画1的手
+				-- 显示帧动画1的手
 				self.ImageAIHand1:setVisible( true )
 				self._csbAct:play( "animation0",true )
 				-- index = index + #self.AIHandPokerIn:getChildren()
@@ -485,10 +536,10 @@ function GamePlay:frameAnimation()
 			self._csbAct:stop()
 			-- print( "---------stop" )
 			-- 显示帧动画2的图
-			self.SpriteFist:setVisible( true )
+			-- self.SpriteFist:setVisible( true )
 			self.ImageAIHand:setVisible( true )
 			-- 隐藏帧动画1的手
-			self.ImageAIHand1:setVisible( false )
+			self.ImageAIHand1:setVisible( true )
 			self._csbAct:play( "animation1",false )
 			time = -3
 		end
@@ -496,6 +547,9 @@ function GamePlay:frameAnimation()
 		if time ~= -1 then
 			time = time + 1
 		end
+		-- if likui > 6 then
+		-- 	likui = 1
+		-- end
 	end,1)
 end
 

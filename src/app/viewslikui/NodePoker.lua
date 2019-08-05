@@ -62,6 +62,33 @@ function NodePoker:showObtAniUseScaleTo( time )
 	self.ImageBei:runAction( pBackSeq )
 end
 
+function NodePoker:addPokerClick()
+	assert( self.PanelPoker.listener == nil," !! listener is exist !! " )
+	TouchNode.extends( self.PanelPoker, function(event)
+		return self:touchCard( event ) 
+	end )
+	self.PanelPoker.listener:setSwallowTouches(true)
+end
+function NodePoker:removePokerClick()
+	TouchNode.removeListener( self.PanelPoker )
+end
+function NodePoker:touchCard( event )
+	if event.name == "began" then
+		-- print("---------------------666666")
+		return true
+	elseif event.name == "moved" then
+		
+	elseif event.name == "ended" then
+		-- local poker = self.PanelPoker:getParent()
+		-- local node = poker:getParent()
+		local node = self:getParent()
+		dump( node,"----------------node = " )
+		self._panelParent:playerSendPoker( node,0.2 )
+		-- self._parentPanel:playerOutCard( self )
+		print("---------------------123456")
+	end
+end
+
 
 
 
