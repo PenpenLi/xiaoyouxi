@@ -38,7 +38,7 @@ function GamePlay:ctor( param )
 
     self:loadUi()
 
-    self._moState = 1 -- 1:只能摸出牌 2:出牌和牌堆都可以摸 3:都不能摸，玩家手牌可出牌，4:关闭所有触摸
+    self._moState = 1 -- 1:只能摸出牌 2:出牌和牌堆都可以摸 3:都不能摸，玩家手牌可出牌，4:关闭所有触摸 等待ai的逻辑
 end
 
 function GamePlay:onEnter()
@@ -117,6 +117,49 @@ function GamePlay:firstSendPoker()
 	self:runAction( cc.Sequence:create( actions ) )
 end
 
+-- 初次发完牌后牌堆翻牌
+function GamePlay:firstLaterDraw( time )
+	assert( time," !! time is nil !! " )
+	local pokers = self.NodeStack:getChildren()
+	local top_poker = pokers[#pokers]
+	local position_began = cc.p( top_poker:getPosition()) 
+	local position_world = top_poker:getParent():convertToWorldSpace( position_began )
+	local position_nodeBegan = self.NodeOutCard:convertToNodeSpace( position_world )
+	top_poker:retain()
+	top_poker:removeFromParent()
+	self.NodeOutCard:addChild( top_poker )
+	top_poker:release()
+
+	top_poker:setPosition( position_nodeBegan )
+	local position_end = cc.p( 0,0 )
+	self:playerPokerMove( top_poker,position_end,time )
+	top_poker:showObtAniUseScaleTo( time )
+	-- 显示
+	self.ImagePassOrShow:setVisible( true )
+	self.ImageDeadCardBg:setVisible( true )
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- ################################ AI 的代码区 Start ##################################################
 function GamePlay:createAIPokerFromPaiDui( time,index )
 	assert( time," !! time is nil !! " )
 	local stack_childs = self.NodeStack:getChildren()
@@ -131,13 +174,11 @@ function GamePlay:createAIPokerFromPaiDui( time,index )
 		end,time / 2 )
 	end
 	-- 显示
-	-- 发完牌以后AI摸牌直接返回，没有第11张显示
-	if index > 10 then
-		return
+	if index then
+		performWithDelay( self["ImageAIpoker"..index],function()
+			self["ImageAIpoker"..index]:setVisible( true )
+		end,time )
 	end
-	performWithDelay( self["ImageAIpoker"..index],function()
-		self["ImageAIpoker"..index]:setVisible( true )
-	end,time )
 end
 
 
@@ -181,44 +222,33 @@ function GamePlay:AIHandAction( time )
 	self.ImageAIHand1:runAction( hand_spawn )
 end
 
-
-
 function GamePlay:getiRotate()
 	local ai_childs = self.AIHandPokerIn:getChildren()
 	local rot = 15
 	return rot - #ai_childs * 3
 end
 
--------------------------------------------------------------------------------------------------------------------
 -- AI扑克排序
-function GamePlay:AIHandPokerSort()--------------AI的排序就是在玩家的方法里面加了一个条件。不然玩家排序的方法全部复制只改一个self.AIHandPokerIn？
-	-- AI的牌排序
-	-- local childs = self.AIHandPokerIn:getChildren()
-	-- dump( childs,"------------childs = ")
-	local player_childs,tierce_pokers,four_pokers,three_pokers = self:HandPokerSort( self.AIHandPokerIn )
-	-- local childs1 = self.AIHandPokerIn:getChildren()
-	-- dump( childs1,"------------childs1 = ")
-
-	-- 显示AI的牌
+function GamePlay:AIHandPokerSort()
 	self:AIShowPoker()
 end
 -- AI显示明牌
 function GamePlay:AIShowPoker()
+	-- 提取node里面的数据，索引
+	local source = self:getNumberIndexSourceByNode( self.AIHandPokerIn )
+	-- 玩家手牌排序
+	local sort_childs,tierce_pokers,four_pokers,three_pokers = self:handPokersGroup( self.AIHandPokerIn,source )
 	local index = -950
-	local player_childs,tierce_pokers,four_pokers,three_pokers = self:HandPokerSort( self.AIHandPokerIn )
-	for i = 1,#player_childs do
-		player_childs[i]:showQuan1( false )
-		player_childs[i]:showQuan2( false )
-		-- local index = self:playerHandPokerSpaceBetween( i )
-		player_childs[i]:setLocalZOrder( i )
+	for i = 1,#sort_childs do
+		sort_childs[i]:showQuan1( false )
+		sort_childs[i]:showQuan2( false )
+		sort_childs[i]:setLocalZOrder( i )
 		local move_to = cc.MoveTo:create( 0.5,cc.p( index + i * 100,120 ))
-		player_childs[i]:runAction( move_to )
-		player_childs[i]:setVisible( true )
-		player_childs[i]:setRotation( 0 )
-		player_childs[i]:setScale( 0.8 )
-		player_childs[i]:showPoker()
-		-- local hide = cc.Show:create()
-		-- player_childs[i]:runAction( hide )
+		sort_childs[i]:runAction( move_to )
+		sort_childs[i]:setVisible( true )
+		sort_childs[i]:setRotation( 0 )
+		sort_childs[i]:setScale( 1 )
+		sort_childs[i]:showPoker()
 	end
 	-- 0.6秒之后 加圈
 	performWithDelay( self,function()
@@ -229,120 +259,141 @@ function GamePlay:AIShowPoker()
 end
 
 -- AI从牌堆摸牌
-function GamePlay:AIGetPokerFromStack()
-	self:createAIPokerFromPaiDui( 0.3,11 )
-	performWithDelay( self,function()
-		self:AIShowPoker()
-	end,1 )	
-	
-
+function GamePlay:AIGetPokerFromPaiDui()
+	self:createAIPokerFromPaiDui( 0.3 )
+	-- AI摸牌的手抓动画 --TODO
 end
 -- 从桌面摸牌
-function GamePlay:AIGetPokerFromDesktop( time )
+function GamePlay:AIGetPokerFromOut( time )
 	assert( time," !! time is nil !! " )
 	local stack_childs = self.NodeOutCard:getChildren()
 	local top_poker = stack_childs[#stack_childs]
 	self:createAiPokerToHand( top_poker )
 	self:AIPokerMove( top_poker,time )
-
-	-- AI摸牌的动作
-	
-
-
+	-- AI摸牌的手抓动画 --TODO
 end
 
 -- AI摸牌
 function GamePlay:AIGetPoker()
 	local logic = self:AIGetPokerLogic()
 	if logic == 1 then
-		self.AIGetPokerFromDesktop()
+		print( "---------------> 从出牌区摸牌" )
+		self:AIGetPokerFromOut( 0.3 )
 	else
-		self:AIGetPokerFromStack()
+		print( "--------------> 从牌堆里面摸牌" )
+		self:AIGetPokerFromPaiDui( 0.3 )
 	end
-	
+
+	performWithDelay( self,function()
+		self:AIShowPoker()
+	end,0.5 )
+
+	-- AI 出牌
+	performWithDelay( self,function()
+		self:AIOutPokerLogic()
+	end,0.6 )
 end
 
 -- AI摸牌逻辑
 function GamePlay:AIGetPokerLogic()
-	local get_desktopLogicNum = self:getAIEffectiveData()
-	local tierce_ary,four_ary,three_ary,new_source = self:getPlayerEffectiveData( node )
+	local hand_souce = self:getNumberIndexSourceByNode( self.AIHandPokerIn )
+	local tierce_ary,four_ary,three_ary,org_source = self:calEffectiveData( hand_souce )
+
+	local contain_out_source = clone( hand_souce )
+	local childs = self.NodeOutCard:getChildren()
+	assert( #childs > 0," !! childs count must be > 0 !! " )
+	table.insert( contain_out_source,childs[#childs]:getNumberIndex() )
+	local tierce_ary1,four_ary1,three_ary1,new_source_mo = self:calEffectiveData( contain_out_source )
+
 	-- 如果桌面牌有用，返回1，否则返回0
-	if #new_source >= #get_desktopLogicNum then
+	if #new_source_mo <= #org_source then
 		return 1
 	else
 		return 0
 	end
-
-	
 end
 
--- AI预算桌面的明牌是否有用
-function GamePlay:getAIEffectiveData()
-	local player_childs = self.AIHandPokerIn:getChildren()
+-- AI 出牌的逻辑
+function GamePlay:AIOutPokerLogic()
+	local num_index = self:getAIOutPokerNumIndex()
+	local out_poker = self:getPlayerPokerByNumberIndex( self.AIHandPokerIn,num_index )
+	self:AIHanderPokerToOut( out_poker )
+end
 
-	-- 将桌面的第一张牌放入AI牌里排序判断
-	local childs = self.NodeOutCard:getChildren()
-	local top_pokerOfDesktop = childs[#childs]
-	table.insert( player_childs,top_pokerOfDesktop )
+-- 获取ai要出的牌的numberindex
+function GamePlay:getAIOutPokerNumIndex()
+	local hand_souce = self:getNumberIndexSourceByNode( self.AIHandPokerIn )
+	local tierce_ary,four_ary,three_ary,single_source = self:calEffectiveData( hand_souce )
 
+	local checkIsSingle = function( numIndex )
+		local new_source = clone( single_source )
+		table.removebyvalue( new_source,numIndex )
 
-	table.sort( player_childs, function ( a,b )
-		if a:getNumberOfBigOrSmall() ~= b:getNumberOfBigOrSmall() then
-			return a:getNumberOfBigOrSmall() < b:getNumberOfBigOrSmall()
-		elseif a:getColorIndex() ~= b:getColorIndex() then
-			return a:getColorIndex() < b:getColorIndex()
+		local com_config = likui_config.poker[numIndex]
+		for i,v in ipairs( new_source ) do
+			local oth_config = likui_config.poker[v]
+			if com_config.num == oth_config.num then
+				return false
+			end
+			if com_config.color == oth_config.color and math.abs( com_config.num - oth_config.num ) == 1 then
+				return false
+			end
 		end
+		return true
+	end
+
+	local outs = {}
+	for i,v in ipairs( single_source ) do
+		if checkIsSingle( v ) then
+			table.insert( outs,v )
+		end
+	end
+
+	if #outs > 0 then
+		table.sort( outs, function( a,b ) 
+			local a_config = likui_config.poker[a]
+			local b_config = likui_config.poker[b]
+			return a_config.num > b_config.num
+		end )
+
+		return outs[1]
+	end
+
+	table.sort( single_source, function( a,b ) 
+		local a_config = likui_config.poker[a]
+		local b_config = likui_config.poker[b]
+		return a_config.num > b_config.num
 	end )
+	return single_source[1]
+end
 
-	-- 提取node里面的数据，索引
-	local source = {}
-	for i=1,#player_childs do
-		table.insert( source,player_childs[i]:getNumberIndex() )
-	end	
-	-- 1，选出同花顺
-	local tierce_ary = {}
-	self:choseTierce( source,tierce_ary )
 
-	-- 去掉已筛选的同花顺
-	local new_source = clone( source )
-	for i,v in ipairs(source) do
-		for a,b in ipairs(tierce_ary) do
-			for c,d in ipairs(b) do
-				table.removebyvalue( new_source,d )
-			end
-		end
-	end
-	-- 2，选出四条
-	local four_ary = {}
-	if #new_source >= 4 then
-		four_ary = self:getFourOrThree( new_source,4 )
-		for i,v in ipairs(four_ary) do
-			for a,b in ipairs(v) do
-				table.removebyvalue( new_source,b )
-			end
-			
-		end
-	end
-	-- 3,选出三条
-	local three_ary = {}
-	if #new_source >= 3 then
-		three_ary = self:getFourOrThree( new_source,3 )
-		for i,v in ipairs(three_ary) do
-			for a,b in ipairs(v) do
-				table.removebyvalue( new_source,b )
-			end
-		end
-	end
-	-- dump( tierce_ary,"------------------> tierce_ary = " )
-	-- dump( four_ary,"------------------> four_ary = " )
-	-- dump( three_ary,"------------------> three_ary = " )
-	-- dump( new_source,"------------------> new_source = " )
-	return new_source
+-- AI的手牌出牌到出牌区
+function GamePlay:AIHanderPokerToOut( poker )
+	local img_startPos = cc.p(poker:getPosition())
+	local img_startWorldPos = poker:getParent():convertToWorldSpace( img_startPos )
+	local img_startNodePos = self.NodeOutCard:convertToNodeSpace( img_startWorldPos )
+	poker:retain()
+	poker:removeFromParent()
+	self.NodeOutCard:addChild( poker )
+	poker:release()
+	poker:setPosition( img_startNodePos )
+
+	local position_end = cc.p( 0,0 )
+	self:playerPokerMove( poker,position_end,0.3 )
+
+	-- 轮到玩家出牌
+	performWithDelay( self,function()
+		-- 设置状态
+		self._moState = 2
+
+		self:AIShowPoker()
+	end,0.5 )
 end
 
 
 
--------------------------------------------------------------------------------------------------------------------
+-- ################################ AI 的代码区 End ##################################################
 
 
 
@@ -352,6 +403,26 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--########################### 玩家的代码区 Start ####################################
 -- 从牌堆里面发牌到玩家手牌
 function GamePlay:createPlayerPokerFromPaiDui( time )
 	assert( time," !! time is nil !! " )
@@ -399,25 +470,32 @@ end
 
 
 
-
-
-
-
-
-
-
 -- 玩家手牌排序
-function GamePlay:playerHandPokerSort()
+function GamePlay:playerHandPokerSort( poker )
+	-- 提取node里面的数据，索引
+	local source = self:getNumberIndexSourceByNode( self.PlayerHandPoker )
 	-- 玩家手牌排序
-	local player_childs,tierce_pokers,four_pokers,three_pokers = self:HandPokerSort( self.PlayerHandPoker )
+	local sort_childs,tierce_pokers,four_pokers,three_pokers = self:handPokersGroup( self.PlayerHandPoker,source )
 	-- 移动牌
-	for i = 1,#player_childs do
-		player_childs[i]:showQuan1( false )
-		player_childs[i]:showQuan2( false )
+	for i = 1,#sort_childs do
+		sort_childs[i]:showQuan1( false )
+		sort_childs[i]:showQuan2( false )
+
+		-- 针对摸的那一张牌
+		if poker and sort_childs[i] == poker then
+			sort_childs[i]:setLocalZOrder( 100 )
+		else
+			sort_childs[i]:setLocalZOrder( i )
+		end
+
 		local index = self:playerHandPokerSpaceBetween( i )
-		player_childs[i]:setLocalZOrder( i )
 		local move_to = cc.MoveTo:create( 0.5,cc.p( index,0 ))
-		player_childs[i]:runAction( move_to )
+		local call_set_order = cc.CallFunc:create( function()
+			if poker and sort_childs[i] == poker then
+				sort_childs[i]:setLocalZOrder( i )
+			end
+		end )
+		sort_childs[i]:runAction( cc.Sequence:create({ move_to,call_set_order }) )
 	end
 	-- 0.6秒之后 加圈
 	performWithDelay( self,function()
@@ -426,49 +504,7 @@ function GamePlay:playerHandPokerSort()
 		self:showPokersQuan( three_pokers )
 	end,0.6 )
 end
--- 玩家或AI手牌排序
-function GamePlay:HandPokerSort( node )
-	local sort_childs = {}
-	local tierce_ary,four_ary,three_ary,new_source = self:getPlayerEffectiveData( node )
 
-	local tierce_pokers = {}
-	local four_pokers = {}
-	local three_pokers = {}
-
-	local get_result_source = function( dataAry,quanSource )
-		for i,v in ipairs( dataAry ) do
-			local meta = {}
-			for a,b in ipairs( v ) do
-				local poker = self:getPlayerPokerByNumberIndex( node,b )
-				table.insert( sort_childs,poker )
-				table.insert( meta,poker )
-			end
-			table.insert( quanSource,meta )
-		end
-	end
-
-	get_result_source( tierce_ary,tierce_pokers )
-	get_result_source( four_ary,four_pokers )
-	get_result_source( three_ary,three_pokers )
-	
-	-- 排序
-	table.sort( new_source,function ( a,b )
-		local a_config = likui_config.poker[a]
-		local b_config = likui_config.poker[b]
-		if a_config.num ~= b_config.num then
-			return a_config.num < b_config.num
-		end
-		if a_config.color ~= b_config.color then
-			return a_config.color < b_config.color
-		end
-	end)
-
-	for i,v in ipairs( new_source ) do
-		local poker = self:getPlayerPokerByNumberIndex( node,v )
-		table.insert( sort_childs,poker )
-	end
-	return sort_childs,tierce_pokers,four_pokers,three_pokers
-end
 
 -- 显示poker的圈
 function GamePlay:showPokersQuan( pokers )
@@ -484,94 +520,6 @@ function GamePlay:showPokersQuan( pokers )
 	end
 end
 
--- 判断玩家或AI手牌收集情况，玩家或AI的node里的孩子列表(已经排序)，重新排序
-function GamePlay:getPlayerEffectiveData( node )
-	local player_childs = node:getChildren()
-	-- dump( player_childs[10],"-----------player_childs[10]:getNumberOfBigOrSmall() = ")
-	-- if #player_childs == 11 then
-	-- 	dump( player_childs[11],"-----------player_childs[11]:getNumberOfBigOrSmall() = ")
-	-- end
-
-	table.sort( player_childs, function ( a,b )
-		if a:getNumberOfBigOrSmall() ~= b:getNumberOfBigOrSmall() then
-			return a:getNumberOfBigOrSmall() < b:getNumberOfBigOrSmall()
-		elseif a:getColorIndex() ~= b:getColorIndex() then
-			return a:getColorIndex() < b:getColorIndex()
-		end
-	end )
-
-	-- 提取node里面的数据，索引
-	local source = {}
-	for i=1,#player_childs do
-		table.insert( source,player_childs[i]:getNumberIndex() )
-	end	
-	-- 1，选出同花顺
-	local tierce_ary = {}
-	self:choseTierce( source,tierce_ary )
-
-	-- 去掉已筛选的同花顺
-	local new_source = clone( source )
-	for i,v in ipairs(source) do
-		for a,b in ipairs(tierce_ary) do
-			for c,d in ipairs(b) do
-				table.removebyvalue( new_source,d )
-			end
-		end
-	end
-	-- 2，选出四条
-	local four_ary = {}
-	if #new_source >= 4 then
-		four_ary = self:getFourOrThree( new_source,4 )
-		for i,v in ipairs(four_ary) do
-			for a,b in ipairs(v) do
-				table.removebyvalue( new_source,b )
-			end
-			
-		end
-	end
-	-- 3,选出三条
-	local three_ary = {}
-	if #new_source >= 3 then
-		three_ary = self:getFourOrThree( new_source,3 )
-		for i,v in ipairs(three_ary) do
-			for a,b in ipairs(v) do
-				table.removebyvalue( new_source,b )
-			end
-		end
-	end
-	-- dump( tierce_ary,"------------------> tierce_ary = " )
-	-- dump( four_ary,"------------------> four_ary = " )
-	-- dump( three_ary,"------------------> three_ary = " )
-	-- dump( new_source,"------------------> new_source = " )
-	return tierce_ary,four_ary,three_ary,new_source
-end
-
--- 初次发完牌后牌堆翻牌
-function GamePlay:firstLaterDraw( time )
-	assert( time," !! time is nil !! " )
-	local pokers = self.NodeStack:getChildren()
-	local top_poker = pokers[#pokers]
-	local position_began = cc.p( top_poker:getPosition()) 
-	local position_world = top_poker:getParent():convertToWorldSpace( position_began )
-	local position_nodeBegan = self.NodeOutCard:convertToNodeSpace( position_world )
-	top_poker:retain()
-	top_poker:removeFromParent()
-	self.NodeOutCard:addChild( top_poker )
-	top_poker:release()
-
-	top_poker:setPosition( position_nodeBegan )
-	local position_end = cc.p( 0,0 )
-	self:playerPokerMove( top_poker,position_end,time )
-	top_poker:showObtAniUseScaleTo( time )
-	-- 显示
-	self.ImagePassOrShow:setVisible( true )
-	self.ImageDeadCardBg:setVisible( true )
-end
-
-
-
-
------------------------------------------------------------------------------------------------------------------------------
 -- 将玩家要出的手牌添加到出牌区域node
 function GamePlay:createPlayerPokerToSend( poker )
 	local img_startPos = cc.p(poker:getPosition())
@@ -585,46 +533,104 @@ function GamePlay:createPlayerPokerToSend( poker )
 end
 
 -- 玩家出牌
-function GamePlay:playerSendPoker( poker )
-	-- local stack_childs = self.NodeStack:getChildren()
-	-- local top_poker = stack_childs[#stack_childs]
+function GamePlay:playerOutPoker( poker )
+	if self._moState ~= 3 then
+		return
+	end
+	self._moState = 4
+	poker:removePokerClick()
 	self:createPlayerPokerToSend( poker )
-	dump( self.NodeOutCard:getParent(),"----------------------- NodeOutCard = ")
-
-	-- local player_childs = self.PlayerHandPoker:getChildren()
-	-- local x_pos = self:playerHandPokerSpaceBetween( #player_childs )
 	local position_end = cc.p( 0,0 )
 	self:playerPokerMove( poker,position_end,0.3 )
 	-- 重新排序
 	self:playerHandPokerSort()
-	-- 玩家出牌后，AI摸牌逻辑
+
+	-- 玩家出牌后，轮到AI摸牌逻辑
 	performWithDelay( self,function ()
-		print( "----------------aaaaaaaaaaa" )
 		self:AIGetPoker()
 	end,1 )
-	self._moState = 4
 end
 
+-- 玩家点击牌堆
+function GamePlay:clickPaiDui()
+	-- 1:
+	if self._moState ~= 2 then
+		return
+	end
+	-- 2:
+	local pokers = self.NodeStack:getChildren()
+	if #pokers == 0 then
+		-- 强制摊牌
+		return
+	end
+
+	--3:摸牌
+	local stack_childs = self.NodeStack:getChildren()
+	local top_poker = stack_childs[#stack_childs]
+	self:createPlayerPokerToHand( top_poker )
+	local player_childs = self.PlayerHandPoker:getChildren()
+	local x_pos = self:playerHandPokerSpaceBetween( #player_childs )
+	local position_end = cc.p( x_pos,0 )
+	top_poker:setLocalZOrder( #player_childs + 1 )
+
+	local time = 0.3
+	self:playerPokerMove( top_poker,position_end,time )
+	top_poker:showObtAniUseScaleTo( time )
+
+	performWithDelay( self,function()
+		self:playerHandPokerSort( top_poker )
+		-- 添加点击
+		top_poker:addPokerClick()
+		-- 设置状态为出牌状态
+		self._moState = 3
+	end,time * 2 + 0.1 )
+end
+
+-- 玩家点击出牌区
+function GamePlay:clickPaiOut()
+	if self._moState == 3 or self._moState == 4 then
+		return
+	end
+
+	local pokers = self.NodeOutCard:getChildren()
+	if #pokers == 0 then
+		return
+	end
+
+	-- 放入牌到玩家手中
+	local stack_childs = self.NodeOutCard:getChildren()
+	local top_poker = stack_childs[#stack_childs]
+	self:createPlayerPokerToHand( top_poker )
+	local player_childs = self.PlayerHandPoker:getChildren()
+	local x_pos = self:playerHandPokerSpaceBetween( #player_childs )
+	local position_end = cc.p( x_pos,0 )
+	top_poker:setLocalZOrder( #player_childs + 1 )
+
+	local time = 0.3
+	self:playerPokerMove( top_poker,position_end,time )
+	performWithDelay( self,function()
+		self:playerHandPokerSort( top_poker )
+		-- 添加点击
+		top_poker:addPokerClick()
+		-- 设置状态为出牌状态
+		self._moState = 3
+	end,time * 2 + 0.1 )
+end
+
+--########################### 玩家的代码区 End ####################################
 
 
 
 
---------------------------------------------------------------------------------------------------------------------------------------
 
 
 
 
 
-
-
-
-
-
+---######################### 公共代码区 Start #########################################
 -- 用序号换成poker
-function GamePlay:getPlayerPokerByNumberIndex( node,numIndex )-------------------------------------------------------这里给加一个node？还是复制一个这个方法？
+function GamePlay:getPlayerPokerByNumberIndex( node,numIndex )
 	assert( numIndex," !! numIndex is nil !! " )
-	-- dump( numIndex,"------------numIndex = ")
-	-- local player_childs = self.PlayerHandPoker:getChildren()
 	local player_childs = node:getChildren()
 	for i,v in ipairs( player_childs ) do
 		if v:getNumberIndex() == numIndex then
@@ -718,26 +724,6 @@ end
 
 -- 玩家手牌距离,handPokerNum是手上已有牌数
 function GamePlay:playerHandPokerSpaceBetween( pos )
-	-- assert( pos," !! num is nil !! ")
-	-- assert( pos >= 0 and pos <= 11," !! pos is error pos = "..pos.." !! " )
-	-- local index = 1000
-
-	-- local img = ccui.ImageView:create( "image/play/bei.png",1 )
-	-- local size = img:getContentSize()
-	-- -- 游戏中摸牌手上11张时
-	-- if pos == 11 then
-	-- 	local x_pos = ( index - size.width )/10 * ( pos - 1 )
-	-- 	return x_pos
-	-- end
-	-- -- 游戏开始，初始发牌
-	-- if pos == 10 then
-	-- 	local x_pos = ( index - size.width )/9 * ( pos - 1 )
-	-- 	return x_pos
-	-- else
-	-- 	local x_pos = ( index - size.width )/9 * (pos - 1 )
-	-- 	return x_pos
-	-- end
-
 	return (pos - 1) * 100
 end
 
@@ -746,48 +732,126 @@ function GamePlay:frameAnimation()
 	self:playCsbAction( "animation0",true )
 end
 
+-- 根据数据源计算有效的数据
+function GamePlay:calEffectiveData( source )
+	assert( source," !! source is nil !! " )
+	-- 1，选出同花顺
+	local tierce_ary = {}
+	self:choseTierce( source,tierce_ary )
 
-
-
-
-function GamePlay:clickPaiDui()
-	-- 1:
-	if self._moState == 1 or self._moState == 3 then
-		return
+	-- 去掉已筛选的同花顺
+	local new_source = clone( source )
+	for i,v in ipairs(source) do
+		for a,b in ipairs(tierce_ary) do
+			for c,d in ipairs(b) do
+				table.removebyvalue( new_source,d )
+			end
+		end
 	end
-	-- 2:
-	local pokers = self.NodeStack:getChildren()
-	if #pokers == 0 then
-		return
+	-- 2，选出四条
+	local four_ary = {}
+	if #new_source >= 4 then
+		four_ary = self:getFourOrThree( new_source,4 )
+		for i,v in ipairs(four_ary) do
+			for a,b in ipairs(v) do
+				table.removebyvalue( new_source,b )
+			end
+			
+		end
 	end
+	-- 3,选出三条
+	local three_ary = {}
+	if #new_source >= 3 then
+		three_ary = self:getFourOrThree( new_source,3 )
+		for i,v in ipairs(three_ary) do
+			for a,b in ipairs(v) do
+				table.removebyvalue( new_source,b )
+			end
+		end
+	end
+	-- dump( tierce_ary,"------------------> tierce_ary = " )
+	-- dump( four_ary,"------------------> four_ary = " )
+	-- dump( three_ary,"------------------> three_ary = " )
+	-- dump( new_source,"------------------> new_source = " )
+	return tierce_ary,four_ary,three_ary,new_source
 end
 
 
-function GamePlay:clickPaiOut()
-	if self._moState == 3 then
-		return
+-- 手牌分组 得到poker的指针 用于加圈显示
+function GamePlay:handPokersGroup( node,source )
+	assert( node," !! node is nil !! " )
+	assert( source," !! source is nil !! " )
+
+	local sort_childs = {}
+	local tierce_ary,four_ary,three_ary,new_source = self:calEffectiveData( source )
+
+	local tierce_pokers = {}
+	local four_pokers = {}
+	local three_pokers = {}
+
+	local get_result_source = function( dataAry,quanSource )
+		for i,v in ipairs( dataAry ) do
+			local meta = {}
+			for a,b in ipairs( v ) do
+				local poker = self:getPlayerPokerByNumberIndex( node,b )
+				table.insert( sort_childs,poker )
+				table.insert( meta,poker )
+			end
+			table.insert( quanSource,meta )
+		end
 	end
 
-	local pokers = self.NodeOutCard:getChildren()
-	if #pokers == 0 then
-		return
-	end
-
-	-- 放入牌到玩家手中
-	local stack_childs = self.NodeOutCard:getChildren()
-	local top_poker = stack_childs[#stack_childs]
-	self:createPlayerPokerToHand( top_poker )
-	local player_childs = self.PlayerHandPoker:getChildren()
-	local x_pos = self:playerHandPokerSpaceBetween( #player_childs )
-	local position_end = cc.p( x_pos,0 )
-	top_poker:setLocalZOrder( #player_childs + 1 )
-	self:playerPokerMove( top_poker,position_end,0.3 )
-	performWithDelay( self,function()
-		self:playerHandPokerSort()
-		
-	end,1 )
+	get_result_source( tierce_ary,tierce_pokers )
+	get_result_source( four_ary,four_pokers )
+	get_result_source( three_ary,three_pokers )
 	
+	-- 排序
+	table.sort( new_source,function ( a,b )
+		local a_config = likui_config.poker[a]
+		local b_config = likui_config.poker[b]
+		if a_config.num ~= b_config.num then
+			return a_config.num < b_config.num
+		end
+		if a_config.color ~= b_config.color then
+			return a_config.color < b_config.color
+		end
+	end)
+
+	for i,v in ipairs( new_source ) do
+		local poker = self:getPlayerPokerByNumberIndex( node,v )
+		table.insert( sort_childs,poker )
+	end
+	return sort_childs,tierce_pokers,four_pokers,three_pokers
 end
+
+
+function GamePlay:getNumberIndexSourceByNode( node )
+	assert( node," !! node is nil !! " )
+	local player_childs = node:getChildren()
+	table.sort( player_childs, function ( a,b )
+		if a:getNumberOfBigOrSmall() ~= b:getNumberOfBigOrSmall() then
+			return a:getNumberOfBigOrSmall() < b:getNumberOfBigOrSmall()
+		elseif a:getColorIndex() ~= b:getColorIndex() then
+			return a:getColorIndex() < b:getColorIndex()
+		end
+	end )
+
+	-- 提取node里面的数据，索引
+	local source = {}
+	for i=1,#player_childs do
+		table.insert( source,player_childs[i]:getNumberIndex() )
+	end
+	return source
+end
+
+---######################### 公共代码区 End #########################################
+
+
+
+
+
+
+
 
 
 
