@@ -20,7 +20,7 @@ function NodePoker:ctor( panelParent,numberIndex )
 end
 
 function NodePoker:showPoker()
-	
+	self.Icon:setVisible( true )
 end
 -- 获取牌的序号
 function NodePoker:getNumberIndex()
@@ -82,7 +82,7 @@ function NodePoker:touchCard( event )
 	elseif event.name == "ended" then
 		-- local node = self:getParent()
 		-- dump( node,"----------------node = " )
-		-- self._panelParent:playerSendPoker( node,0.2 )
+		self._panelParent:playerSendPoker( self )
 		print("---------------------123456 = "..self:getNumberOfBigOrSmall())
 	end
 end
