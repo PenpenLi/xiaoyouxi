@@ -80,10 +80,7 @@ function NodePoker:touchCard( event )
 	elseif event.name == "moved" then
 		
 	elseif event.name == "ended" then
-		-- local node = self:getParent()
-		-- dump( node,"----------------node = " )
-		self._panelParent:playerSendPoker( self )
-		print("---------------------123456 = "..self:getNumberOfBigOrSmall())
+		self._panelParent:playerOutPoker( self )
 	end
 end
 
