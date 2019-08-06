@@ -589,6 +589,7 @@ function GamePlay:playerSendPoker( poker )
 	-- local stack_childs = self.NodeStack:getChildren()
 	-- local top_poker = stack_childs[#stack_childs]
 	self:createPlayerPokerToSend( poker )
+	dump( self.NodeOutCard:getParent(),"----------------------- NodeOutCard = ")
 
 	-- local player_childs = self.PlayerHandPoker:getChildren()
 	-- local x_pos = self:playerHandPokerSpaceBetween( #player_childs )
