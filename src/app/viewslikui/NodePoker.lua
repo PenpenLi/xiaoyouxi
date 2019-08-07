@@ -62,6 +62,27 @@ function NodePoker:showObtAniUseScaleTo( time )
 	self.ImageBei:runAction( pBackSeq )
 end
 
+
+function NodePoker:showBackAniUseScaleTo( time )
+	assert( time," !! time is nil!! " )
+	self.Icon:setVisible( true )
+	local call_front = cc.CallFunc:create( function()
+		self.ImageBei:setScaleX( 0 )
+		self.ImageBei:setSkewY( -10 )
+		local scale_front = cc.ScaleTo:create(time,1,1)
+		local skew1 = cc.SkewTo:create( time, 0, 0 )
+		local spawn_front = cc.Spawn:create({ scale_front,skew1 })
+		local pSeqFront = cc.Sequence:create({ cc.Show:create(),spawn_front })
+		self.ImageBei:runAction(pSeqFront)
+	end )
+
+	local skew1 = cc.SkewTo:create( time, 0, -10 )
+	local scale_to = cc.ScaleTo:create(time,0,1)
+	local spawn_back = cc.Spawn:create({ scale_to,skew1 })
+	local pBackSeq = cc.Sequence:create({spawn_back,cc.Hide:create(),call_front})
+	self.Icon:runAction( pBackSeq )
+end
+
 function NodePoker:addPokerClick()
 	assert( self.PanelPoker.listener == nil," !! listener is exist !! " )
 	TouchNode.extends( self.PanelPoker, function(event)

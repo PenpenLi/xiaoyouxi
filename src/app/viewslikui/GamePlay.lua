@@ -67,7 +67,44 @@ function GamePlay:loadUi()
 	-- 2:发牌
 	self:firstSendPoker()
 	self:hideAIHandAndPoker()
+
+	self:likuiIconAction()
 end
+
+function GamePlay:likuiIconAction()
+	local actions = {}
+	local delay_time = 0.5
+	local call_sp1 = cc.CallFunc:create( function()
+		self.SpriteLikui:setSpriteFrame( "image/frame/likui1.png" )
+	end )
+	local delay1 =  cc.DelayTime:create( delay_time )
+	local call_sp2 = cc.CallFunc:create( function()
+		self.SpriteLikui:setSpriteFrame( "image/frame/likui2.png" )
+	end )
+	local delay2 =  cc.DelayTime:create( delay_time )
+	local call_sp3 = cc.CallFunc:create( function()
+		self.SpriteLikui:setSpriteFrame( "image/frame/likui3.png" )
+	end )
+	local delay3 =  cc.DelayTime:create( delay_time )
+	local call_sp4 = cc.CallFunc:create( function()
+		self.SpriteLikui:setSpriteFrame( "image/frame/likui2.png" )
+	end )
+	local delay4 =  cc.DelayTime:create( delay_time )
+
+	table.insert( actions,call_sp1 )
+	table.insert( actions,delay1 )
+	table.insert( actions,call_sp2 )
+	table.insert( actions,delay2 )
+	table.insert( actions,call_sp3 )
+	table.insert( actions,delay3 )
+	table.insert( actions,call_sp4 )
+	table.insert( actions,delay4 )
+
+	local seq = cc.Sequence:create( actions )
+	local rep = cc.RepeatForever:create( seq )
+	self.SpriteLikui:runAction( rep )
+end
+
 -- 创建牌堆
 function GamePlay:createPokerStack()
 	for i = 1,#self._pokerStack do
@@ -92,7 +129,7 @@ end
 
 -- 初次发牌
 function GamePlay:firstSendPoker()
-	local time = 0.3
+	local time = 0.5
 	local actions = {}
 	for i=1,10 do
 		local delay = cc.DelayTime:create( 0.2 )
@@ -105,7 +142,7 @@ function GamePlay:firstSendPoker()
 		end )
 		table.insert( actions,call )
 		if i == 10 then
-			local delay2 = cc.DelayTime:create( 1 )
+			local delay2 = cc.DelayTime:create( time * 2 )
 			table.insert( actions,delay2 )
 			local call_sort = cc.CallFunc:create( function ()
 				-- 3:玩家手牌排序
@@ -114,15 +151,15 @@ function GamePlay:firstSendPoker()
 				self:AIHandPokerSort()
 			end)
 			table.insert( actions,call_sort )
-			local delay3 = cc.DelayTime:create( 1 )
+			local delay3 = cc.DelayTime:create( time * 2 )
 			table.insert( actions,delay3 )
 			local call_draw = cc.CallFunc:create( function ()
 				-- 4:创建牌到发牌区域
-				self:firstLaterDraw( 0.3 )
+				self:firstLaterDraw( time - 0.2 )
 			end)
 			table.insert( actions,call_draw )
 
-			local delay4 = cc.DelayTime:create( 0.4 )
+			local delay4 = cc.DelayTime:create( time )
 			table.insert( actions,delay4 )
 			local call_player_click = cc.CallFunc:create( function()
 				-- 5:为玩家牌创建点击
@@ -206,6 +243,7 @@ end
 function GamePlay:createAiPokerToHand( poker )
 	if poker == nil then
 		-- 强制摊牌 --TODO
+		return
 	end
 	local img_startPos = cc.p(poker:getPosition())
 	local img_startWorldPos = poker:getParent():convertToWorldSpace( img_startPos )
@@ -217,15 +255,11 @@ function GamePlay:createAiPokerToHand( poker )
 	poker:setPosition( img_startNodePos )
 end
 
--- AI手摸牌动作
-function GamePlay:AIActionIn( ... )
-	-- body
-end
 
 function GamePlay:AIPokerMove( top_poker,time )
 	local rot = self:getiRotate()
 	local move_to = cc.MoveTo:create( time,cc.p( 0,0 ))
-	local scale_to = cc.ScaleTo:create( time,0.5 )
+	local scale_to = cc.ScaleTo:create( time,0.3 )
 	local rotate = cc.RotateTo:create( time,rot )
 	local spawn = cc.Spawn:create( { move_to,scale_to,rotate } )
 	local hide = cc.Hide:create()
@@ -257,34 +291,35 @@ function GamePlay:AIHandPokerSort()
 end
 -- AI显示明牌
 function GamePlay:AIShowPoker()
-	-- 提取node里面的数据，索引
-	local source = self:getNumberIndexSourceByNode( self.AIHandPokerIn )
-	-- 玩家手牌排序
-	local sort_childs,tierce_pokers,four_pokers,three_pokers = self:handPokersGroup( self.AIHandPokerIn,source )
-	local index = -950
-	for i = 1,#sort_childs do
-		sort_childs[i]:showQuan1( false )
-		sort_childs[i]:showQuan2( false )
-		sort_childs[i]:setLocalZOrder( i )
-		local move_to = cc.MoveTo:create( 0.5,cc.p( index + i * 100,120 ))
-		sort_childs[i]:runAction( move_to )
-		sort_childs[i]:setVisible( true )
-		sort_childs[i]:setRotation( 0 )
-		sort_childs[i]:setScale( 1 )
-		sort_childs[i]:showPoker()
-	end
-	-- 0.6秒之后 加圈
-	performWithDelay( self,function()
-		self:showPokersQuan( tierce_pokers )
-		self:showPokersQuan( four_pokers )
-		self:showPokersQuan( three_pokers )
-	end,0.6 )	
+	-- -- 提取node里面的数据，索引
+	-- local source = self:getNumberIndexSourceByNode( self.AIHandPokerIn )
+	-- -- 玩家手牌排序
+	-- local sort_childs,tierce_pokers,four_pokers,three_pokers = self:handPokersGroup( self.AIHandPokerIn,source )
+	-- local index = -950
+	-- for i = 1,#sort_childs do
+	-- 	sort_childs[i]:showQuan1( false )
+	-- 	sort_childs[i]:showQuan2( false )
+	-- 	sort_childs[i]:setLocalZOrder( i )
+	-- 	local move_to = cc.MoveTo:create( 0.5,cc.p( index + i * 100,120 ))
+	-- 	sort_childs[i]:runAction( move_to )
+	-- 	sort_childs[i]:setVisible( true )
+	-- 	sort_childs[i]:setRotation( 0 )
+	-- 	sort_childs[i]:setScale( 1 )
+	-- 	sort_childs[i]:showPoker()
+	-- end
+	-- -- 0.6秒之后 加圈
+	-- performWithDelay( self,function()
+	-- 	self:showPokersQuan( tierce_pokers )
+	-- 	self:showPokersQuan( four_pokers )
+	-- 	self:showPokersQuan( three_pokers )
+	-- end,0.6 )	
 end
 
 -- AI从牌堆摸牌
 function GamePlay:AIGetPokerFromPaiDui()
-	self:createAIPokerFromPaiDui( 0.3 )
-	-- AI摸牌的手抓动画 --TODO
+	self:createAIPokerFromPaiDui( 1 )
+	-- AI摸牌的手抓动画
+	self:AIMoPaiCsbAction()
 end
 -- 从桌面摸牌
 function GamePlay:AIGetPokerFromOut( time )
@@ -293,15 +328,26 @@ function GamePlay:AIGetPokerFromOut( time )
 	local top_poker = stack_childs[#stack_childs]
 	self:createAiPokerToHand( top_poker )
 	self:AIPokerMove( top_poker,time )
-	-- AI摸牌的手抓动画 --TODO
+	top_poker:showBackAniUseScaleTo( time / 2 )
+	-- AI摸牌的手抓动画
+	self:AIMoPaiCsbAction()
+end
+
+function GamePlay:AIMoPaiCsbAction()
+	performWithDelay( self,function()
+		playCsbActionForIndex( self._csbAct, 361,415,false,function()
+			self:frameAnimation()
+		end )
+	end,0.1 )
 end
 
 -- AI摸牌
 function GamePlay:AIGetPoker()
 	local logic = self:AIGetPokerLogic()
+	local time = 1
 	if logic == 1 then
 		print( "---------------> 从出牌区摸牌" )
-		self:AIGetPokerFromOut( 0.3 )
+		self:AIGetPokerFromOut( time )
 	else
 		if self._moState == 1 then
 			-- 开局时候不能摸牌堆，提示过牌
@@ -309,12 +355,11 @@ function GamePlay:AIGetPoker()
 			self.TextAIPass:setVisible( true )
 			performWithDelay( self.TextAIPass,function ()
 				self.TextAIPass:setVisible( false )
-			end,1 )
+			end,time )
 		else
 			print( "--------------> 从牌堆里面摸牌" )
 			self:AIGetPokerFromPaiDui( 0.3 )
 		end
-		
 	end
 
 	performWithDelay( self,function()
@@ -322,14 +367,14 @@ function GamePlay:AIGetPoker()
 	end,0.5 )
 
 	-- AI 出牌
+	print("-------------------> self._moState = "..self._moState)
 	if self._moState == 5 then
-		-- self._moState = 2
 		return
 	else
 		performWithDelay( self,function()
 			self:AIOutPokerLogic()
 			self._moState = 2
-		end,1 )-------------------------------------------------------有显示明牌的时间，改为1秒才能错开动作
+		end,time + 0.7 )
 	end
 end
 
@@ -398,12 +443,15 @@ function GamePlay:getAIOutPokerNumIndex()
 		return outs[1]
 	end
 
-	table.sort( single_source, function( a,b ) 
-		local a_config = likui_config.poker[a]
-		local b_config = likui_config.poker[b]
-		return a_config.num > b_config.num
-	end )
-	return single_source[1]
+	if #single_source > 0 then
+		table.sort( single_source, function( a,b ) 
+			local a_config = likui_config.poker[a]
+			local b_config = likui_config.poker[b]
+			return a_config.num > b_config.num
+		end )
+		return single_source[1]
+	end
+	return hand_souce[1]
 end
 
 
@@ -419,9 +467,17 @@ function GamePlay:AIHanderPokerToOut( poker )
 	poker:release()
 	poker:setPosition( img_startNodePos )
 	poker:setLocalZOrder( #childs + 1 )
+	poker:setVisible( true )
 
 	local position_end = cc.p( 0,0 )
-	self:playerPokerMove( poker,position_end,0.3 )
+
+	-- 执行出牌动画
+	poker:setRotation( 0 )
+	local time = 0.5
+	local scale_to = cc.ScaleTo:create( time,1 )
+	poker:runAction( scale_to )
+	self:playerPokerMove( poker,position_end,time )
+	poker:showObtAniUseScaleTo( time )
 
 	-- 轮到玩家出牌
 	performWithDelay( self,function()
@@ -582,6 +638,8 @@ function GamePlay:playerOutPoker( poker )
 	end
 	self._moState = 4
 	poker:removePokerClick()
+	poker:showQuan1( false )
+	poker:showQuan2( false )
 	self:createPlayerPokerToSend( poker )
 	local position_end = cc.p( 0,0 )
 	self:playerPokerMove( poker,position_end,0.3 )

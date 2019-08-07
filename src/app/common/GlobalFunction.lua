@@ -337,6 +337,22 @@ local function playCsbActionForKey(csbAct,key,loop,func)
 end
 
 
+--根据帧区间播放
+local function playCsbActionForIndex(csbAct,startIndex,endIndex,loop,func)
+    if not csbAct then
+        return
+    end
+    if loop then
+        loop=true
+    else
+        loop=false
+    end
+    csbAct:gotoFrameAndPlay(startIndex, endIndex,loop)
+    if func then
+        playCsbEndActionCallFunc(csbAct,func)
+    end
+end
+
 rawset(_G, "addUIToScene", addUIToScene)
 rawset(_G, "removeUIFromScene", removeUIFromScene)
 rawset(_G, "getMatrixDataByColumn", getMatrixDataByColumn)
@@ -357,3 +373,4 @@ rawset(_G, "G_ShowTips", G_ShowTips)
 rawset(_G, "G_AddNodeClick", G_AddNodeClick)
 rawset(_G, "playCsbEndActionCallFunc", playCsbEndActionCallFunc)
 rawset(_G, "playCsbActionForKey", playCsbActionForKey)
+rawset(_G, "playCsbActionForIndex", playCsbActionForIndex)
