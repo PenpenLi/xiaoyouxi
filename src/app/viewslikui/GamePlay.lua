@@ -36,9 +36,22 @@ function GamePlay:ctor( param )
     	end
     })
 
+    -- 点击过牌
+    self:addNodeClick( self.ButtonPass,{
+    	endCallBack = function ()
+    		self:pass()
+    	end
+    })
+    -- 点击摊牌
+    self:addNodeClick( self.ButtonShow,{
+    	endCallBack = function ()
+    		self:over_show()
+    	end
+    })
+
     self:loadUi()
 
-    self._moState = 1 -- 1:只能摸出牌 2:出牌和牌堆都可以摸 3:都不能摸，玩家手牌可出牌，4:关闭所有触摸 等待ai的逻辑
+    self._moState = 1 -- 1:只能摸出牌 2:出牌和牌堆都可以摸 3:都不能摸，玩家手牌可出牌，4:关闭所有触摸 等待ai的逻辑,5:只能从牌堆摸牌
 end
 
 function GamePlay:onEnter()
@@ -71,6 +84,10 @@ function GamePlay:hideAIHandAndPoker()
 	end
 	-- self.SpriteFist:setVisible( false )
 	self.ImageAIHand1:setVisible( false )
+	self.ButtonPass:setVisible( false )
+	self.ButtonShow:setVisible( false )
+	self.ImageDeadCardBg:setVisible( false )
+	self.TextAIPass:setVisible( false )
 end
 
 -- 初次发牌
@@ -135,8 +152,11 @@ function GamePlay:firstLaterDraw( time )
 	self:playerPokerMove( top_poker,position_end,time )
 	top_poker:showObtAniUseScaleTo( time )
 	-- 显示
-	self.ImagePassOrShow:setVisible( true )
+	-- self.ButtonPass:setVisible( true )
 	self.ImageDeadCardBg:setVisible( true )
+	performWithDelay( self.ButtonPass,function ()
+		self.ButtonPass:setVisible( true )
+	end,0.5)
 end
 
 
@@ -184,6 +204,9 @@ end
 
 -- 根据现有的poker创建ai手牌
 function GamePlay:createAiPokerToHand( poker )
+	if poker == nil then
+		-- 强制摊牌 --TODO
+	end
 	local img_startPos = cc.p(poker:getPosition())
 	local img_startWorldPos = poker:getParent():convertToWorldSpace( img_startPos )
 	local img_startNodePos = self.AIHandPokerIn:convertToNodeSpace( img_startWorldPos )
@@ -280,8 +303,18 @@ function GamePlay:AIGetPoker()
 		print( "---------------> 从出牌区摸牌" )
 		self:AIGetPokerFromOut( 0.3 )
 	else
-		print( "--------------> 从牌堆里面摸牌" )
-		self:AIGetPokerFromPaiDui( 0.3 )
+		if self._moState == 1 then
+			-- 开局时候不能摸牌堆，提示过牌
+			self._moState = 5
+			self.TextAIPass:setVisible( true )
+			performWithDelay( self.TextAIPass,function ()
+				self.TextAIPass:setVisible( false )
+			end,1 )
+		else
+			print( "--------------> 从牌堆里面摸牌" )
+			self:AIGetPokerFromPaiDui( 0.3 )
+		end
+		
 	end
 
 	performWithDelay( self,function()
@@ -289,9 +322,18 @@ function GamePlay:AIGetPoker()
 	end,0.5 )
 
 	-- AI 出牌
-	performWithDelay( self,function()
-		self:AIOutPokerLogic()
-	end,0.6 )
+	if self._moState == 5 then
+		-- self._moState = 2
+		return
+	else
+		performWithDelay( self,function()
+			self:AIOutPokerLogic()
+			self._moState = 2
+		end,1 )-------------------------------------------------------有显示明牌的时间，改为1秒才能错开动作
+	end
+	
+	
+	
 end
 
 -- AI摸牌逻辑
@@ -388,7 +430,7 @@ function GamePlay:AIHanderPokerToOut( poker )
 		self._moState = 2
 
 		self:AIShowPoker()
-	end,0.5 )
+	end,0.7 )
 end
 
 
@@ -554,7 +596,7 @@ end
 -- 玩家点击牌堆
 function GamePlay:clickPaiDui()
 	-- 1:
-	if self._moState ~= 2 then
+	if self._moState ~= 2 and self._moState ~= 5 then
 		return
 	end
 	-- 2:
@@ -563,7 +605,8 @@ function GamePlay:clickPaiDui()
 		-- 强制摊牌
 		return
 	end
-
+	-- 设置状态，限制牌动作时候点击
+	self._moState = 4
 	--3:摸牌
 	local stack_childs = self.NodeStack:getChildren()
 	local top_poker = stack_childs[#stack_childs]
@@ -581,14 +624,21 @@ function GamePlay:clickPaiDui()
 		self:playerHandPokerSort( top_poker )
 		-- 添加点击
 		top_poker:addPokerClick()
+		-- -- 设置状态为出牌状态
+		-- self._moState = 3
+	end,time * 2 + 0.1 )
+	-- 等所有动作结束后设置状态
+	performWithDelay( self,function ()
 		-- 设置状态为出牌状态
 		self._moState = 3
-	end,time * 2 + 0.1 )
+		-- 最后一张牌上移
+		self:maxPokerMoveUp()
+	end,time * 4 + 0.1 )
 end
 
 -- 玩家点击出牌区
 function GamePlay:clickPaiOut()
-	if self._moState == 3 or self._moState == 4 then
+	if self._moState == 3 or self._moState == 4 or self._moState == 5 then
 		return
 	end
 
@@ -596,7 +646,8 @@ function GamePlay:clickPaiOut()
 	if #pokers == 0 then
 		return
 	end
-
+	-- 设置状态，限制牌动作时候点击
+	self._moState = 4
 	-- 放入牌到玩家手中
 	local stack_childs = self.NodeOutCard:getChildren()
 	local top_poker = stack_childs[#stack_childs]
@@ -613,8 +664,39 @@ function GamePlay:clickPaiOut()
 		-- 添加点击
 		top_poker:addPokerClick()
 		-- 设置状态为出牌状态
-		self._moState = 3
+		-- self._moState = 3
 	end,time * 2 + 0.1 )
+	performWithDelay( self,function ()
+		-- 设置状态为出牌状态
+		self._moState = 3
+		-- 最后一张牌上移
+		self:maxPokerMoveUp()
+	end,time * 4 + 0.1 )
+end
+
+-- 玩家点击pass
+function GamePlay:pass()
+	if self._moState == 1 then
+		-- 过牌
+		self.ButtonPass:setVisible( false )
+			performWithDelay( self,function ()
+			self:AIGetPoker()
+		end,1 )
+	
+	end
+end
+-- 玩家点击摊牌
+function GamePlay:over_show()
+	-- 摊牌 --TODO
+	print( "---------------摊牌" )
+end
+
+-- 摸牌后最大牌坐标上移
+function GamePlay:maxPokerMoveUp()
+	local childs = self.PlayerHandPoker:getChildren()
+	local poker = childs[#childs]
+	local move_to = cc.MoveBy:create( 0.1,cc.p( 0,10 ))
+	poker:runAction( move_to )
 end
 
 --########################### 玩家的代码区 End ####################################
@@ -817,11 +899,58 @@ function GamePlay:handPokersGroup( node,source )
 		end
 	end)
 
+	-- -- 显示死牌点数
+	if node == self.PlayerHandPoker then
+		local deadPoint = self:getDeadPoint( new_source )
+		self.TextDeadPoint:setString( deadPoint )
+	end
+	-- 显示摊牌按钮--传入收集牌的列表
+	local group_ary = clone(sort_childs)
+	performWithDelay( self,function ()
+		if node == self.PlayerHandPoker then
+			local showState = self:showTanpai( group_ary )
+		end
+	end,0.6 )
+	
+
 	for i,v in ipairs( new_source ) do
 		local poker = self:getPlayerPokerByNumberIndex( node,v )
 		table.insert( sort_childs,poker )
 	end
 	return sort_childs,tierce_pokers,four_pokers,three_pokers
+end
+
+-- 获取死牌点数
+function GamePlay:getDeadPoint( source )
+	local deadPoint = 0
+		
+	for i,v in ipairs(source) do
+		local index = 0
+		if likui_config.poker[v].num > 10 then
+			index = 10
+		else
+			index = likui_config.poker[v].num
+		end
+		deadPoint = deadPoint + index
+	end
+	return deadPoint
+end
+-- 显示摊牌按钮显示状态
+function GamePlay:showTanpai( group_ary )
+	dump( group_ary,"-----------------group_ary = ")
+
+	if group_ary == nil then
+		return
+	end
+	if #group_ary > 6 then
+		print("-------------显示摊牌")
+		self.ButtonShow:setVisible( true )
+		self.ButtonPass:setVisible( false )
+	else
+		-- if self._moState ~= 1 then
+		self.ButtonShow:setVisible( false )
+		-- end
+	end
 end
 
 
