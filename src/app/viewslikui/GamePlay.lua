@@ -331,9 +331,6 @@ function GamePlay:AIGetPoker()
 			self._moState = 2
 		end,1 )-------------------------------------------------------有显示明牌的时间，改为1秒才能错开动作
 	end
-	
-	
-	
 end
 
 -- AI摸牌逻辑
@@ -415,11 +412,13 @@ function GamePlay:AIHanderPokerToOut( poker )
 	local img_startPos = cc.p(poker:getPosition())
 	local img_startWorldPos = poker:getParent():convertToWorldSpace( img_startPos )
 	local img_startNodePos = self.NodeOutCard:convertToNodeSpace( img_startWorldPos )
+	local childs = self.NodeOutCard:getChildren()
 	poker:retain()
 	poker:removeFromParent()
 	self.NodeOutCard:addChild( poker )
 	poker:release()
 	poker:setPosition( img_startNodePos )
+	poker:setLocalZOrder( #childs + 1 )
 
 	local position_end = cc.p( 0,0 )
 	self:playerPokerMove( poker,position_end,0.3 )
@@ -567,11 +566,13 @@ function GamePlay:createPlayerPokerToSend( poker )
 	local img_startPos = cc.p(poker:getPosition())
 	local img_startWorldPos = poker:getParent():convertToWorldSpace( img_startPos )
 	local img_startNodePos = self.NodeOutCard:convertToNodeSpace( img_startWorldPos )
+	local childs = self.NodeOutCard:getChildren()
 	poker:retain()
 	poker:removeFromParent()
 	self.NodeOutCard:addChild( poker )
 	poker:release()
 	poker:setPosition( img_startNodePos )
+	poker:setLocalZOrder( #childs + 1 )
 end
 
 -- 玩家出牌
