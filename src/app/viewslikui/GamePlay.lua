@@ -13,12 +13,13 @@ function GamePlay:ctor( param )
     self._pokerStack = getRandomArray( 1,52 )-- 随机一副牌
 
     -- test
-    -- self._pokerStack = {40,51,9,22,35,11,24,37,1,2,3,26}
+    -- self._pokerStack = {1,2,4,5,7,9,20,33,46,52}
     
 
     self:addNodeClick( self.ImageBack,{
     	endCallBack = function ()
-    		self:back()
+    		-- self:back()
+    		self:playerOverToShowPoker()
     	end
     })
 
@@ -52,6 +53,8 @@ function GamePlay:ctor( param )
     self:loadUi()
 
     self._moState = 1 -- 1:只能摸出牌 2:出牌和牌堆都可以摸 3:都不能摸，玩家手牌可出牌，4:关闭所有触摸 等待ai的逻辑,5:只能从牌堆摸牌
+    self._playerTanPaiGroupIndex = 0
+    self._aiTanPaiGroupIndex = 0
 end
 
 function GamePlay:onEnter()
@@ -491,8 +494,71 @@ end
 function GamePlay:aiOverToShowPoker()
 	-- body
 	print( "------------------AI摊牌")
+	-- 提取node里面的数据，索引
+	local source = self:getNumberIndexSourceByNode( self.AIHandPokerIn )
+	-- 玩家手牌排序
+	local sort_childs,tierce_pokers,four_pokers,three_pokers,san_pokers = self:handPokersGroup( self.AIHandPokerIn,source )
+
+	local groups = {}
+	local call_group = function( source )
+		for i,v in ipairs( source ) do
+			table.insert( groups,clone(v) )
+		end
+	end
+	call_group( tierce_pokers )
+	call_group( four_pokers )
+	call_group( three_pokers )
+	self:aiTanPaiActionByGroup( groups )
+
+	-- 移动散牌
+	local actions = {}
+	local move_time = 0.5
+	local index = self._aiTanPaiGroupIndex
+	for i = #san_pokers,1,-1 do
+		local v = san_pokers[i]
+		self:createAiPokerToOverNode( v )
+		local move_to = cc.MoveTo:create( move_time,cc.p( (index) * 150 + i * 35,20 ) )
+		local delay = cc.DelayTime:create( move_time / 2 * i )
+		v:runAction( cc.Sequence:create( { delay,move_to }))
+	end
 end
 
+-- 根于一组poker执行摊牌动画( 从上向下排列)
+function GamePlay:aiTanPaiActionByGroup( groups )
+	self._aiTanPaiGroupIndex = self._aiTanPaiGroupIndex + 1
+	local pokers = groups[self._aiTanPaiGroupIndex]
+	if pokers then
+		local actions = {}
+		local move_time = 0.5
+		local index = self._aiTanPaiGroupIndex
+		for i,v in ipairs( pokers ) do
+			self:createAiPokerToOverNode( v )
+			v:showBackAniUseScaleTo( move_time - 0.2 )
+			local move_to = cc.MoveTo:create( move_time,cc.p( (index - 1) * 150,20 + (i - 1) * 35 ) )
+			local delay = cc.DelayTime:create( move_time / 2 * i )
+			local call_next = cc.CallFunc:create( function()
+				if i == #pokers then
+					self:aiTanPaiActionByGroup( groups )
+				end
+			end )
+			v:runAction( cc.Sequence:create( { delay,move_to,call_next }))
+		end
+	end
+end
+
+function GamePlay:createAiPokerToOverNode( poker )
+	local childs = self.AIShowNode:getChildren()
+	local began_pos = cc.p( poker:getPosition())
+	local began_worldPos = poker:getParent():convertToWorldSpace( began_pos )
+	local new_pos = self.AIShowNode:convertToNodeSpace(cc.p( began_worldPos))	
+	poker:retain()
+	poker:removeFromParent()
+	self.AIShowNode:addChild( poker )
+	poker:release()
+	poker:setPosition( new_pos )
+	poker:setLocalZOrder( 100 - #childs )
+	poker:setRotation( 0 )
+end
 
 -- ################################ AI 的代码区 End ##################################################
 
@@ -650,6 +716,8 @@ function GamePlay:playerOutPoker( poker )
 	-- 重新排序
 	self:playerHandPokerSort()
 
+	self:loadDeadUi()
+
 	-- 玩家出牌后，轮到AI摸牌逻辑
 	performWithDelay( self,function ()
 		self:AIGetPoker()
@@ -687,8 +755,8 @@ function GamePlay:clickPaiDui()
 		self:playerHandPokerSort( top_poker )
 		-- 添加点击
 		top_poker:addPokerClick()
-		-- -- 设置状态为出牌状态
-		-- self._moState = 3
+		-- 设置状态为出牌状态
+		self:loadDeadUi()
 	end,time * 2 + 0.1 )
 	-- 等所有动作结束后设置状态
 	performWithDelay( self,function ()
@@ -729,8 +797,7 @@ function GamePlay:clickPaiOut()
 		self:playerHandPokerSort( top_poker )
 		-- 添加点击
 		top_poker:addPokerClick()
-		-- 设置状态为出牌状态
-		-- self._moState = 3
+		self:loadDeadUi()
 	end,time * 2 + 0.1 )
 	performWithDelay( self,function ()
 		-- 设置状态为出牌状态
@@ -738,6 +805,16 @@ function GamePlay:clickPaiOut()
 		-- 最后一张牌上移
 		self:maxPokerMoveUp()
 	end,time * 4 + 0.1 )
+end
+
+function GamePlay:loadDeadUi()
+	local source = self:getNumberIndexSourceByNode( self.PlayerHandPoker )
+	local sort_childs,tierce_pokers,four_pokers,three_pokers,san_pokers = self:handPokersGroup( self.PlayerHandPoker,source )
+	local deadPoint = self:getDeadPoint( san_pokers )
+	self.TextDeadPoint:setString( deadPoint )
+
+	-- 显示摊牌按钮--传入收集牌的列表
+	self:showTanpai( san_pokers )
 end
 
 -- 玩家点击pass
@@ -757,96 +834,76 @@ function GamePlay:over_show()
 	if #childs == 11 then
 		self:playerOutPoker( childs[#childs] )
 	end
-	-- 摊牌 --TODO
+	-- 摊牌
 	self:playerOverToShowPoker()
 	self:aiOverToShowPoker()
-	print( "---------------摊牌" )
 end
 -- 摊牌
 function GamePlay:playerOverToShowPoker()
 	-- 提取node里面的数据，索引
 	local source = self:getNumberIndexSourceByNode( self.PlayerHandPoker )
 	-- 玩家手牌排序
-	local sort_childs,tierce_pokers,four_pokers,three_pokers = self:handPokersGroup( self.PlayerHandPoker,source )
+	local sort_childs,tierce_pokers,four_pokers,three_pokers,san_pokers = self:handPokersGroup( self.PlayerHandPoker,source )
 
-	-- 列出牌的结果
+	local groups = {}
+	local call_group = function( source )
+		for i,v in ipairs( source ) do
+			table.insert( groups,clone(v) )
+		end
+	end
+	call_group( tierce_pokers )
+	call_group( four_pokers )
+	call_group( three_pokers )
+	self:playerTanPaiActionByGroup( groups )
+
+	-- 移动散牌
 	local actions = {}
-	local index = 0
-	local time = 0.2
-	for i,v in ipairs( tierce_pokers ) do
-		dump( tierce_pokers,"------------------tierce_pokers = ")
-		local move_time = 0.2
-		-- for i=1,#v do
-		-- 	self:createPlayerPokerToOverNode( v[1] )
-		-- 	local move_to = cc.MoveTo:create( move_time,cc.p( index * 150,(i - 1) * 20 ) )
-		-- 	local delay = cc.DelayTime:create( time / 2 )
-		-- 	-- table.insert( actions,delay )
-		-- 	-- table.insert( actions,move_to )
-		-- 	table.removebyvalue( sort_childs,v[1] )
-		-- 	v[1]:runAction( cc.Sequence( { delay,move_to }))
-		-- 	time = time + 0.2
-		-- end
-		for a,b in ipairs( v ) do
-			self:createPlayerPokerToOverNode( b )
-			local move_to = cc.MoveTo:create( move_time,cc.p( index * 150,(a - 1) * 20 ) )
-			local delay = cc.DelayTime:create( time / 2 )
-			-- table.insert( actions,delay )
-			-- table.insert( actions,move_to )
-			table.removebyvalue( sort_childs,b )
-			b:runAction( cc.Sequence( { delay,move_to }))
-			time = time + 0.2
-		end
-		
-		index = index + 1
+	local move_time = 0.5
+	local index = self._playerTanPaiGroupIndex
+	for i = #san_pokers,1,-1 do
+		local v = san_pokers[i]
+		self:createPlayerPokerToOverNode( v )
+		local move_to = cc.MoveTo:create( move_time,cc.p( (index) * 150 + i * 35,20 ) )
+		local delay = cc.DelayTime:create( move_time / 2 * i )
+		v:runAction( cc.Sequence:create( { delay,move_to }))
 	end
-	for i,v in ipairs( four_pokers ) do
-		local move_time = 0.2
-		for a,b in ipairs( v ) do
-			self:createPlayerPokerToOverNode( b )
-			local move_to = cc.MoveTo:create( move_time,cc.p( index * 150,(a - 1) * 20 ) )
-			local delay = cc.DelayTime:create( time / 2 )
-			-- table.insert( actions,delay )
-			-- table.insert( actions,move_to )
-			table.removebyvalue( sort_childs,b )
-			b:runAction( cc.Sequence( { delay,move_to }))
-			time = time + 0.2
-		end
-		
-		index = index + 1
-	end
-	for i,v in ipairs( three_pokers ) do
-		local move_time = 0.2
-		for a,b in ipairs( v ) do
-			self:createPlayerPokerToOverNode( b )
-			local move_to = cc.MoveTo:create( move_time,cc.p( index * 150,(a - 1) * 20 ) )
-			local delay = cc.DelayTime:create( time / 2 )
-			-- table.insert( actions,delay )
-			-- table.insert( actions,move_to )
-			table.removebyvalue( sort_childs,b )
-			b:runAction( cc.Sequence( { delay,move_to }))
-			time = time + 0.2
-		end
-		
-		index = index + 1
-	end
-
-
-	-- 移动牌
-
 end
--- -- 移动牌
--- function GamePlay:overToMovePoker( node,actions )
--- 	local pokers = node:getChildren()
--- 	for i,v in ipairs(pokers) do
--- 		print(i,v)
--- 	end
--- end
+
+-- 根于一组poker执行摊牌动画( 从上向下排列)
+function GamePlay:playerTanPaiActionByGroup( groups )
+	self._playerTanPaiGroupIndex = self._playerTanPaiGroupIndex + 1
+	local pokers = groups[self._playerTanPaiGroupIndex]
+	if pokers then
+		local actions = {}
+		local move_time = 0.5
+		local index = self._playerTanPaiGroupIndex
+		for i,v in ipairs( pokers ) do
+			self:createPlayerPokerToOverNode( v )
+			local move_to = cc.MoveTo:create( move_time,cc.p( (index - 1) * 150,20 + (i - 1) * 35 ) )
+			local delay = cc.DelayTime:create( move_time / 2 * i )
+			local call_next = cc.CallFunc:create( function()
+				if i == #pokers then
+					self:playerTanPaiActionByGroup( groups )
+				end
+			end )
+			v:runAction( cc.Sequence:create( { delay,move_to,call_next }))
+		end
+	end
+end
+
+
 -- 结束时将分组的牌添加到结果区域
 function GamePlay:createPlayerPokerToOverNode( poker )
+	local childs = self.playerShowNode:getChildren()
 	local began_pos = cc.p( poker:getPosition())
 	local began_worldPos = poker:getParent():convertToWorldSpace( began_pos )
 	local new_pos = self.playerShowNode:convertToNodeSpace(cc.p( began_worldPos))	
+	poker:retain()
+	poker:removeFromParent()
+	self.playerShowNode:addChild( poker )
+	poker:release()
 	poker:setPosition( new_pos )
+	poker:setLocalZOrder( 100 - #childs )
 end
 -- 摸牌后最大牌坐标上移
 function GamePlay:maxPokerMoveUp()
@@ -1027,6 +1084,7 @@ function GamePlay:handPokersGroup( node,source )
 	local tierce_pokers = {}
 	local four_pokers = {}
 	local three_pokers = {}
+	local san_pokers = {}
 
 	local get_result_source = function( dataAry,quanSource )
 		for i,v in ipairs( dataAry ) do
@@ -1043,7 +1101,7 @@ function GamePlay:handPokersGroup( node,source )
 	get_result_source( tierce_ary,tierce_pokers )
 	get_result_source( four_ary,four_pokers )
 	get_result_source( three_ary,three_pokers )
-	
+
 	-- 排序
 	table.sort( new_source,function ( a,b )
 		local a_config = likui_config.poker[a]
@@ -1056,57 +1114,30 @@ function GamePlay:handPokersGroup( node,source )
 		end
 	end)
 
-	-- -- 显示死牌点数
-	if node == self.PlayerHandPoker then
-		local deadPoint = self:getDeadPoint( new_source )
-		self.TextDeadPoint:setString( deadPoint )
-	end
-	-- 显示摊牌按钮--传入收集牌的列表
-	local group_ary = clone(sort_childs)
-	performWithDelay( self,function ()
-		if node == self.PlayerHandPoker then
-			local showState = self:showTanpai( group_ary )
-		end
-	end,0.6 )
-	
-
 	for i,v in ipairs( new_source ) do
 		local poker = self:getPlayerPokerByNumberIndex( node,v )
 		table.insert( sort_childs,poker )
+		-- 散牌指针
+		table.insert( san_pokers,poker )
 	end
-	return sort_childs,tierce_pokers,four_pokers,three_pokers
+	return sort_childs,tierce_pokers,four_pokers,three_pokers,san_pokers
 end
 
 -- 获取死牌点数
-function GamePlay:getDeadPoint( source )
+function GamePlay:getDeadPoint( pokers )
 	local deadPoint = 0
-		
-	for i,v in ipairs(source) do
-		local index = 0
-		if likui_config.poker[v].num > 10 then
-			index = 10
-		else
-			index = likui_config.poker[v].num
-		end
-		deadPoint = deadPoint + index
+	for i,v in ipairs( pokers ) do
+		deadPoint = v:getNumberOfBigOrSmall() + deadPoint
 	end
 	return deadPoint
 end
 -- 显示摊牌按钮显示状态
 function GamePlay:showTanpai( group_ary )
-	dump( group_ary,"-----------------group_ary = ")
-
-	if group_ary == nil then
-		return
-	end
-	if #group_ary > 6 then
-		print("-------------显示摊牌")
+	if #group_ary < 4 then
 		self.ButtonShow:setVisible( true )
 		self.ButtonPass:setVisible( false )
 	else
-		-- if self._moState ~= 1 then
 		self.ButtonShow:setVisible( false )
-		-- end
 	end
 end
 
