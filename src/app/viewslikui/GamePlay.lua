@@ -487,7 +487,11 @@ function GamePlay:AIHanderPokerToOut( poker )
 		self:AIShowPoker()
 	end,0.7 )
 end
-
+-- AI摊牌
+function GamePlay:aiOverToShowPoker()
+	-- body
+	print( "------------------AI摊牌")
+end
 
 
 -- ################################ AI 的代码区 End ##################################################
@@ -705,6 +709,9 @@ function GamePlay:clickPaiOut()
 	if #pokers == 0 then
 		return
 	end
+	if self._moState == 1 then
+		self.ButtonPass:setVisible( false )
+	end
 	-- 设置状态，限制牌动作时候点击
 	self._moState = 4
 	-- 放入牌到玩家手中
@@ -746,10 +753,101 @@ function GamePlay:pass()
 end
 -- 玩家点击摊牌
 function GamePlay:over_show()
+	local childs = self.PlayerHandPoker:getChildren()
+	if #childs == 11 then
+		self:playerOutPoker( childs[#childs] )
+	end
 	-- 摊牌 --TODO
+	self:playerOverToShowPoker()
+	self:aiOverToShowPoker()
 	print( "---------------摊牌" )
 end
+-- 摊牌
+function GamePlay:playerOverToShowPoker()
+	-- 提取node里面的数据，索引
+	local source = self:getNumberIndexSourceByNode( self.PlayerHandPoker )
+	-- 玩家手牌排序
+	local sort_childs,tierce_pokers,four_pokers,three_pokers = self:handPokersGroup( self.PlayerHandPoker,source )
 
+	-- 列出牌的结果
+	local actions = {}
+	local index = 0
+	local time = 0.2
+	for i,v in ipairs( tierce_pokers ) do
+		dump( tierce_pokers,"------------------tierce_pokers = ")
+		local move_time = 0.2
+		-- for i=1,#v do
+		-- 	self:createPlayerPokerToOverNode( v[1] )
+		-- 	local move_to = cc.MoveTo:create( move_time,cc.p( index * 150,(i - 1) * 20 ) )
+		-- 	local delay = cc.DelayTime:create( time / 2 )
+		-- 	-- table.insert( actions,delay )
+		-- 	-- table.insert( actions,move_to )
+		-- 	table.removebyvalue( sort_childs,v[1] )
+		-- 	v[1]:runAction( cc.Sequence( { delay,move_to }))
+		-- 	time = time + 0.2
+		-- end
+		for a,b in ipairs( v ) do
+			self:createPlayerPokerToOverNode( b )
+			local move_to = cc.MoveTo:create( move_time,cc.p( index * 150,(a - 1) * 20 ) )
+			local delay = cc.DelayTime:create( time / 2 )
+			-- table.insert( actions,delay )
+			-- table.insert( actions,move_to )
+			table.removebyvalue( sort_childs,b )
+			b:runAction( cc.Sequence( { delay,move_to }))
+			time = time + 0.2
+		end
+		
+		index = index + 1
+	end
+	for i,v in ipairs( four_pokers ) do
+		local move_time = 0.2
+		for a,b in ipairs( v ) do
+			self:createPlayerPokerToOverNode( b )
+			local move_to = cc.MoveTo:create( move_time,cc.p( index * 150,(a - 1) * 20 ) )
+			local delay = cc.DelayTime:create( time / 2 )
+			-- table.insert( actions,delay )
+			-- table.insert( actions,move_to )
+			table.removebyvalue( sort_childs,b )
+			b:runAction( cc.Sequence( { delay,move_to }))
+			time = time + 0.2
+		end
+		
+		index = index + 1
+	end
+	for i,v in ipairs( three_pokers ) do
+		local move_time = 0.2
+		for a,b in ipairs( v ) do
+			self:createPlayerPokerToOverNode( b )
+			local move_to = cc.MoveTo:create( move_time,cc.p( index * 150,(a - 1) * 20 ) )
+			local delay = cc.DelayTime:create( time / 2 )
+			-- table.insert( actions,delay )
+			-- table.insert( actions,move_to )
+			table.removebyvalue( sort_childs,b )
+			b:runAction( cc.Sequence( { delay,move_to }))
+			time = time + 0.2
+		end
+		
+		index = index + 1
+	end
+
+
+	-- 移动牌
+
+end
+-- -- 移动牌
+-- function GamePlay:overToMovePoker( node,actions )
+-- 	local pokers = node:getChildren()
+-- 	for i,v in ipairs(pokers) do
+-- 		print(i,v)
+-- 	end
+-- end
+-- 结束时将分组的牌添加到结果区域
+function GamePlay:createPlayerPokerToOverNode( poker )
+	local began_pos = cc.p( poker:getPosition())
+	local began_worldPos = poker:getParent():convertToWorldSpace( began_pos )
+	local new_pos = self.playerShowNode:convertToNodeSpace(cc.p( began_worldPos))	
+	poker:setPosition( new_pos )
+end
 -- 摸牌后最大牌坐标上移
 function GamePlay:maxPokerMoveUp()
 	local childs = self.PlayerHandPoker:getChildren()
