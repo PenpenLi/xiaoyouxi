@@ -793,7 +793,7 @@ function GamePlay:playerOverToShowPoker()
 			-- table.insert( actions,delay )
 			-- table.insert( actions,move_to )
 			table.removebyvalue( sort_childs,b )
-			b:runAction( cc.Sequence( { delay,move_to }))
+			b:runAction( cc.Sequence:create( { delay,move_to }))
 			time = time + 0.2
 		end
 		
@@ -808,7 +808,7 @@ function GamePlay:playerOverToShowPoker()
 			-- table.insert( actions,delay )
 			-- table.insert( actions,move_to )
 			table.removebyvalue( sort_childs,b )
-			b:runAction( cc.Sequence( { delay,move_to }))
+			b:runAction( cc.Sequence:create( { delay,move_to }))
 			time = time + 0.2
 		end
 		
@@ -823,7 +823,7 @@ function GamePlay:playerOverToShowPoker()
 			-- table.insert( actions,delay )
 			-- table.insert( actions,move_to )
 			table.removebyvalue( sort_childs,b )
-			b:runAction( cc.Sequence( { delay,move_to }))
+			b:runAction( cc.Sequence:create( { delay,move_to }))
 			time = time + 0.2
 		end
 		
