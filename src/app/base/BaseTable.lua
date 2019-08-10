@@ -79,6 +79,7 @@ end
 
 --[[ 子类需要重写 ]]
 function BaseTable:_onTouchBegan( event )
+    print("----------？？？")
     return true
 end
 --[[ 子类需要重写 ]]
@@ -160,7 +161,7 @@ end
 
 --[[ 子类需要重写 ]]
 function BaseTable:tableCellTouched(table,cell)
-    
+    print("----------摸？")
 end
 
 --[[ 子类需要重写 ]]

@@ -40,6 +40,11 @@ function GameStart:ctor( param )
     		self:play()
     	end
     })
+    self:addNodeClick( self.ButtonRank,{
+    	endCallBack = function ()
+    		self:openRank()
+    	end
+    })
 
     self:loadUi()
 end
@@ -149,6 +154,10 @@ end
 function GameStart:play()
 	addUIToScene( UIDefine.LIKUI_KEY.Play_UI )
 	removeUIFromScene( UIDefine.LIKUI_KEY.Start_UI )
+end
+
+function GameStart:openRank()
+	addUIToScene( UIDefine.LIKUI_KEY.Rank_UI )
 end
 
 

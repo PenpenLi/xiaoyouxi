@@ -63,12 +63,12 @@ function Model_LiKui:saveRecordList( score )
 		meta.score = score
 		meta.time = os.time()
 		table.insert( self._recordList,meta )
-		need_save = ture
+		need_save = true
 	else
 		if self._recordList[#self._recordList] < score then
 			self._recordList[#self._recordList] = score
 			self._recordList[#self._recordList] = os.time()
-			need_save = ture
+			need_save = true
 		end
 	end
 	if need_save then

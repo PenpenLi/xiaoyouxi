@@ -238,6 +238,7 @@ UIDefine.LIKUI_KEY	= {
 	Play_UI             = { layer = import("app.viewslikui.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Play_UI"    			   		},
 	-- Choice_UI           = { layer = import("app.viewslikui.GameChoice"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Choice_UI"    		 		},
 	-- Disband_UI          = { layer = import("app.viewslikui.GameDisband"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Disband_UI"    				},
+	Rank_UI 			= { layer = import("app.viewslikui.RankMain"),         		flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Rank_UI"				    	},
 }
 
 -- -- 三个游戏的合集
