@@ -15,11 +15,9 @@ function GamePlay:ctor( param )
     -- test
     -- self._pokerStack = {1,2,4,5,7,9,20,33,46,52}
     
-
     self:addNodeClick( self.ImageBack,{
     	endCallBack = function ()
-    		-- self:back()
-    		self:playerOverToShowPoker()
+    		self:back()
     	end
     })
 
@@ -50,9 +48,20 @@ function GamePlay:ctor( param )
     	end
     })
 
+    self:addNodeClick( self.ButtonSound,{
+    	endCallBack = function ()
+    		self:setSound()
+    	end
+    })
+    self:addNodeClick( self.ButtonMusic,{
+    	endCallBack = function ()
+    		self:setMusic()
+    	end
+    })
+
     self:loadUi()
 
-    self._moState = 1 -- 1:只能摸出牌 2:出牌和牌堆都可以摸 3:都不能摸，玩家手牌可出牌，4:关闭所有触摸 等待ai的逻辑,5:只能从牌堆摸牌
+    self._moState = 1 -- 1:只能摸出牌 2:出牌和牌堆都可以摸 3:都不能摸，玩家手牌可出牌，4:关闭所有触摸 等待ai的逻辑,5:只能从牌堆摸牌 6:摊牌
     self._playerTanPaiGroupIndex = 0
     self._aiTanPaiGroupIndex = 0
 end
@@ -62,11 +71,6 @@ function GamePlay:onEnter()
 	casecadeFadeInNode( self._csbNode,0.5 )
 	-- 发牌结束播放帧动画
 	self:frameAnimation()
-
-	-- 测试，保存数据
-	local score = random( 20,200 )
-	self:saveScore( score )
-
 end
 
 function GamePlay:loadUi()
@@ -77,6 +81,28 @@ function GamePlay:loadUi()
 	self:hideAIHandAndPoker()
 
 	self:likuiIconAction()
+
+	-- 设置按钮
+	local state = G_GetModel("Model_Sound"):isVoiceOpen()
+	if state then
+		self.ButtonSound:loadTexture( "image/start/sound.png",1 )
+	else
+		self.ButtonSound:loadTexture( "image/start/sound.png",1 )
+		-- 变灰
+		graySprite( self.ButtonSound:getVirtualRenderer():getSprite() )
+	end
+	state = G_GetModel("Model_Sound"):isMusicOpen()
+	if state then
+		self.ButtonMusic:loadTexture( "image/start/music.png",1 )
+	else
+		self.ButtonMusic:loadTexture( "image/start/music.png",1 )
+		-- 变灰
+		graySprite( self.ButtonMusic:getVirtualRenderer():getSprite() )
+	end
+
+	-- 显示金币
+	local coin = G_GetModel("Model_LiKui"):getInstance():getCoin()
+	self.TextCoin:setString( coin )
 end
 
 function GamePlay:likuiIconAction()
@@ -133,6 +159,14 @@ function GamePlay:hideAIHandAndPoker()
 	self.ButtonShow:setVisible( false )
 	self.ImageDeadCardBg:setVisible( false )
 	self.TextAIPass:setVisible( false )
+
+	self.ImageResultAi:setVisible( false )
+	self.ImageResultPlayer:setVisible( false )
+
+	self.NodeStack:setLocalZOrder( 5 )
+	self.NodeOutCard:setLocalZOrder( 10 )
+	self.AIHandPokerIn:setLocalZOrder( 50 )
+	self.PlayerHandPoker:setLocalZOrder( 51 )
 end
 
 -- 初次发牌
@@ -157,6 +191,7 @@ function GamePlay:firstSendPoker()
 				self:playerHandPokerSort()
 				-- 4:AI手牌排序
 				self:AIHandPokerSort()
+				self:loadDeadUi()
 			end)
 			table.insert( actions,call_sort )
 			local delay3 = cc.DelayTime:create( time * 2 )
@@ -250,7 +285,8 @@ end
 -- 根据现有的poker创建ai手牌
 function GamePlay:createAiPokerToHand( poker )
 	if poker == nil then
-		-- 强制摊牌 --TODO
+		-- 强制摊牌
+		self:over_show()
 		return
 	end
 	local img_startPos = cc.p(poker:getPosition())
@@ -346,15 +382,18 @@ function GamePlay:AIMoPaiCsbAction()
 		playCsbActionForIndex( self._csbAct, 361,415,false,function()
 			self:frameAnimation()
 		end )
-	end,0.1 )
+	end,0.3 )
 end
 
 -- AI摸牌
 function GamePlay:AIGetPoker()
+	if self._moState == 6 then
+		return
+	end
+
 	local logic = self:AIGetPokerLogic()
 	local time = 1
 	if logic == 1 then
-		print( "---------------> 从出牌区摸牌" )
 		self:AIGetPokerFromOut( time )
 	else
 		if self._moState == 1 then
@@ -365,7 +404,6 @@ function GamePlay:AIGetPoker()
 				self.TextAIPass:setVisible( false )
 			end,time )
 		else
-			print( "--------------> 从牌堆里面摸牌" )
 			self:AIGetPokerFromPaiDui( 0.3 )
 		end
 	end
@@ -375,13 +413,11 @@ function GamePlay:AIGetPoker()
 	end,0.5 )
 
 	-- AI 出牌
-	print("-------------------> self._moState = "..self._moState)
 	if self._moState == 5 then
 		return
 	else
 		performWithDelay( self,function()
 			self:AIOutPokerLogic()
-			self._moState = 2
 		end,time + 0.7 )
 	end
 end
@@ -490,15 +526,22 @@ function GamePlay:AIHanderPokerToOut( poker )
 	-- 轮到玩家出牌
 	performWithDelay( self,function()
 		-- 设置状态
-		self._moState = 2
-
-		self:AIShowPoker()
+		-- 检查AI是否可以摊牌
+		local hand_souce = self:getNumberIndexSourceByNode( self.AIHandPokerIn )
+		local tierce_ary,four_ary,three_ary,org_source = self:calEffectiveData( hand_souce )
+		if #org_source <= 2 then
+			-- 摊牌
+			self:over_show()
+		else
+			self._moState = 2
+			self:AIShowPoker()
+		end
 	end,0.7 )
 end
 -- AI摊牌
 function GamePlay:aiOverToShowPoker()
 	-- body
-	print( "------------------AI摊牌")
+	self.AIHandPokerIn:setVisible( true )
 	-- 提取node里面的数据，索引
 	local source = self:getNumberIndexSourceByNode( self.AIHandPokerIn )
 	-- 玩家手牌排序
@@ -513,40 +556,61 @@ function GamePlay:aiOverToShowPoker()
 	call_group( tierce_pokers )
 	call_group( four_pokers )
 	call_group( three_pokers )
-	self:aiTanPaiActionByGroup( groups )
+
+	local move_time = 0.3
+	self:aiTanPaiActionByGroup( groups,move_time )
+
+	local hand_poker_index = 10
+	schedule( self.bg,function()
+		self["ImageAIpoker"..hand_poker_index]:setVisible( false )
+		hand_poker_index = hand_poker_index - 1
+		if hand_poker_index <= 0 then
+			self.bg:stopAllActions()
+			self.AIHandPokerOut:setVisible( false )
+		end
+	end,move_time )
 
 	-- 移动散牌
-	local actions = {}
-	local move_time = 0.5
-	local index = self._aiTanPaiGroupIndex
-	for i = #san_pokers,1,-1 do
-		local v = san_pokers[i]
-		self:createAiPokerToOverNode( v )
-		local move_to = cc.MoveTo:create( move_time,cc.p( (index) * 150 + i * 35,20 ) )
-		local delay = cc.DelayTime:create( move_time / 2 * i )
-		v:runAction( cc.Sequence:create( { delay,move_to }))
-	end
+	performWithDelay( self,function()
+		local actions = {}
+		local index = #groups
+		for i = #san_pokers,1,-1 do
+			local v = san_pokers[i]
+			v:setVisible( true )
+			self:createAiPokerToOverNode( v )
+			v:showObtAniUseScaleTo( move_time - 0.1 )
+			v:setLocalZOrder( i )
+			local move_to = cc.MoveTo:create( move_time,cc.p( (index) * 150 + i * 35,-20 ) )
+			local scale_to = cc.ScaleTo:create( move_time,1 )
+			local spawn = cc.Spawn:create({ move_to,scale_to })
+			local delay = cc.DelayTime:create( move_time / 2 * i )
+			v:runAction( cc.Sequence:create( { delay,spawn }))
+		end
+	end,(#groups + 1) * move_time + 0.1 )
 end
 
 -- 根于一组poker执行摊牌动画( 从上向下排列)
-function GamePlay:aiTanPaiActionByGroup( groups )
+function GamePlay:aiTanPaiActionByGroup( groups,moveTime )
 	self._aiTanPaiGroupIndex = self._aiTanPaiGroupIndex + 1
 	local pokers = groups[self._aiTanPaiGroupIndex]
 	if pokers then
 		local actions = {}
-		local move_time = 0.5
 		local index = self._aiTanPaiGroupIndex
 		for i,v in ipairs( pokers ) do
+			v:setVisible( true )
 			self:createAiPokerToOverNode( v )
-			v:showBackAniUseScaleTo( move_time - 0.2 )
-			local move_to = cc.MoveTo:create( move_time,cc.p( (index - 1) * 150,20 + (i - 1) * 35 ) )
-			local delay = cc.DelayTime:create( move_time / 2 * i )
+			v:setLocalZOrder( i )
+			v:showObtAniUseScaleTo( moveTime - 0.1 )
+			local move_to = cc.MoveTo:create( moveTime,cc.p( (index - 1) * 150,-20 - (i - 1) * 35 ) )
+			local scale_to = cc.ScaleTo:create( moveTime,1 )
+			local spawn = cc.Spawn:create({ move_to,scale_to })
+			local delay = cc.DelayTime:create( moveTime / 2 * i )
 			local call_next = cc.CallFunc:create( function()
 				if i == #pokers then
-					self:aiTanPaiActionByGroup( groups )
+					self:aiTanPaiActionByGroup( groups,moveTime )
 				end
 			end )
-			v:runAction( cc.Sequence:create( { delay,move_to,call_next }))
+			v:runAction( cc.Sequence:create( { delay,spawn,call_next }))
 		end
 	end
 end
@@ -607,6 +671,7 @@ function GamePlay:createPlayerPokerFromPaiDui( time )
 	local position_end = cc.p( x_pos,0 )
 	self:playerPokerMove( top_poker,position_end,time )
 	top_poker:showObtAniUseScaleTo( time )
+	return top_poker
 end
 
 -- 根据现有的poker创建玩家手牌
@@ -614,6 +679,7 @@ function GamePlay:createPlayerPokerToHand( poker )
 	local img_startPos = cc.p(poker:getPosition())
 	local img_startWorldPos = poker:getParent():convertToWorldSpace( img_startPos )
 	local img_startNodePos = self.PlayerHandPoker:convertToNodeSpace( img_startWorldPos )
+	dump( img_startNodePos,"----------------> img_startNodePos = " )
 	poker:retain()
 	poker:removeFromParent()
 	self.PlayerHandPoker:addChild( poker )
@@ -622,8 +688,14 @@ function GamePlay:createPlayerPokerToHand( poker )
 end
 
 function GamePlay:playerPokerMove( poker,position,time )
+	local parent = poker:getParent()
+	local org_order = parent:getLocalZOrder()
+	parent:setLocalZOrder( 200 )
 	local move_to = cc.MoveTo:create( time * 2,position )
-	poker:runAction( move_to )
+	local call_set = cc.CallFunc:create( function()
+		parent:setLocalZOrder( org_order )
+	end )
+	poker:runAction( cc.Sequence:create({ move_to,call_set }) )
 end
 
 -- 为玩家的单个poker创建点击
@@ -739,22 +811,23 @@ function GamePlay:clickPaiDui()
 	local pokers = self.NodeStack:getChildren()
 	if #pokers == 0 then
 		-- 强制摊牌
+		self:over_show()
 		return
 	end
 	-- 设置状态，限制牌动作时候点击
 	self._moState = 4
 	--3:摸牌
-	local stack_childs = self.NodeStack:getChildren()
-	local top_poker = stack_childs[#stack_childs]
-	self:createPlayerPokerToHand( top_poker )
-	local player_childs = self.PlayerHandPoker:getChildren()
-	local x_pos = self:playerHandPokerSpaceBetween( #player_childs )
-	local position_end = cc.p( x_pos,0 )
-	top_poker:setLocalZOrder( #player_childs + 1 )
 
 	local time = 0.3
-	self:playerPokerMove( top_poker,position_end,time )
-	top_poker:showObtAniUseScaleTo( time )
+	local stack_childs = self.NodeStack:getChildren()
+	print("------------------> clickPaiDui stack_childs1 = "..#stack_childs)
+
+	local top_poker = self:createPlayerPokerFromPaiDui( time )
+	local player_childs = self.PlayerHandPoker:getChildren()
+	top_poker:setLocalZOrder( #player_childs + 1 )
+
+	local stack_childs = self.NodeStack:getChildren()
+	print("------------------> clickPaiDui stack_childs2 = "..#stack_childs)
 
 	performWithDelay( self,function()
 		self:playerHandPokerSort( top_poker )
@@ -763,6 +836,7 @@ function GamePlay:clickPaiDui()
 		-- 设置状态为出牌状态
 		self:loadDeadUi()
 	end,time * 2 + 0.1 )
+
 	-- 等所有动作结束后设置状态
 	performWithDelay( self,function ()
 		-- 设置状态为出牌状态
@@ -774,7 +848,7 @@ end
 
 -- 玩家点击出牌区
 function GamePlay:clickPaiOut()
-	if self._moState == 3 or self._moState == 4 or self._moState == 5 then
+	if self._moState ~= 1 and self._moState ~= 2 then
 		return
 	end
 
@@ -830,11 +904,35 @@ function GamePlay:pass()
 			performWithDelay( self,function ()
 			self:AIGetPoker()
 		end,1 )
-	
 	end
 end
 -- 玩家点击摊牌
 function GamePlay:over_show()
+	self._moState = 6
+
+	self.PanelTouchPaiDui:setVisible( false )
+	self.PanelTouchOut:setVisible( false )
+	self.NodeStack:setVisible( false )
+	self.NodeOutCard:setVisible( false )
+	self.ImageDeadCardBg:setVisible( false )
+	self.ButtonShow:setVisible( false )
+	self.ButtonSound:setVisible( false )
+	self.ButtonMusic:setVisible( false )
+
+	-- 玩家
+	local source = self:getNumberIndexSourceByNode( self.PlayerHandPoker )
+	local sort_childs,tierce_pokers,four_pokers,three_pokers,san_pokers = self:handPokersGroup( self.PlayerHandPoker,source )
+	local deadPoint = self:getDeadPoint( san_pokers )
+	self.TextResultPointPlayer:setString( deadPoint )
+
+	--  AI
+	local source = self:getNumberIndexSourceByNode( self.AIHandPokerIn )
+	local sort_childs,tierce_pokers,four_pokers,three_pokers,san_pokers = self:handPokersGroup( self.AIHandPokerIn,source )
+	local deadPoint = self:getDeadPoint( san_pokers )
+	self.TextResultPointAi:setString( deadPoint )
+
+
+
 	local childs = self.PlayerHandPoker:getChildren()
 	if #childs == 11 then
 		self:playerOutPoker( childs[#childs] )
@@ -862,16 +960,31 @@ function GamePlay:playerOverToShowPoker()
 	self:playerTanPaiActionByGroup( groups )
 
 	-- 移动散牌
-	local actions = {}
-	local move_time = 0.5
-	local index = self._playerTanPaiGroupIndex
-	for i = #san_pokers,1,-1 do
-		local v = san_pokers[i]
-		self:createPlayerPokerToOverNode( v )
-		local move_to = cc.MoveTo:create( move_time,cc.p( (index) * 150 + i * 35,20 ) )
-		local delay = cc.DelayTime:create( move_time / 2 * i )
-		v:runAction( cc.Sequence:create( { delay,move_to }))
-	end
+	performWithDelay( self,function()
+		local actions = {}
+		local move_time = 0.3
+		local index = #groups
+		for i = #san_pokers,1,-1 do
+			local v = san_pokers[i]
+			self:createPlayerPokerToOverNode( v )
+			local move_to = cc.MoveTo:create( move_time,cc.p( (index) * 150 + i * 35,20 ) )
+			local delay = cc.DelayTime:create( move_time / 2 * i )
+
+			local call_result = cc.CallFunc:create( function()
+				if i == 1 then
+					self.ImageResultAi:setVisible( true )
+					self.ImageResultPlayer:setVisible( true )
+
+					-- 显示结算界面
+					local ai_point = tonumber(self.TextResultPointAi:getString())
+					local player_point = tonumber( self.TextResultPointPlayer:getString() )
+					local result_socre = player_point - ai_point
+					self:gameOver( result_socre )
+				end
+			end )
+			v:runAction( cc.Sequence:create( { delay,move_to,call_result }))
+		end
+	end,(#groups + 1) * 0.3 + 0.1 )
 end
 
 -- 根于一组poker执行摊牌动画( 从上向下排列)
@@ -880,10 +993,12 @@ function GamePlay:playerTanPaiActionByGroup( groups )
 	local pokers = groups[self._playerTanPaiGroupIndex]
 	if pokers then
 		local actions = {}
-		local move_time = 0.5
+		local move_time = 0.3
 		local index = self._playerTanPaiGroupIndex
 		for i,v in ipairs( pokers ) do
 			self:createPlayerPokerToOverNode( v )
+			v:showQuan1( false )
+			v:showQuan2( false )
 			local move_to = cc.MoveTo:create( move_time,cc.p( (index - 1) * 150,20 + (i - 1) * 35 ) )
 			local delay = cc.DelayTime:create( move_time / 2 * i )
 			local call_next = cc.CallFunc:create( function()
@@ -1036,6 +1151,35 @@ end
 -- 根据数据源计算有效的数据
 function GamePlay:calEffectiveData( source )
 	assert( source," !! source is nil !! " )
+	-- 第一种选择:
+	local tierce_ary1,four_ary1,three_ary1,new_source1 = self:calEffectiveDataByTierce( source )
+	-- 第二种选择:
+	local tierce_ary2,four_ary2,three_ary2,new_source2 = self:calEffectiveDataByFour( source )
+	-- 第三种选择
+	local tierce_ary3,four_ary3,three_ary3,new_source3 = self:calEffectiveDataByThree( source )
+
+	local mini = new_source1
+	if #new_source2 < #new_source1 then
+		mini = new_source2
+	end
+	if #new_source3 < #mini then
+		mini = new_source3
+	end
+
+	if mini == new_source1 then
+		return tierce_ary1,four_ary1,three_ary1,new_source1
+	end
+
+	if mini == new_source2 then
+		return tierce_ary2,four_ary2,three_ary2,new_source2
+	end
+
+	if mini == new_source3 then
+		return tierce_ary3,four_ary3,three_ary3,new_source3
+	end
+end
+
+function GamePlay:calEffectiveDataByTierce( source )
 	-- 1，选出同花顺
 	local tierce_ary = {}
 	self:choseTierce( source,tierce_ary )
@@ -1070,13 +1214,87 @@ function GamePlay:calEffectiveData( source )
 			end
 		end
 	end
-	-- dump( tierce_ary,"------------------> tierce_ary = " )
-	-- dump( four_ary,"------------------> four_ary = " )
-	-- dump( three_ary,"------------------> three_ary = " )
-	-- dump( new_source,"------------------> new_source = " )
 	return tierce_ary,four_ary,three_ary,new_source
 end
 
+function GamePlay:calEffectiveDataByFour( source )
+	local new_source = clone( source )
+	-- 1，选出四条
+	local four_ary = {}
+	if #new_source >= 4 then
+		four_ary = self:getFourOrThree( new_source,4 )
+		for i,v in ipairs(four_ary) do
+			for a,b in ipairs(v) do
+				table.removebyvalue( new_source,b )
+			end
+			
+		end
+	end
+	-- 2,选出三条
+	local three_ary = {}
+	if #new_source >= 3 then
+		three_ary = self:getFourOrThree( new_source,3 )
+		for i,v in ipairs(three_ary) do
+			for a,b in ipairs(v) do
+				table.removebyvalue( new_source,b )
+			end
+		end
+	end
+	-- 3，选出同花顺
+	local tierce_ary = {}
+	if #new_source >= 3 then
+		self:choseTierce( new_source,tierce_ary )
+		-- 去掉已筛选的同花顺
+		for i,v in ipairs(source) do
+			for a,b in ipairs(tierce_ary) do
+				for c,d in ipairs(b) do
+					table.removebyvalue( new_source,d )
+				end
+			end
+		end
+	end
+	
+	return tierce_ary,four_ary,three_ary,new_source
+end
+
+function GamePlay:calEffectiveDataByThree( source )
+	-- 1,选出三条
+	local new_source = clone( source )
+	local three_ary = {}
+	if #new_source >= 3 then
+		three_ary = self:getFourOrThree( new_source,3 )
+		for i,v in ipairs(three_ary) do
+			for a,b in ipairs(v) do
+				table.removebyvalue( new_source,b )
+			end
+		end
+	end
+	-- 2，选出四条
+	local four_ary = {}
+	if #new_source >= 4 then
+		four_ary = self:getFourOrThree( new_source,4 )
+		for i,v in ipairs(four_ary) do
+			for a,b in ipairs(v) do
+				table.removebyvalue( new_source,b )
+			end
+			
+		end
+	end
+	-- 3，选出同花顺
+	local tierce_ary = {}
+	if #new_source >= 3 then
+		self:choseTierce( new_source,tierce_ary )
+		-- 去掉已筛选的同花顺
+		for i,v in ipairs(source) do
+			for a,b in ipairs(tierce_ary) do
+				for c,d in ipairs(b) do
+					table.removebyvalue( new_source,d )
+				end
+			end
+		end
+	end
+	return tierce_ary,four_ary,three_ary,new_source
+end
 
 -- 手牌分组 得到poker的指针 用于加圈显示
 function GamePlay:handPokersGroup( node,source )
@@ -1139,8 +1357,13 @@ end
 -- 显示摊牌按钮显示状态
 function GamePlay:showTanpai( group_ary )
 	if #group_ary < 4 then
-		self.ButtonShow:setVisible( true )
-		self.ButtonPass:setVisible( false )
+		if #group_ary == 0 then
+			-- 胡牌
+			self:over_show()
+		else
+			self.ButtonShow:setVisible( true )
+			self.ButtonPass:setVisible( false )
+		end
 	else
 		self.ButtonShow:setVisible( false )
 	end
@@ -1168,27 +1391,61 @@ end
 
 -- 游戏结束，保存数据
 function GamePlay:saveScore( score )
-	print( "-------------------保存数据")
-	dump( score,"-----值")
 	G_GetModel("Model_LiKui"):getInstance():saveRecordList( score )
 end
 
----######################### 公共代码区 End #########################################
 
 
 
 
+function GamePlay:gameOver( score )
+	-- 存储
+	if score > 0 then
+		self:saveScore( score )
+	end
+	-- 存储金币
+	G_GetModel("Model_LiKui"):getInstance():setCoin( score )
+	-- 显示结算界面
+	performWithDelay( self,function()
+		addUIToScene( UIDefine.LIKUI_KEY.Over_UI,score )
+	end,5 )
+end
 
-
-
-
-
-
+function GamePlay:setMusic()
+	local model = G_GetModel("Model_Sound"):getInstance()
+	local is_open = model:isMusicOpen()
+	if is_open then
+		self.ButtonMusic:loadTexture( "image/start/music.png",1 )
+		-- 变灰
+		graySprite( self.ButtonMusic:getVirtualRenderer():getSprite() )
+		model:setMusicState( model.State.Closed )
+		model:stopPlayBgMusic()
+	else
+		self.ButtonMusic:loadTexture( "image/start/music.png",1 )
+		model:setMusicState( model.State.Open )
+		model:playBgMusic()
+	end
+end
+function GamePlay:setSound()
+	local model = G_GetModel("Model_Sound"):getInstance()
+	local is_open = model:isVoiceOpen()
+	if is_open then
+		self.ButtonSound:loadTexture( "image/start/sound.png",1 )
+		-- 变灰
+		graySprite( self.ButtonSound:getVirtualRenderer():getSprite() )
+		model:setVoiceState( model.State.Closed )
+	else
+		self.ButtonSound:loadTexture( "image/start/sound.png",1 )
+		model:setVoiceState( model.State.Open )
+	end
+end
 
 function GamePlay:back()
 	addUIToScene( UIDefine.LIKUI_KEY.Start_UI )
 	removeUIFromScene( UIDefine.LIKUI_KEY.Play_UI )
 end
+
+---######################### 公共代码区 End #########################################
 
 
 return GamePlay

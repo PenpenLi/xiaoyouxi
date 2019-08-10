@@ -51,12 +51,13 @@ end
 
 function GameStart:loadUi()
 	local coin = G_GetModel("Model_LiKui"):getInstance():getCoin()
+	if coin <= 0 then
+		G_GetModel("Model_LiKui"):getInstance():initCoin( 50 )
+	end
+
+	local coin = G_GetModel("Model_LiKui"):getInstance():getCoin()
 	self.TextCoin:setString( coin )
-	-- 添加监听
-	self:addMsgListener( InnerProtocol.INNER_EVENT_LIKUI_BUY,function ()
-		local coin = G_GetModel("Model_LiKui"):getInstance():getCoin()
-		self.TextCoin:setString( coin )
-	end )
+	
 
 	local state = G_GetModel("Model_Sound"):isVoiceOpen()
 	if state then
@@ -82,6 +83,12 @@ function GameStart:onEnter()
 
 	G_GetModel( "Model_Sound" ):playBgMusic()
 	self:loadHelp()
+
+	-- 添加监听
+	self:addMsgListener( InnerProtocol.INNER_EVENT_LIKUI_BUY,function ()
+		local coin = G_GetModel("Model_LiKui"):getInstance():getCoin()
+		self.TextCoin:setString( coin )
+	end )
 end
 
 -- Help显示区域
@@ -152,8 +159,8 @@ function GameStart:openStore()
 	addUIToScene( UIDefine.LIKUI_KEY.Shop_UI )
 end
 function GameStart:play()
-	addUIToScene( UIDefine.LIKUI_KEY.Play_UI )
 	removeUIFromScene( UIDefine.LIKUI_KEY.Start_UI )
+	addUIToScene( UIDefine.LIKUI_KEY.Play_UI )
 end
 
 function GameStart:openRank()

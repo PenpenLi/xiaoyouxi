@@ -202,6 +202,17 @@
 				<key>sourceSize</key>
 				<string>{128,179}</string>
 			</dict>
+			<key>image/poker/heart8.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{869,261},{128,179}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{128,179}</string>
+			</dict>
 		</dict>
 		<key>metadata</key>
 		<dict>

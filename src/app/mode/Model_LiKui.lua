@@ -22,7 +22,6 @@ function Model_LiKui:getInstance()
 end
 
 function Model_LiKui:getCoin()
-	-- print( "-----?????????")
 	if self._coin == nil then
 		local user_default = cc.UserDefault:getInstance()
 		self._coin = user_default:getIntegerForKey( "likuiCoin",50 )
@@ -34,6 +33,15 @@ end
 function Model_LiKui:setCoin( addCoin )
 	assert( addCoin," !! addCoin is nil !! " )
 	self._coin = self:getCoin() + addCoin
+	if self._coin <= 0 then
+		self._coin = 0
+	end
+	local user_default = cc.UserDefault:getInstance()
+	user_default:setIntegerForKey( "likuiCoin",self._coin )
+end
+
+function Model_LiKui:initCoin( coin )
+	self._coin = coin
 	local user_default = cc.UserDefault:getInstance()
 	user_default:setIntegerForKey( "likuiCoin",self._coin )
 end
@@ -65,9 +73,9 @@ function Model_LiKui:saveRecordList( score )
 		table.insert( self._recordList,meta )
 		need_save = true
 	else
-		if self._recordList[#self._recordList] < score then
-			self._recordList[#self._recordList] = score
-			self._recordList[#self._recordList] = os.time()
+		if self._recordList[#self._recordList].score < score then
+			self._recordList[#self._recordList].score = score
+			self._recordList[#self._recordList].time = os.time()
 			need_save = true
 		end
 	end
