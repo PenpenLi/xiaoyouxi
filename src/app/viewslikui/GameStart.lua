@@ -50,6 +50,7 @@ function GameStart:ctor( param )
 end
 
 function GameStart:loadUi()
+	self.ButtonLeft:setVisible( false )
 	local coin = G_GetModel("Model_LiKui"):getInstance():getCoin()
 	if coin <= 0 then
 		G_GetModel("Model_LiKui"):getInstance():initCoin( 50 )
@@ -109,6 +110,8 @@ function GameStart:loadHelp()
 	end,2 )
 end
 function GameStart:left()
+	self.ButtonLeft:setVisible( false )
+	self.ButtonRight:setVisible( true )
 	if self.Panel1:getPositionX() < 0 then
 		local left_moveby = cc.MoveBy:create( 0.5,cc.p( 715,0 ))
 		local right_moveby = cc.MoveBy:create( 0.5,cc.p( 715,0 ))
@@ -118,6 +121,8 @@ function GameStart:left()
 	end
 end
 function GameStart:right()
+	self.ButtonLeft:setVisible( true )
+	self.ButtonRight:setVisible( false )
 	if self.Panel2:getPositionX() > 0 then
 		local left_moveby = cc.MoveBy:create( 0.5,cc.p( -715,0 ))
 		local right_moveby = cc.MoveBy:create( 0.5,cc.p( -715,0 ))
