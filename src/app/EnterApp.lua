@@ -28,7 +28,7 @@ end
 function EnterApp:create()
 	print(">>>>>EnterApp:create<<<<<<")
 	self:loadAppFile()
-	local scene = require("app.scenes.LiKuiScene").new()
+	local scene = require("app.scenes.BuYuScene").new()
 	return scene
 end
 
@@ -100,6 +100,10 @@ function EnterApp:run()
 	-- -- 李逵扑克
 	-- local scene = require("app.scenes.LiKuiScene").new()
 	-- display.runScene(scene)
+
+	-- 捕鱼
+	local scene = require("app.scenes.BuYuScene").new()
+	display.runScene(scene)
 end
 
 
