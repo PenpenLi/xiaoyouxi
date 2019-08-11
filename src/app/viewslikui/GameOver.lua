@@ -59,12 +59,10 @@ function GameOver:loadDataUi()
         end
     end
 
-    local coin_pos = cc.p( self.Text1:getPosition())
-    coin_pos.x = coin_pos.x + 20
-    self.TextCoin:setPosition( coin_pos )
+
     local jin_pos = cc.p( self.TextCoin:getPosition())
     local size = self.TextCoin:getContentSize()
-    jin_pos.x = jin_pos.x + 40 + size.width
+    jin_pos.x = jin_pos.x + 22 + size.width * 1.8
     self.Text2:setPosition( jin_pos )
 end
 

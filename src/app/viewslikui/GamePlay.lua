@@ -10,8 +10,8 @@ function GamePlay:ctor( param )
 
     self:addCsb( "Play.csb" )
 
-    -- self._pokerStack = getRandomArray( 1,52 )-- 随机一副牌
-    self._pokerStack = {14,22,2,1,25,23,26,3,15,4,18,5,19,6,51,7,32,8,33,9,52,10,29,11}
+    self._pokerStack = getRandomArray( 1,52 )-- 随机一副牌
+    -- self._pokerStack = {14,22,2,1,25,23,26,3,15,4,18,5,19,6,51,7,32,8,33,9,52,10,29,11}
     -- test
     -- self._pokerStack = {1,2,4,5,7,9,20,33,46,52}
     
@@ -162,8 +162,6 @@ function GamePlay:hideAIHandAndPoker()
 
 	self.ImageResultAi:setVisible( false )
 	self.ImageResultPlayer:setVisible( false )
-	self.TextShowPlayer:setVisible( false )
-	self.TextShowAI:setVisible( false )
 
 	self.NodeStack:setLocalZOrder( 5 )
 	self.NodeOutCard:setLocalZOrder( 10 )
@@ -549,21 +547,13 @@ function GamePlay:AIHanderPokerToOut( poker )
 	end,0.7 )
 end
 -- AI摊牌
-function GamePlay:aiOverToShowPoker( state )
+function GamePlay:aiOverToShowPoker()
 	-- body
 	self.AIHandPokerIn:setVisible( true )
 	-- 提取node里面的数据，索引
 	local source = self:getNumberIndexSourceByNode( self.AIHandPokerIn )
 	-- 玩家手牌排序
 	local sort_childs,tierce_pokers,four_pokers,three_pokers,san_pokers = self:handPokersGroup( self.AIHandPokerIn,source )
-	-- AI摊牌标签
-	if state == 0 then
-		self.TextShowAI:setVisible( true )
-		if san_pokers == nil then
-			self.TextShowAI:setString( "胡牌" )
-		end
-	end
-	
 
 	local groups = {}
 	local call_group = function( source )
@@ -586,11 +576,10 @@ function GamePlay:aiOverToShowPoker( state )
 			self.bg:stopAllActions()
 			self.AIHandPokerOut:setVisible( false )
 		end
-	end,move_time )
+	end,move_time - 0.1 )
 
 	-- 移动散牌
 	performWithDelay( self,function()
-		self.TextShowAI:setVisible( false )
 		local actions = {}
 		local index = #groups
 		for i = #san_pokers,1,-1 do
@@ -801,7 +790,6 @@ function GamePlay:playerOutPoker( poker )
 	if self._moState ~= 3 then
 		return
 	end
-	print("------------------- 出牌 ")
 	if G_GetModel("Model_Sound"):isVoiceOpen() then
 		audio.playSound("lkmp3/sendpoker.mp3", false)
 	end
@@ -913,22 +901,8 @@ function GamePlay:loadDeadUi()
 	local deadPoint = self:getDeadPoint( san_pokers )
 	self.TextDeadPoint:setString( deadPoint )
 
-	local collect_poker = {}
-	local addCollect = function ( array )
-		for i=1,#array do
-			for a,b in ipairs(array[i]) do
-				table.insert( collect_poker,b )
-			end
-			
-		end
-	end
-	addCollect( tierce_pokers )
-	addCollect( four_pokers )
-	addCollect( three_pokers )
-	-- dump( collect_poker,"----------------collect_poker = ")
-
 	-- 显示摊牌按钮--传入收集牌的列表
-	self:showTanpai( collect_poker )
+	self:showTanpai( san_pokers )
 end
 
 -- 玩家点击pass
@@ -944,80 +918,71 @@ function GamePlay:pass()
 end
 -- 玩家点击摊牌
 function GamePlay:over_show( state )
-	local childs = self.PlayerHandPoker:getChildren()
-	if self._moState ~= 1 and #childs == 10 then
-		print("------------111")
-		print("------------111"..self._moState)
-		return
+
+	local call_tan = function()
+		self._moState = 6
+		performWithDelay( self,function ()
+			self.PanelTouchPaiDui:setVisible( false )
+			self.PanelTouchOut:setVisible( false )
+			self.NodeStack:setVisible( false )
+			self.NodeOutCard:setVisible( false )
+			self.ImageDeadCardBg:setVisible( false )
+			self.ButtonShow:setVisible( false )
+			self.ButtonSound:setVisible( false )
+			self.ButtonMusic:setVisible( false )
+
+			-- 玩家
+			local source = self:getNumberIndexSourceByNode( self.PlayerHandPoker )
+			local sort_childs,tierce_pokers,four_pokers,three_pokers,san_pokers = self:handPokersGroup( self.PlayerHandPoker,source )
+			local deadPoint = self:getDeadPoint( san_pokers )
+			self.TextResultPointPlayer:setString( deadPoint )
+
+			--  AI
+			local source = self:getNumberIndexSourceByNode( self.AIHandPokerIn )
+			local sort_childs,tierce_pokers,four_pokers,three_pokers,san_pokers = self:handPokersGroup( self.AIHandPokerIn,source )
+			local deadPoint = self:getDeadPoint( san_pokers )
+			self.TextResultPointAi:setString( deadPoint )
+
+			-- 摊牌
+			self:playerOverToShowPoker()
+			self:aiOverToShowPoker()
+		end,0.5)
 	end
-	print("------------222")
-	local source = self:getNumberIndexSourceByNode( self.PlayerHandPoker )
-	local sort_childs,tierce_pokers,four_pokers,three_pokers,san_pokers = self:handPokersGroup( self.PlayerHandPoker,source )
-	if #childs == 11 then
-		
-		if #san_pokers ~= nil then
-			print("--------------chupai")
-			self:playerOutPoker( san_pokers[#san_pokers] )
-		end
-	end
-	self._moState = 6
-	-- 显示摊牌
+
 	if state == 1 then
-		self.TextShowPlayer:setVisible( true )
-		if san_pokers == nil then
-			self.TextShowPlayer:setString( "胡牌" )
-		end
-	end
-	
-	
-	
-	performWithDelay( self,function ()
-		self.TextShowPlayer:setVisible( false )
-		self.PanelTouchPaiDui:setVisible( false )
-		self.PanelTouchOut:setVisible( false )
-		self.NodeStack:setVisible( false )
-		self.NodeOutCard:setVisible( false )
-		self.ImageDeadCardBg:setVisible( false )
-		self.ButtonShow:setVisible( false )
-		self.ButtonSound:setVisible( false )
-		self.ButtonMusic:setVisible( false )
-
-		local hupai = 0	-- 1,玩家胡牌，2，AI胡牌
-
-		-- 玩家
+		-- 玩家摊牌
+		local childs = self.PlayerHandPoker:getChildren()
 		local source = self:getNumberIndexSourceByNode( self.PlayerHandPoker )
 		local sort_childs,tierce_pokers,four_pokers,three_pokers,san_pokers = self:handPokersGroup( self.PlayerHandPoker,source )
-		local deadPoint = self:getDeadPoint( san_pokers )
-		if san_pokers == 0 then
-			state = 1
+		assert( #childs == 11, " !! childs number must be 11 !! " )
+		if #san_pokers > 0 then
+			local poker = san_pokers[#san_pokers]
+			local began_pos = cc.p( poker:getPosition())
+			local began_worldPos = poker:getParent():convertToWorldSpace( began_pos )
+			local new_pos = self.NodePlayerTan:convertToNodeSpace(cc.p( began_worldPos))	
+			poker:retain()
+			poker:removeFromParent()
+			self.NodePlayerTan:addChild( poker )
+			poker:release()
+			poker:setPosition( new_pos )
+			poker:showBackAniUseScaleTo( 0.3 )
+			local move_to = cc.MoveTo:create( 0.5,cc.p(0,0 ))
+			local delay = cc.DelayTime:create( 0.5 )
+			local call_end = cc.CallFunc:create( function()
+				call_tan()
+			end )
+			local seq = cc.Sequence:create({ move_to,delay,call_end })
+			poker:runAction( seq )
+		else
+			call_tan()
 		end
-		self.TextResultPointPlayer:setString( deadPoint )
-
-		--  AI
-		local source = self:getNumberIndexSourceByNode( self.AIHandPokerIn )
-		local sort_childs,tierce_pokers,four_pokers,three_pokers,san_pokers = self:handPokersGroup( self.AIHandPokerIn,source )
-		local deadPoint = self:getDeadPoint( san_pokers )
-		if san_pokers == 0 then
-			if hupai ~= 1 then
-				hupai = 2
-			end
-		end
-		self.TextResultPointAi:setString( deadPoint )
-
-
-
-		local childs = self.PlayerHandPoker:getChildren()
-		if #childs == 11 then
-			self:playerOutPoker( childs[#childs] )
-		end
-		-- 摊牌
-		self:playerOverToShowPoker( hupai )
-		self:aiOverToShowPoker( state )
-	end,0.5)
-	
+	else
+		-- AI 摊牌
+		call_tan()
+	end
 end
 -- 摊牌
-function GamePlay:playerOverToShowPoker( state )
+function GamePlay:playerOverToShowPoker()
 	-- 提取node里面的数据，索引
 	local source = self:getNumberIndexSourceByNode( self.PlayerHandPoker )
 	-- 玩家手牌排序
@@ -1039,57 +1004,30 @@ function GamePlay:playerOverToShowPoker( state )
 		local actions = {}
 		local move_time = 0.3
 		local index = #groups
-		if #san_pokers == 0 then
+
+		local call_over = function()
 			self.ImageResultAi:setVisible( true )
 			self.ImageResultPlayer:setVisible( true )
-
 			-- 显示结算界面
-			local ai_point = tonumber(self.TextResultPointAi:getString())
-			local player_point = tonumber( self.TextResultPointPlayer:getString() )
-			local result_socre = nil
-			if state == 1 then
-				result_socre = ai_point - player_point - 25
-			end
-			if state == 2 then
-				result_socre = ai_point - player_point + 25
-			end
-			if state == 0 then
-				result_socre = ai_point - player_point
-			end
-			-- local result_socre = ai_point - player_point
-			self:gameOver( result_socre )
-			return
+			self:gameOver()
 		end
-		for i = #san_pokers,1,-1 do
-			dump( state,"-------------state = ")
-			local v = san_pokers[i]
-			self:createPlayerPokerToOverNode( v )
-			local move_to = cc.MoveTo:create( move_time,cc.p( (index) * 150 + i * 35,20 ) )
-			local delay = cc.DelayTime:create( move_time / 2 * i )
 
-			local call_result = cc.CallFunc:create( function()
-				if i == 1 then
-					self.ImageResultAi:setVisible( true )
-					self.ImageResultPlayer:setVisible( true )
-
-					-- 显示结算界面
-					local ai_point = tonumber(self.TextResultPointAi:getString())
-					local player_point = tonumber( self.TextResultPointPlayer:getString() )
-					-- local result_socre = nil
-					-- if state == 1 then
-					-- 	result_socre = ai_point - player_point - 25
-					-- end
-					-- if state == 2 then
-					-- 	result_socre = ai_point - player_point + 25
-					-- end
-					-- if state == 0 then
-					-- 	result_socre = ai_point - player_point
-					-- end
-					local result_socre = ai_point - player_point
-					self:gameOver( result_socre )
-				end
-			end )
-			v:runAction( cc.Sequence:create( { delay,move_to,call_result }))
+		if #san_pokers == 0 then
+			call_over()
+		else
+			for i = #san_pokers,1,-1 do
+				local v = san_pokers[i]
+				self:createPlayerPokerToOverNode( v )
+				local move_to = cc.MoveTo:create( move_time,cc.p( (index) * 150 + i * 35,20 ) )
+				local delay = cc.DelayTime:create( move_time / 2 * i )
+				local delay2 = cc.DelayTime:create( 1 )
+				local call_result = cc.CallFunc:create( function()
+					if i == 1 then
+						call_over()
+					end
+				end )
+				v:runAction( cc.Sequence:create( { delay,move_to,delay2,call_result }))
+			end
 		end
 	end,(#groups + 1) * 0.3 + 0.1 )
 end
@@ -1465,17 +1403,8 @@ function GamePlay:getDeadPoint( pokers )
 end
 -- 显示摊牌按钮显示状态
 function GamePlay:showTanpai( group_ary )
-	if #group_ary > 6 then
-		if #group_ary == 0 then
-			-- 胡牌
-			self:over_show( 1 )
-		else
-			self.ButtonShow:setVisible( true )
-			self.ButtonPass:setVisible( false )
-		end
-	else
-		self.ButtonShow:setVisible( false )
-	end
+	local childs = self.PlayerHandPoker:getChildren()
+	self.ButtonShow:setVisible( #childs == 11 and #group_ary <= 4 )
 end
 
 
@@ -1508,6 +1437,15 @@ end
 
 
 function GamePlay:gameOver( score )
+	local ai_point = tonumber(self.TextResultPointAi:getString())
+	local player_point = tonumber( self.TextResultPointPlayer:getString() )
+	local score = ai_point - player_point
+
+	if player_point == 0 then
+		score = score + 25
+	elseif ai_point == 0 then
+		score = score - 25
+	end
 
 	if score >= 0 then
 		-- 赢
@@ -1520,7 +1458,6 @@ function GamePlay:gameOver( score )
 			audio.playSound("lkmp3/lose.mp3", false)
 		end
 	end
-
 	-- 存储
 	if score > 0 then
 		self:saveScore( score )
