@@ -181,6 +181,10 @@ function GamePlay:firstSendPoker()
 			self:createPlayerPokerFromPaiDui( time )
 			-- 2:创建AI手牌
 			self:createAIPokerFromPaiDui( time,i )
+
+			if G_GetModel("Model_Sound"):isVoiceOpen() then
+				audio.playSound("lkmp3/sendpoker.mp3", false)
+			end
 		end )
 		table.insert( actions,call )
 		if i == 10 then
@@ -446,6 +450,10 @@ function GamePlay:AIOutPokerLogic()
 	local num_index = self:getAIOutPokerNumIndex()
 	local out_poker = self:getPlayerPokerByNumberIndex( self.AIHandPokerIn,num_index )
 	self:AIHanderPokerToOut( out_poker )
+
+	if G_GetModel("Model_Sound"):isVoiceOpen() then
+		audio.playSound("lkmp3/sendpoker.mp3", false)
+	end
 end
 
 -- 获取ai要出的牌的numberindex
@@ -679,7 +687,6 @@ function GamePlay:createPlayerPokerToHand( poker )
 	local img_startPos = cc.p(poker:getPosition())
 	local img_startWorldPos = poker:getParent():convertToWorldSpace( img_startPos )
 	local img_startNodePos = self.PlayerHandPoker:convertToNodeSpace( img_startWorldPos )
-	dump( img_startNodePos,"----------------> img_startNodePos = " )
 	poker:retain()
 	poker:removeFromParent()
 	self.PlayerHandPoker:addChild( poker )
@@ -783,6 +790,11 @@ function GamePlay:playerOutPoker( poker )
 	if self._moState ~= 3 then
 		return
 	end
+
+	if G_GetModel("Model_Sound"):isVoiceOpen() then
+		audio.playSound("lkmp3/sendpoker.mp3", false)
+	end
+
 	self._moState = 4
 	poker:removePokerClick()
 	poker:showQuan1( false )
@@ -820,14 +832,12 @@ function GamePlay:clickPaiDui()
 
 	local time = 0.3
 	local stack_childs = self.NodeStack:getChildren()
-	print("------------------> clickPaiDui stack_childs1 = "..#stack_childs)
 
 	local top_poker = self:createPlayerPokerFromPaiDui( time )
 	local player_childs = self.PlayerHandPoker:getChildren()
 	top_poker:setLocalZOrder( #player_childs + 1 )
 
 	local stack_childs = self.NodeStack:getChildren()
-	print("------------------> clickPaiDui stack_childs2 = "..#stack_childs)
 
 	performWithDelay( self,function()
 		self:playerHandPokerSort( top_poker )
@@ -978,7 +988,7 @@ function GamePlay:playerOverToShowPoker()
 					-- 显示结算界面
 					local ai_point = tonumber(self.TextResultPointAi:getString())
 					local player_point = tonumber( self.TextResultPointPlayer:getString() )
-					local result_socre = player_point - ai_point
+					local result_socre = ai_point - player_point
 					self:gameOver( result_socre )
 				end
 			end )
@@ -1182,7 +1192,9 @@ end
 function GamePlay:calEffectiveDataByTierce( source )
 	-- 1，选出同花顺
 	local tierce_ary = {}
-	self:choseTierce( source,tierce_ary )
+	if #source >= 3 then
+		self:choseTierce( source,tierce_ary )
+	end
 
 	-- 去掉已筛选的同花顺
 	local new_source = clone( source )
@@ -1399,6 +1411,19 @@ end
 
 
 function GamePlay:gameOver( score )
+
+	if score >= 0 then
+		-- 赢
+		if G_GetModel("Model_Sound"):isVoiceOpen() then
+			audio.playSound("lkmp3/win.mp3", false)
+		end
+	else
+		-- 输
+		if G_GetModel("Model_Sound"):isVoiceOpen() then
+			audio.playSound("lkmp3/lose.mp3", false)
+		end
+	end
+
 	-- 存储
 	if score > 0 then
 		self:saveScore( score )
