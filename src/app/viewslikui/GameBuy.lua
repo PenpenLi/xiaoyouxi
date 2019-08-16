@@ -32,7 +32,7 @@ function GameBuy:ctor( param )
 end
 
 function GameBuy:loadUi()
-	print( "--------------= "..self._money[self._index] )
+	-- print( "--------------= "..self._money[self._index] )
 	self.Text:setString( string.format("您将花费%s元购买%s金币",self._money[self._index],self._coin[self._index]) )
 end
 

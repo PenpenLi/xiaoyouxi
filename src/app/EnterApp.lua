@@ -28,7 +28,7 @@ end
 function EnterApp:create()
 	print(">>>>>EnterApp:create<<<<<<")
 	self:loadAppFile()
-	local scene = require("app.scenes.BuYuScene").new()
+	local scene = require("app.scenes.SlotScene").new()
 	return scene
 end
 

@@ -79,7 +79,6 @@ end
 
 --[[ 子类需要重写 ]]
 function BaseTable:_onTouchBegan( event )
-    print("----------？？？")
     return true
 end
 --[[ 子类需要重写 ]]
