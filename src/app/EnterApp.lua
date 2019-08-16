@@ -101,9 +101,9 @@ function EnterApp:run()
 	-- local scene = require("app.scenes.LiKuiScene").new()
 	-- display.runScene(scene)
 
-	-- 捕鱼
-	local scene = require("app.scenes.BuYuScene").new()
-	display.runScene(scene)
+	-- -- 捕鱼
+	-- local scene = require("app.scenes.BuYuScene").new()
+	-- display.runScene(scene)
 end
 
 
