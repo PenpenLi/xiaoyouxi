@@ -14,12 +14,13 @@ end)
 
 
 
-function LoadingScene:ctor( sceneType )
+function LoadingScene:ctor( sceneType,levelIndex )
 	assert( sceneType," !! sceneType is nil !! " )
 	-- 开启生命周期
 	self:enableNodeEvents()
 	self._uiManager = UIManager.new( self )
 	self._sceneType = sceneType
+	self._levelIndex = levelIndex
 end
 
 
@@ -32,7 +33,7 @@ end
 
 function LoadingScene:onEnter()
 	-- 加载Loading界面
-	addUIToScene( UIDefine.SLOT_KEY.Loading_UI,self._sceneType  )
+	addUIToScene( UIDefine.SLOT_KEY.Loading_UI,{self._sceneType,self._levelIndex}  )
 end
 
 function LoadingScene:onExit()

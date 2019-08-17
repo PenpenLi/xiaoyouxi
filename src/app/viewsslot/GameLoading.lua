@@ -8,7 +8,9 @@ function GameLoading:ctor( param )
 	assert( param.name," !! param.name is nil !! " )
 	GameLoading.super.ctor( self,param.name )
 
-	self._sceneType = param.data
+	self._sceneType = param.data[1]
+	self._levelIndex = param.data[2]
+
 	self:addCsb( "csbslot/hall/Loading.csb" )
 end
 
@@ -30,7 +32,7 @@ end
 
 
 function GameLoading:loadUIData()
-	self._config = self:getLoadResConfig( )
+	self._config = self:getLoadResConfig()
 	self._curIndex = 0
 	self._totalIndex = 0
 
@@ -212,7 +214,8 @@ function GameLoading:goToOtherScene()
 			display.runScene(scene)
 		elseif scene_type == SceneManager.SCENE_TYPE.LEVEL then
 			-- 进入关卡
-
+			local scene = require("app.viewsslot.LevelScene").new( self._levelIndex )
+			display.runScene(scene)
 		end
 	end
 end
@@ -229,10 +232,9 @@ function GameLoading:getLoadResConfig()
 	local config = nil
 	if self._sceneType == SceneManager.SCENE_TYPE.HALL then
 		-- 大厅
-		config = import("app.viewsslot.config.HallResConfig")
+		config = import( "app.viewsslot.config.HallResConfig" )
 	elseif self._sceneType == SceneManager.SCENE_TYPE.LEVEL then
-		-- local sLevelName = LevelConfigManager:getLevelName()
-		-- config = require(sLevelName..".src.ResConfig")
+		config = import( "app.viewsslot.config.gameconfig"..self._levelIndex )
 	end
 	assert( config," !! SceneManager res config is nil !! " )
 	return config

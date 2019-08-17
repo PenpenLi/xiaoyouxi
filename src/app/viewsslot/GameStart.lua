@@ -175,6 +175,8 @@ end
 
 
 function GameStart:clickGame1()
+	-- 进入关卡1
+	SceneManager:gotoLevelScene( 1 )
 end
 
 function GameStart:store()

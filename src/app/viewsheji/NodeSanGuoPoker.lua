@@ -35,7 +35,7 @@ end
 
 function NodeSanGuoPoker:addPokerClick()
 	G_AddNodeClick( self._image,{
-		endedCallBack = function() self:playerOut() end,
+		endCallBack = function() self:playerOut() end,
 		cancelCallBack = function() self:playerCancel() end
 	})
 end

@@ -12,7 +12,7 @@ function PokerNode:ctor( parentPanel,mType )
 
 	if mType and mType == "player" then
 		G_AddNodeClick( self.ImagePokerDi,{
-			endedCallBack = function() self:touchEnd() end,
+			endCallBack = function() self:touchEnd() end,
 			cancelCallBack = function() self:cancelEnd() end
 		})
 	end
