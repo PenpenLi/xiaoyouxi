@@ -7,7 +7,7 @@ function GameStart:ctor( param )
 	assert( param.name," !! param.name is nil !! ")
 	GameStart.super.ctor( self,param.name )
 
-	self:addCsb( "csbslot/Start.csb" )
+	self:addCsb( "csbslot/hall/Start.csb" )
 
 	-- 关卡1
 	self:addNodeClick( self.ImageLevel1,{
@@ -43,14 +43,12 @@ function GameStart:onEnter( ... )
 	casecadeFadeInNode( self._csbNode,0.5 )
 
 	self:loadCoin()
-	self:loadMusic()
-end
-
 
 	self:resetBar()
 	G_GetModel("Model_Slot"):getInstance():getCountDown()
 	self.ImageBigCoin:setVisible( false )
 	self.ImageDiscSpinning:setVisible( false )
+
 	self:schedule( function ()
 		self:countDown()
 		-- index = index + 1
@@ -59,8 +57,9 @@ end
 		-- 	self:loadStart()
 		-- end
 	end,0.1)
-	-- self:countDown()
 end
+
+
 -- 进度条加载状态
 function GameStart:resetBar( ... )
 	local index = G_GetModel("Model_Slot"):getInstance():getNumOfCollectTime()
@@ -73,9 +72,10 @@ function GameStart:resetBar( ... )
 		self:setLoadingBar( self["LoadingBar"..j],0 )
 	end
 end
+
+
 -- 倒计时
 function GameStart:countDown( )
-
 	local time_began = G_GetModel("Model_Slot"):getInstance():getCountDown()
 	local time_end = os.time()
 	local time_long = time_end - time_began
@@ -112,20 +112,21 @@ function GameStart:collectCoin()
 	self:resetBar()
 	self:coinFly()
 end
+
+
 -- 转盘抽奖
 function GameStart:discSpinning()
 	self.ImageDiscSpinning:setVisible( false )
 
 	addUIToScene( UIDefine.SLOT_KEY.Turn_UI )
 end
+
 -- 收集金币飞舞
 function GameStart:coinFly()
-
 	local began_pos = self.ImageBigCoin:getParent():convertToWorldSpace( cc.p(self.ImageBigCoin:getPosition()))
 	local first_pos = cc.p( 0,0 )
 	local second_pos = cc.p( 400,500 )
 	local third_pos = self.ImageCoinDollar:getParent():convertToWorldSpace( cc.p(self.ImageCoinDollar:getPosition()))
-	
 	for i=1,6 do
 		local coin = ccui.ImageView:create( "image/ui/coin_dollar2.png",1 )
 		self:addChild( coin )
@@ -135,18 +136,9 @@ function GameStart:coinFly()
 		local seq = cc.Sequence:create({ delay,bz })
 		coin:runAction( seq )
 	end
-
 end
 
 
-
-function GameStart:loadMusic()
-	-- local model = G_GetModel("Model_Sound"):getInstance()
-	-- local is_open = model:isMusicOpen()
-	-- if is_open then
-	-- 	model:playBgMusic()
-	-- end
-end
 
 function GameStart:clickGame1()
 end

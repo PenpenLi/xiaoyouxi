@@ -6,6 +6,12 @@
 -- Desc:	场景管理的manager 注:所有涉及到场景跳转的，必须通过scenemanager的方法来跳转
 
 
+cc.FileUtils:getInstance():addSearchPath( "res/csbslot" )
+cc.FileUtils:getInstance():addSearchPath( "res/csbslot/hall" )
+
+require("app.viewsslot.base.SymbolCsbCache")
+require("app.viewsslot.base.EffectCsbCache")
+
 local SceneManager = class("SceneManager")
 
 SceneManager.SCENE_TYPE = {
@@ -35,7 +41,7 @@ end
 -- 进入大厅scene
 function SceneManager:goToHallScene()
 	-- 必须先进入LoadingScene 预加载资源
-	local loading_scene = require("app.ui.scenes.LoadingScene").new( self.SCENE_TYPE.HALL )
+	local loading_scene = require("app.viewsslot.LoadingScene").new( self.SCENE_TYPE.HALL )
 	display.runScene( loading_scene )
 end
 
@@ -46,14 +52,7 @@ end
 function SceneManager:gotoLevelScene( levelIndex )
 	assert( levelIndex," !! levelIndex is nil !! " )
 
-	if GameDataCenter:getLevelIndex() == levelIndex then
-		cclog("The same scene ...")
-		return
-	end
-	
-	GameDataCenter:setLevelIndex( levelIndex )
-	
-	local loading_scene = require("app.ui.scenes.LoadingScene").new( self.SCENE_TYPE.LEVEL )
+	local loading_scene = require("app.viewsslot.LoadingScene").new( self.SCENE_TYPE.LEVEL )
 	display.runScene( loading_scene )
 end
 

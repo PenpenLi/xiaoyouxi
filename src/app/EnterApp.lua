@@ -34,8 +34,8 @@ function EnterApp:create()
 
 	-- slot
 	import("app.viewsslot.SceneManager")
-	SceneManager:goToHallScene()
-	
+	local loading_scene = require("app.viewsslot.LoadingScene").new( SceneManager.SCENE_TYPE.HALL )
+	return loading_scene
 end
 
 function EnterApp:run()
