@@ -1,8 +1,6 @@
 
 local slotgameconfig = {}
 
-
-
 slotgameconfig.level1 = {
 	symbol_width		= 163,
 	symbol_height       = 163,
@@ -75,7 +73,15 @@ slotgameconfig.level1 = {
 		[90]     	= { file =  "csbslotgame1/Socre_Pharaoh_Scatter.csb", resourcetype = "csb",count = 15 },
 		[92]     	= { file =  "csbslotgame1/Socre_Pharaoh_Wild.csb", resourcetype = "csb",count = 20 },
 		[94]     	= { file =  "csbslotgame1/Socre_Pharaoh_Special_1.csb", resourcetype = "csb",count = 15 },
+	},
+
+	effect_csb = {
+		["paomadeng"] 	= { file = "csbslotgame1/WinFramePharaoh.csb",	resourcetype = "csb",count = 15 },			     										-- 跑马灯
+		["kuaigun"]     = { file = "csbslotgame1/Pharaoh_Reel_Run.csb",resourcetype = "csb",count = 5 },			 											-- 快滚特效
+		["shandian1"]   = { file = "csbslotgame1/Socre_Pharaoh_Shandian.csb",resourcetype = "csb",count = 15 },
+		["shandian2"]   = { file = "csbslotgame1/Socre_Pharaoh_Shandian1.csb",resourcetype = "csb",count = 15 }       											-- 闪电
 	}
+
 }
 
 

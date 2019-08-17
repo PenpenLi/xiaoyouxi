@@ -1481,6 +1481,7 @@ function GamePlay:setMusic()
 		model:stopPlayBgMusic()
 	else
 		self.ButtonMusic:loadTexture( "image/start/music.png",1 )
+		ungraySprite( self.ButtonMusic:getVirtualRenderer():getSprite() )
 		model:setMusicState( model.State.Open )
 		model:playBgMusic()
 	end
@@ -1495,6 +1496,7 @@ function GamePlay:setSound()
 		model:setVoiceState( model.State.Closed )
 	else
 		self.ButtonSound:loadTexture( "image/start/sound.png",1 )
+		ungraySprite( self.ButtonSound:getVirtualRenderer():getSprite() )
 		model:setVoiceState( model.State.Open )
 	end
 end
