@@ -274,6 +274,7 @@ UIDefine.SLOT_KEY  = {
 	Turn_UI 			= { layer = import("app.viewsslot.GameZhuanPan"),	    		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Turn_UI"                       },
 	Play_UI         	= { layer = import("app.viewsslot.GamePlay"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Play_UI"                       },
 	Bottom_UI           = { layer = import("app.viewsslot.GameBottom"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Bottom_UI"                     },
+	Collect_UI 			= { layer = import("app.viewsslot.GameCollect"),	    		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Collect_UI"                      },
 }
 
 
