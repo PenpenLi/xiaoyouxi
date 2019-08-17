@@ -38,7 +38,11 @@ function GameZhuanPan:turnBegan()
 		print("-------------------123")
 		self:playCsbAction( "zhongjiang",true )
 	end)
-	local seq = cc.Sequence:create({ delay,rotate_began,easeSineInOut,rotate_end,call })
+	local delay1 = cc.DelayTime:create( 2 )
+	local call1 = cc.CallFunc:create(function ()
+		addUIToScene( UIDefine.SLOT_KEY.Collect_UI )
+	end)
+	local seq = cc.Sequence:create({ delay,rotate_began,easeSineInOut,rotate_end,call,delay1,call1 })
 	
 	self.Bg3:runAction( seq )
 	-- local rot_began = 90
@@ -119,8 +123,8 @@ function GameZhuanPan:turnBegan()
 end
 function GameZhuanPan:zhizhen()
 	self.ImageZhiZhen:setRotation( 30 )
-	local rotate1 = cc.RotateTo:create( 0.05,35 )
-	local rotate2 = cc.RotateTo:create( 0.05,30 )
+	local rotate1 = cc.RotateTo:create( 0.03,45 )
+	local rotate2 = cc.RotateTo:create( 0.03,30 )
 	local seq = cc.Sequence:create({ rotate1,rotate1 })
 	self.ImageZhiZhen:runAction( seq )
 end
