@@ -8,6 +8,7 @@
 
 cc.FileUtils:getInstance():addSearchPath( "res/csbslot" )
 cc.FileUtils:getInstance():addSearchPath( "res/csbslot/hall" )
+cc.FileUtils:getInstance():addSearchPath( "res/csbslot/wolfLighting" )
 
 require("app.viewsslot.base.SymbolCsbCache")
 require("app.viewsslot.base.EffectCsbCache")
@@ -51,8 +52,7 @@ end
 ]]
 function SceneManager:gotoLevelScene( levelIndex )
 	assert( levelIndex," !! levelIndex is nil !! " )
-
-	local loading_scene = require("app.viewsslot.LoadingScene").new( self.SCENE_TYPE.LEVEL )
+	local loading_scene = require("app.viewsslot.LoadingScene").new( self.SCENE_TYPE.LEVEL,levelIndex )
 	display.runScene( loading_scene )
 end
 

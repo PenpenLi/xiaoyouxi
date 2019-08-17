@@ -275,18 +275,21 @@ local function G_AddNodeClick( node,param )
 			if param.beganCallBack then
 				param.beganCallBack()
 			end
+			node:setScale(0.95)
 		elseif event.name == "moved" then
-			if param.movedCallBack then
-				param.movedCallBack()
+			if param.moveCallBack then
+				param.moveCallBack()
 			end
 		elseif event.name == "ended" then
-			if param.endedCallBack then
-				param.endedCallBack()
+			if param.endCallBack then
+				param.endCallBack()
 			end
+			node:setScale(1)
 		elseif event.name == "cancelled" then
 			if param.cancelCallBack then
 				param.cancelCallBack()
 			end
+			node:setScale(1)
 		end
 	end )
 end

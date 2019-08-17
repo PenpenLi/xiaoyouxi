@@ -46,10 +46,5 @@ HallResConfig.image = {
 }
 
 
-HallResConfig.csb = {
-
-}
-
-
 
 return HallResConfig

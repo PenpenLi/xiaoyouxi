@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>Symbol/WolfLight_wild_wolf_18.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1},{220,220}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{220,220}</string>
+			</dict>
+			<key>Symbol/WolfLight_wild_wolf_19.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,223},{220,220}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{220,220}</string>
+			</dict>
+			<key>Symbol/WolfLight_wild_wolf_2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,445},{220,220}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{220,220}</string>
+			</dict>
+			<key>Symbol/WolfLight_wild_wolf_20.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,667},{220,220}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{220,220}</string>
+			</dict>
+			<key>Symbol/WolfLight_wild_wolf_21.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{223,1},{220,220}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{220,220}</string>
+			</dict>
+			<key>Symbol/WolfLight_wild_wolf_22.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{445,1},{220,220}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{220,220}</string>
+			</dict>
+			<key>Symbol/WolfLight_wild_wolf_23.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{667,1},{220,220}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{220,220}</string>
+			</dict>
+			<key>Symbol/WolfLight_wild_wolf_24.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{223,223},{220,220}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{220,220}</string>
+			</dict>
+			<key>Symbol/WolfLight_wild_wolf_25.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{223,445},{220,220}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{220,220}</string>
+			</dict>
+			<key>Symbol/WolfLight_wild_wolf_26.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{223,667},{220,220}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{220,220}</string>
+			</dict>
+			<key>Symbol/WolfLight_wild_wolf_27.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{445,223},{220,220}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{220,220}</string>
+			</dict>
+			<key>Symbol/WolfLight_wild_wolf_28.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{667,223},{220,220}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{220,220}</string>
+			</dict>
+			<key>Symbol/WolfLight_wild_wolf_3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{445,445},{220,220}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{220,220}</string>
+			</dict>
+			<key>Symbol/WolfLight_wild_wolf_4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{445,667},{220,220}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{220,220}</string>
+			</dict>
+			<key>Symbol/WolfLight_wild_wolf_5.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{667,445},{220,220}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{220,220}</string>
+			</dict>
+			<key>Symbol/WolfLight_wild_wolf_6.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{667,667},{220,220}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{220,220}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>Pharaoh7.png</string>
+			<key>realTextureFileName</key>
+			<string>Pharaoh7.png</string>
+			<key>size</key>
+			<string>{1024,1024}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>1024</integer>
+			<key>height</key>
+			<integer>1024</integer>
+		</dict>
+	</dict>
+</plist>
