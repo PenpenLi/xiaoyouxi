@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>Symbol/wolflight_moonlight_0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{514,1027},{473,473}}</string>
+				<key>offset</key>
+				<string>{-1,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{550,550}</string>
+			</dict>
+			<key>Symbol/wolflight_moonlight_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1036},{473,473}}</string>
+				<key>offset</key>
+				<string>{-1,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{550,550}</string>
+			</dict>
+			<key>Symbol/wolflight_moonlight_10.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1559,940},{488,492}}</string>
+				<key>offset</key>
+				<string>{1,-1}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{550,550}</string>
+			</dict>
+			<key>Symbol/wolflight_moonlight_11.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{531,518},{507,519}}</string>
+				<key>offset</key>
+				<string>{-3,-2}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{550,550}</string>
+			</dict>
+			<key>Symbol/wolflight_moonlight_12.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{531,1},{515,534}}</string>
+				<key>offset</key>
+				<string>{-7,-3}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{550,550}</string>
+			</dict>
+			<key>Symbol/wolflight_moonlight_13.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1},{528,527}}</string>
+				<key>offset</key>
+				<string>{-2,-1}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{550,550}</string>
+			</dict>
+			<key>Symbol/wolflight_moonlight_14.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1067,1},{522,523}}</string>
+				<key>offset</key>
+				<string>{8,9}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{550,550}</string>
+			</dict>
+			<key>Symbol/wolflight_moonlight_15.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,530},{511,504}}</string>
+				<key>offset</key>
+				<string>{-1,-2}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{550,550}</string>
+			</dict>
+			<key>Symbol/wolflight_moonlight_16.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1052,525},{505,500}}</string>
+				<key>offset</key>
+				<string>{0,4}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{550,550}</string>
+			</dict>
+			<key>Symbol/wolflight_scatter_R.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1892,291},{32,85}}</string>
+				<key>offset</key>
+				<string>{71,-4}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{183,209}</string>
+			</dict>
+			<key>Symbol/wolflight_scatter_S.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2017,1},{29,87}}</string>
+				<key>offset</key>
+				<string>{-72,-4}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{183,209}</string>
+			</dict>
+			<key>Symbol/wolflight_scatter_T1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2017,159},{22,64}}</string>
+				<key>offset</key>
+				<string>{1,-5}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{183,209}</string>
+			</dict>
+			<key>Symbol/wolflight_scatter_T2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2017,90},{23,67}}</string>
+				<key>offset</key>
+				<string>{23,-4}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{183,209}</string>
+			</dict>
+			<key>Symbol/WolfLight_symbol_grand.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1892,1},{160,70}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{160,70}</string>
+			</dict>
+			<key>Symbol/WolfLight_symbol_major.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1964,1},{155,51}}</string>
+				<key>offset</key>
+				<string>{-1,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{160,52}</string>
+			</dict>
+			<key>Symbol/WolfLight_symbol_mini.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1892,163},{126,50}}</string>
+				<key>offset</key>
+				<string>{-1,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{128,50}</string>
+			</dict>
+			<key>Symbol/WolfLight_symbol_minor.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1964,158},{146,51}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{146,52}</string>
+			</dict>
+			<key>Symbol/WolfLight_top_floor.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1743,1},{929,147}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{929,147}</string>
+			</dict>
+			<key>Symbol/WolfLight_top_floor_freespin.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1592,1},{937,149}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{937,149}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>Pharaoh6.png</string>
+			<key>realTextureFileName</key>
+			<string>Pharaoh6.png</string>
+			<key>size</key>
+			<string>{2048,1510}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>2048</integer>
+			<key>height</key>
+			<integer>1510</integer>
+		</dict>
+	</dict>
+</plist>

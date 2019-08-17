@@ -28,7 +28,10 @@ end
 function EnterApp:create()
 	print(">>>>>EnterApp:create<<<<<<")
 	self:loadAppFile()
-	local scene = require("app.scenes.LiKuiScene").new()
+
+	-- slot
+	import("app.viewsslot.SceneManager")
+	local scene = require("app.scenes.SlotScene").new()
 	return scene
 end
 

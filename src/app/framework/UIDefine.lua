@@ -267,4 +267,10 @@ UIDefine.LIKUI_KEY	= {
 -- 	Play_UI             = { layer = import("app.viewsbuyu.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Play_UI"    			   		},
 -- }
 
+
+UIDefine.SLOT_KEY  = {
+	Loading_UI 			= { layer = import("app.viewsslot.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Loading_UI" 			  	    },
+	Start_UI 			= { layer = import("app.viewsslot.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Start_UI"                      },
+}
+
 rawset(_G,"UIDefine",UIDefine)
