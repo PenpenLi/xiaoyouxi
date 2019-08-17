@@ -1,5 +1,6 @@
 
-
+local CardWheelConfig = import( "app.viewsslot.config.CardWheelConfig" )
+local CardWheelRewardConfig = import( "app.viewsslot.config.CardWheelRewardConfig" )
 
 local GameZhuanPan = class( "GameZhuanPan",BaseLayer )
 
@@ -9,7 +10,7 @@ function GameZhuanPan:ctor( param )
 	assert( param.name," !! param.name is nil !! " )
 	GameZhuanPan.super.ctor( self,param.name ) -----------------------一句话五小时。。。。。
 
-	self:addCsb( "csbslot/TurnTable.csb" )
+	self:addCsb( "csbslot/hall/TurnTable.csb" )
 
 	self:addNodeClick( self.ButtonSpin11,{
 		endCallBack = function ()
@@ -20,13 +21,23 @@ end
 
 function GameZhuanPan:onEnter()
 	GameZhuanPan.super.onEnter( self )
+	self:loadUi()
 
+end
+function GameZhuanPan:loadUi()
+	local coin_table = G_GetModel("Model_Slot"):getInstance():lunpanData()
+	dump( coin_table,"-------------------coin_table = ")
 
 end
 
-
 function GameZhuanPan:turnBegan()
+
+	if self._turnMark then
+		return
+	end
 	
+	self._turnMark = true
+
 	local turn_num = 5
 	local rot = random( 1,15 )
 	local delay = cc.DelayTime:create( 0.1)

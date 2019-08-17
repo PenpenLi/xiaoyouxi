@@ -8,8 +8,8 @@ function GameCollect:ctor( param )
 	GameCollect.super.ctor( self,param.name )
 
 
-	self:addCsb( "csbslot/TurnReward.csb" )
-
+	self:addCsb( "csbslot/hall/TurnReward.csb" )
+	self:playCsbAction( "start",false )
 
 
 	self:addNodeClick( self.ButtonCollect,{
@@ -20,7 +20,9 @@ function GameCollect:ctor( param )
 end
 
 function GameCollect:collectCoin()
-	-- body
+	print("----------------------guanbi")
+	removeUIFromScene( UIDefine.SLOT_KEY.Turn_UI )
+	removeUIFromScene( UIDefine.SLOT_KEY.Collect_UI )
 end
 
 
