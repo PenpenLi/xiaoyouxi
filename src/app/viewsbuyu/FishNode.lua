@@ -6,7 +6,7 @@ local FishNode = class("FishNode",BaseNode)
 function FishNode:ctor()
 	FishNode.super.ctor( self,"FishNode" )
 
-	local fish = ccui.ImageView:create("fish1_1/0.png")
+	local fish = ccui.ImageView:create("fish1_3/0.png")
 	self:addChild( fish )
 	self._fish = fish
 end

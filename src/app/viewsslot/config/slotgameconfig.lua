@@ -80,7 +80,8 @@ slotgameconfig.level1 = {
 		["kuaigun"]     = { file = "csbslotgame1/Pharaoh_Reel_Run.csb",resourcetype = "csb",count = 5 },			 											-- 快滚特效
 		["shandian1"]   = { file = "csbslotgame1/Socre_Pharaoh_Shandian.csb",resourcetype = "csb",count = 15 },
 		["shandian2"]   = { file = "csbslotgame1/Socre_Pharaoh_Shandian1.csb",resourcetype = "csb",count = 15 }       											-- 闪电
-	 }
+	}
+
 }
 
 

@@ -29,10 +29,13 @@ function EnterApp:create()
 	print(">>>>>EnterApp:create<<<<<<")
 	self:loadAppFile()
 
+	-- local scene = require("app.scenes.SlotScene").new()
+	-- return scene
+
 	-- slot
 	import("app.viewsslot.SceneManager")
-	local scene = require("app.scenes.SlotScene").new()
-	return scene
+	SceneManager:goToHallScene()
+	
 end
 
 function EnterApp:run()
