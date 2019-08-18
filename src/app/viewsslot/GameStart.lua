@@ -37,6 +37,13 @@ function GameStart:ctor( param )
 			self:discSpinning()
 		end
 	})
+
+	-- 每日抽奖
+	self:addNodeClick( self.ButtonChoujiangOfDay,{
+		endCallBack = function ()
+			self:ChoujiangOfDay()
+		end
+	})
 end
 
 function GameStart:loadCoin(  )
@@ -127,7 +134,8 @@ function GameStart:collectCoin()
 	G_GetModel("Model_Slot"):getInstance():setNumOfCollectTime( index )
 	self.GetCoinToByNode:setVisible( false )
 	self:resetBar()
-	self:coinFly()
+
+	self:coinAction()
 
 	
 end
@@ -139,38 +147,49 @@ function GameStart:discSpinningTurn()
 end
 -- 转盘抽奖
 function GameStart:discSpinning()
-	self.ImageDiscSpinning:setVisible( false )
-	self:collectCoin()
-	addUIToScene( UIDefine.SLOT_KEY.Turn_UI )
+	-- self.ImageDiscSpinning:setVisible( false )
+	-- self:collectCoin()
+	addUIToScene( UIDefine.SLOT_KEY.Turn_UI,self )
 
 	
 end
 
 -- 收集金币飞舞
-function GameStart:coinFly()
-	local index = 5 -- 飞6枚金币
+function GameStart:coinAction()
+	local num = 5 -- 动作几枚金币
 	local began_pos = self.ImageBigCoin:getParent():convertToWorldSpace( cc.p(self.ImageBigCoin:getPosition()))
-	local first_pos = cc.p( 0,0 )
-	local second_pos = cc.p( 400,500 )
-	local third_pos = self.ImageCoinDollar:getParent():convertToWorldSpace( cc.p(self.ImageCoinDollar:getPosition()))
-	for i=1,index do
-		local coin = ccui.ImageView:create( "image/ui/coin_dollar2.png",1 )
-		self:addChild( coin )
-		coin:setPosition( began_pos )
-		-- coin:setVisible( false )
-		local fade = cc.FadeIn:create( 0.1)
-		local bz = cc.BezierTo:create(1,{ first_pos,second_pos,third_pos })
-		local delay = cc.DelayTime:create( 0.05 * i )
-		local call = cc.CallFunc:create(function ()
-			local coin = G_GetModel("Model_Slot"):getInstance():getCollectCoin()
-			G_GetModel("Model_Slot"):getInstance():setCoin( coin / index )
-			EventManager:getInstance():dispatchInnerEvent( InnerProtocol.INNER_EVENT_SLOT_BUY_COIN )
-		end)
-		
-		local seq = cc.Sequence:create({ delay,fade,bz,call })
-		coin:runAction( seq )
+	local end_pos = self.ImageCoinDollar:getParent():convertToWorldSpace( cc.p(self.ImageCoinDollar:getPosition()))
+	local call = function ()
+		local coin = G_GetModel("Model_Slot"):getInstance():getCollectCoin()
+	    G_GetModel("Model_Slot"):getInstance():setCoin( coin )
+	    EventManager:getInstance():dispatchInnerEvent( InnerProtocol.INNER_EVENT_SLOT_BUY_COIN )
 	end
+	coinFly( began_pos,end_pos,num,call )
 end
+-- function GameStart:coinFly()
+	-- local index = 5 -- 飞6枚金币
+	-- local began_pos = self.ImageBigCoin:getParent():convertToWorldSpace( cc.p(self.ImageBigCoin:getPosition()))
+	-- local first_pos = cc.p( 0,0 )
+	-- local second_pos = cc.p( 400,500 )
+	-- local third_pos = self.ImageCoinDollar:getParent():convertToWorldSpace( cc.p(self.ImageCoinDollar:getPosition()))
+	-- for i=1,index do
+	-- 	local coin = ccui.ImageView:create( "image/ui/coin_dollar2.png",1 )
+	-- 	self:addChild( coin )
+	-- 	coin:setPosition( began_pos )
+	-- 	-- coin:setVisible( false )
+	-- 	local fade = cc.FadeIn:create( 0.1)
+	-- 	local bz = cc.BezierTo:create(1,{ first_pos,second_pos,third_pos })
+	-- 	local delay = cc.DelayTime:create( 0.05 * i )
+	-- 	local call = cc.CallFunc:create(function ()
+	-- 		local coin = G_GetModel("Model_Slot"):getInstance():getCollectCoin()
+	-- 		G_GetModel("Model_Slot"):getInstance():setCoin( coin / index )
+	-- 		EventManager:getInstance():dispatchInnerEvent( InnerProtocol.INNER_EVENT_SLOT_BUY_COIN )
+	-- 	end)
+		
+	-- 	local seq = cc.Sequence:create({ delay,fade,bz,call })
+	-- 	coin:runAction( seq )
+	-- end
+-- end
 
 
 
@@ -183,7 +202,9 @@ function GameStart:store()
 	-- addUIToScene( UIDefine.SUOHA_KEY.Shop_UI )
 end
 
-
+function GameStart:ChoujiangOfDay()
+	addUIToScene( UIDefine.SLOT_KEY.Draw_UI )
+end
 
 
 

@@ -125,6 +125,12 @@ end
 
 -- 获取轮盘数据
 function Model_Slot:lunpanData( parent )
+
+
+	if self._wheelTable == nil then
+		self._wheelTable = {}
+	end
+
 	local level = self:getLevel()
 	local wheelId = nil
 	local index = random( 1,3 )
@@ -133,21 +139,33 @@ function Model_Slot:lunpanData( parent )
 			wheelId = v["WheelId"..index]
 		end
 	end
-	local weight = 0
-	for a,b in pairs(CardWheelRewardConfig) do
-		if wheelId == b.WheelId then
-			weight = weight + b.Weight
+
+	if self._wheelTable[wheelId] == nil then
+
+
+		-- local weight = 0
+		-- for a,b in pairs(CardWheelRewardConfig) do
+		-- 	if wheelId == b.WheelId then
+		-- 		weight = weight + b.Weight
+		-- 	end
+		-- end
+
+
+		local coin_table = {}
+		for c,d in ipairs(CardWheelRewardConfig) do
+			if wheelId == d.WheelId then
+				table.insert( coin_table,d )
+			end
 		end
+
+		table.sort( coin_table, function( a,b)
+			return a.Order < b.Order 
+		end )
+
+		self._wheelTable[wheelId] = coin_table
 	end
-	local coin_table = {}
-	for c,d in ipairs(CardWheelRewardConfig) do
-		if wheelId == d.WheelId then
-			print("------------------Order = "..d.Order )
-			print("------------------BaseCoinReward = "..d.BaseCoinReward )
-			table.insert( coin_table,d.BaseCoinReward )
-		end
-	end
-	return coin_table
+
+	return self._wheelTable[wheelId]
 end
 
 
