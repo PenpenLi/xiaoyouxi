@@ -205,6 +205,7 @@ function GameLoading:goToOtherScene()
 	local scene_type = self._sceneType 
 	local cur_index = self._curIndex
 	local total_index = self._totalIndex
+	local level_index = self._levelIndex
 	
 	if cur_index >= total_index then
 		removeUIFromScene( UIDefine.SLOT_KEY.Loading_UI )
@@ -214,7 +215,7 @@ function GameLoading:goToOtherScene()
 			display.runScene(scene)
 		elseif scene_type == SceneManager.SCENE_TYPE.LEVEL then
 			-- 进入关卡
-			local scene = require("app.viewsslot.LevelScene").new( self._levelIndex )
+			local scene = require("app.viewsslot.LevelScene").new( level_index )
 			display.runScene(scene)
 		end
 	end
