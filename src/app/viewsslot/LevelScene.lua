@@ -26,6 +26,13 @@ function LevelScene:onEnter()
 	self._bottomLayer = addUIToScene( UIDefine.SLOT_KEY.Bottom_UI )
 end
 
+function LevelScene:getPlayLayer()
+	return self._gameLayer
+end
+
+function LevelScene:getBottomLayer()
+	return self._bottomLayer
+end
 
 function LevelScene:getSceneName()
 	return "LevelScene"

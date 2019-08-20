@@ -98,7 +98,7 @@ function EffectCsbCache:getCsbNodeByEffectName( effectName )
 	local len = #self._effectCsbList[effectName]
 	local meta = self._effectCsbList[effectName][len]
 	meta.used = true
-	cclog("创建新的特效 effectName = "..effectName)
+	print("创建新的特效 effectName = "..effectName)
 	return meta
 end
 

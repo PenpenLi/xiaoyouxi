@@ -6,31 +6,31 @@
 local SymbolUnit = class("SymbolUnit",BaseNode)
 
 
-function SymbolUnit:ctor()
+function SymbolUnit:ctor( size,reelConfig )
 	SymbolUnit.super.ctor( self )
+	self._size = size
+	self._reelConfig = reelConfig
+	self:setContentSize( size )
 end
 
 
 -- 设置信号块资源 --
---[[
-	symbolInfo:信号块的数据 
-		例如:{ 1,1 } { 13,1 }, {13,2} ,{13,3}
-		说明: 第一个参数是 信号块id 第二个参数 大图标的资源索引
-	isShow:是否绘制
-]]
 function SymbolUnit:loadDataUI( symbolId )
 	assert( symbolId," !! symbolId,is nil !! ")
 
 	self._symbolId = symbolId
+	self:setCsbNode( symbolId )
 
-	if isShow then
-		self:setCsbNode( self._nSymbolID )
+	-- 针对特殊新号块
+	if self._symbolId == self._reelConfig.special_id then
+		local num = random(1,9) * 100
+		self._csbVar["score_lab"]:setString( num )
 	end
 end
 
 
 -- 重新设置信号块 --
-function SymbolUnit:setCsbNode( nSymbolID )
+function SymbolUnit:setCsbNode( symbolId )
 	self._csbNode = self:getChildByTag( 1115 )
 	if self._csbNode then
 		self._csbNode:removeFromParent()
@@ -39,20 +39,27 @@ function SymbolUnit:setCsbNode( nSymbolID )
 	self:backCsbNodeUsed()
 
 	-- 从缓存获取csb节点
-	local symbol_data = SymbolCsbCache:getCsbNodeBySymbolId( nSymbolID )
+	local symbol_data = SymbolCsbCache:getCsbNodeBySymbolId( symbolId )
 	self._symbolData = symbol_data
 	self._csbNode = symbol_data.node
 	self._csbNode:setTag( 1115 )
+	self._csbNode:setPosition( cc.p( self._size.width / 2,self._size.height / 2 ) )
+	self._csbNode:runAction( self._symbolData.action )
+	self._csbVar = symbol_data.csbVar
 
 	-- 切换到静止帧
-	self:playCsbActionByName("idleframe")
+	self:playCsbAction("idleframe")
 	
 	self:addChild( self._csbNode )
 end
 
+function SymbolUnit:playCsbAction( actionName,loop,func )
+	playCsbActionForKey( self._symbolData.action,actionName,loop,func )
+end
 
 
 function SymbolUnit:onExit()
+	SymbolUnit.super.onExit( self )
 	self:backCsbNodeUsed()
 end
 
@@ -64,6 +71,10 @@ function SymbolUnit:backCsbNodeUsed()
 	end
 end
 
+
+function SymbolUnit:stopCsbaction()
+	self._csbNode:stopAllActions()
+end
 
 function SymbolUnit:getUnitSize()
 	return self._size

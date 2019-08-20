@@ -5,7 +5,7 @@
 -- Date: 	2019-04-30
 -- Desc:	单个滚轴
 
-local SymbolUnit = require("app.base.ReelBase.SymbolUnit")
+local SymbolUnit = import(".SymbolUnit")
 local ReelUnit = class("ReelUnit",cc.Node)
 
 
@@ -33,9 +33,11 @@ function ReelUnit:ctor( reelConfig,reelIndex )
 	self._symbolData        = reelConfig["roll_list"..reelIndex]								-- reel的数据源
 	self._symbolSize 		= cc.size( reelConfig.symbol_width,reelConfig.symbol_height )		-- 单个单元格的大小	
 	self._curSpeed 			= 0	   																-- 当前速度	
-	self._maxSpeed          = param.speed 														-- 最大速度
+	self._maxSpeed          = reelConfig.speed 														-- 最大速度
 	self._topSymbolUnit		= nil  																-- 处于最高位置的信号块
 	self._status 			= self.RollStatus.RollStatus_Idle									-- 初始状态
+	self._reelIndex         = reelIndex
+	self._orgSymbolData     = reelConfig["roll_list"..reelIndex]
 
 	-- 检查参数配置是否正确
 	self:checkParam( reelConfig )
@@ -76,12 +78,6 @@ function ReelUnit:addClipNode()
 		self:addChild( self._clippingNode )
 	end
 	self._clippingNode:setClippingRegion(cc.rect(0,0,self._size.width,self._size.height))
-
-	-- TODO 添加背景layer 
-	if self._bgLayer == nil then
-		self._bgLayer = cc.LayerColor:create(cc.c4b(150,150,150,150))
-  		self._clippingNode:addChild( self._bgLayer )
-  	end
 end
 -- 添加信号块
 function ReelUnit:initSymbol()
@@ -109,8 +105,8 @@ end
 function ReelUnit:createSymbolUnit( symbolId,posY )
 	assert( symbolId," !! symbolId is nil !! ")
 	assert( posY," !! posY is nil !! " )
-	local symbol = SymbolUnit.new()
-	symbol:loadUIdata( symbolId )
+	local symbol = SymbolUnit.new( self._symbolSize,self._reelConfig )
+	symbol:loadDataUI( symbolId )
 	self._clippingNode:addChild( symbol )
 	symbol:setPositionY( posY )
 	table.insert( self._symbolList,symbol )
@@ -156,7 +152,7 @@ function ReelUnit:updataSymbolUnit( dt )
 	-- 重置数据指针
 	for i,v in ipairs( self._symbolList ) do
 		-- 当前symbol的最低位置
-		local bottom_posy = self._bottomPosY - self:getSymbolHeightById( v:getNSymbolID() )
+		local bottom_posy = self._bottomPosY - self:getSymbolHeightById( v:getSymbolID() )
 		local posy = v:getPositionY()
 		if posy <= bottom_posy then
 			-- 移动到最高位置
@@ -170,7 +166,7 @@ function ReelUnit:updataSymbolUnit( dt )
 				self._symbolIdPointer = 1
 			end
 			-- 重置显示的数据
-			v:loadUIdata( self._symbolData[self._symbolIdPointer] )
+			v:loadDataUI( self._symbolData[self._symbolIdPointer] )
 		end
 	end
 	-- 检查是否有停止滚动的命令
@@ -178,8 +174,16 @@ function ReelUnit:updataSymbolUnit( dt )
 		if self._destUnitNode:getPositionY() <= 0 then
 			-- 关闭定时器
 			self:unscheduleUpdate()
+			-- 校正位置
+			self:reviseSymbolPosition( 0 - self._destUnitNode:getPositionY() )
+
 			self._status = self.RollStatus.RollStatus_Idle
 			self._destUnitNode = nil
+			self._symbolData =  self._orgSymbolData
+			self._maxSpeed = self._reelConfig.speed
+
+			-- 发送消息 滚动停止
+			EventManager:getInstance():dispatchInnerEvent( InnerProtocol.INNER_EVENT_SLOT_RELL_STOP_ROLL,self._reelIndex )
 		end
 	end
 end
@@ -191,7 +195,7 @@ function ReelUnit:getTopPosY()
 	for i,v in ipairs( self._symbolList ) do
 		if v:getPositionY() > topY then
 			topY = v:getPositionY()
-			symbolId = v:getNSymbolID()
+			symbolId = v:getSymbolID()
 		end
 	end
 	topY = topY + self:getSymbolHeightById( symbolId )
@@ -210,33 +214,16 @@ end
 -- 开启滚动
 function ReelUnit:startRoll()
 	if self._status == self.RollStatus.RollStatus_Roll then
-		cclog("liuyang 状态为滚动 不能滚动")
 		return
 	end
 	-- 设置状态
 	self._status = self.RollStatus.RollStatus_Roll
-	-- 开启帧调用
-	self:onUpdate( function( dt ) 
-		-- 更新信号块位置 --
-		self:updataSymbolUnit(dt)
-	end)	
+	self:startJumpAction()
 end
 -- 停止滚动
 function ReelUnit:stopRoll( destData )
-	if not destData then
-		assert( false,"liuyang 数据格式错误:需要的数据个数为: 没有传入数据")
-		return
-	end
-	if #destData ~= self._symbolViewCount then
-		assert( false,"liuyang 数据格式错误:需要的数据个数为:"..self._symbolViewCount.." 当前传入的数据为:"..(#destData))
-		return
-	end
-
 	-- 需要变换数据 得到需要更改的索引位置
-	local newDestData = self:calDestData( destData )
-
-	dump( newDestData,"------------> newDestData = " )
-
+	local newDestData = destData
 	-- 更换数据
 	local result = clone( self._symbolData )
 	-- 算出要修改的数据的索引
@@ -252,64 +239,69 @@ function ReelUnit:stopRoll( destData )
 		result[change_index[i]] = v
 	end
 	-- 更换显示数据
-	self._orgSymbolData = clone( self._symbolData )
 	self._symbolData = result
 
 	-- 设置停止滚动的指令
 	self._destUnitNode = self._topSymbolUnit
-	self._destUnitNode:loadUIdata( result[change_index[1]] )
+	self._destUnitNode:loadDataUI( result[change_index[1]] )
 end
--- ###########################################################################
 
--- 解析目标数据
-function ReelUnit:calDestData( destData )
-	local newData = {}
-	-- 检查数据格式是否正确
-	local result = {}
-	local hasSymbolIdByData = function( source,symbolId )
-		for i,v in ipairs( source ) do
-			if v.symbolId == symbolId then
-				return true, i
-			end
-		end
-		return false,0
-	end
 
-	for i,symbolId in ipairs( destData ) do
-		local has,index = hasSymbolIdByData( result,symbolId )
-		if not has then
-			local meta = { 
-				symbolId = symbolId,
-				count = 1,
-				size_type = self:getSymbolSizeTypeById( symbolId ) 
-			}
-			table.insert( result,meta )
-		else
-			result[index].count = result[index].count + 1
-		end
-	end
+-- 起跳动作
+function ReelUnit:startJumpAction()
+	for i,v in ipairs(self._symbolList) do
+        local move_by1 = cc.MoveBy:create(0.2, cc.p(0, 30))
+        local sine_out = cc.EaseSineOut:create(move_by1)
+        local jump_end = cc.CallFunc:create( function()
+            -- 起跳结束
+            if i == #self._symbolList then
+                -- 开启帧调用
+				self:onUpdate( function( dt ) 
+					-- 更新信号块位置 --
+					self:updataSymbolUnit(dt)
+				end)
+            end
+        end)
+        local seq = cc.Sequence:create({sine_out, jump_end})
+        v:runAction(seq)
+    end
+end
 
-	dump( result,"-------------> result " )
 
-	-- 1:检查数据格式
-	local total_size = 0
-	for i,v in ipairs( result ) do
-		total_size = total_size + v.count
-		if v.count ~= v.size_type then
-			return
-		end
-	end
-	-- 2:检查数据格式
-	if total_size ~= self._symbolViewCount then
+-- 停止之后 校正位置
+function ReelUnit:reviseSymbolPosition( diff )
+	if diff <= 0 then
 		return
 	end
-
-	for i,v in ipairs( result ) do
-		table.insert( newData,v.symbolId )
+	for i,v in ipairs(self._symbolList) do
+		local move_by = cc.MoveBy:create(0.2, cc.p(0, diff))
+		v:runAction( move_by )
 	end
-	return newData
 end
 
+
+-- ###########################################################################
+
+
+function ReelUnit:setQuickSpeed()
+	self._maxSpeed = self._maxSpeed + 30
+end
+
+
+-- 轮盘是否能滚动
+function ReelUnit:canRoll()
+
+    return self._status == self.RollStatus.RollStatus_Idle
+end
+
+-- 轮盘是否能停止
+function ReelUnit:canStop()
+	return self._status == self.RollStatus.RollStatus_Roll
+end
+
+function ReelUnit:getSymbolList()
+    return self._symbolList
+end
 
 return ReelUnit
 

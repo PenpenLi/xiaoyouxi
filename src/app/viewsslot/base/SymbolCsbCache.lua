@@ -116,7 +116,7 @@ function SymbolCsbCache:getCsbNodeBySymbolId( symbolId )
 	local len = #self._symbolCsbList[symbolId]
 	local meta = self._symbolCsbList[symbolId][len]
 	meta.used = true
-	cclog("创建新的信号块 symbolId = "..symbolId)
+	print("创建新的信号块 symbolId = "..symbolId)
 	return meta
 end
 

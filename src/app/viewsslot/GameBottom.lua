@@ -10,16 +10,16 @@
 local GameBottom = class("GameBottom",BaseLayer)
 
 GameBottom.SPIN_STATUS = {
-	SPIN_IDLE				=  0,       -- 处于 common spin 静止的状态 (可以向服务器发送spin消息)
-	SPIN_SEND				=  1,		-- 处于 common spin	发送消息的状态
-	SPIN_RECE               =  2,       -- 处于 common spin 收到消息的状态 (此时可以给轮盘发送停止命令)
+	SPIN_IDLE				=  0,      
+	SPIN_SEND				=  1,		
+	SPIN_RECE               =  2,       
 
-	REEL_STOP_START         =  3,       -- 轮盘开始停止滚动的状态
-	ALL_REEL_STOP_END	    =  4,       -- 轮盘停止完成的状态 (必须所有滚轴停止完毕)
+	REEL_STOP_START         =  3,      
+	ALL_REEL_STOP_END	    =  4,       
 
-	FREE_SPIN_IDLE          =  6,       -- 处于 free_spin 静止状态
-	FREE_SPIN_SEND          =  7,       -- 处于 ree_spin 发送消息状态
-	FREE_SPIN_RECE          =  8,       -- 处于 free_spin 接受消息状态
+	FREE_SPIN_IDLE          =  6,       
+	FREE_SPIN_SEND          =  7,       
+	FREE_SPIN_RECE          =  8,
 }
 
 function GameBottom:ctor( param )
@@ -29,7 +29,7 @@ function GameBottom:ctor( param )
 	self:addCsb("csbslot/hall/GameMainDown.csb")
 
 	self:addNodeClick( self.ButtonSpin,{
-		endCallBack = function() self:touchSpinButtonEnd() end
+		endCallBack = function() self:touchSpin() end
 	})
 	self._spinStatus = self.SPIN_STATUS.SPIN_IDLE
 end
@@ -38,6 +38,10 @@ end
 function GameBottom:onEnter()
 	GameBottom.super.onEnter( self )
 	self:loadUiData()
+	
+	performWithDelay( self,function()
+		self._gameLayer = display.getRunningScene():getPlayLayer()
+	end,0.1 )
 end
 
 
@@ -64,8 +68,20 @@ end
 
 
 
+function GameBottom:touchSpin()
+	if self._spinMark then
+		return
+	end
+	self._spinMark = true
+	self._gameLayer:startRoll()
+	self.ButtonSpin:loadTexture( "image/common/spin_down.png",1 )
+end
 
 
+function GameBottom:resetButtonSpin()
+	self._spinMark = nil
+	self.ButtonSpin:loadTexture( "image/common/spin_up.png",1 )
+end
 
 
 return GameBottom

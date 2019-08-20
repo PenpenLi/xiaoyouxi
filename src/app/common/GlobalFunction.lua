@@ -283,6 +283,9 @@ local function G_AddNodeClick( node,param )
 		elseif event.name == "ended" then
 			if param.endCallBack then
 				param.endCallBack()
+
+				-- 播放音效
+				G_GetModel("Model_Sound"):playVoice()
 			end
 			node:setScale(1)
 		elseif event.name == "cancelled" then
