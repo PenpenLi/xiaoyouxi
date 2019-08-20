@@ -1,6 +1,8 @@
 
 local CardWheelConfig = import( "app.viewsslot.config.CardWheelConfig" )
 local CardWheelRewardConfig = import( "app.viewsslot.config.CardWheelRewardConfig" )
+local CoinDrawConfig = import( "app.viewsslot.config.CoinDrawConfig" )
+
 
 local Model_Slot = class( "Model_Slot" )
 
@@ -17,6 +19,7 @@ function Model_Slot:reset()
 	self._timing = 2 -- 倒计时时长
 	self._collectCoin = 1000 -- 倒计时获取金币数
 	self._level = nil
+	self._toTime = nil -- 0不能抽奖，1可以抽奖
 end
 
 
@@ -37,6 +40,7 @@ function Model_Slot:getCoin()
 	return self._coin
 end
 function Model_Slot:setCoin( addCoin )
+	print("-------------111")
 	assert( addCoin," !! addCoin is nil !! " )
 	self._coin = self:getCoin() + addCoin
 	if self._coin < 0 then
@@ -167,8 +171,52 @@ function Model_Slot:lunpanData( parent )
 
 	return self._wheelTable[wheelId]
 end
+-- 获取小玩法得金币数据
+function Model_Slot:getCoinDrawData()
+	local weightSum = 0
+	for i,v in ipairs(CoinDrawConfig) do
+	 	weightSum = weightSum + v.Weight
+	end 
+	local index = random( 0,weightSum )
 
-
+	local weight_began = 0
+	local weight_end = 0
+	for i,v in ipairs(CoinDrawConfig) do
+		weight_end = weight_end + v.Weight
+		if index > weight_began and index <= weight_end then
+			return v.BaseCoinReward,v.KeepOn
+		end
+	end
+end
+-- 每日抽奖时间数据
+function Model_Slot:getOneDayOneDraw( ... )
+	if self._toTime == nil then
+		local user_default = cc.UserDefault:getInstance()
+		self._toTime = user_default:getIntegerForKey( "slotOneDayOneDraw",0 )
+		user_default:setIntegerForKey( "slotOneDayOneDraw",self._toTime )
+	end
+	-- local toYear = os.date("*t").year
+	-- local toMonth = os.date("*t").month
+	-- local toDay = os.date("*t").day
+	-- local toTime = os.time({year =toYear, month = toMonth, day =toDay, hour =23, min =59, sec = 59})
+	local time = os.time()
+	local countdown = self._toTime - time + 1
+	if countdown <= 0 then
+		countdown = 0
+	-- 	self._draw = 1
+	-- 	cc.UserDefault:getInstance():setIntegerForKey( "slotOneDayOneDraw",self._draw )
+	-- 	return self._draw
+	end
+	return countdown
+end
+function Model_Slot:setOneDayOneDraw()
+	local toYear = os.date("*t").year
+	local toMonth = os.date("*t").month
+	local toDay = os.date("*t").day
+	self._toTime = os.time({year =toYear, month = toMonth, day =toDay, hour =23, min =59, sec = 59})
+	local user_default = cc.UserDefault:getInstance()
+	user_default:setIntegerForKey( "slotOneDayOneDraw",self._toTime )
+end
 
 
 return Model_Slot

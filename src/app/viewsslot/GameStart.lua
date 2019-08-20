@@ -1,5 +1,5 @@
 
-
+local NodeImageDraw = import( "app.viewsslot.NodeImageDraw" )
 local GameStart = class( "GameStart",BaseLayer )
 
 function GameStart:ctor( param )
@@ -50,6 +50,7 @@ function GameStart:loadCoin(  )
 	-- local coin = G_GetModel("Model_SuoHa"):getInstance():getCoin()
 	local coin = G_GetModel("Model_Slot"):getInstance():getCoin()
 	self.TextHasCoin:setString( coin )
+
 end
 function GameStart:onEnter( ... )
 	GameStart.super.onEnter( self )
@@ -61,6 +62,7 @@ function GameStart:onEnter( ... )
 		local coin = G_GetModel("Model_Slot"):getInstance():getCoin()
 		self.TextHasCoin:setString( coin )
 	end )
+	
 
 	self:resetBar()
 	G_GetModel("Model_Slot"):getInstance():getCountDown()
@@ -70,12 +72,52 @@ function GameStart:onEnter( ... )
 
 	self:schedule( function ()
 		self:countDown()
+		-- 每日抽奖
+		self:loadEveryDayDraw()
 		-- index = index + 1
 		-- if index > #self._sound then
 		-- 	self:unSchedule()
 		-- 	self:loadStart()
 		-- end
 	end,0.1)
+end
+-- 每日抽奖倒计时
+function GameStart:loadEveryDayDraw()
+	local countdown = G_GetModel("Model_Slot"):getInstance():getOneDayOneDraw()
+	if countdown == 0 then
+		self:playEveryDayDraw()
+	else
+		self:countdownEveryDayDraw()
+	end
+end
+function GameStart:playEveryDayDraw()
+
+	self.NodeLotteryDraw:setVisible( true )
+	self.ButtonChoujiangOfDay:setVisible( true )
+	self.TextEveryDayDraw:setVisible( false )
+	local childs = self.NodeLotteryDraw:getChildren()
+	dump( childs,"-----------------childs = ")
+	if #childs == 0 then
+		local node = NodeImageDraw.new()
+		self.NodeLotteryDraw:addChild( node )
+		print( "-----------------11111")
+	end
+end
+function GameStart:countdownEveryDayDraw()
+	-- dump( self.NodeLotteryDraw,"-------------NodeLotteryDraw = ")
+	self.NodeLotteryDraw:setVisible( false )
+	self.ButtonChoujiangOfDay:setVisible( false )
+	self.TextEveryDayDraw:setVisible( true )
+	-- self.TextEveryDayDraw:setString( os.date("%H:%M:%S",countdown))
+	
+	self:updataDayDraw(dt)
+	
+end
+function GameStart:updataDayDraw( dt )
+	local countdown = G_GetModel("Model_Slot"):getInstance():getOneDayOneDraw()
+	dump( countdown,"----------------countdown = ")
+	local time = formatTimeStr( countdown,":")
+	self.TextEveryDayDraw:setString( time )
 end
 
 
@@ -160,6 +202,7 @@ function GameStart:coinAction()
 	local began_pos = self.ImageBigCoin:getParent():convertToWorldSpace( cc.p(self.ImageBigCoin:getPosition()))
 	local end_pos = self.ImageCoinDollar:getParent():convertToWorldSpace( cc.p(self.ImageCoinDollar:getPosition()))
 	local call = function ()
+		print("--------------123123")
 		local coin = G_GetModel("Model_Slot"):getInstance():getCollectCoin()
 	    G_GetModel("Model_Slot"):getInstance():setCoin( coin )
 	    EventManager:getInstance():dispatchInnerEvent( InnerProtocol.INNER_EVENT_SLOT_BUY_COIN )
@@ -203,6 +246,7 @@ function GameStart:store()
 end
 
 function GameStart:ChoujiangOfDay()
+	-- self.TextEveryDayDraw:setVisible( true )
 	addUIToScene( UIDefine.SLOT_KEY.Draw_UI )
 end
 

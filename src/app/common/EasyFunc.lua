@@ -148,6 +148,12 @@ local function coinFly( began_pos,end_pos,index,callBack )
         local scene = display.getRunningScene()
         scene:addChild( coin,1000 )
         coin:setPosition( began_pos )
+        --  -- 添加粒子
+        -- local particle = cc.ParticleSystemQuad:create("image/start/Card_tx_lizi_01.plist");
+        -- if particle ~= nil then
+        --     coin:addChild( particle,1000 );
+        -- end
+        
         -- coin:setVisible( false )
         local fade = cc.FadeIn:create( 0.1)
         local bz = cc.BezierTo:create(1,{ first_pos,second_pos,end_pos })
@@ -161,6 +167,25 @@ local function coinFly( began_pos,end_pos,index,callBack )
         
         local seq = cc.Sequence:create({ delay,fade,bz,call })
         coin:runAction( seq )
+
+         -- 添加粒子
+        local particle = cc.ParticleSystemQuad:create("image/start/Card_tx_lizi_01.plist");
+        if particle ~= nil then
+            scene:addChild( particle,1000 );
+        end
+        particle:setPosition( began_pos )
+        local fade = cc.FadeIn:create( 0.1)
+        local bz = cc.BezierTo:create(1,{ first_pos,second_pos,end_pos })
+        local delay = cc.DelayTime:create( 0.05 * i )
+        local call = cc.CallFunc:create(function ()
+            -- if i == index and callBack then
+            --     callBack()
+            -- end
+            particle:removeFromParent()
+        end)
+        
+        local seq = cc.Sequence:create({ delay,fade,bz,call })
+        particle:runAction( seq )
     end
 end
 
