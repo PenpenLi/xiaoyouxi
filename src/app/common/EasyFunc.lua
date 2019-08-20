@@ -136,8 +136,37 @@ local function getRandomArray( numStart,numEnd )
     return dest_source
 end
 
+-- 收集金币飞舞
+local function coinFly( began_pos,end_pos,index,callBack )
+    -- local index = 5 -- 飞6枚金币
+    -- local began_pos = self.ImageBigCoin:getParent():convertToWorldSpace( cc.p(self.ImageBigCoin:getPosition()))
+    local first_pos = cc.p( 0,0 )
+    local second_pos = cc.p( 700,700 )
+    -- local third_pos = self.ImageCoinDollar:getParent():convertToWorldSpace( cc.p(self.ImageCoinDollar:getPosition()))
+    for i=1,index do
+        local coin = ccui.ImageView:create( "image/ui/coin_dollar2.png",1 )
+        local scene = display.getRunningScene()
+        scene:addChild( coin,1000 )
+        coin:setPosition( began_pos )
+        -- coin:setVisible( false )
+        local fade = cc.FadeIn:create( 0.1)
+        local bz = cc.BezierTo:create(1,{ first_pos,second_pos,end_pos })
+        local delay = cc.DelayTime:create( 0.05 * i )
+        local call = cc.CallFunc:create(function ()
+            if i == index and callBack then
+                callBack()
+            end
+            coin:removeFromParent()
+        end)
+        
+        local seq = cc.Sequence:create({ delay,fade,bz,call })
+        coin:runAction( seq )
+    end
+end
+
 rawset(_G, "easyWriteFileLog", easyWriteFileLog)
 rawset(_G, "dumpStrToDisk", dumpStrToDisk)
 rawset(_G, "getFormatTime", getFormatTime)
 rawset(_G, "random", random)
 rawset(_G, "getRandomArray", getRandomArray)
+rawset(_G, "coinFly", coinFly)

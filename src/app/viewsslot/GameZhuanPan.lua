@@ -1,5 +1,6 @@
 
-
+local CardWheelConfig = import( "app.viewsslot.config.CardWheelConfig" )
+local CardWheelRewardConfig = import( "app.viewsslot.config.CardWheelRewardConfig" )
 
 local GameZhuanPan = class( "GameZhuanPan",BaseLayer )
 
@@ -8,8 +9,9 @@ function GameZhuanPan:ctor( param )
 	assert( param," !! param is nil !! " )
 	assert( param.name," !! param.name is nil !! " )
 	GameZhuanPan.super.ctor( self,param.name ) -----------------------一句话五小时。。。。。
+	self._parent = param.data
 
-	self:addCsb( "csbslot/TurnTable.csb" )
+	self:addCsb( "csbslot/hall/TurnTable.csb" )
 
 	self:addNodeClick( self.ButtonSpin11,{
 		endCallBack = function ()
@@ -20,27 +22,67 @@ end
 
 function GameZhuanPan:onEnter()
 	GameZhuanPan.super.onEnter( self )
-
+	self:loadUi()
 
 end
+function GameZhuanPan:loadUi()
+	local lunpan_table = G_GetModel("Model_Slot"):getInstance():lunpanData()
+	self._lunpanTable = lunpan_table
+	dump( lunpan_table,"-------------------lunpan_table = ")
+	-- for i=1,#lunpan_table do
+	-- 	self["TextNum"..v.Order]:setString( v.BaseCoinReward )
+	-- end
+	for i,v in ipairs(lunpan_table) do
+		print("-------------v.Order = "..v.Order)
+		print("-------------v.BaseCoinReward = "..v.BaseCoinReward)
+		self["TextNum"..v.Order]:setString( v.BaseCoinReward )
+	end
 
+end
+-- 转盘随机终点
+function GameZhuanPan:randomRot()
+	-- local lunpan_table = G_GetModel("Model_Slot"):getInstance():lunpanData()
+	local weightSum = 0
+	for i,v in ipairs(self._lunpanTable) do
+		weightSum = weightSum + v.Weight
+	end
+	local random_weight = random( 1,weightSum )
 
+	local weight_began = 0
+	local weight_end = 0
+
+	for i,v in ipairs(self._lunpanTable) do
+		weight_end = weight_began + v.Weight
+		if random_weight > weight_began and random_weight <= weight_end then
+			return v.Order,v.BaseCoinReward
+		end
+		weight_began = weight_end
+	end
+	assert( false," !! random_weight is error !! " )
+end
+-- 转盘转动
 function GameZhuanPan:turnBegan()
+
+	if self._turnMark then
+		return
+	end
 	
+	self._turnMark = true
+
 	local turn_num = 5
-	local rot = random( 1,15 )
+	local rot_num,haveCoin = self:randomRot()
 	local delay = cc.DelayTime:create( 0.1)
 	local rotate_began = cc.RotateBy:create( 0.5,-15 )
-	local rotate = cc.RotateBy:create( 4,360 * turn_num + rot * 24 + 30)
+	local rotate = cc.RotateBy:create( 4,360 * turn_num + rot_num * 24 + 30)
 	local rotate_end = cc.RotateBy:create( 0.5,-15 )
 	local easeSineInOut = cc.EaseSineInOut:create( rotate )
 	local call = cc.CallFunc:create(function ()
-		print("-------------------123")
+		-- print("-------------------123")
 		self:playCsbAction( "zhongjiang",true )
 	end)
 	local delay1 = cc.DelayTime:create( 2 )
 	local call1 = cc.CallFunc:create(function ()
-		addUIToScene( UIDefine.SLOT_KEY.Collect_UI )
+		addUIToScene( UIDefine.SLOT_KEY.Collect_UI,{haveCoin = haveCoin,parent = self._parent} )
 	end)
 	local seq = cc.Sequence:create({ delay,rotate_began,easeSineInOut,rotate_end,call,delay1,call1 })
 	
