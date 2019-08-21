@@ -18,6 +18,7 @@ function GamePlay:ctor( param )
 	self._effectList = {}
 
 	self._betCoin = 1000
+	self._freeCount = 0
 end
 
 
@@ -52,6 +53,8 @@ end
 function GamePlay:startRoll()
 	-- 1:执行开始滚动的指令
 	if self:canRoll() then
+		if self._curFreeMark then
+		end
 		-- 停止动画
 		self:stopAllSymbolAction()
 		self:releaseAllEffect()
@@ -90,6 +93,8 @@ function GamePlay:stopRoll()
 		end
 		self._reelResultData = reel_data
 		self._curFreeMark = free_mark
+
+
 	end
 end
 
@@ -248,14 +253,21 @@ function GamePlay:allRellRollDone()
 			for k,v in pairs( symbol_list ) do
 				if v:getSymbolID() == self._reelConfig.level.special_id then
 					has_special = true
+					G_GetModel("Model_Slot"):setCoin( v:getCoinNum() )
+
+					-- local world_pos = v:getParent():convertToWorldSpace( cc.p( v:getPosition() ) )
+					-- local end_pos = display
 				end
 			end
 		end
 	end )
 	table.insert( actions,call2 )
 	if has_special then
-		local delay = cc.DelayTime:create( 0.5 )
+		local delay = cc.DelayTime:create( 1.5 )
 		table.insert( actions,delay )
+
+		-- 刷新金币
+
 	end
 	-- 3:播放连线
 	local call_line = cc.CallFunc:create( function()
@@ -264,7 +276,7 @@ function GamePlay:allRellRollDone()
 			self:drawLineAndEffect( lines )
 			-- 计算获得的金币
 			local coin = self:getRewardCoin( lines )
-			print("--------------> coin = "..coin)
+			G_GetModel("Model_Slot"):setCoin( coin )
 		end
 	end )
 	table.insert( actions,call_line )
@@ -384,7 +396,7 @@ function GamePlay:getRollResult()
 	end
 
 	-- 设置freespin的数据 ( 每列至少有1个scattle 至少有3列 )
-	local free_mark = random( 1,5 ) == 1
+	local free_mark = (random( 1,5 )) == 1 and (not self._curFreeMark)
 	if free_mark then
 		local total_scattle = 0
 		local no_scattle_reel = {}

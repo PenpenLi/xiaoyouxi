@@ -25,6 +25,7 @@ function SymbolUnit:loadDataUI( symbolId )
 	if self._symbolId == self._reelConfig.special_id then
 		local num = random(1,9) * 100
 		self._csbVar["score_lab"]:setString( num )
+		self._coinNum = num
 	end
 end
 
@@ -84,6 +85,9 @@ function SymbolUnit:getSymbolID()
 	return self._symbolId
 end
 
+function SymbolUnit:getCoinNum()
+	return self._coinNum
+end
 
 
 return SymbolUnit
