@@ -28,7 +28,7 @@ end
 function GameZhuanPan:loadUi()
 	local lunpan_table = G_GetModel("Model_Slot"):getInstance():lunpanData()
 	self._lunpanTable = lunpan_table
-	dump( lunpan_table,"-------------------lunpan_table = ")
+	-- dump( lunpan_table,"-------------------lunpan_table = ")
 	-- for i=1,#lunpan_table do
 	-- 	self["TextNum"..v.Order]:setString( v.BaseCoinReward )
 	-- end
@@ -82,6 +82,7 @@ function GameZhuanPan:turnBegan()
 	end)
 	local delay1 = cc.DelayTime:create( 2 )
 	local call1 = cc.CallFunc:create(function ()
+		dump( haveCoin,"------------haveCoin = ")
 		addUIToScene( UIDefine.SLOT_KEY.Collect_UI,{haveCoin = haveCoin,parent = self._parent} )
 	end)
 	local seq = cc.Sequence:create({ delay,rotate_began,easeSineInOut,rotate_end,call,delay1,call1 })

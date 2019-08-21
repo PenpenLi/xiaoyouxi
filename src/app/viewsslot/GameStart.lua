@@ -96,7 +96,7 @@ function GameStart:playEveryDayDraw()
 	self.ButtonChoujiangOfDay:setVisible( true )
 	self.TextEveryDayDraw:setVisible( false )
 	local childs = self.NodeLotteryDraw:getChildren()
-	dump( childs,"-----------------childs = ")
+	-- dump( childs,"-----------------childs = ")
 	if #childs == 0 then
 		local node = NodeImageDraw.new()
 		self.NodeLotteryDraw:addChild( node )
@@ -115,7 +115,7 @@ function GameStart:countdownEveryDayDraw()
 end
 function GameStart:updataDayDraw( dt )
 	local countdown = G_GetModel("Model_Slot"):getInstance():getOneDayOneDraw()
-	dump( countdown,"----------------countdown = ")
+	-- dump( countdown,"----------------countdown = ")
 	local time = formatTimeStr( countdown,":")
 	self.TextEveryDayDraw:setString( time )
 end
@@ -207,7 +207,8 @@ function GameStart:coinAction()
 	    G_GetModel("Model_Slot"):getInstance():setCoin( coin )
 	    EventManager:getInstance():dispatchInnerEvent( InnerProtocol.INNER_EVENT_SLOT_BUY_COIN )
 	end
-	coinFly( began_pos,end_pos,num,call )
+	-- coinFly( began_pos,end_pos,num,call )
+	coinFly( began_pos,end_pos,call )
 end
 -- function GameStart:coinFly()
 	-- local index = 5 -- 飞6枚金币

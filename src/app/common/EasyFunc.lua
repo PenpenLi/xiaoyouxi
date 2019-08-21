@@ -136,57 +136,89 @@ local function getRandomArray( numStart,numEnd )
     return dest_source
 end
 
--- 收集金币飞舞
-local function coinFly( began_pos,end_pos,index,callBack )
-    -- local index = 5 -- 飞6枚金币
-    -- local began_pos = self.ImageBigCoin:getParent():convertToWorldSpace( cc.p(self.ImageBigCoin:getPosition()))
-    local first_pos = cc.p( 0,0 )
-    local second_pos = cc.p( 700,700 )
-    -- local third_pos = self.ImageCoinDollar:getParent():convertToWorldSpace( cc.p(self.ImageCoinDollar:getPosition()))
-    for i=1,index do
-        local coin = ccui.ImageView:create( "image/ui/coin_dollar2.png",1 )
-        local scene = display.getRunningScene()
-        scene:addChild( coin,1000 )
-        coin:setPosition( began_pos )
-        --  -- 添加粒子
-        -- local particle = cc.ParticleSystemQuad:create("image/start/Card_tx_lizi_01.plist");
-        -- if particle ~= nil then
-        --     coin:addChild( particle,1000 );
-        -- end
+-- -- 收集金币飞舞
+-- local function coinFly( began_pos,end_pos,index,callBack )
+--     -- local index = 5 -- 飞6枚金币
+--     -- local began_pos = self.ImageBigCoin:getParent():convertToWorldSpace( cc.p(self.ImageBigCoin:getPosition()))
+--     local first_pos = cc.p( 0,0 )
+--     local second_pos = cc.p( 700,700 )
+--     -- local third_pos = self.ImageCoinDollar:getParent():convertToWorldSpace( cc.p(self.ImageCoinDollar:getPosition()))
+--     for i=1,index do
+--         local coin = ccui.ImageView:create( "image/ui/coin_dollar2.png",1 )
+--         local scene = display.getRunningScene()
+--         scene:addChild( coin,1000 )
+--         coin:setPosition( began_pos )
+--         --  -- 添加粒子
+--         -- local particle = cc.ParticleSystemQuad:create("image/start/Card_tx_lizi_01.plist");
+--         -- if particle ~= nil then
+--         --     coin:addChild( particle,1000 );
+--         -- end
         
-        -- coin:setVisible( false )
-        local fade = cc.FadeIn:create( 0.1)
-        local bz = cc.BezierTo:create(1,{ first_pos,second_pos,end_pos })
-        local delay = cc.DelayTime:create( 0.05 * i )
-        local call = cc.CallFunc:create(function ()
-            if i == index and callBack then
-                callBack()
-            end
-            coin:removeFromParent()
-        end)
+--         -- coin:setVisible( false )
+--         local fade = cc.FadeIn:create( 0.1)
+--         local bz = cc.BezierTo:create(1,{ first_pos,second_pos,end_pos })
+--         local delay = cc.DelayTime:create( 0.05 * i )
+--         local call = cc.CallFunc:create(function ()
+--             if i == index and callBack then
+--                 callBack()
+--             end
+--             coin:removeFromParent()
+--         end)
         
-        local seq = cc.Sequence:create({ delay,fade,bz,call })
-        coin:runAction( seq )
+--         local seq = cc.Sequence:create({ delay,fade,bz,call })
+--         coin:runAction( seq )
 
-         -- 添加粒子
-        local particle = cc.ParticleSystemQuad:create("image/start/Card_tx_lizi_01.plist");
-        if particle ~= nil then
-            scene:addChild( particle,1000 );
-        end
-        particle:setPosition( began_pos )
-        local fade = cc.FadeIn:create( 0.1)
-        local bz = cc.BezierTo:create(1,{ first_pos,second_pos,end_pos })
-        local delay = cc.DelayTime:create( 0.05 * i )
-        local call = cc.CallFunc:create(function ()
-            -- if i == index and callBack then
-            --     callBack()
-            -- end
-            particle:removeFromParent()
-        end)
+--          -- 添加粒子
+--         local particle = cc.ParticleSystemQuad:create("image/start/Card_tx_lizi_01.plist");
+--         if particle ~= nil then
+--             scene:addChild( particle,1000 );
+--         end
+--         particle:setPosition( began_pos )
+--         local fade = cc.FadeIn:create( 0.1)
+--         local bz = cc.BezierTo:create(1,{ first_pos,second_pos,end_pos })
+--         local delay = cc.DelayTime:create( 0.05 * i )
+--         local call = cc.CallFunc:create(function ()
+--             -- if i == index and callBack then
+--             --     callBack()
+--             -- end
+--             particle:removeFromParent()
+--         end)
         
-        local seq = cc.Sequence:create({ delay,fade,bz,call })
-        particle:runAction( seq )
+--         local seq = cc.Sequence:create({ delay,fade,bz,call })
+--         particle:runAction( seq )
+--     end
+-- end
+-- 金币的动画
+local function coinFly( startPoint,endPoint,callBack,rate )
+    local scene = display.getRunningScene()
+    if not scene then
+        return
     end
+    local coin_layer = scene:getChildByTag( 199910 )
+    if coin_layer then
+        return
+    end
+
+    -- 去掉以前的动画
+    -- coin_layer = require("views.GameUIDaily.CoinFly"):create()
+    -- coin_layer:setTag(199910)
+    -- scene:addChild( coin_layer )
+    -- coin_layer:setEndFlyCall( callBack )
+
+    local start_point = cc.p( display.cx, 20 )
+    local end_point = cc.p( 100,display.height - 50 )
+    -- local end_point = cc.p( 100,200 )
+    -- dump( display.height,"----------display.height = ")
+    if startPoint then
+        start_point = startPoint
+    end
+    if endPoint then
+        end_point = endPoint
+    end
+    -- dump( end_point,"-----------end_point")
+    coin_layer = require("app.viewsslot.CoinFly").new( start_point,end_point,callBack,rate )
+    coin_layer:setTag(199910)
+    scene:addChild( coin_layer,10000 )
 end
 
 rawset(_G, "easyWriteFileLog", easyWriteFileLog)

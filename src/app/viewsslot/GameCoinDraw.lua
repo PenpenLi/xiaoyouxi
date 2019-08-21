@@ -73,7 +73,7 @@ function GameCoinDraw:updataSymbolUnit( dt )
 		local y = childs[i]:getPositionY()
 		y = y - 20
 		childs[i]:setPositionY( y )
-		print("---------------y = "..y)
+		-- print("---------------y = "..y)
 		if y <= -386 then
 			y = y + 965
 			-- 更新node内容
@@ -121,6 +121,7 @@ end
 -- end
 
 function GameCoinDraw:openCollect( ... )
+	-- dump( self._coin,"--------------------coin = ")
 	addUIToScene( UIDefine.SLOT_KEY.Collect_UI,{haveCoin = self._coin,keepOn = self._keepOn} )
 end
 

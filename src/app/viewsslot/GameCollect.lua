@@ -6,7 +6,10 @@ function GameCollect:ctor( param )
 	assert( param," !! param is nil !! " )
 	assert( param.name," !! param is nil !! " )
 	GameCollect.super.ctor( self,param.name )
+	
 	self._coin = param.data.haveCoin
+	dump( param.data.haveCoin,"-------------??????????????? = ")
+	dump( self._coin,"-------------!!!!!!!!!!!!!! = ")
 	if param.data.keepOn then
 		self._keepOn = param.data.keepOn
 	end
@@ -37,10 +40,10 @@ function GameCollect:loadUi()
 	self.TextCoin1:setString( self._coin )
 	if self._keepOn == 1 then
 		self.ImageCoin1:ignoreContentAdaptWithSize( true )
-		self.ImageCoin1:loadTexture( "image/carddraw/fortune3.png" )
+		self.ImageCoin1:loadTexture( "image/carddraw/fortune3.png",1 )
 	else
 		self.ImageCoin1:ignoreContentAdaptWithSize( true )
-		self.ImageCoin1:loadTexture( "image/carddraw/fortune1.png" )
+		self.ImageCoin1:loadTexture( "image/carddraw/fortune1.png",1 )
 	end
 end
 
@@ -64,7 +67,7 @@ function GameCollect:goingCollectCoin()
 			removeUIFromScene( UIDefine.SLOT_KEY.Collect_UI )
 		end
 		
-	end,1.5 )
+	end,2 )
 	
 end
 -- 收集金币
@@ -86,14 +89,21 @@ function GameCollect:coinAction()
 	local num = 5 -- 动作几枚金币
 	local began_pos = self.ImageCoin1:getParent():convertToWorldSpace( cc.p(self.ImageCoin1:getPosition()))
 	local end_pos = cc.p( 150,display.height - 50 )
+	G_GetModel("Model_Slot"):getInstance():setCoin( self._coin ) -- 直接存入，避免移除后数据为空
+	if not self._parent then -- 直接重置，避免移除layer数据为空
+    	self:resetOneDayOneDraw()
+    end
 	local call = function ()
-		print("------------coin = "..self._coin )
+		-- print("------------coin = "..self._coin )
 		-- local coin = G_GetModel("Model_Slot"):getInstance():getCollectCoin()
-	    G_GetModel("Model_Slot"):getInstance():setCoin( self._coin )
+	    -- G_GetModel("Model_Slot"):getInstance():setCoin( self._coin )
 	    EventManager:getInstance():dispatchInnerEvent( InnerProtocol.INNER_EVENT_SLOT_BUY_COIN )
-	    self:resetOneDayOneDraw()
+	    -- if not self._parent then
+	    -- 	self:resetOneDayOneDraw()
+	    -- end
 	end
-	coinFly( began_pos,end_pos,num,call )
+	-- coinFly( began_pos,end_pos,num,call )
+	coinFly( began_pos,end_pos,call )
 end
 
 -- 重置每日抽奖目标时间

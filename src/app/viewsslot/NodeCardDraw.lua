@@ -20,9 +20,9 @@ function NodeCardDraw:loadUi()
 	self._coin,self._keepOn = G_GetModel("Model_Slot"):getInstance():getCoinDrawData()
 	self.TextCoin:setString( self._coin )
 	if self._keepOn == 0 then
-		self.ImageCoin:loadTexture( "image/carddraw/fortune1.png" )
+		self.ImageCoin:loadTexture( "image/carddraw/fortune1.png",1 )
 	else
-		self.ImageCoin:loadTexture( "image/carddraw/fortune3.png" )
+		self.ImageCoin:loadTexture( "image/carddraw/fortune3.png",1 )
 	end
 end
 
