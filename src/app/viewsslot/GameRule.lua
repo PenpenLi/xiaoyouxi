@@ -5,6 +5,7 @@ function GameRule:ctor( param )
 	assert( param," !! param is nil !! ")
 	assert( param.name," !! param.name is nil !! ")
 	GameRule.super.ctor( self,param.name )
+	
 
 	self:addCsb( "csbslot/wolfLighting/PayTableLayerPharaoh.csb" )
 
@@ -56,6 +57,7 @@ end
 
 function GameRule:onEnter()
 	GameRule.super.onEnter( self )
+	casecadeFadeInNode( self._csbNode,0.5 )
 end
 
 function GameRule:close()
