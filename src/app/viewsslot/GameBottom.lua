@@ -113,6 +113,7 @@ function GameBottom:touchSpin()
 	G_GetModel("Model_Slot"):setExpress()
 	self._topLayer:loadDataUi()
 	-- 添加次数
+	G_GetModel("Model_Slot"):setMiniGameNum()
 end
 
 

@@ -22,7 +22,7 @@ function Model_Slot:reset()
 	self._level = nil
 	self._toTime = nil -- 每日抽奖目标时间
 	self._miniNum = nil -- 左下小游戏的累计次数
-	self._miniNumSum = 300 -- 左下小游戏需要累计的总次数
+	self._miniNumSum = 5 -- 左下小游戏需要累计的总次数
 	self._exp = nil
 end
 
