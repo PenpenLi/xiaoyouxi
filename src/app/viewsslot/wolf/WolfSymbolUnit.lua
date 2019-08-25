@@ -13,6 +13,9 @@ local WolfSymbolUnit = class("WolfSymbolUnit",BaseSymbolUnit)
 function WolfSymbolUnit:loadDataUI( symbolId )
 	WolfSymbolUnit.super.loadDataUI( self,symbolId )
 
+	-- 切换到静止帧
+	self:playCsbAction("idleframe")
+
 	-- 针对特殊新号块
 	if self._symbolId == self._reelConfig.special_id then
 		local num = random(1,9) * 100

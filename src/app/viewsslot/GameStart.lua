@@ -16,6 +16,12 @@ function GameStart:ctor( param )
 		end
 	})
 
+	self:addNodeClick( self.ImageLevel2,{
+		endCallBack = function ()
+			self:clickGame2()
+		end
+	})
+
 	-- --商店
 	-- self:addNodeClick( self.ButtonStore,{
 	-- 	endCallBack = function ()
@@ -265,6 +271,12 @@ end
 function GameStart:clickGame1()
 	-- 进入关卡1
 	SceneManager:gotoLevelScene( 1 )
+end
+
+
+function GameStart:clickGame2()
+	-- 进入关卡1
+	SceneManager:gotoLevelScene( 2 )
 end
 
 function GameStart:store()

@@ -1,5 +1,4 @@
 
-
 local BaseGameModel = class("BaseGameModel")
 
 
@@ -9,6 +8,7 @@ function BaseGameModel:ctor( reelConfig )
 	self._reelConfig = reelConfig
 	-- 下注的coin
 	self._betCoin = 1000
+	self._orgBetCoin = 1000
 	-- 当前游戏的状态 1:normal 2:freespin
 	self._gameStatus = 1
 	self._freeSpinCount = 0
@@ -21,6 +21,10 @@ end
 
 function BaseGameModel:getBetCoin()
 	return self._betCoin
+end
+
+function BaseGameModel:getOrgBetCoin()
+	return self._orgBetCoin
 end
 
 
@@ -161,8 +165,6 @@ function BaseGameModel:getLineResult()
 	end
 
 	-- 根据配置 筛选可用的连线
-	dump( lines,"----------------> lines = ",5 )
-
 	local valid_lines = {}
 
 	for i,v in ipairs( lines ) do
@@ -180,8 +182,6 @@ function BaseGameModel:getLineResult()
 			table.insert( valid_lines,meta )
 		end
 	end
-
-	dump( valid_lines,"----------------> valid_lines = ",5 )
 
 	return valid_lines
 end

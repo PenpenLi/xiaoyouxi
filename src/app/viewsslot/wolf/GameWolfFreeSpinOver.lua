@@ -15,6 +15,8 @@ function GameWolfFreeSpinOver:ctor( param )
 	self:addChild( layer )
 
 	self:addCsb( "csbslot/wolfLighting/FreeSpinOver.csb" )
+
+	self.m_lb_num:setString(5)
 end
 
 
