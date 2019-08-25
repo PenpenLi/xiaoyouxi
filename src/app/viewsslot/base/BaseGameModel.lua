@@ -54,7 +54,7 @@ function BaseGameModel:getRollResult()
 	-- 设置freespin的数据 ( 每列至少有1个scattle 至少有3列 )
 	local free_mark = false
 	if self._gameStatus == 1 then
-		free_mark = random( 1,1 ) == 1
+		free_mark = random( 1,10 ) == 1
 		if free_mark then
 			local total_scattle = 0
 			local no_scattle_reel = {}
