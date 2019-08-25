@@ -71,10 +71,10 @@ function GameStart:loadMiniGame( ... )
 	
 	if num >= num_sum then
 		self.NodeMiniGameRate:setVisible( false )
-		self.ButtonMiniGame:setVisible( true )
+		-- self.ButtonMiniGame:setVisible( true )
 	else
 		self.NodeMiniGameRate:setVisible( true )
-		self.ButtonMiniGame:setVisible( false )
+		-- self.ButtonMiniGame:setVisible( false )
 		self.TextMiniGameRate:setString( num )
 		self.TextMiniGameRateSum:setString( num_sum )
 	end
@@ -235,6 +235,11 @@ function GameStart:ChoujiangOfDay()
 end
 
 function GameStart:miniGame()
+	local num = G_GetModel("Model_Slot"):getInstance():getMiniGameNum()
+	local num_sum = G_GetModel("Model_Slot"):getInstance():getMiniGameNumSum()
+	if num < num_sum then
+		return
+	end
 	G_GetModel("Model_Slot"):getInstance():initMiniGameNum()
 	addUIToScene( UIDefine.SLOT_KEY.Mini2_UI,self )
 end
