@@ -61,14 +61,21 @@ end
 -- 左下小玩法
 function GameStart:loadMiniGame( ... )
 	local num = G_GetModel("Model_Slot"):getInstance():getMiniGameNum()
-	if num >= 200 then
+	local num_sum = G_GetModel("Model_Slot"):getInstance():getMiniGameNumSum()
+	
+	if num >= num_sum then
 		self.NodeMiniGameRate:setVisible( false )
 		self.ButtonMiniGame:setVisible( true )
 	else
 		self.NodeMiniGameRate:setVisible( true )
 		self.ButtonMiniGame:setVisible( false )
 		self.TextMiniGameRate:setString( num )
+		self.TextMiniGameRateSum:setString( num_sum )
 	end
+end
+function GameStart:loadLevel( ... )
+	local level = G_GetModel("Model_Slot"):getInstance():getLevel()
+	self.TextLevel:setString( level )
 end
 function GameStart:onEnter( ... )
 	GameStart.super.onEnter( self )
@@ -76,6 +83,7 @@ function GameStart:onEnter( ... )
 
 	self:loadCoin()
 	self:loadMiniGame()
+	self:loadLevel()
 	-- 每日抽奖图标
 	local node = NodeImageDraw.new()
 	self.NodeLotteryDraw:addChild( node )

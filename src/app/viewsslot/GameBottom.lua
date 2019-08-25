@@ -138,7 +138,7 @@ function GameBottom:rule()
 	if level_index == 1 then
 		addUIToScene( UIDefine.SLOT_KEY.Rule_UI )
 	elseif level_index == 2 then
-
+		addUIToScene( UIDefine.SLOT_KEY.RuleOfCandy_UI )
 	elseif level_index == 3 then
 		
 	end
