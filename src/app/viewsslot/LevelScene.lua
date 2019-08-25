@@ -22,8 +22,13 @@ end
 
 
 function LevelScene:onEnter()
-	self._gameLayer = addUIToScene( UIDefine.SLOT_KEY.Play_UI,{self._levelIndex} )
+	self._gameLayer = nil
+	if self._levelIndex == 1 then
+		self._gameLayer = addUIToScene( UIDefine.SLOT_KEY.GameWolf_UI,{self._levelIndex} )
+	end
+	
 	self._bottomLayer = addUIToScene( UIDefine.SLOT_KEY.Bottom_UI )
+	self._topLayer = addUIToScene( UIDefine.SLOT_KEY.Top_UI )
 end
 
 function LevelScene:getPlayLayer()
@@ -32,6 +37,10 @@ end
 
 function LevelScene:getBottomLayer()
 	return self._bottomLayer
+end
+
+function LevelScene:getTopLayer()
+	return self._topLayer
 end
 
 function LevelScene:getSceneName()

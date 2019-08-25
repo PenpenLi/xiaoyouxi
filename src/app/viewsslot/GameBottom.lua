@@ -31,6 +31,16 @@ function GameBottom:ctor( param )
 	self:addNodeClick( self.ButtonSpin,{
 		endCallBack = function() self:touchSpin() end
 	})
+
+
+	self:addNodeClick( self.BtnBetSub,{
+		endCallBack = function() self:betSub() end
+	})
+
+	self:addNodeClick( self.BtnBetAdd,{
+		endCallBack = function() self:betAdd() end
+	})
+
 	self._spinStatus = self.SPIN_STATUS.SPIN_IDLE
 end
 
@@ -41,6 +51,8 @@ function GameBottom:onEnter()
 	
 	performWithDelay( self,function()
 		self._gameLayer = display.getRunningScene():getPlayLayer()
+		self._topLayer = display.getRunningScene():getTopLayer()
+		self._gameModel = self._gameLayer:getGameModel()
 	end,0.1 )
 end
 
@@ -51,8 +63,10 @@ function GameBottom:loadUiData()
 	self._canSpin = true
 
 	--初始化LastWin跟TotalBet钱
-	self:setTotalBetNum("1000")
+	self._betCoin = 1000
+	self:setTotalBetNum( self._betCoin )
 	self:setWinCoin("0")
+	self.TextFreeCount:setVisible( false )
 end
 
 
@@ -65,23 +79,50 @@ function GameBottom:setWinCoin( coin )
 end
 
 
-
-
-
 function GameBottom:touchSpin()
 	if self._spinMark then
 		return
 	end
 	self._spinMark = true
-	self._gameLayer:startRoll()
-	self.ButtonSpin:loadTexture( "image/common/spin_down.png",1 )
+	self.TextWinCoin:setString(0)
+	if self._gameModel:isFreeSpinStatus() then
+		self.TextFreeCount:setOpacity( 150 )
+		self._gameModel:useFreeSpinTimes()
+		self._gameLayer:startRoll()
+		self.ButtonSpin:loadTexture( "image/common/spin_freespin_down.png",1 )
+	else
+		-- 判断金币
+		local coin = G_GetModel("Model_Slot"):getCoin()
+		if coin < self._betCoin then
+			-- 弹出商店界面
+			return
+		end
+		
+		G_GetModel("Model_Slot"):setCoin( -self._betCoin )
+		self._topLayer:loadCoinUi()
+		self._gameLayer:startRoll()
+		self.ButtonSpin:loadTexture( "image/common/spin_down.png",1 )
+	end
 end
 
 
 function GameBottom:resetButtonSpin()
 	self._spinMark = nil
-	self.ButtonSpin:loadTexture( "image/common/spin_up.png",1 )
+	local free_count = self._gameModel:getFreeSpinCount()
+	self.TextFreeCount:setVisible( free_count > 0 )
+	if self._gameModel:isFreeSpinStatus() then
+		self.TextFreeCount:setString( free_count )
+		self.TextFreeCount:setOpacity( 255 )
+		self.ButtonSpin:loadTexture( "image/common/spin_freespin_up.png",1 )
+	else
+		self.ButtonSpin:loadTexture( "image/common/spin_up.png",1 )
+	end
 end
+
+function GameBottom:setWinCoinUi( coin )
+	self.TextWinCoin:setString( coin )
+end
+
 
 
 return GameBottom

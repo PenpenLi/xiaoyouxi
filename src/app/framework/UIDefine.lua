@@ -269,14 +269,19 @@ UIDefine.LayerFlag = {
 
 
 UIDefine.SLOT_KEY  = {
-	Loading_UI 			= { layer = import("app.viewsslot.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Loading_UI" 			  	    },
-	Start_UI 			= { layer = import("app.viewsslot.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Start_UI"                      },
-	Turn_UI 			= { layer = import("app.viewsslot.GameZhuanPan"),	    		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Turn_UI"                       },
-	Play_UI         	= { layer = import("app.viewsslot.GamePlay"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Play_UI"                       },
-	Bottom_UI           = { layer = import("app.viewsslot.GameBottom"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Bottom_UI"                     },
-	Collect_UI 			= { layer = import("app.viewsslot.GameCollect"),	    		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Collect_UI"                      },
-	Draw_UI 			= { layer = import("app.viewsslot.GameCoinDraw"),	    		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Draw_UI"                      },
+	Loading_UI 			    = { layer = import("app.viewsslot.GameLoading"),		        		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Loading_UI" 			  	    },
+	Start_UI 				= { layer = import("app.viewsslot.GameStart"),	    					flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Start_UI"                      },
+	Turn_UI 				= { layer = import("app.viewsslot.GameZhuanPan"),	    				flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Turn_UI"                       },
 
+	GameWolf_UI         	= { layer = import("app.viewsslot.wolf.GameWolfPlay"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Slot_WolfPlay_UI"                   },
+	FreeSpinWolfStart_UI    = { layer = import("app.viewsslot.wolf.GameWolfFreeSpinStart"),      	flag = UIDefine.LayerFlag.Main.name,    name = "Slot_FreeSpinWolfStart_UI"          },
+	FreeSpinWolfOver_UI     = { layer = import("app.viewsslot.wolf.GameWolfFreeSpinOver"),       	flag = UIDefine.LayerFlag.Main.name,    name = "Slot_FreeSpinWolfOver_UI"           },
+
+	Bottom_UI           	= { layer = import("app.viewsslot.GameBottom"),	    					flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Bottom_UI"                     },
+	Collect_UI 				= { layer = import("app.viewsslot.GameCollect"),	    				flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Collect_UI"                    },
+	Draw_UI 				= { layer = import("app.viewsslot.GameCoinDraw"),	    				flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Draw_UI"                       },
+	Top_UI              	= { layer = import("app.viewsslot.GameTop"),	    		    		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Top_UI"                        },
+	
 }
 
 

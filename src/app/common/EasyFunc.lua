@@ -194,30 +194,18 @@ local function coinFly( startPoint,endPoint,callBack,rate )
     if not scene then
         return
     end
-    local coin_layer = scene:getChildByTag( 199910 )
-    if coin_layer then
-        return
-    end
-
-    -- 去掉以前的动画
-    -- coin_layer = require("views.GameUIDaily.CoinFly"):create()
-    -- coin_layer:setTag(199910)
-    -- scene:addChild( coin_layer )
-    -- coin_layer:setEndFlyCall( callBack )
 
     local start_point = cc.p( display.cx, 20 )
     local end_point = cc.p( 100,display.height - 50 )
-    -- local end_point = cc.p( 100,200 )
-    -- dump( display.height,"----------display.height = ")
+
     if startPoint then
         start_point = startPoint
     end
     if endPoint then
         end_point = endPoint
     end
-    -- dump( end_point,"-----------end_point")
-    coin_layer = require("app.viewsslot.CoinFly").new( start_point,end_point,callBack,rate )
-    coin_layer:setTag(199910)
+
+    local coin_layer = require("app.viewsslot.CoinFly").new( start_point,end_point,callBack,rate )
     scene:addChild( coin_layer,10000 )
 end
 

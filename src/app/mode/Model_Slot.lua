@@ -40,7 +40,6 @@ function Model_Slot:getCoin()
 	return self._coin
 end
 function Model_Slot:setCoin( addCoin )
-	print("-------------111")
 	assert( addCoin," !! addCoin is nil !! " )
 	self._coin = self:getCoin() + addCoin
 	if self._coin < 0 then

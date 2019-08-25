@@ -8,8 +8,6 @@ function GameCollect:ctor( param )
 	GameCollect.super.ctor( self,param.name )
 	
 	self._coin = param.data.haveCoin
-	dump( param.data.haveCoin,"-------------??????????????? = ")
-	dump( self._coin,"-------------!!!!!!!!!!!!!! = ")
 	if param.data.keepOn then
 		self._keepOn = param.data.keepOn
 	end
