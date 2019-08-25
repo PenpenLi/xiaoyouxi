@@ -57,7 +57,7 @@ function GameCollect:goingCollectCoin()
 	self:collectCoin()
 	performWithDelay( self,function ()
 		if self._parent then
-			self._parent.ImageDiscSpinning:setVisible( false )
+			self._parent.ShowZhuanpanNode:setVisible( false )
 			removeUIFromScene( UIDefine.SLOT_KEY.Turn_UI )
 			removeUIFromScene( UIDefine.SLOT_KEY.Collect_UI )
 		else

@@ -275,7 +275,9 @@ local function G_AddNodeClick( node,param )
 			if param.beganCallBack then
 				param.beganCallBack()
 			end
-			node:setScale(0.95)
+			local org_scale = node:getScale()
+			node.__orgScale = org_scale
+			node:setScale( org_scale* 0.95 )
 		elseif event.name == "moved" then
 			if param.moveCallBack then
 				param.moveCallBack()
@@ -287,12 +289,12 @@ local function G_AddNodeClick( node,param )
 				-- 播放音效
 				G_GetModel("Model_Sound"):playVoice()
 			end
-			node:setScale(1)
+			node:setScale( node.__orgScale )
 		elseif event.name == "cancelled" then
 			if param.cancelCallBack then
 				param.cancelCallBack()
 			end
-			node:setScale(1)
+			node:setScale( node.__orgScale )
 		end
 	end )
 end

@@ -44,19 +44,44 @@ function GameStart:ctor( param )
 			self:ChoujiangOfDay()
 		end
 	})
+	self:addNodeClick( self.ButtonBuy,{
+		endCallBack = function ()
+			self:store()
+		end
+	})
+	self:addNodeClick( self.ButtonMiniGame,{
+		endCallBack = function ()
+			self:miniGame()
+		end
+	})
 end
 
 function GameStart:loadCoin(  )
 	-- local coin = G_GetModel("Model_SuoHa"):getInstance():getCoin()
 	local coin = G_GetModel("Model_Slot"):getInstance():getCoin()
 	self.TextHasCoin:setString( coin )
-
+end
+-- 左下小玩法
+function GameStart:loadMiniGame( ... )
+	local num = G_GetModel("Model_Slot"):getInstance():getMiniGameNum()
+	if num >= 200 then
+		self.NodeMiniGameRate:setVisible( false )
+		self.ButtonMiniGame:setVisible( true )
+	else
+		self.NodeMiniGameRate:setVisible( true )
+		self.ButtonMiniGame:setVisible( false )
+		self.TextMiniGameRate:setString( num )
+	end
 end
 function GameStart:onEnter( ... )
 	GameStart.super.onEnter( self )
 	casecadeFadeInNode( self._csbNode,0.5 )
 
 	self:loadCoin()
+	self:loadMiniGame()
+	-- 每日抽奖图标
+	local node = NodeImageDraw.new()
+	self.NodeLotteryDraw:addChild( node )
 	-- 添加监听
 	self:addMsgListener( InnerProtocol.INNER_EVENT_SLOT_BUY_COIN,function ()
 		local coin = G_GetModel("Model_Slot"):getInstance():getCoin()
@@ -67,7 +92,8 @@ function GameStart:onEnter( ... )
 	self:resetBar()
 	G_GetModel("Model_Slot"):getInstance():getCountDown()
 	-- self.ImageBigCoin:setVisible( false )
-	self.ImageDiscSpinning:setVisible( false )
+	-- self.ImageDiscSpinning:setVisible( false )
+	self.ShowZhuanpanNode:setVisible( false )
 	self.GetCoinToByNode:setVisible( false )
 
 	self:schedule( function ()
@@ -92,21 +118,19 @@ function GameStart:loadEveryDayDraw()
 end
 function GameStart:playEveryDayDraw()
 
-	self.NodeLotteryDraw:setVisible( true )
-	self.ButtonChoujiangOfDay:setVisible( true )
+	-- self.NodeLotteryDraw:setVisible( true )
+	-- self.ButtonChoujiangOfDay:setVisible( true )
 	self.TextEveryDayDraw:setVisible( false )
-	local childs = self.NodeLotteryDraw:getChildren()
+	-- local childs = self.NodeLotteryDraw:getChildren()
 	-- dump( childs,"-----------------childs = ")
-	if #childs == 0 then
-		local node = NodeImageDraw.new()
-		self.NodeLotteryDraw:addChild( node )
-		print( "-----------------11111")
-	end
+	-- if #childs == 0 then
+	-- 	local node = NodeImageDraw.new()
+	-- 	self.NodeLotteryDraw:addChild( node )
+	-- end
 end
 function GameStart:countdownEveryDayDraw()
-	-- dump( self.NodeLotteryDraw,"-------------NodeLotteryDraw = ")
-	self.NodeLotteryDraw:setVisible( false )
-	self.ButtonChoujiangOfDay:setVisible( false )
+	-- self.NodeLotteryDraw:setVisible( false )
+	-- self.ButtonChoujiangOfDay:setVisible( false )
 	self.TextEveryDayDraw:setVisible( true )
 	-- self.TextEveryDayDraw:setString( os.date("%H:%M:%S",countdown))
 	
@@ -148,7 +172,8 @@ function GameStart:countDown( )
 	if time_count <= 0 then
 		self.TextTimeCountDown:setString( os.date("%M:%S",0 ))
 		if index == 5 then
-			self.ImageDiscSpinning:setVisible( true )
+			self.ShowZhuanpanNode:setVisible( true )
+			-- self.ImageDiscSpinning:setVisible( true )
 			self:discSpinningTurn()
 		else
 			self.GetCoinToByNode:setVisible( true )
@@ -198,7 +223,7 @@ end
 
 -- 收集金币飞舞
 function GameStart:coinAction()
-	local num = 5 -- 动作几枚金币
+	-- local num = 5 -- 动作几枚金币
 	local began_pos = self.ImageBigCoin:getParent():convertToWorldSpace( cc.p(self.ImageBigCoin:getPosition()))
 	local end_pos = self.ImageCoinDollar:getParent():convertToWorldSpace( cc.p(self.ImageCoinDollar:getPosition()))
 	local call = function ()
@@ -243,12 +268,22 @@ function GameStart:clickGame1()
 end
 
 function GameStart:store()
-	-- addUIToScene( UIDefine.SUOHA_KEY.Shop_UI )
+	addUIToScene( UIDefine.SLOT_KEY.Shop_UI )
 end
 
 function GameStart:ChoujiangOfDay()
+	local countdown = G_GetModel("Model_Slot"):getInstance():getOneDayOneDraw()
+	if countdown > 0 then
+		return
+	end
+
 	-- self.TextEveryDayDraw:setVisible( true )
 	addUIToScene( UIDefine.SLOT_KEY.Draw_UI )
+end
+
+function GameStart:miniGame()
+	G_GetModel("Model_Slot"):getInstance():initMiniGameNum()
+	addUIToScene( UIDefine.SLOT_KEY.Mini2_UI,self )
 end
 
 

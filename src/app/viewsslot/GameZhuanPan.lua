@@ -28,6 +28,7 @@ end
 function GameZhuanPan:loadUi()
 	local lunpan_table = G_GetModel("Model_Slot"):getInstance():lunpanData()
 	self._lunpanTable = lunpan_table
+	self.Sprite_20:setVisible( false )
 	-- dump( lunpan_table,"-------------------lunpan_table = ")
 	-- for i=1,#lunpan_table do
 	-- 	self["TextNum"..v.Order]:setString( v.BaseCoinReward )
@@ -78,6 +79,7 @@ function GameZhuanPan:turnBegan()
 	local easeSineInOut = cc.EaseSineInOut:create( rotate )
 	local call = cc.CallFunc:create(function ()
 		-- print("-------------------123")
+		self.Sprite_20:setVisible( true )
 		self:playCsbAction( "zhongjiang",true )
 	end)
 	local delay1 = cc.DelayTime:create( 2 )

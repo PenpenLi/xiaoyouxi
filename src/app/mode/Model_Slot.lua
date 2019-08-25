@@ -16,10 +16,11 @@ function Model_Slot:reset()
 	self._coin = nil
 	self._time = nil
 	self._num = nil
-	self._timing = 2 -- 倒计时时长
+	self._timing = 3600 -- 中间倒计时时长
 	self._collectCoin = 1000 -- 倒计时获取金币数
 	self._level = nil
-	self._toTime = nil -- 0不能抽奖，1可以抽奖
+	self._toTime = nil -- 每日抽奖目标时间
+	self._miniNum = nil -- 左下小游戏200玩一次
 end
 
 
@@ -40,7 +41,6 @@ function Model_Slot:getCoin()
 	return self._coin
 end
 function Model_Slot:setCoin( addCoin )
-	print("-------------111")
 	assert( addCoin," !! addCoin is nil !! " )
 	self._coin = self:getCoin() + addCoin
 	if self._coin < 0 then
@@ -217,6 +217,25 @@ function Model_Slot:setOneDayOneDraw()
 	local user_default = cc.UserDefault:getInstance()
 	user_default:setIntegerForKey( "slotOneDayOneDraw",self._toTime )
 end
-
+-- 左下小游戏
+function Model_Slot:getMiniGameNum()
+	if self._miniNum == nil then
+		local user_default = cc.UserDefault:getInstance()
+		self._miniNum = user_default:getIntegerForKey( "slotMiniGameNum",0 )
+		user_default:setIntegerForKey( "slotMiniGameNum",self._miniNum )
+	end
+	return self._miniNum
+end
+function Model_Slot:setMiniGameNum()
+	local user_default = cc.UserDefault:getInstance()
+	self._miniNum = user_default:getIntegerForKey( "slotMiniGameNum",0 )
+	self._miniNum = self._miniNum + 1
+	user_default:setIntegerForKey( "slotMiniGameNum",self._miniNum )
+end
+function Model_Slot:initMiniGameNum()
+	self._miniNum = 0
+	local user_default = cc.UserDefault:getInstance()
+	user_default:setIntegerForKey( "slotMiniGameNum",self._miniNum )
+end
 
 return Model_Slot

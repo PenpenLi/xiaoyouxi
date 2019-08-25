@@ -195,9 +195,9 @@ local function coinFly( startPoint,endPoint,callBack,rate )
         return
     end
     local coin_layer = scene:getChildByTag( 199910 )
-    if coin_layer then
-        return
-    end
+    -- if coin_layer then
+    --     return
+    -- end
 
     -- 去掉以前的动画
     -- coin_layer = require("views.GameUIDaily.CoinFly"):create()

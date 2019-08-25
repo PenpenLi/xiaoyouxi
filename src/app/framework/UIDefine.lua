@@ -276,6 +276,11 @@ UIDefine.SLOT_KEY  = {
 	Bottom_UI           = { layer = import("app.viewsslot.GameBottom"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Bottom_UI"                     },
 	Collect_UI 			= { layer = import("app.viewsslot.GameCollect"),	    		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Collect_UI"                      },
 	Draw_UI 			= { layer = import("app.viewsslot.GameCoinDraw"),	    		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Draw_UI"                      },
+	Buy_UI 				= { layer = import("app.viewsslot.GameBuy"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Buy_UI"                      },
+	Shop_UI 			= { layer = import("app.viewsslot.GameShop"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Shop_UI"                      },
+	Mini_UI 			= { layer = import("app.viewsslot.GameMini"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Mini_UI"                      },
+	Mini2_UI 			= { layer = import("app.viewsslot.GameMini2"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Mini2_UI"                      },
+	OverMini2_UI 		= { layer = import("app.viewsslot.GameMiniOver"),	    		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_OverMini2_UI"                      },
 
 }
 

@@ -75,6 +75,7 @@ end
 function CoinNode:flyAction( startPoint,endPoint,index,maxIndex,callBack,rate )
 	local start_point = clone( startPoint )
 	local end_point = clone( endPoint )
+	-- dump( end_point,"------------end_point= ")
 	local bz_total_fly_time1 = 1
 	local bz_total_fly_time2 = 0.5
 
