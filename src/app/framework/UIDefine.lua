@@ -297,6 +297,9 @@ UIDefine.SLOT_KEY  = {
 	Top_UI              	= { layer = import("app.viewsslot.GameTop"),	    		    		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Top_UI"                        },
 	Rule_UI              	= { layer = import("app.viewsslot.GameRule"),	    		    		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Rule_UI"                       },
 
+	RuleOfCandy_UI          = { layer = import("app.viewsslot.GameRuleOfCandy"),	    		    flag = UIDefine.LayerFlag.Main.name,	name = "Slot_RuleOfCandy_UI"                },
+
+
 }
 
 

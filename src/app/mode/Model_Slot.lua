@@ -21,7 +21,8 @@ function Model_Slot:reset()
 	self._collectCoin = 1000 -- 倒计时获取金币数
 	self._level = nil
 	self._toTime = nil -- 每日抽奖目标时间
-	self._miniNum = nil -- 左下小游戏200玩一次
+	self._miniNum = nil -- 左下小游戏的累计次数
+	self._miniNumSum = 300 -- 左下小游戏需要累计的总次数
 	self._exp = nil
 end
 
@@ -268,6 +269,10 @@ function Model_Slot:initMiniGameNum()
 	self._miniNum = 0
 	local user_default = cc.UserDefault:getInstance()
 	user_default:setIntegerForKey( "slotMiniGameNum",self._miniNum )
+end
+-- 需要累计的次数
+function Model_Slot:getMiniGameNumSum()
+	return self._miniNumSum
 end
 
 return Model_Slot
