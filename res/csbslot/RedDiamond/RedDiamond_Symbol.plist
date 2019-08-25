@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>ui/RedDiamond_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{703,0},{208,164}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{208,164}</string>
+			</dict>
+			<key>ui/RedDiamond_2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{703,164},{208,164}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{208,164}</string>
+			</dict>
+			<key>ui/RedDiamond_3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{476,208},{208,164}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{208,164}</string>
+			</dict>
+			<key>ui/RedDiamond_4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{244,228},{208,164}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{208,164}</string>
+			</dict>
+			<key>ui/RedDiamond_5.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,243},{208,164}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{208,164}</string>
+			</dict>
+			<key>ui/RedDiamond_6.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{684,328},{208,164}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{208,164}</string>
+			</dict>
+			<key>ui/RedDiamond_7.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{452,372},{208,164}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{208,164}</string>
+			</dict>
+			<key>ui/RedDiamond_8.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{208,392},{208,164}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{208,164}</string>
+			</dict>
+			<key>ui/RedDiamond_9.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{476,0},{208,227}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{208,227}</string>
+			</dict>
+			<key>ui/RedDiamond_wild.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{244,0},{228,232}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{228,232}</string>
+			</dict>
+			<key>ui/RedDiamond_scatter.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,0},{244,243}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{244,243}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>RedDiamond_Symbol.png</string>
+			<key>realTextureFileName</key>
+			<string>RedDiamond_Symbol.png</string>
+			<key>size</key>
+			<string>{1024,1024}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>1024</integer>
+			<key>height</key>
+			<integer>1024</integer>
+		</dict>
+	</dict>
+</plist>

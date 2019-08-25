@@ -56,5 +56,9 @@ function LevelScene:getUIManager()
 	return self._uiManager
 end
 
+function LevelScene:getLevelIndex()
+	return self._levelIndex
+end
+
 
 return LevelScene

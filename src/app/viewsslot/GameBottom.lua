@@ -134,7 +134,14 @@ end
 
 
 function GameBottom:rule()
-	addUIToScene( UIDefine.SLOT_KEY.Rule_UI )
+	local level_index = display.getRunningScene():getLevelIndex()
+	if level_index == 1 then
+		addUIToScene( UIDefine.SLOT_KEY.Rule_UI )
+	elseif level_index == 2 then
+
+	elseif level_index == 3 then
+		
+	end
 end
 
 function GameBottom:getMaxBet()

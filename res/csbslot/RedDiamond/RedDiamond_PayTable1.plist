@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>ui/pay_table_btn_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,1567},{320,79}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{320,79}</string>
+			</dict>
+			<key>ui/pay_table_btn_1s.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,1887},{320,79}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{320,79}</string>
+			</dict>
+			<key>ui/pay_table_btn_2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,1966},{100,79}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{100,79}</string>
+			</dict>
+			<key>ui/pay_table_btn_2s.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{100,1966},{100,79}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{100,79}</string>
+			</dict>
+			<key>ui/pay_table_wenben_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,0},{1005,562}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{1005,562}</string>
+			</dict>
+			<key>ui/pay_table_wenben_2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1005,0},{1005,562}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{1005,562}</string>
+			</dict>
+			<key>ui/pay_table_wenben_3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,562},{1005,562}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{1005,562}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>RedDiamond_PayTable1.png</string>
+			<key>realTextureFileName</key>
+			<string>RedDiamond_PayTable1.png</string>
+			<key>size</key>
+			<string>{2048,2048}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>2048</integer>
+			<key>height</key>
+			<integer>2048</integer>
+		</dict>
+	</dict>
+</plist>

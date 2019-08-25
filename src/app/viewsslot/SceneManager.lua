@@ -10,6 +10,7 @@ cc.FileUtils:getInstance():addSearchPath( "res/csbslot" )
 cc.FileUtils:getInstance():addSearchPath( "res/csbslot/hall" )
 cc.FileUtils:getInstance():addSearchPath( "res/csbslot/wolfLighting" )
 cc.FileUtils:getInstance():addSearchPath( "res/csbslot/newcandy" )
+cc.FileUtils:getInstance():addSearchPath( "res/csbslot/RedDiamond" )
 
 require("app.viewsslot.base.SymbolCsbCache")
 require("app.viewsslot.base.EffectCsbCache")
