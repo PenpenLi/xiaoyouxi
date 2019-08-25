@@ -112,6 +112,7 @@ function GameBottom:touchSpin()
 	-- 添加经验
 	G_GetModel("Model_Slot"):setExpress()
 	self._topLayer:loadDataUi()
+	-- 添加次数
 end
 
 
@@ -140,7 +141,7 @@ function GameBottom:rule()
 	elseif level_index == 2 then
 
 	elseif level_index == 3 then
-		
+
 	end
 end
 
