@@ -16,6 +16,14 @@ function GameStart:ctor( param )
 		end
 	})
 
+
+	self:addNodeClick( self.ImageLevel2,{
+		endCallBack = function ()
+			self:clickGame2()
+		end
+	})
+
+
 	self._timing = G_GetModel("Model_Slot"):getInstance():getTimingOfDown() -- 倒计时总时间
 
 	self:addNodeClick( self.ImageBigCoin,{
@@ -187,6 +195,12 @@ end
 function GameStart:clickGame1()
 	-- 进入关卡1
 	SceneManager:gotoLevelScene( 1 )
+end
+
+
+function GameStart:clickGame2()
+	-- 进入关卡1
+	SceneManager:gotoLevelScene( 2 )
 end
 
 function GameStart:store()

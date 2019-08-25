@@ -6,7 +6,7 @@
 -- Date: 	2019-05-09
 -- Desc:	关卡场景的底部条
 
-
+local LevelConfig = import( "app.viewsslot.config.LevelConfig" )
 local GameBottom = class("GameBottom",BaseLayer)
 
 GameBottom.SPIN_STATUS = {
@@ -44,33 +44,35 @@ function GameBottom:ctor( param )
 	self:addNodeClick( self.BtnPayTable,{
 		endCallBack = function() self:rule() end
 	})
+	self:addNodeClick( self.BtnMaxBet,{
+		endCallBack = function() self:maxBet() end
+	})
 
 	self._spinStatus = self.SPIN_STATUS.SPIN_IDLE
+
+	-- 默认开始能spin
+	self._canSpin = true
+	self._betRate = 1
+	self.TextFreeCount:setVisible( false )
 end
 
 
 function GameBottom:onEnter()
 	GameBottom.super.onEnter( self )
-	self:loadUiData()
-	
 	performWithDelay( self,function()
 		self._gameLayer = display.getRunningScene():getPlayLayer()
 		self._topLayer = display.getRunningScene():getTopLayer()
 		self._gameModel = self._gameLayer:getGameModel()
+		self:loadUiData()
 	end,0.1 )
 end
 
 
-
 function GameBottom:loadUiData()
-	-- 默认开始能spin
-	self._canSpin = true
-
 	--初始化LastWin跟TotalBet钱
-	self._betCoin = 1000
+	self._betCoin = self._gameModel:getBetCoin()
 	self:setTotalBetNum( self._betCoin )
 	self:setWinCoin("0")
-	self.TextFreeCount:setVisible( false )
 end
 
 
@@ -103,10 +105,13 @@ function GameBottom:touchSpin()
 		end
 		
 		G_GetModel("Model_Slot"):setCoin( -self._betCoin )
-		self._topLayer:loadCoinUi()
 		self._gameLayer:startRoll()
 		self.ButtonSpin:loadTexture( "image/common/spin_down.png",1 )
 	end
+
+	-- 添加经验
+	G_GetModel("Model_Slot"):setExpress()
+	self._topLayer:loadDataUi()
 end
 
 
@@ -127,8 +132,55 @@ function GameBottom:setWinCoinUi( coin )
 	self.TextWinCoin:setString( coin )
 end
 
+
 function GameBottom:rule()
 	addUIToScene( UIDefine.SLOT_KEY.Rule_UI )
+end
+
+function GameBottom:getMaxBet()
+	local level = G_GetModel("Model_Slot"):getLevel()
+	for k,v in pairs( LevelConfig ) do
+		if v.MinLevel <= level and level <= v.MaxLevel then
+			return v.MaxBet
+		end
+	end
+	return 1
+end
+
+function GameBottom:betSub()
+	if self._betRate <= 1 then
+		self._betRate = 1
+		return
+	end
+	self._betRate = self._betRate - 1
+
+	local bet_coin = self._gameModel:getOrgBetCoin() * self._betRate
+	self._gameModel:setBetCoin( bet_coin )
+	self:setTotalBetNum( bet_coin )
+end
+
+function GameBottom:betAdd()
+	local max_bet = self:getMaxBet()
+	if self._betRate >= max_bet then
+		self._betRate = max_bet
+		return
+	end
+	self._betRate = self._betRate + 1
+	local bet_coin = self._gameModel:getOrgBetCoin() * self._betRate
+	self._gameModel:setBetCoin( bet_coin )
+	self:setTotalBetNum( bet_coin )
+end
+
+function GameBottom:maxBet()
+	local max_bet = self:getMaxBet()
+	if self._betRate >= max_bet then
+		self._betRate = max_bet
+		return
+	end
+	self._betRate = max_bet
+	local bet_coin = self._gameModel:getOrgBetCoin() * self._betRate
+	self._gameModel:setBetCoin( bet_coin )
+	self:setTotalBetNum( bet_coin )
 end
 
 return GameBottom

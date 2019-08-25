@@ -40,9 +40,6 @@ function BaseSymbolUnit:setCsbNode( symbolId )
 	self._csbNode:setPosition( cc.p( self._size.width / 2,self._size.height / 2 ) )
 	self._csbNode:runAction( self._symbolData.action )
 	self._csbVar = symbol_data.csbVar
-
-	-- 切换到静止帧
-	self:playCsbAction("idleframe")
 	
 	self:addChild( self._csbNode )
 end

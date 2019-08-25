@@ -285,6 +285,11 @@ UIDefine.SLOT_KEY  = {
 	FreeSpinWolfStart_UI    = { layer = import("app.viewsslot.wolf.GameWolfFreeSpinStart"),      	flag = UIDefine.LayerFlag.Main.name,    name = "Slot_FreeSpinWolfStart_UI"          },
 	FreeSpinWolfOver_UI     = { layer = import("app.viewsslot.wolf.GameWolfFreeSpinOver"),       	flag = UIDefine.LayerFlag.Main.name,    name = "Slot_FreeSpinWolfOver_UI"           },
 
+
+	GameCandy_UI         	= { layer = import("app.viewsslot.candy.GameCandyPlay"),	    	    flag = UIDefine.LayerFlag.Main.name,	name = "Slot_CandyPlay_UI"                  },
+	FreeSpinCandyStart_UI   = { layer = import("app.viewsslot.candy.GameCandyFreeSpinStart"),      	flag = UIDefine.LayerFlag.Main.name,    name = "Slot_FreeSpinCandyStart_UI"         },
+	FreeSpinCandyOver_UI    = { layer = import("app.viewsslot.candy.GameCandyFreeSpinOver"),       	flag = UIDefine.LayerFlag.Main.name,    name = "Slot_FreeSpinCandyOver_UI"          },
+
 	Top_UI              	= { layer = import("app.viewsslot.GameTop"),	    		    		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Top_UI"                        },
 	Rule_UI              	= { layer = import("app.viewsslot.GameRule"),	    		    		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Rule_UI"                        },
 

@@ -16,6 +16,12 @@ function GameTop:ctor( param )
 
 	-- 加载csb
 	self:addCsb("csbslot/hall/GameTop.csb")
+
+	self:addNodeClick( self.ButtonBack,{
+		endCallBack = function() 
+			SceneManager:goToHallScene()
+		end
+	})
 end
 
 
@@ -29,6 +35,7 @@ end
 
 function GameTop:loadDataUi()
 	self:loadCoinUi()
+	self:loadLevel()
 end
 
 
@@ -38,7 +45,14 @@ function GameTop:loadCoinUi()
 end
 
 
+function GameTop:loadLevel()
+	local level = G_GetModel("Model_Slot"):getLevel()
+	self.TextLevel:setString( level )
 
+	local need_exp = G_GetModel("Model_Slot"):getNeedExpForLevelUp()
+	local now_exp = G_GetModel("Model_Slot"):getExpress()
+	self.ExpressBar:setPercent( now_exp / need_exp * 100 )
+end
 
 
 

@@ -2,6 +2,7 @@
 local CardWheelConfig = import( "app.viewsslot.config.CardWheelConfig" )
 local CardWheelRewardConfig = import( "app.viewsslot.config.CardWheelRewardConfig" )
 local CoinDrawConfig = import( "app.viewsslot.config.CoinDrawConfig" )
+local LevelConfig = import( "app.viewsslot.config.LevelConfig" )
 
 
 local Model_Slot = class( "Model_Slot" )
@@ -21,6 +22,7 @@ function Model_Slot:reset()
 	self._level = nil
 	self._toTime = nil -- 每日抽奖目标时间
 	self._miniNum = nil -- 左下小游戏200玩一次
+	self._exp = nil
 end
 
 
@@ -126,6 +128,36 @@ end
 function Model_Slot:setLevel()
 	-- body
 end
+
+function Model_Slot:getExpress()
+	if self._exp == nil then
+		local user_default = cc.UserDefault:getInstance()
+		self._exp = user_default:getIntegerForKey( "slotExp",0 )
+		user_default:setIntegerForKey( "slotExp",self._exp )
+	end
+	return self._exp
+end
+
+function Model_Slot:setExpress()
+	self._exp = self:getExpress() + 5
+	local need_exp = self:getNeedExpForLevelUp()
+	if self._exp >= need_exp then
+		self._level = self._level + 1
+		self._exp = 0
+	end
+	local user_default = cc.UserDefault:getInstance()
+	user_default:setIntegerForKey( "slotExp",self._exp )
+	user_default:setIntegerForKey( "slotLevel",self._level )
+end
+
+function Model_Slot:getNeedExpForLevelUp()
+	for k,v in pairs( LevelConfig ) do
+		if v.MinLevel <= self._level and self._level <= v.MaxLevel then
+			return v.Express
+		end
+	end
+end
+
 
 -- 获取轮盘数据
 function Model_Slot:lunpanData( parent )
