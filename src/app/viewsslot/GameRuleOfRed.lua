@@ -58,6 +58,7 @@ end
 
 function GameRuleOfRed:onEnter()
 	GameRuleOfRed.super.onEnter( self )
+	casecadeFadeInNode( self.root,0.5 )
 end
 
 function GameRuleOfRed:close()
