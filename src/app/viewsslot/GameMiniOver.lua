@@ -29,11 +29,4 @@ function GameMiniOver:close( ... )
 	removeUIFromScene( UIDefine.SLOT_KEY.OverMini2_UI )
 end
 
-
-
-
-
-
-
-
 return GameMiniOver

@@ -286,6 +286,8 @@ UIDefine.SLOT_KEY  = {
 	FreeSpinWolfOver_UI     = { layer = import("app.viewsslot.wolf.GameWolfFreeSpinOver"),       	flag = UIDefine.LayerFlag.Main.name,    name = "Slot_FreeSpinWolfOver_UI"           },
 
 	Top_UI              	= { layer = import("app.viewsslot.GameTop"),	    		    		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Top_UI"                        },
+	Rule_UI              	= { layer = import("app.viewsslot.GameRule"),	    		    		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Rule_UI"                        },
+
 }
 
 

@@ -8,7 +8,7 @@ local GameZhuanPan = class( "GameZhuanPan",BaseLayer )
 function GameZhuanPan:ctor( param )
 	assert( param," !! param is nil !! " )
 	assert( param.name," !! param.name is nil !! " )
-	GameZhuanPan.super.ctor( self,param.name ) -----------------------一句话五小时。。。。。
+	GameZhuanPan.super.ctor( self,param.name )
 	self._parent = param.data
 
 	self:addCsb( "csbslot/hall/TurnTable.csb" )
@@ -29,20 +29,12 @@ function GameZhuanPan:loadUi()
 	local lunpan_table = G_GetModel("Model_Slot"):getInstance():lunpanData()
 	self._lunpanTable = lunpan_table
 	self.Sprite_20:setVisible( false )
-	-- dump( lunpan_table,"-------------------lunpan_table = ")
-	-- for i=1,#lunpan_table do
-	-- 	self["TextNum"..v.Order]:setString( v.BaseCoinReward )
-	-- end
 	for i,v in ipairs(lunpan_table) do
-		print("-------------v.Order = "..v.Order)
-		print("-------------v.BaseCoinReward = "..v.BaseCoinReward)
 		self["TextNum"..v.Order]:setString( v.BaseCoinReward )
 	end
-
 end
 -- 转盘随机终点
 function GameZhuanPan:randomRot()
-	-- local lunpan_table = G_GetModel("Model_Slot"):getInstance():lunpanData()
 	local weightSum = 0
 	for i,v in ipairs(self._lunpanTable) do
 		weightSum = weightSum + v.Weight
@@ -78,28 +70,22 @@ function GameZhuanPan:turnBegan()
 	local rotate_end = cc.RotateBy:create( 0.5,-15 )
 	local easeSineInOut = cc.EaseSineInOut:create( rotate )
 	local call = cc.CallFunc:create(function ()
-		-- print("-------------------123")
 		self.Sprite_20:setVisible( true )
 		self:playCsbAction( "zhongjiang",true )
 	end)
 	local delay1 = cc.DelayTime:create( 2 )
 	local call1 = cc.CallFunc:create(function ()
-		dump( haveCoin,"------------haveCoin = ")
 		addUIToScene( UIDefine.SLOT_KEY.Collect_UI,{haveCoin = haveCoin,parent = self._parent} )
 	end)
 	local seq = cc.Sequence:create({ delay,rotate_began,easeSineInOut,rotate_end,call,delay1,call1 })
 	
 	self.Bg3:runAction( seq )
-	-- local rot_began = 90
 	local index = 0
 	local rot_began = self.Bg3:getRotation()
-
 	self:schedule(function ()
-		
 		local rot_last = self.Bg3:getRotation()
 		local rot = rot_last - rot_began
 		local num = rot / 24
-
 		if num > 1 then
 			local bool_go = true
 			while bool_go do
@@ -111,59 +97,16 @@ function GameZhuanPan:turnBegan()
 				end
 			end
 		end
-
-		-- if num > 1 then
-		-- 	print("---------------------00000000")
-		-- 	while num < 1 do----------------------------------------------------------这个循环为什么进不去？？？
-		-- 		print("---------------------11111")
-		-- 		index = index + 1
-		-- 		print("---------------------index = "..index)
-		-- 		num = num - 1
-		-- 		print("---------------------numnum = "..num)
-		-- 		rot_began = rot_began + 24
-		-- 	end
-		-- end
-		-- while num < 1 do
-		-- 	print("---------------------11111")
-		-- 	index = index + 1
-		-- 	print("---------------------index = "..index)
-		-- 	num = num - 1
-		-- 	print("---------------------numnum = "..num)
-		-- 	rot_began = rot_began + 24
-		-- end
 		if index > 3 then
 			index = 3
 		end
-		-- local hand_rot = index * 20
-		-- if hand_rot < 30 then
-		-- 	hand_rot = 30
-		-- end
-		-- if hand_rot > 90 then
-		-- 	hand_rot = 90
-		-- end		
 		self.ImageZhiZhen:setRotation( 90 - index * 20 )
 		if index == 3 then
-			print("---------------------111111111111111")
 			self:zhizhen()
 		end
-
-		
 		if index >= 1 then
 			index = index - 1
 		end
-		
-		
-		-- local rot_last = self.Bg3:getRotation()
-		-- local rot = rot_began - rot_last
-		-- if rot >= 90 then
-		-- 	self.ImageZhiZhen:setRotation( 90 )
-		-- elseif rot <= 30 then
-		-- 	self.ImageZhiZhen:setRotation( 30 )
-		-- else
-		-- 	self.ImageZhiZhen:setRotation( rot )
-		-- end
-		-- -- rot_began = rot_began + 8
-		-- print("---------------------rot = "..rot)
 	end,0.1)
 end
 function GameZhuanPan:zhizhen()
@@ -173,35 +116,5 @@ function GameZhuanPan:zhizhen()
 	local seq = cc.Sequence:create({ rotate1,rotate1 })
 	self.ImageZhiZhen:runAction( seq )
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 return GameZhuanPan

@@ -88,11 +88,9 @@ function GamePlay:stopRoll()
 		local reel_data,free_mark = self:getRollResult()
 		self._reelResultData = reel_data
 		if free_mark then
-			print("--------------------> free spin ")
 			self._curFreeMark = free_mark
 			self:freeSpinStopRoll( reel_data )
 		else
-			print("--------------------> normal spin ")
 			self:normalStopRoll( reel_data )
 		end
 	end
@@ -358,7 +356,6 @@ function GamePlay:getLineResult()
 	end
 
 	-- 根据配置 筛选可用的连线
-	dump( lines,"----------------> lines = ",5 )
 
 	local valid_lines = {}
 
@@ -377,8 +374,6 @@ function GamePlay:getLineResult()
 			table.insert( valid_lines,meta )
 		end
 	end
-
-	dump( valid_lines,"----------------> valid_lines = ",5 )
 
 	return valid_lines
 end

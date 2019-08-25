@@ -7,7 +7,6 @@ function NodeMiniGame:ctor( parent )
 	self._parent = parent
 
 	self:addCsb( "csbslot/hall/NodeMiniGame.csb" )
-	-- self:addCsb( "csbslot/hall/NodeShop.csb")
 	TouchNode.extends( self.Panel,function ( event )
 		return self:collect( event )
 	end)
@@ -19,20 +18,9 @@ function NodeMiniGame:loadUi()
 
 end
 
--- function NodeMiniGame:getCoin( ... )
--- 	return 
--- end
-
 function NodeMiniGame:collect( ... )
 	self:setVisible( false )
 	self._parent:setTextCoin( NodeMiniGame.coin )
 end
-
-
-
-
-
-
-
 
 return NodeMiniGame

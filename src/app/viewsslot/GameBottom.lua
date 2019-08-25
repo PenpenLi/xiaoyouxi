@@ -41,6 +41,10 @@ function GameBottom:ctor( param )
 		endCallBack = function() self:betAdd() end
 	})
 
+	self:addNodeClick( self.BtnPayTable,{
+		endCallBack = function() self:rule() end
+	})
+
 	self._spinStatus = self.SPIN_STATUS.SPIN_IDLE
 end
 
@@ -123,6 +127,8 @@ function GameBottom:setWinCoinUi( coin )
 	self.TextWinCoin:setString( coin )
 end
 
-
+function GameBottom:rule()
+	addUIToScene( UIDefine.SLOT_KEY.Rule_UI )
+end
 
 return GameBottom

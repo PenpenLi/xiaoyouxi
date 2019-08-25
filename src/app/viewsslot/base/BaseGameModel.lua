@@ -161,7 +161,6 @@ function BaseGameModel:getLineResult()
 	end
 
 	-- 根据配置 筛选可用的连线
-	dump( lines,"----------------> lines = ",5 )
 
 	local valid_lines = {}
 
@@ -180,8 +179,6 @@ function BaseGameModel:getLineResult()
 			table.insert( valid_lines,meta )
 		end
 	end
-
-	dump( valid_lines,"----------------> valid_lines = ",5 )
 
 	return valid_lines
 end

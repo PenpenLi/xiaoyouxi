@@ -32,10 +32,7 @@ function NodeShop:ctor( parentPanel,index )
 	self:loadUi()
 end
 function NodeShop:loadUi()
-	dump( self._coinImg[self._index],"--------------self._coinImg[self._index] = ")
 	self.ImageCoin:ignoreContentAdaptWithSize( true )
-	-- local node = ccui.ImageView:create( self._coinImg[self._index],1 )
-	-- self.ImageCoin:addChild( node )
 	self.ImageCoin:loadTexture( self._coinImg[self._index] )
 	self.TextCoin:setString( self._coin[self._index] )
 	self.TextDollor:setString( self._dollor[self._index] )
@@ -43,7 +40,6 @@ end
 
 function NodeShop:onEnter()
 	NodeShop.super.onEnter( self )
-
 end
 
 function NodeShop:touchCard( event )
@@ -61,9 +57,4 @@ end
 function NodeShop:openBuy()
 	addUIToScene( UIDefine.SLOT_KEY.Buy_UI,self._index )
 end
-
-
-
-
-
 return NodeShop

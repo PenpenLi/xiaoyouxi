@@ -50,10 +50,6 @@ function GameBuy:onEnter()
 	casecadeFadeInNode( self._layer,0.5,150 )
 	casecadeFadeInNode( self._csbNode,0.5 )
 end
--- function GameBuy:buy( ... )
--- 	G_GetModel("Model_Slot"):getInstance():setCoin( self._coin[self._index] )
--- 	EventManager:getInstance():dispatchInnerEvent( InnerProtocol.INNER_EVENT_SLOT_BUY_COIN )
--- end
 
 function GameBuy:close( ... )
 	removeUIFromScene( UIDefine.SLOT_KEY.Buy_UI )
@@ -65,16 +61,9 @@ function GameBuy:coinFlyAction( ... )
 	local end_pos = cc.p( 155,display.height - 33 )
 	G_GetModel("Model_Slot"):getInstance():setCoin( self._coin[self._index] )
 	local call = function ()
-		-- print("--------------123123")
-		
 		EventManager:getInstance():dispatchInnerEvent( InnerProtocol.INNER_EVENT_SLOT_BUY_COIN )
 	end
-	-- local call = self:buy()
 	coinFly( world_pos,end_pos,call )
 end
-
-
-
-
 
 return GameBuy

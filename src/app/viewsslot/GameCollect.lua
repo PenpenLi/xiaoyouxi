@@ -20,9 +20,6 @@ function GameCollect:ctor( param )
 
 	local node = NodeCardMainstar.new()
 	self.OneNode:addChild( node )
-	-- self.OneNode:addCsb( "csbslot/hall/CardMainstar.csb" )
-	-- self:playCsbAction( "actionframe",true )
-
 
 	self:addNodeClick( self.ButtonCollect,{
 		endCallBack = function ()
@@ -51,7 +48,6 @@ function GameCollect:goingCollectCoin()
 	end
 	
 	self._collect = true
-	-- self._parent:collectCoin()
 	self:collectCoin()
 	performWithDelay( self,function ()
 		if self._parent then
@@ -75,8 +71,6 @@ function GameCollect:collectCoin()
 		local index = G_GetModel("Model_Slot"):getInstance():getNumOfCollectTime()
 		index = index + 1
 		G_GetModel("Model_Slot"):getInstance():setNumOfCollectTime( index )
-		-- self.GetCoinToByNode:setVisible( false )
-	
 		self._parent:resetBar()
 	end
 
@@ -92,15 +86,8 @@ function GameCollect:coinAction()
     	self:resetOneDayOneDraw()
     end
 	local call = function ()
-		-- print("------------coin = "..self._coin )
-		-- local coin = G_GetModel("Model_Slot"):getInstance():getCollectCoin()
-	    -- G_GetModel("Model_Slot"):getInstance():setCoin( self._coin )
 	    EventManager:getInstance():dispatchInnerEvent( InnerProtocol.INNER_EVENT_SLOT_BUY_COIN )
-	    -- if not self._parent then
-	    -- 	self:resetOneDayOneDraw()
-	    -- end
 	end
-	-- coinFly( began_pos,end_pos,num,call )
 	coinFly( began_pos,end_pos,call )
 end
 
@@ -108,19 +95,5 @@ end
 function GameCollect:resetOneDayOneDraw()
 	G_GetModel("Model_Slot"):getInstance():setOneDayOneDraw()
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 return GameCollect

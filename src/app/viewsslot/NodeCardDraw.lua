@@ -5,9 +5,6 @@ local NodeCardDraw = class( "NodeCardDraw",BaseNode )
 
 function NodeCardDraw:ctor(  )
 	NodeCardDraw.super.ctor( self )
-	-- self._num = param.data
-	-- self._coin,self._keepOn = G_GetModel("Model_Slot"):getInstance():getCoinDrawData()
-
 	self:addCsb( "csbslot/hall/CardDrawCoin.csb" )
 end
 
@@ -33,15 +30,5 @@ end
 function NodeCardDraw:getKeepOn( ... )
 	return self._keepOn
 end
-
-
-
-
-
-
-
-
-
-
 
 return NodeCardDraw

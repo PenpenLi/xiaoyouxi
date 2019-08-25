@@ -75,7 +75,6 @@ end
 function CoinNode:flyAction( startPoint,endPoint,index,maxIndex,callBack,rate )
 	local start_point = clone( startPoint )
 	local end_point = clone( endPoint )
-	-- dump( end_point,"------------end_point= ")
 	local bz_total_fly_time1 = 1
 	local bz_total_fly_time2 = 0.5
 
@@ -97,29 +96,11 @@ function CoinNode:flyAction( startPoint,endPoint,index,maxIndex,callBack,rate )
 	end
 
 
-
-	-- local pos = {
-	-- 	{ x = start_point.x + 47 * m_rate,		y = start_point.y + 50 * m_rate,		time = 0.1 },
-	-- 	{ x = start_point.x + 84 * m_rate,		y = start_point.y + 134 * m_rate,		time = 0.1 },
-	-- 	{ x = start_point.x + 45 * m_rate,		y = start_point.y + 188 * m_rate,		time = 0.1 },
-	-- 	{ x = end_point.x - 47 * m_rate,		y = end_point.y - 188 * m_rate,			time = 0.3 },
-	-- 	{ x = end_point.x - 84 * m_rate,		y = end_point.y - 134 * m_rate,			time = 0.1 },
-	-- 	{ x = end_point.x - 45 * m_rate,		y = end_point.y - 50 * m_rate,			time = 0.1 },
-	-- 	{ x = end_point.x,						y = end_point.y,						time = 0.1 },
-	-- }
-
-
 	local actions = {}
 	table.insert( actions,delay )
 	table.insert( actions,call_show )
 
 
-	-- for i,v in ipairs( pos ) do
-	-- 	local move_to = cc.MoveTo:create( v.time,cc.p( v.x,v.y ) )
-	-- 	table.insert( actions,move_to )
-	-- end
-	-- dump( endPoint,"---------------endPoint = ")
-	-- dump( end_point,"---------------end_point = ")
 	local bez = cc.BezierTo:create(1,{cc.p(endPoint.x,startPoint.y+(endPoint.y-startPoint.y)*0.3),
         cc.p(startPoint.x,startPoint.y+(endPoint.y-startPoint.y)*0.5),endPoint})
 

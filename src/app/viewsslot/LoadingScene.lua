@@ -13,7 +13,6 @@ local LoadingScene = class("LoadingScene",function()
 end)
 
 
-
 function LoadingScene:ctor( sceneType,levelIndex )
 	assert( sceneType," !! sceneType is nil !! " )
 	-- 开启生命周期
@@ -23,13 +22,9 @@ function LoadingScene:ctor( sceneType,levelIndex )
 	self._levelIndex = levelIndex
 end
 
-
-
 function LoadingScene:getSceneName()
 	return "LoadingScene"
 end
-
-
 
 function LoadingScene:onEnter()
 	-- 加载Loading界面
@@ -43,7 +38,6 @@ end
 function LoadingScene:getUIManager()
 	return self._uiManager
 end
-
 
 return LoadingScene
 

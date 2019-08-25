@@ -14,11 +14,6 @@ function GameShop:ctor( param )
 
 	self:addCsb( "csbslot/hall/GameShop.csb")
 
-	-- self.addNodeClick( self.ButtonClose,{
-	-- 	endCallBack = function ()
-	-- 		self:close()
-	-- 	end
-	-- })
 	self:addNodeClick( self.ButtonClose,{
 		endCallBack = function ()
 			self:close()
@@ -43,19 +38,5 @@ end
 function GameShop:close()
 	removeUIFromScene( UIDefine.SLOT_KEY.Shop_UI )
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 return GameShop

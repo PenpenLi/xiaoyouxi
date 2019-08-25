@@ -16,20 +16,11 @@ function GameStart:ctor( param )
 		end
 	})
 
-	-- --商店
-	-- self:addNodeClick( self.ButtonStore,{
-	-- 	endCallBack = function ()
-	-- 		self:store()
-	-- 	end
-	-- })
-
 	self._timing = G_GetModel("Model_Slot"):getInstance():getTimingOfDown() -- 倒计时总时间
 
 	self:addNodeClick( self.ImageBigCoin,{
 		endCallBack = function ()
 			self:collectCoin()
-			print("----------------------> aaaaaaaaaaaaaaaaaa ")
-			-- self:discSpinning()
 		end
 	})
 	self:addNodeClick( self.ImageDiscSpinning,{
@@ -37,7 +28,6 @@ function GameStart:ctor( param )
 			self:discSpinning()
 		end
 	})
-
 	-- 每日抽奖
 	self:addNodeClick( self.ButtonChoujiangOfDay,{
 		endCallBack = function ()
@@ -57,7 +47,6 @@ function GameStart:ctor( param )
 end
 
 function GameStart:loadCoin(  )
-	-- local coin = G_GetModel("Model_SuoHa"):getInstance():getCoin()
 	local coin = G_GetModel("Model_Slot"):getInstance():getCoin()
 	self.TextHasCoin:setString( coin )
 end
@@ -87,12 +76,8 @@ function GameStart:onEnter( ... )
 		local coin = G_GetModel("Model_Slot"):getInstance():getCoin()
 		self.TextHasCoin:setString( coin )
 	end )
-	
-
 	self:resetBar()
 	G_GetModel("Model_Slot"):getInstance():getCountDown()
-	-- self.ImageBigCoin:setVisible( false )
-	-- self.ImageDiscSpinning:setVisible( false )
 	self.ShowZhuanpanNode:setVisible( false )
 	self.GetCoinToByNode:setVisible( false )
 
@@ -100,11 +85,6 @@ function GameStart:onEnter( ... )
 		self:countDown()
 		-- 每日抽奖
 		self:loadEveryDayDraw()
-		-- index = index + 1
-		-- if index > #self._sound then
-		-- 	self:unSchedule()
-		-- 	self:loadStart()
-		-- end
 	end,0.1)
 end
 -- 每日抽奖倒计时
@@ -117,33 +97,17 @@ function GameStart:loadEveryDayDraw()
 	end
 end
 function GameStart:playEveryDayDraw()
-
-	-- self.NodeLotteryDraw:setVisible( true )
-	-- self.ButtonChoujiangOfDay:setVisible( true )
 	self.TextEveryDayDraw:setVisible( false )
-	-- local childs = self.NodeLotteryDraw:getChildren()
-	-- dump( childs,"-----------------childs = ")
-	-- if #childs == 0 then
-	-- 	local node = NodeImageDraw.new()
-	-- 	self.NodeLotteryDraw:addChild( node )
-	-- end
 end
 function GameStart:countdownEveryDayDraw()
-	-- self.NodeLotteryDraw:setVisible( false )
-	-- self.ButtonChoujiangOfDay:setVisible( false )
 	self.TextEveryDayDraw:setVisible( true )
-	-- self.TextEveryDayDraw:setString( os.date("%H:%M:%S",countdown))
-	
 	self:updataDayDraw(dt)
-	
 end
 function GameStart:updataDayDraw( dt )
 	local countdown = G_GetModel("Model_Slot"):getInstance():getOneDayOneDraw()
-	-- dump( countdown,"----------------countdown = ")
 	local time = formatTimeStr( countdown,":")
 	self.TextEveryDayDraw:setString( time )
 end
-
 
 -- 进度条加载状态
 function GameStart:resetBar( ... )
@@ -158,10 +122,8 @@ function GameStart:resetBar( ... )
 	end
 end
 
-
 -- 倒计时
 function GameStart:countDown( )
-	-- self._timing = 10
 	local time_began = G_GetModel("Model_Slot"):getInstance():getCountDown()
 	local time_end = os.time()
 	local time_long = time_end - time_began
@@ -173,13 +135,11 @@ function GameStart:countDown( )
 		self.TextTimeCountDown:setString( os.date("%M:%S",0 ))
 		if index == 5 then
 			self.ShowZhuanpanNode:setVisible( true )
-			-- self.ImageDiscSpinning:setVisible( true )
 			self:discSpinningTurn()
 		else
 			self.GetCoinToByNode:setVisible( true )
 			local coin = G_GetModel("Model_Slot"):getInstance():getCollectCoin()
 			self.TextCollectCoinNum:setString( coin )
-			-- self.GetCoinNode:setVisible( false )
 		end
 		
 		return
@@ -196,15 +156,10 @@ function GameStart:collectCoin()
 	G_GetModel("Model_Slot"):getInstance():init()
 	local index = G_GetModel("Model_Slot"):getInstance():getNumOfCollectTime()
 	index = index + 1
-	-- if index >= 5 then
-	-- end
 	G_GetModel("Model_Slot"):getInstance():setNumOfCollectTime( index )
 	self.GetCoinToByNode:setVisible( false )
 	self:resetBar()
-
 	self:coinAction()
-
-	
 end
 -- 抽奖小转盘旋转
 function GameStart:discSpinningTurn()
@@ -214,53 +169,20 @@ function GameStart:discSpinningTurn()
 end
 -- 转盘抽奖
 function GameStart:discSpinning()
-	-- self.ImageDiscSpinning:setVisible( false )
-	-- self:collectCoin()
 	addUIToScene( UIDefine.SLOT_KEY.Turn_UI,self )
-
-	
 end
 
 -- 收集金币飞舞
 function GameStart:coinAction()
-	-- local num = 5 -- 动作几枚金币
 	local began_pos = self.ImageBigCoin:getParent():convertToWorldSpace( cc.p(self.ImageBigCoin:getPosition()))
 	local end_pos = self.ImageCoinDollar:getParent():convertToWorldSpace( cc.p(self.ImageCoinDollar:getPosition()))
 	local call = function ()
-		print("--------------123123")
 		local coin = G_GetModel("Model_Slot"):getInstance():getCollectCoin()
 	    G_GetModel("Model_Slot"):getInstance():setCoin( coin )
 	    EventManager:getInstance():dispatchInnerEvent( InnerProtocol.INNER_EVENT_SLOT_BUY_COIN )
 	end
-	-- coinFly( began_pos,end_pos,num,call )
 	coinFly( began_pos,end_pos,call )
 end
--- function GameStart:coinFly()
-	-- local index = 5 -- 飞6枚金币
-	-- local began_pos = self.ImageBigCoin:getParent():convertToWorldSpace( cc.p(self.ImageBigCoin:getPosition()))
-	-- local first_pos = cc.p( 0,0 )
-	-- local second_pos = cc.p( 400,500 )
-	-- local third_pos = self.ImageCoinDollar:getParent():convertToWorldSpace( cc.p(self.ImageCoinDollar:getPosition()))
-	-- for i=1,index do
-	-- 	local coin = ccui.ImageView:create( "image/ui/coin_dollar2.png",1 )
-	-- 	self:addChild( coin )
-	-- 	coin:setPosition( began_pos )
-	-- 	-- coin:setVisible( false )
-	-- 	local fade = cc.FadeIn:create( 0.1)
-	-- 	local bz = cc.BezierTo:create(1,{ first_pos,second_pos,third_pos })
-	-- 	local delay = cc.DelayTime:create( 0.05 * i )
-	-- 	local call = cc.CallFunc:create(function ()
-	-- 		local coin = G_GetModel("Model_Slot"):getInstance():getCollectCoin()
-	-- 		G_GetModel("Model_Slot"):getInstance():setCoin( coin / index )
-	-- 		EventManager:getInstance():dispatchInnerEvent( InnerProtocol.INNER_EVENT_SLOT_BUY_COIN )
-	-- 	end)
-		
-	-- 	local seq = cc.Sequence:create({ delay,fade,bz,call })
-	-- 	coin:runAction( seq )
-	-- end
--- end
-
-
 
 function GameStart:clickGame1()
 	-- 进入关卡1
@@ -276,8 +198,6 @@ function GameStart:ChoujiangOfDay()
 	if countdown > 0 then
 		return
 	end
-
-	-- self.TextEveryDayDraw:setVisible( true )
 	addUIToScene( UIDefine.SLOT_KEY.Draw_UI )
 end
 
@@ -285,7 +205,5 @@ function GameStart:miniGame()
 	G_GetModel("Model_Slot"):getInstance():initMiniGameNum()
 	addUIToScene( UIDefine.SLOT_KEY.Mini2_UI,self )
 end
-
-
 
 return GameStart

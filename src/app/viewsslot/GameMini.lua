@@ -28,25 +28,12 @@ function GameMini:loadUi( ... )
 	self:setTextCoin( self._coin )
 	local index = 0
 	self:schedule(function ()
-		-- self.TextTimeDown:setString( 3 )
 		if index == 0 then
 			self.TextTimeDown:setString( 'READY!' )
 		end
 		if index == 1 then
 			self.TextTimeDown:setString( 'GO!!!' )
 		end
-		-- if index == 2 then
-		-- 	self.TextTimeDown:setString( 3 )
-		-- end
-		-- if index == 3 then
-		-- 	self.TextTimeDown:setString( 2 )
-		-- end
-		-- if index == 4 then
-		-- 	self.TextTimeDown:setString( 1 )
-		-- end
-		-- if index == 5 then
-		-- 	self.TextTimeDown:setString( 0 )
-		-- end
 		if index == 2 then
 			self.TextTimeDown:setVisible( false )
 			self:unSchedule()
@@ -62,12 +49,8 @@ function GameMini:onEnter()
 	casecadeFadeInNode( self._csbNode,0.5 )
 end
 
-
 function GameMini:play( ... )
-	print("-----------------hahahahaha")
-	
 	self:loadPlay()
-
 	performWithDelay( self,function ()
 		G_GetModel("Model_Slot"):getInstance():setCoin( self._coin )
 		local node_pos = cc.p( self.TextCoin:getPosition())
@@ -79,9 +62,6 @@ function GameMini:play( ... )
 		coinFly( world_pos,end_pos,call )
 		removeUIFromScene( UIDefine.SLOT_KEY.Mini_UI )
 	end,4)
-	-- performWithDelay( self,function ()
-	-- 	removeUIFromScene( UIDefine.SLOT_KEY.Mini_UI )
-	-- end,6)
 end
 
 function GameMini:loadPlay()
@@ -97,15 +77,5 @@ function GameMini:setTextCoin( coin )
 	self._coin = self._coin + coin
 	self.TextCoin:setString( self._coin )
 end
-
-
-
-
-
-
-
-
-
-
 
 return GameMini

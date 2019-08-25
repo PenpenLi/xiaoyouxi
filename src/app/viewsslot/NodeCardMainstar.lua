@@ -14,18 +14,4 @@ function NodeCardMainstar:onEnter()
 	NodeCardMainstar.super.onEnter( self )
 end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 return NodeCardMainstar

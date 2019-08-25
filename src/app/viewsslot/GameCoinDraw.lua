@@ -6,7 +6,6 @@ function GameCoinDraw:ctor( param )
 	assert( param," !! param is nil !! " )
 	assert( param.name," !! param.name is nil !! " )
 	GameCoinDraw.super.ctor( self,param.name )
-	-- self._parent = param.data
 
 	self:addCsb( "csbslot/hall/CardDraw.csb" )
 	self:playCsbAction( "start",false )
@@ -56,7 +55,6 @@ function GameCoinDraw:beganGame()
 	-- 打开收集界面
 	performWithDelay( self,function ()
 		self:getCoinAndOneTime()
-		-- self:resetOneDayOneDraw()--进入每日抽奖界面后，如果玩家直接退出游戏将失去一次每日抽奖
 		self:openCollect()
 	end,time + 0.5)
 	
@@ -73,12 +71,9 @@ function GameCoinDraw:updataSymbolUnit( dt )
 		local y = childs[i]:getPositionY()
 		y = y - 20
 		childs[i]:setPositionY( y )
-		-- print("---------------y = "..y)
 		if y <= -386 then
 			y = y + 965
 			-- 更新node内容
-			-- local node = NodeCoin.new( )
-			-- self.ReelPanel:addChild( node )
 			childs[i]:loadUi()
 			childs[i]:setPositionY( y )
 		end
@@ -114,29 +109,9 @@ function GameCoinDraw:getCoinAndOneTime( ... )
 		self._start = 0
 	end
 end
--- -- 重置每日抽奖
--- function GameCoinDraw:resetOneDayOneDraw()
--- 	G_GetModel("Model_Slot"):getInstance():setOneDayOneDraw()
--- 	self._parent:loadEveryDayDraw()
--- end
 
 function GameCoinDraw:openCollect( ... )
-	-- dump( self._coin,"--------------------coin = ")
 	addUIToScene( UIDefine.SLOT_KEY.Collect_UI,{haveCoin = self._coin,keepOn = self._keepOn} )
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 return GameCoinDraw
