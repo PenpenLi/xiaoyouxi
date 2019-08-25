@@ -121,6 +121,7 @@ function GameRedDiamondPlay:showFreeSpinUI()
 	if self._gameModel:getFreeSpinOverMark() then
 		local coin = self._gameModel:getFreeSpinWinCoin()
 		self._gameModel:changeStatusToNormalSpin()
+		self._bottomLayer:resetButtonSpin()
 		addUIToScene( UIDefine.SLOT_KEY.FreeSpinRedOver_UI,coin )
 		return
 	end
