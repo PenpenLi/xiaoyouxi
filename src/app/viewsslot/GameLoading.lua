@@ -239,6 +239,8 @@ function GameLoading:getLoadResConfig()
 			config = import( "app.viewsslot.config.gameconfigwolf" )
 		elseif self._levelIndex == 2 then
 			config = import( "app.viewsslot.config.gameconfigcandy" )
+		elseif self._levelIndex == 3 then
+			config = import( "app.viewsslot.config.gameconfigred" )
 		end
 	end
 	assert( config," !! SceneManager res config is nil !! " )

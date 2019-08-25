@@ -426,10 +426,10 @@ end
 ]]
 function BaseGamePlay:addQuickEffectByStartCol( nCol )
 	assert( nCol," !! nCol is nil  !! " )
-	local size = self["sp_reel_"..nCol]:getContentSize()
+	local size = self._spReelList[nCol]:getContentSize()
 	if not self._effectList[nCol] then
 		local effect_data = EffectCsbCache:getCsbNodeByEffectName("kuaigun")
-		self["sp_reel_"..nCol]:addChild( effect_data.node,50 )
+		self._spReelList[nCol]:addChild( effect_data.node,50 )
 		effect_data.node:setPosition( cc.p( size.width / 2,size.height / 2 ) )
 		effect_data.node:runAction( effect_data.action )
 		playCsbActionForKey( effect_data.action,"run",true )

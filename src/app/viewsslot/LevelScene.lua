@@ -27,6 +27,8 @@ function LevelScene:onEnter()
 		self._gameLayer = addUIToScene( UIDefine.SLOT_KEY.GameWolf_UI,{self._levelIndex} )
 	elseif self._levelIndex == 2 then
 		self._gameLayer = addUIToScene( UIDefine.SLOT_KEY.GameCandy_UI,{self._levelIndex} )
+	elseif self._levelIndex == 3 then
+		self._gameLayer = addUIToScene( UIDefine.SLOT_KEY.GameRedDiamond_UI,{self._levelIndex} )
 	end
 	
 	self._bottomLayer = addUIToScene( UIDefine.SLOT_KEY.Bottom_UI )
