@@ -235,7 +235,9 @@ function GameLoading:getLoadResConfig()
 		-- 大厅
 		config = import( "app.viewsslot.config.HallResConfig" )
 	elseif self._sceneType == SceneManager.SCENE_TYPE.LEVEL then
-		config = import( "app.viewsslot.config.gameconfig"..self._levelIndex )
+		if self._levelIndex == 1 then
+			config = import( "app.viewsslot.config.gameconfigwolf" )
+		end
 	end
 	assert( config," !! SceneManager res config is nil !! " )
 	return config

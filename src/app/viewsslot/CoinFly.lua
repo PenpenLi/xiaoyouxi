@@ -12,13 +12,11 @@ end)
 
 function CoinFly:ctor( startPoint,endPoint,callBack,rate )
 	-- 添加
-	cc.SpriteFrameCache:getInstance():addSpriteFrames("coin_fly.plist")
+	cc.SpriteFrameCache:getInstance():addSpriteFrames("csbslot/hall/coin_fly.plist")
 	self:setContentSize( display.width,display.height )
 
 	self._startPoint = startPoint
 	self._endPoint = endPoint
-	-- dump( self._endPoint,"-----------------------")
-	-- dump( endPoint,"-----------------------")
 	self._callBack = function()
 		if callBack then
 			callBack()

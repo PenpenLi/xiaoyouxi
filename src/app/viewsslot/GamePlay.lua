@@ -16,17 +16,17 @@ function GamePlay:ctor( param )
 	self._reelConfig = require( "app.viewsslot.config.gameconfig"..self._levelIndex )
 	self._reelList = {}
 	self._effectList = {}
-
-	self._betCoin = 1000
-	self._freeCount = 0
 end
 
 
 function GamePlay:onEnter()
 	GamePlay.super.onEnter( self )
 	self:loadDataUi()
+
+	
 	performWithDelay( self,function()
 		self._bottomLayer = display.getRunningScene():getBottomLayer()
+		self._topLayer = display.getRunningScene():getTopLayer()
 	end,0.1 )
 end
 
@@ -53,8 +53,8 @@ end
 function GamePlay:startRoll()
 	-- 1:执行开始滚动的指令
 	if self:canRoll() then
-		if self._curFreeMark then
-		end
+		-- 初始化金币
+		self._betCoin = self._bottomLayer:getBetCoin()
 		-- 停止动画
 		self:stopAllSymbolAction()
 		self:releaseAllEffect()
@@ -86,15 +86,15 @@ function GamePlay:stopRoll()
 	if self:canStop() then
 		-- 开始停止
 		local reel_data,free_mark = self:getRollResult()
+		self._reelResultData = reel_data
 		if free_mark then
+			print("--------------------> free spin ")
+			self._curFreeMark = free_mark
 			self:freeSpinStopRoll( reel_data )
 		else
+			print("--------------------> normal spin ")
 			self:normalStopRoll( reel_data )
 		end
-		self._reelResultData = reel_data
-		self._curFreeMark = free_mark
-
-
 	end
 end
 
@@ -245,18 +245,55 @@ function GamePlay:allRellRollDone()
 		self:removeAllQuickEffect()
 	end )
 	table.insert( actions,call1 )
-	-- 2:针对 special_id 播放金钱获取动画
+
+
+	-- 2:针对 scale_id 播放动画
+	local call_scattled = cc.CallFunc:create( function()
+		for i = 1,#self._reelList do
+			local symbol_list = self._reelList[i]:getSymbolList()
+			for k,v in pairs( symbol_list ) do
+				-- 当前symbol的位置必须在显示区域
+				local pos = cc.p( v:getPosition() )
+				local in_view = false
+				if pos.y >= -10 and pos.y <= self._reelConfig.level.symbol_height * 3 -10 then
+					in_view = true
+				end
+				if in_view and v:getSymbolID() == self._reelConfig.level.scattle_id then
+					v:playCsbAction("actionframe",true)
+				end
+			end
+		end
+	end )
+	table.insert( actions,call_scattled )
+
+	-- 3:针对 special_id 播放金钱获取动画
 	local has_special = false
 	local call2 = cc.CallFunc:create( function()
 		for i = 1,#self._reelList do
 			local symbol_list = self._reelList[i]:getSymbolList()
 			for k,v in pairs( symbol_list ) do
-				if v:getSymbolID() == self._reelConfig.level.special_id then
+				-- 当前symbol的位置必须在显示区域
+				local pos = cc.p( v:getPosition() )
+				local in_view = false
+				if pos.y >= -10 and pos.y <= self._reelConfig.level.symbol_height * 3 -10 then
+					in_view = true
+				end
+
+				if in_view and v:getSymbolID() == self._reelConfig.level.special_id then
 					has_special = true
 					G_GetModel("Model_Slot"):setCoin( v:getCoinNum() )
 
-					-- local world_pos = v:getParent():convertToWorldSpace( cc.p( v:getPosition() ) )
-					-- local end_pos = display
+					local world_pos = v:getParent():convertToWorldSpace( cc.p( v:getPosition() ) )
+					world_pos.x = world_pos.x + self._reelConfig.level.symbol_width / 2
+					world_pos.y = world_pos.y + self._reelConfig.level.symbol_height / 2
+					local image_coin = self._topLayer.ImageCoinDollar
+					local end_pos = image_coin:getParent():convertToWorldSpace( cc.p(image_coin:getPosition()) )
+					coinFly( world_pos,end_pos,function()
+						performWithDelay( self,function()
+							-- 刷新金币
+							self._topLayer:loadCoinUi()
+						end,0.1 ) 
+					end )
 				end
 			end
 		end
@@ -265,11 +302,8 @@ function GamePlay:allRellRollDone()
 	if has_special then
 		local delay = cc.DelayTime:create( 1.5 )
 		table.insert( actions,delay )
-
-		-- 刷新金币
-
 	end
-	-- 3:播放连线
+	-- 4:播放连线
 	local call_line = cc.CallFunc:create( function()
 		local lines = self:getLineResult()
 		if #lines > 0 then
@@ -277,9 +311,22 @@ function GamePlay:allRellRollDone()
 			-- 计算获得的金币
 			local coin = self:getRewardCoin( lines )
 			G_GetModel("Model_Slot"):setCoin( coin )
+
+			-- bottom layer 的显示
+			self._bottomLayer:setWinCoinUi( coin )
+			
 		end
 	end )
 	table.insert( actions,call_line )
+	-- 5:是否是free spin 
+	local call_freespin = cc.CallFunc:create( function()
+		if self._curFreeMark then
+			self._bottomLayer:setFreeSpinUi()
+			-- 显示 freespin 的 UI 
+			addUIToScene( UIDefine.SLOT_KEY.FreeSpinStart_UI )
+		end
+	end )
+	table.insert( actions,call_freespin )
 
 	local seq = cc.Sequence:create( actions )
 	self:runAction( seq )
@@ -311,7 +358,6 @@ function GamePlay:getLineResult()
 	end
 
 	-- 根据配置 筛选可用的连线
-
 	dump( lines,"----------------> lines = ",5 )
 
 	local valid_lines = {}
@@ -333,7 +379,6 @@ function GamePlay:getLineResult()
 	end
 
 	dump( valid_lines,"----------------> valid_lines = ",5 )
-
 
 	return valid_lines
 end
@@ -472,7 +517,6 @@ end
 -- 添加跑马灯特效
 function GamePlay:drawLineAndEffect( lines )
 	local actions = {}
-
 	for i,v in ipairs( lines ) do
 		local symbol_lines = v.line
 		for a,line in ipairs( symbol_lines ) do
@@ -551,7 +595,7 @@ function GamePlay:releaseAllEffect()
 end
 
 -- 将使用的node返回给缓存池
-function GamePlay:removeAllEffectAction( effectData )
+function GamePlay:removeAllEffectAction()
 	for i,v in pairs( self._effectList ) do
 		self:removeEffect( v )
 	end
