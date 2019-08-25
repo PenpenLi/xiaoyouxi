@@ -22,7 +22,7 @@ function Model_Slot:reset()
 	self._level = nil
 	self._toTime = nil -- 每日抽奖目标时间
 	self._miniNum = nil -- 左下小游戏的累计次数
-	self._miniNumSum = 5 -- 左下小游戏需要累计的总次数
+	self._miniNumSum = 30 -- 左下小游戏需要累计的总次数
 	self._exp = nil
 end
 
@@ -38,7 +38,7 @@ end
 function Model_Slot:getCoin()
 	if self._coin == nil then
 		local user_default = cc.UserDefault:getInstance()
-		self._coin = user_default:getIntegerForKey( "slotCoin",50 )
+		self._coin = user_default:getIntegerForKey( "slotCoin",50000 )
 		user_default:setIntegerForKey( "slotCoin",self._coin )
 	end
 	return self._coin

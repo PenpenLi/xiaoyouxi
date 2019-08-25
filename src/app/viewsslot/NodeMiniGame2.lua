@@ -38,7 +38,7 @@ function NodeMiniGame2:freeFallingBody( time )
 	self:setPosition( pos )
 	local scale = random( 7,12 )
 	self:setScale( scale / 10 )
-	NodeMiniGame2.coin = random( 100 * scale * scale,500 * scale * scale ) -- 金币值
+	NodeMiniGame2.coin = random( 5 * scale * scale,10 * scale * scale ) -- 金币值
 	local end_pos = cc.p( x,-100 )
 	local move_to = cc.MoveTo:create( time,end_pos )
 	local ease_sine_in = cc.EaseSineIn:create( move_to )

@@ -144,18 +144,18 @@ gameconfigcandy.image = {
 }
 
 gameconfigcandy.symbol_csb = {
-	[8] 	 	= { file =  "csbslot/NewCandy/Socre_NewCandy_1.csb", resourcetype = "csb",count = 15 },
-	[7]		 	= { file =  "csbslot/NewCandy/Socre_NewCandy_2.csb", resourcetype = "csb",count = 15 },
-	[6]		 	= { file =  "csbslot/NewCandy/Socre_NewCandy_3.csb", resourcetype = "csb",count = 15 },
-	[5]		 	= { file =  "csbslot/NewCandy/Socre_NewCandy_4.csb", resourcetype = "csb",count = 15 },
-	[4]		 	= { file =  "csbslot/NewCandy/Socre_NewCandy_5.csb", resourcetype = "csb",count = 15 },
-	[3]		 	= { file =  "csbslot/NewCandy/Socre_NewCandy_6.csb", resourcetype = "csb",count = 15 },
-	[2]		 	= { file =  "csbslot/NewCandy/Socre_NewCandy_7.csb", resourcetype = "csb",count = 15 },
-	[1]		 	= { file =  "csbslot/NewCandy/Socre_NewCandy_8.csb", resourcetype = "csb",count = 15 },
-	[0]		 	= { file =  "csbslot/NewCandy/Socre_NewCandy_9.csb", resourcetype = "csb",count = 15 },
-	[9]     	= { file =  "csbslot/NewCandy/Socre_NewCandy_Scattle.csb", resourcetype = "csb",count = 15 },
-	[10]     	= { file =  "csbslot/NewCandy/Socre_NewCandy_Wild.csb", resourcetype = "csb",count = 20 },
-	[11]     	= { file =  "csbslot/NewCandy/Socre_NewCandy_candy_1x1.csb", resourcetype = "csb",count = 15 },
+	[8] 	 	= { file =  "csbslot/newcandy/Socre_NewCandy_1.csb", resourcetype = "csb",count = 15 },
+	[7]		 	= { file =  "csbslot/newcandy/Socre_NewCandy_2.csb", resourcetype = "csb",count = 15 },
+	[6]		 	= { file =  "csbslot/newcandy/Socre_NewCandy_3.csb", resourcetype = "csb",count = 15 },
+	[5]		 	= { file =  "csbslot/newcandy/Socre_NewCandy_4.csb", resourcetype = "csb",count = 15 },
+	[4]		 	= { file =  "csbslot/newcandy/Socre_NewCandy_5.csb", resourcetype = "csb",count = 15 },
+	[3]		 	= { file =  "csbslot/newcandy/Socre_NewCandy_6.csb", resourcetype = "csb",count = 15 },
+	[2]		 	= { file =  "csbslot/newcandy/Socre_NewCandy_7.csb", resourcetype = "csb",count = 15 },
+	[1]		 	= { file =  "csbslot/newcandy/Socre_NewCandy_8.csb", resourcetype = "csb",count = 15 },
+	[0]		 	= { file =  "csbslot/newcandy/Socre_NewCandy_9.csb", resourcetype = "csb",count = 15 },
+	[9]     	= { file =  "csbslot/newcandy/Socre_NewCandy_Scattle.csb", resourcetype = "csb",count = 15 },
+	[10]     	= { file =  "csbslot/newcandy/Socre_NewCandy_Wild.csb", resourcetype = "csb",count = 20 },
+	[11]     	= { file =  "csbslot/newcandy/Socre_NewCandy_candy_1x1.csb", resourcetype = "csb",count = 15 },
 }
 
 gameconfigcandy.effect_csb = {
