@@ -11,7 +11,7 @@ function GameOver:ctor( param )
     self:addChild( layer,1 )
     self._layer = layer
 
-    self:addCsb( "csblikui/Over.csb",2 )
+    self:addCsb( "Over.csb",2 )
     self._score = param.data
 
     self:addNodeClick( self.ButtonContinue,{
@@ -53,9 +53,21 @@ function GameOver:loadDataUi()
         self.ButtonContinue:setVisible( true )
         self.TextCoin:setString( math.abs(self._score) )
         if self._score >= 0 then
-            self.Text1:setString("本局赢得了")
+            if likui_config.language == 1 then
+            elseif likui_config.language == 2 then
+                self.Text1:setString("The game has won")
+            elseif likui_config.language == 3 then
+                self.Text1:setString("本局赢得了")
+            end
+            
         else
-            self.Text1:setString("本局输掉了")
+            if likui_config.language == 1 then
+            elseif likui_config.language == 2 then
+                self.Text1:setString("The game has lost")
+            elseif likui_config.language == 3 then
+                self.Text1:setString("本局输掉了")
+            end
+            
         end
     end
 

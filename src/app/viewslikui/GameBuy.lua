@@ -14,8 +14,10 @@ function GameBuy:ctor( param )
 	self._coin = {
 		300,600,1000
 	}
-
+	
 	self:addCsb( "Buy.csb" )
+
+	
 
 	self:addNodeClick( self.ButtonYes,{
 		endCallBack = function ()
@@ -33,7 +35,13 @@ end
 
 function GameBuy:loadUi()
 	-- print( "--------------= "..self._money[self._index] )
-	self.Text:setString( string.format("您将花费%s元购买%s金币",self._money[self._index],self._coin[self._index]) )
+	if likui_config.language == 1 then
+	elseif likui_config.language == 2 then
+		self.Text:setString( string.format("You will spend %s dollor \n to buy %s coin",self._money[self._index],self._coin[self._index]) )
+	elseif likui_config.language == 3 then
+		self.Text:setString( string.format("您将花费%s元购买%s金币",self._money[self._index],self._coin[self._index]) )
+	end
+	
 end
 
 function GameBuy:onEnter()

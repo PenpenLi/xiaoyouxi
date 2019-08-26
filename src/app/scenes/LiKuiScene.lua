@@ -5,7 +5,7 @@
 -- Desc:	李逵场景
 
 
-cc.FileUtils:getInstance():addSearchPath( "res/csblikui" )
+-- cc.FileUtils:getInstance():addSearchPath( "res/csblikui" )
 
 local UIManager = import( "app.framework.UIManager" )
 
@@ -23,6 +23,13 @@ end
 
 function LiKuiScene:loadAppFile()
 	import( "app.viewslikui.config.likui_config" )
+	if likui_config.language == 1 then
+		cc.FileUtils:getInstance():addSearchPath( "res/csblikui/csblikuijapanese" )
+	elseif likui_config.language == 2 then
+		cc.FileUtils:getInstance():addSearchPath( "res/csblikui/csblikuienglish" )
+	elseif likui_config.language == 3 then
+		cc.FileUtils:getInstance():addSearchPath( "res/csblikui/csblikuichinese" )
+	end
 end
 
 function LiKuiScene:onEnter()

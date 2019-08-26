@@ -226,16 +226,16 @@ UIDefine.LayerFlag = {
 -- 	Disband_UI          = { layer = import("app.viewseight.GameDisband"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Disband_UI"    				},
 -- }
 
--- -- 李逵的ui
--- UIDefine.LIKUI_KEY	= {
--- 	Loading_UI 			= { layer = import("app.viewslikui.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Loading_UI" 			  	    },
--- 	Start_UI 			= { layer = import("app.viewslikui.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Start_UI"                     },
--- 	Over_UI             = { layer = import("app.viewslikui.GameOver"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Over_UI"    			        },
--- 	Shop_UI	    	    = { layer = import("app.viewslikui.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Shop_UI"    		   		  	},
--- 	Buy_UI	    	    = { layer = import("app.viewslikui.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Buy_UI"    		   		  	},
--- 	Play_UI             = { layer = import("app.viewslikui.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Play_UI"    			   		},
--- 	Rank_UI 			= { layer = import("app.viewslikui.RankMain"),         		flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Rank_UI"				    	},
--- }
+-- 李逵的ui
+UIDefine.LIKUI_KEY	= {
+	Loading_UI 			= { layer = import("app.viewslikui.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Loading_UI" 			  	    },
+	Start_UI 			= { layer = import("app.viewslikui.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Start_UI"                     },
+	Over_UI             = { layer = import("app.viewslikui.GameOver"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Over_UI"    			        },
+	Shop_UI	    	    = { layer = import("app.viewslikui.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Shop_UI"    		   		  	},
+	Buy_UI	    	    = { layer = import("app.viewslikui.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Buy_UI"    		   		  	},
+	Play_UI             = { layer = import("app.viewslikui.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Play_UI"    			   		},
+	Rank_UI 			= { layer = import("app.viewslikui.RankMain"),         		flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Rank_UI"				    	},
+}
 
 -- -- 三个游戏的合集
 -- UIDefine.HEJI_KEY    = {
@@ -268,39 +268,39 @@ UIDefine.LayerFlag = {
 -- }
 
 
-UIDefine.SLOT_KEY  = {
-	Loading_UI 				= { layer = import("app.viewsslot.GameLoading"),		        		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Loading_UI" 			  	    },
-	Start_UI 				= { layer = import("app.viewsslot.GameStart"),	    					flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Start_UI"                      },
-	Turn_UI 				= { layer = import("app.viewsslot.GameZhuanPan"),	    				flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Turn_UI"                       },
-	Bottom_UI           	= { layer = import("app.viewsslot.GameBottom"),	    					flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Bottom_UI"                     },
-	Collect_UI 				= { layer = import("app.viewsslot.GameCollect"),	    				flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Collect_UI"                    },
-	Draw_UI 				= { layer = import("app.viewsslot.GameCoinDraw"),	    				flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Draw_UI"                       },
-	Buy_UI 					= { layer = import("app.viewsslot.GameBuy"),	    					flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Buy_UI"                    	},
-	Shop_UI 				= { layer = import("app.viewsslot.GameShop"),	    					flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Shop_UI"                       },
-	Mini_UI 				= { layer = import("app.viewsslot.GameMini"),	    					flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Mini_UI"                       },
-	Mini2_UI 				= { layer = import("app.viewsslot.GameMini2"),	    					flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Mini2_UI"                      },
-	OverMini2_UI 			= { layer = import("app.viewsslot.GameMiniOver"),	    				flag = UIDefine.LayerFlag.Main.name,	name = "Slot_OverMini2_UI"                  },
+-- UIDefine.SLOT_KEY  = {
+-- 	Loading_UI 				= { layer = import("app.viewsslot.GameLoading"),		        		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Loading_UI" 			  	    },
+-- 	Start_UI 				= { layer = import("app.viewsslot.GameStart"),	    					flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Start_UI"                      },
+-- 	Turn_UI 				= { layer = import("app.viewsslot.GameZhuanPan"),	    				flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Turn_UI"                       },
+-- 	Bottom_UI           	= { layer = import("app.viewsslot.GameBottom"),	    					flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Bottom_UI"                     },
+-- 	Collect_UI 				= { layer = import("app.viewsslot.GameCollect"),	    				flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Collect_UI"                    },
+-- 	Draw_UI 				= { layer = import("app.viewsslot.GameCoinDraw"),	    				flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Draw_UI"                       },
+-- 	Buy_UI 					= { layer = import("app.viewsslot.GameBuy"),	    					flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Buy_UI"                    	},
+-- 	Shop_UI 				= { layer = import("app.viewsslot.GameShop"),	    					flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Shop_UI"                       },
+-- 	Mini_UI 				= { layer = import("app.viewsslot.GameMini"),	    					flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Mini_UI"                       },
+-- 	Mini2_UI 				= { layer = import("app.viewsslot.GameMini2"),	    					flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Mini2_UI"                      },
+-- 	OverMini2_UI 			= { layer = import("app.viewsslot.GameMiniOver"),	    				flag = UIDefine.LayerFlag.Main.name,	name = "Slot_OverMini2_UI"                  },
 
-	GameWolf_UI         	= { layer = import("app.viewsslot.wolf.GameWolfPlay"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Slot_WolfPlay_UI"                   },
-	FreeSpinWolfStart_UI    = { layer = import("app.viewsslot.wolf.GameWolfFreeSpinStart"),      	flag = UIDefine.LayerFlag.Main.name,    name = "Slot_FreeSpinWolfStart_UI"          },
-	FreeSpinWolfOver_UI     = { layer = import("app.viewsslot.wolf.GameWolfFreeSpinOver"),       	flag = UIDefine.LayerFlag.Main.name,    name = "Slot_FreeSpinWolfOver_UI"           },
+-- 	GameWolf_UI         	= { layer = import("app.viewsslot.wolf.GameWolfPlay"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Slot_WolfPlay_UI"                   },
+-- 	FreeSpinWolfStart_UI    = { layer = import("app.viewsslot.wolf.GameWolfFreeSpinStart"),      	flag = UIDefine.LayerFlag.Main.name,    name = "Slot_FreeSpinWolfStart_UI"          },
+-- 	FreeSpinWolfOver_UI     = { layer = import("app.viewsslot.wolf.GameWolfFreeSpinOver"),       	flag = UIDefine.LayerFlag.Main.name,    name = "Slot_FreeSpinWolfOver_UI"           },
 
 
-	GameCandy_UI         	= { layer = import("app.viewsslot.candy.GameCandyPlay"),	    	    flag = UIDefine.LayerFlag.Main.name,	name = "Slot_CandyPlay_UI"                  },
-	FreeSpinCandyStart_UI   = { layer = import("app.viewsslot.candy.GameCandyFreeSpinStart"),      	flag = UIDefine.LayerFlag.Main.name,    name = "Slot_FreeSpinCandyStart_UI"         },
-	FreeSpinCandyOver_UI    = { layer = import("app.viewsslot.candy.GameCandyFreeSpinOver"),       	flag = UIDefine.LayerFlag.Main.name,    name = "Slot_FreeSpinCandyOver_UI"          },
+-- 	GameCandy_UI         	= { layer = import("app.viewsslot.candy.GameCandyPlay"),	    	    flag = UIDefine.LayerFlag.Main.name,	name = "Slot_CandyPlay_UI"                  },
+-- 	FreeSpinCandyStart_UI   = { layer = import("app.viewsslot.candy.GameCandyFreeSpinStart"),      	flag = UIDefine.LayerFlag.Main.name,    name = "Slot_FreeSpinCandyStart_UI"         },
+-- 	FreeSpinCandyOver_UI    = { layer = import("app.viewsslot.candy.GameCandyFreeSpinOver"),       	flag = UIDefine.LayerFlag.Main.name,    name = "Slot_FreeSpinCandyOver_UI"          },
 
-	GameRedDiamond_UI       = { layer = import("app.viewsslot.red.GameRedDiamondPlay"),	    	    flag = UIDefine.LayerFlag.Main.name,	name = "Slot_RedDiamondPlay_UI"             },
-	FreeSpinRedStart_UI     = { layer = import("app.viewsslot.red.GameRedFreeSpinStart"),      		flag = UIDefine.LayerFlag.Main.name,    name = "Slot_FreeSpinRedStart_UI"           },
-	FreeSpinRedOver_UI      = { layer = import("app.viewsslot.red.GameRedFreeSpinOver"),      		flag = UIDefine.LayerFlag.Main.name,    name = "Slot_FreeSpinRedOver_UI"            },
+-- 	GameRedDiamond_UI       = { layer = import("app.viewsslot.red.GameRedDiamondPlay"),	    	    flag = UIDefine.LayerFlag.Main.name,	name = "Slot_RedDiamondPlay_UI"             },
+-- 	FreeSpinRedStart_UI     = { layer = import("app.viewsslot.red.GameRedFreeSpinStart"),      		flag = UIDefine.LayerFlag.Main.name,    name = "Slot_FreeSpinRedStart_UI"           },
+-- 	FreeSpinRedOver_UI      = { layer = import("app.viewsslot.red.GameRedFreeSpinOver"),      		flag = UIDefine.LayerFlag.Main.name,    name = "Slot_FreeSpinRedOver_UI"            },
 
-	Top_UI              	= { layer = import("app.viewsslot.GameTop"),	    		    		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Top_UI"                        },
-	Rule_UI              	= { layer = import("app.viewsslot.GameRule"),	    		    		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Rule_UI"                       },
+-- 	Top_UI              	= { layer = import("app.viewsslot.GameTop"),	    		    		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Top_UI"                        },
+-- 	Rule_UI              	= { layer = import("app.viewsslot.GameRule"),	    		    		flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Rule_UI"                       },
 
-	RuleOfCandy_UI          = { layer = import("app.viewsslot.GameRuleOfCandy"),	    		    flag = UIDefine.LayerFlag.Main.name,	name = "Slot_RuleOfCandy_UI"                },
+-- 	RuleOfCandy_UI          = { layer = import("app.viewsslot.GameRuleOfCandy"),	    		    flag = UIDefine.LayerFlag.Main.name,	name = "Slot_RuleOfCandy_UI"                },
 
-	RuleOfRed_UI            = { layer = import("app.viewsslot.GameRuleOfRed"),	    		    	flag = UIDefine.LayerFlag.Main.name,	name = "Slot_RuleOfRed_UI"                  },
-}
+-- 	RuleOfRed_UI            = { layer = import("app.viewsslot.GameRuleOfRed"),	    		    	flag = UIDefine.LayerFlag.Main.name,	name = "Slot_RuleOfRed_UI"                  },
+-- }
 
 
 rawset(_G,"UIDefine",UIDefine)

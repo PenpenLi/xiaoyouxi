@@ -61,7 +61,7 @@ likui_config.poker = {
 	[51]	 = { path = "image/poker/spade12.png", 		num = 12,	color = 4},
 	[52]	 = { path = "image/poker/spade13.png", 		num = 13,	color = 4},
 }
-
+likui_config.language = 1 -- 1，日文，2，英文，3，中文
 
 
 rawset(_G,"likui_config",likui_config)

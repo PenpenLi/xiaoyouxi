@@ -8,7 +8,7 @@ function GameStart:ctor( param )
     assert( param.name," !! param.name is nil !! ")
     GameStart.super.ctor( self,param.name )
 
-    self:addCsb( "csblikui/Start.csb" )
+    self:addCsb( "Start.csb" )
 
     self:addNodeClick( self.ButtonLeft,{
     	endCallBack = function ()
@@ -113,8 +113,16 @@ function GameStart:left()
 	self.ButtonLeft:setVisible( false )
 	self.ButtonRight:setVisible( true )
 	if self.Panel1:getPositionX() < 0 then
-		local left_moveby = cc.MoveBy:create( 0.5,cc.p( 715,0 ))
-		local right_moveby = cc.MoveBy:create( 0.5,cc.p( 715,0 ))
+		local left_moveby = nil
+		local right_moveby = nil
+		if likui_config.language == 2 then
+			left_moveby = cc.MoveBy:create( 0.5,cc.p( 746,0 ))
+			right_moveby = cc.MoveBy:create( 0.5,cc.p( 746,0 ))
+		else
+			left_moveby = cc.MoveBy:create( 0.5,cc.p( 715,0 ))
+			right_moveby = cc.MoveBy:create( 0.5,cc.p( 715,0 ))
+		end
+		
 		-- local apawn = cc.Spawn:create( left_moveby,right_moveby )
 		self.Panel1:runAction( left_moveby )
 		self.Panel2:runAction( right_moveby )
@@ -124,8 +132,16 @@ function GameStart:right()
 	self.ButtonLeft:setVisible( true )
 	self.ButtonRight:setVisible( false )
 	if self.Panel2:getPositionX() > 0 then
-		local left_moveby = cc.MoveBy:create( 0.5,cc.p( -715,0 ))
-		local right_moveby = cc.MoveBy:create( 0.5,cc.p( -715,0 ))
+		local left_moveby = nil
+		local right_moveby = nil
+		if likui_config.language == 2 then
+			left_moveby = cc.MoveBy:create( 0.5,cc.p( -746,0 ))
+			right_moveby = cc.MoveBy:create( 0.5,cc.p( -746,0 ))
+		else
+			left_moveby = cc.MoveBy:create( 0.5,cc.p( -715,0 ))
+			right_moveby = cc.MoveBy:create( 0.5,cc.p( -715,0 ))
+		end
+		
 		-- local apawn = cc.Spawn:create( left_moveby,right_moveby )
 		self.Panel1:runAction( left_moveby )
 		self.Panel2:runAction( right_moveby )

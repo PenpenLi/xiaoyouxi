@@ -8,7 +8,7 @@ function RankMain:ctor( param )
     assert( param.name," !! param.name is nil !! ")
     RankMain.super.ctor( self,param.name )
 
-    self:addCsb( "csblikui/Rank.csb" )
+    self:addCsb( "Rank.csb" )
 
     self:addNodeClick( self.ButtonClose,{
     	endCallBack = function ()

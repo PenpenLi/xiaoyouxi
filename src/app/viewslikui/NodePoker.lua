@@ -10,7 +10,7 @@ function NodePoker:ctor( panelParent,numberIndex )
 	self._panelParent = panelParent
 	self._numberIndex = numberIndex
 
-	self:addCsb("csblikui/NodePoker.csb")
+	self:addCsb("NodePoker.csb")
 
 	self.Icon:setVisible( false )
 	self.ImageQuan2:setVisible( false )

@@ -37,6 +37,8 @@ function NodeShop:loadUi()
 	self.ImageCoinNum:loadTexture( self._coinNum[self._index],1 )
 	self.ImageCoin:loadTexture( self._coinImg[self._index],1 )
 	self.ImageQian:loadTexture( self._money[self._index],1 )
+	self.ImageQian:ignoreContentAdaptWithSize( true )
+	self.ImageCoinNum:ignoreContentAdaptWithSize( true )
 end
 
 function NodeShop:touchCard( event )
@@ -47,7 +49,7 @@ function NodeShop:touchCard( event )
     elseif event.name == "ended" then
     	self:openBuy()
     	if G_GetModel("Model_Sound"):isVoiceOpen() then
-    		audio.playSound("emp3/button.mp3", false)
+    		audio.playSound("lkmp3/button.mp3", false)
     	end
     elseif event.name == "outsideend" then
     	
