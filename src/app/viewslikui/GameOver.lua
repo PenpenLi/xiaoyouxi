@@ -54,6 +54,8 @@ function GameOver:loadDataUi()
         self.TextCoin:setString( math.abs(self._score) )
         if self._score >= 0 then
             if likui_config.language == 1 then
+                self.Text2:setString("金を勝ち取った")
+                
             elseif likui_config.language == 2 then
                 self.Text1:setString("The game has won")
             elseif likui_config.language == 3 then
@@ -62,6 +64,7 @@ function GameOver:loadDataUi()
             
         else
             if likui_config.language == 1 then
+                self.Text2:setString("金負けた")
             elseif likui_config.language == 2 then
                 self.Text1:setString("The game has lost")
             elseif likui_config.language == 3 then

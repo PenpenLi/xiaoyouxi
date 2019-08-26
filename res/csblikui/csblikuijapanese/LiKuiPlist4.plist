@@ -422,6 +422,17 @@
 				<key>sourceSize</key>
 				<string>{128,179}</string>
 			</dict>
+			<key>image/frame/poker.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,906},{80,88}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{80,88}</string>
+			</dict>
 		</dict>
 		<key>metadata</key>
 		<dict>

@@ -36,6 +36,7 @@ end
 function GameBuy:loadUi()
 	-- print( "--------------= "..self._money[self._index] )
 	if likui_config.language == 1 then
+		self.Text:setString( string.format("%s元で%s円を買います？",self._money[self._index],self._coin[self._index]) )
 	elseif likui_config.language == 2 then
 		self.Text:setString( string.format("You will spend %s dollor \n to buy %s coin",self._money[self._index],self._coin[self._index]) )
 	elseif likui_config.language == 3 then

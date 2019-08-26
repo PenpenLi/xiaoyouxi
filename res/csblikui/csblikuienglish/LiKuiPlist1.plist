@@ -62,13 +62,13 @@
 			<key>image/over/back.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{755,865},{104,43}}</string>
+				<string>{{755,865},{130,43}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
-				<string>{104,43}</string>
+				<string>{130,43}</string>
 			</dict>
 			<key>image/over/continue.png</key>
 			<dict>
