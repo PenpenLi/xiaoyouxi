@@ -15,7 +15,7 @@
 				<key>sourceSize</key>
 				<string>{633,369}</string>
 			</dict>
-			<key>image/buy/no1.png</key>
+			<key>image/buy/no.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{407,845},{163,90}}</string>
@@ -48,7 +48,7 @@
 				<key>sourceSize</key>
 				<string>{246,49}</string>
 			</dict>
-			<key>image/buy/yes1.png</key>
+			<key>image/buy/yes.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{711,464},{163,90}}</string>
