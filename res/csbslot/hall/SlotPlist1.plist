@@ -7,7 +7,7 @@
 			<key>image/common/FixLayer_bottom_7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{339,558},{292,108}}</string>
+				<string>{{1003,301},{292,108}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -18,7 +18,7 @@
 			<key>image/common/FixLayer_bottom_8.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{633,538},{445,68}}</string>
+				<string>{{1083,196},{445,68}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -29,18 +29,18 @@
 			<key>image/common/spin_up.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{899,671},{249,117}}</string>
+				<string>{{808,665},{249,117}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{249,117}</string>
 			</dict>
 			<key>image/ui/coin_dollar2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1018,375},{49,50}}</string>
+				<string>{{1388,844},{49,50}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -51,7 +51,7 @@
 			<key>image/ui/game_down_bg_zuo.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,985},{34,91}}</string>
+				<string>{{786,629},{34,91}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -62,7 +62,7 @@
 			<key>image/ui/GameLayer_buy.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{94,985},{62,29}}</string>
+				<string>{{1083,266},{62,29}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -73,7 +73,7 @@
 			<key>image/ui/GameLayer_buy_down.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{929,119},{179,56}}</string>
+				<string>{{1247,530},{179,56}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -84,7 +84,7 @@
 			<key>image/ui/GameLayer_buy_up.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1025,1},{179,56}}</string>
+				<string>{{1297,266},{179,56}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -95,7 +95,7 @@
 			<key>image/ui/GameLayer_sale_invalid.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1025,59},{179,56}}</string>
+				<string>{{1297,324},{179,56}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -106,7 +106,7 @@
 			<key>image/ui/GameLayer_sale_up.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{979,177},{179,56}}</string>
+				<string>{{1353,382},{179,56}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -117,7 +117,7 @@
 			<key>image/ui/GameLayer_star.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1069,353},{49,46}}</string>
+				<string>{{1428,498},{49,46}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -128,7 +128,7 @@
 			<key>image/ui/GameLayer_top_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{192,985},{10,68}}</string>
+				<string>{{407,666},{10,68}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -139,7 +139,7 @@
 			<key>image/ui/GameLayer_top_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1313,788},{239,78}}</string>
+				<string>{{1006,530},{239,78}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -150,7 +150,7 @@
 			<key>image/ui/GameLayer_top_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{799,382},{100,79}}</string>
+				<string>{{1636,1},{100,79}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -161,40 +161,40 @@
 			<key>image/ui/GameLayer_top_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{877,484},{60,44}}</string>
+				<string>{{1276,876},{60,44}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{60,44}</string>
 			</dict>
 			<key>image/ui/btn_add_down.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{303,981},{41,60}}</string>
+				<string>{{1375,720},{41,60}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{41,60}</string>
 			</dict>
 			<key>image/ui/btn_add_up.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{365,981},{41,60}}</string>
+				<string>{{1375,782},{41,60}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{41,60}</string>
 			</dict>
 			<key>image/ui/btn_betmax_down.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1206,1},{127,74}}</string>
+				<string>{{1478,266},{127,74}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -205,18 +205,18 @@
 			<key>image/ui/btn_betmax_up.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{723,382},{127,74}}</string>
+				<string>{{1530,160},{127,74}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{127,74}</string>
 			</dict>
 			<key>image/ui/btn_lobby_down.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{939,456},{64,64}}</string>
+				<string>{{1309,728},{64,64}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -227,7 +227,7 @@
 			<key>image/ui/btn_lobby_up.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{952,382},{64,64}}</string>
+				<string>{{1309,794},{64,64}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -238,7 +238,7 @@
 			<key>image/ui/btn_paytable_down.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{979,235},{70,72}}</string>
+				<string>{{1237,728},{70,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -249,7 +249,7 @@
 			<key>image/ui/btn_paytable_up.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{880,382},{70,72}}</string>
+				<string>{{1237,802},{70,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -260,7 +260,7 @@
 			<key>image/ui/btn_sub_down.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{427,981},{40,59}}</string>
+				<string>{{1388,896},{40,59}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -271,18 +271,18 @@
 			<key>image/ui/btn_sub_up.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{488,981},{40,59}}</string>
+				<string>{{1399,640},{40,59}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{40,59}</string>
 			</dict>
 			<key>image/ui/ccbParticleStars.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{158,985},{32,32}}</string>
+				<string>{{1147,266},{32,32}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -293,7 +293,7 @@
 			<key>image/ui/game_bottom_bet.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{192,997},{37,15}}</string>
+				<string>{{477,666},{37,15}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -304,29 +304,29 @@
 			<key>image/ui/game_bottom_bet_bg.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{723,310},{264,70}}</string>
+				<string>{{1165,610},{264,70}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{264,70}</string>
 			</dict>
 			<key>image/ui/game_down_bg_you.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{341,216},{289,125}}</string>
+				<string>{{681,665},{289,125}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{289,125}</string>
 			</dict>
 			<key>image/ui/game_top_coin_bg.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{978,608},{347,59}}</string>
+				<string>{{927,877},{347,59}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -337,7 +337,7 @@
 			<key>image/ui/GameLayer_effect.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{989,309},{64,64}}</string>
+				<string>{{1322,860},{64,64}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -348,7 +348,7 @@
 			<key>image/ui/GameLayer_sale_down.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1110,117},{179,56}}</string>
+				<string>{{1353,440},{179,56}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -359,7 +359,7 @@
 			<key>image/ui/GameLayer_set_down.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1051,235},{64,64}}</string>
+				<string>{{1333,588},{64,64}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -370,7 +370,7 @@
 			<key>image/ui/GameLayer_set_up.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1005,448},{64,64}}</string>
+				<string>{{1333,654},{64,64}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -381,7 +381,7 @@
 			<key>image/ui/rate_cion_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,683},{300,300}}</string>
+				<string>{{407,1},{300,300}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -392,18 +392,18 @@
 			<key>image/carddraw/card_yj_deng1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,1},{340,338}}</string>
+				<string>{{1,684},{340,338}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{340,338}</string>
 			</dict>
 			<key>image/carddraw/card_yj_deng2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,343},{336,338}}</string>
+				<string>{{343,684},{336,338}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -414,7 +414,7 @@
 			<key>image/carddraw/card_yj_spindown.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1310,909},{245,81}}</string>
+				<string>{{1274,938},{245,81}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -425,7 +425,7 @@
 			<key>image/carddraw/card_yj_spinup.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1062,909},{246,85}}</string>
+				<string>{{1026,938},{246,85}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -436,7 +436,7 @@
 			<key>image/carddraw/card_yj_zhizhen.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{799,484},{76,44}}</string>
+				<string>{{1636,103},{76,44}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -447,7 +447,7 @@
 			<key>image/carddraw/fortune1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{545,343},{176,193}}</string>
+				<string>{{1083,1},{176,193}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -458,40 +458,40 @@
 			<key>image/carddraw/fortune3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{734,1},{176,193}}</string>
+				<string>{{1261,1},{176,193}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{176,193}</string>
 			</dict>
 			<key>image/carddraw/icon_fortune1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{303,794},{298,185}}</string>
+				<string>{{709,1},{298,185}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{298,185}</string>
 			</dict>
 			<key>image/carddraw/icon_fortune3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{603,794},{298,185}}</string>
+				<string>{{896,1},{298,185}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{298,185}</string>
 			</dict>
 			<key>image/ui/coin_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{339,343},{213,204}}</string>
+				<string>{{407,414},{213,204}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -502,7 +502,7 @@
 			<key>image/start/coin_dollar2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1055,301},{49,50}}</string>
+				<string>{{1399,588},{49,50}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -513,18 +513,18 @@
 			<key>image/start/Card_zhuanpan_05.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{903,790},{195,157}}</string>
+				<string>{{1439,1},{195,157}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{195,157}</string>
 			</dict>
 			<key>image/start/Card_zhuanpan_06.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{547,1},{188,185}}</string>
+				<string>{{819,414},{188,185}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -535,7 +535,7 @@
 			<key>image/common/btn_back_down.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{883,179},{116,94}}</string>
+				<string>{{1237,610},{116,94}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -546,7 +546,7 @@
 			<key>image/common/btn_back_up.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{929,1},{116,94}}</string>
+				<string>{{1257,411},{116,94}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -557,18 +557,18 @@
 			<key>image/common/spin_down.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{632,191},{249,117}}</string>
+				<string>{{927,626},{249,117}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{249,117}</string>
 			</dict>
 			<key>image/common/spin_freespin_down.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1062,790},{249,117}}</string>
+				<string>{{1006,411},{249,117}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -579,18 +579,18 @@
 			<key>image/common/spin_freespin_up.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1150,669},{249,117}}</string>
+				<string>{{1046,610},{249,117}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{249,117}</string>
 			</dict>
 			<key>image/common/Express.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{633,608},{343,61}}</string>
+				<string>{{681,956},{343,61}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -601,7 +601,7 @@
 			<key>image/start/coin_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{341,1},{213,204}}</string>
+				<string>{{613,414},{213,204}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -612,13 +612,90 @@
 			<key>image/ui/game_down_bg.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{303,683},{594,109}}</string>
+				<string>{{407,303},{594,109}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{594,109}</string>
+			</dict>
+			<key>image/set/bg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1},{681,404}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{681,404}</string>
+			</dict>
+			<key>image/set/close.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1418,701},{46,46}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{46,46}</string>
+			</dict>
+			<key>image/set/Effects.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{407,629},{133,35}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{133,35}</string>
+			</dict>
+			<key>image/set/guan.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{819,604},{54,20}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{54,20}</string>
+			</dict>
+			<key>image/set/kai.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{875,604},{54,20}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{54,20}</string>
+			</dict>
+			<key>image/set/kgbg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{542,629},{121,37}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{121,37}</string>
+			</dict>
+			<key>image/set/Music.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{665,629},{119,34}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{119,34}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>

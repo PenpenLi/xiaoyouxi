@@ -280,6 +280,7 @@ UIDefine.LIKUI_KEY	= {
 -- 	Mini_UI 				= { layer = import("app.viewsslot.GameMini"),	    					flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Mini_UI"                       },
 -- 	Mini2_UI 				= { layer = import("app.viewsslot.GameMini2"),	    					flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Mini2_UI"                      },
 -- 	OverMini2_UI 			= { layer = import("app.viewsslot.GameMiniOver"),	    				flag = UIDefine.LayerFlag.Main.name,	name = "Slot_OverMini2_UI"                  },
+-- 	Set_UI 					= { layer = import("app.viewsslot.GameSet"),	    					flag = UIDefine.LayerFlag.Main.name,	name = "Slot_Set_UI"                    	},
 
 -- 	GameWolf_UI         	= { layer = import("app.viewsslot.wolf.GameWolfPlay"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Slot_WolfPlay_UI"                   },
 -- 	FreeSpinWolfStart_UI    = { layer = import("app.viewsslot.wolf.GameWolfFreeSpinStart"),      	flag = UIDefine.LayerFlag.Main.name,    name = "Slot_FreeSpinWolfStart_UI"          },
@@ -300,6 +301,7 @@ UIDefine.LIKUI_KEY	= {
 -- 	RuleOfCandy_UI          = { layer = import("app.viewsslot.GameRuleOfCandy"),	    		    flag = UIDefine.LayerFlag.Main.name,	name = "Slot_RuleOfCandy_UI"                },
 
 -- 	RuleOfRed_UI            = { layer = import("app.viewsslot.GameRuleOfRed"),	    		    	flag = UIDefine.LayerFlag.Main.name,	name = "Slot_RuleOfRed_UI"                  },
+
 -- }
 
 
