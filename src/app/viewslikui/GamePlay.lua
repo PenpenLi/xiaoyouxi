@@ -12,8 +12,7 @@ function GamePlay:ctor( param )
 
     self._pokerStack = getRandomArray( 1,52 )-- 随机一副牌
     -- self._pokerStack = {14,22,2,1,25,23,26,3,15,4,18,5,19,6,51,7,32,8,33,9,52,10,29,11}
-    self._pokerStack = {50,17,51,16,38,15,25,13,12,11,5,10,31,9,44,7,46,4,33,2,20,1,52}
-
+    -- self._pokerStack = {50,17,51,16,38,15,25,13,12,11,5,10,31,9,44,7,46,4,33,2,20,1,52}
     -- test
     -- self._pokerStack = {1,2,4,5,7,9,20,33,46,52}
     
@@ -307,6 +306,9 @@ end
 
 
 function GamePlay:AIPokerMove( top_poker,time )
+	if top_poker == nil then
+		return
+	end
 	local rot = self:getiRotate()
 	local move_to = cc.MoveTo:create( time,cc.p( 0,0 ))
 	local scale_to = cc.ScaleTo:create( time,0.3 )

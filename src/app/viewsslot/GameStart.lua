@@ -58,6 +58,12 @@ function GameStart:ctor( param )
 			self:miniGame()
 		end
 	})
+	
+	self:addNodeClick( self.ButtonSet,{
+		endCallBack = function ()
+			self:setMusic()
+		end
+	})
 end
 
 function GameStart:loadCoin(  )
@@ -79,6 +85,17 @@ function GameStart:loadMiniGame( ... )
 		self.TextMiniGameRateSum:setString( num_sum )
 	end
 end
+function GameStart:loadNowTime()
+	local time = os.time()
+	self.TextNowDay:setString( os.date("%Y.%m.%d",time) )
+	self.TextNowTime:setString( os.date("%H:%M:%S",time) )
+end
+function GameStart:loadMuisc()
+	local state = G_GetModel("Model_Sound"):getInstance():isMusicOpen()
+	if state then
+		G_GetModel("Model_Sound"):playBgMusic()
+	end
+end
 function GameStart:loadLevel( ... )
 	local level = G_GetModel("Model_Slot"):getInstance():getLevel()
 	self.TextLevel:setString( level )
@@ -90,6 +107,7 @@ function GameStart:onEnter( ... )
 	self:loadCoin()
 	self:loadMiniGame()
 	self:loadLevel()
+	self:loadMuisc()
 	-- 每日抽奖图标
 	local node = NodeImageDraw.new()
 	self.NodeLotteryDraw:addChild( node )
@@ -104,6 +122,7 @@ function GameStart:onEnter( ... )
 	self.GetCoinToByNode:setVisible( false )
 
 	self:schedule( function ()
+		self:loadNowTime()
 		self:countDown()
 		-- 每日抽奖
 		self:loadEveryDayDraw()
@@ -244,4 +263,7 @@ function GameStart:miniGame()
 	addUIToScene( UIDefine.SLOT_KEY.Mini2_UI,self )
 end
 
+function GameStart:setMusic()
+	addUIToScene( UIDefine.SLOT_KEY.Set_UI )
+end
 return GameStart

@@ -117,13 +117,13 @@
 			<key>image/frame/likui1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{405,250},{433,380}}</string>
+				<string>{{405,333},{337,342}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
-				<string>{433,380}</string>
+				<string>{337,342}</string>
 			</dict>
 			<key>image/frame/shou1.png</key>
 			<dict>
@@ -194,11 +194,11 @@
 			<key>image/frame/shou7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{725,685},{81,90}}</string>
+				<string>{{725,250},{81,90}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{81,90}</string>
 			</dict>
