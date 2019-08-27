@@ -63,7 +63,7 @@ function Model_Sound:isMusicOpen()
 			self._musicState = user_default:getIntegerForKey("likuiMusicState", 1)
 		elseif scene_name == "HeJiScene" then
 			self._musicState = user_default:getIntegerForKey("hejiMusicState", 1)
-		elseif scene_name == "SlotScene" then
+		elseif scene_name == "HallScene" then
 			self._musicState = user_default:getIntegerForKey("slotMusicState", 1)
 		end
 	end
@@ -104,7 +104,7 @@ function Model_Sound:setMusicState( state )
 		user_default:setIntegerForKey("likuiMusicState", state)
 	elseif scene_name == "HeJiScene" then
 		user_default:setIntegerForKey("hejiMusicState", state)
-	elseif scene_name == "SlotScene" then
+	elseif scene_name == "HallScene" then
 		user_default:setIntegerForKey("slotMusicState", state)
 	end
 end
@@ -142,7 +142,7 @@ function Model_Sound:isVoiceOpen()
 			self._voiceState = user_default:getIntegerForKey("likuiVoiceState", 1)
 		elseif scene_name == "HeJiScene" then
 			self._voiceState = user_default:getIntegerForKey("hejiVoiceState", 1)
-		elseif scene_name == "SlotScene" then
+		elseif scene_name == "HallScene" then
 			self._voiceState = user_default:getIntegerForKey("slotVoiceState", 1)
 		end
 
@@ -185,7 +185,7 @@ function Model_Sound:setVoiceState( state )
 		user_default:setIntegerForKey("likuiVoiceState", state)
 	elseif scene_name == "HeJiScene" then
 		user_default:setIntegerForKey("hejiVoiceState", state)
-	elseif scene_name == "SlotScene" then
+	elseif scene_name == "HallScene" then
 		user_default:setIntegerForKey("slotVoiceState", state)
 	end
 end
@@ -254,7 +254,7 @@ function Model_Sound:playBgMusic()
 		if self:isMusicOpen() then
 			audio.playMusic("csbheji/csbdating/dtmp3/music.mp3",true)
 		end
-	elseif scene_name == "SlotScene" then
+	elseif scene_name == "HallScene" then
 		if self:isMusicOpen() then
 			audio.playMusic("csbslot/hall/hmp3/SlotUltimate_sound_map_bgm1.mp3",true)
 		end
@@ -295,7 +295,7 @@ function Model_Sound:stopPlayBgMusic()
 		audio.stopMusic(false)
 	elseif scene_name == "HeJiScene" then
 		audio.stopMusic(false)
-	elseif scene_name == "SlotScene" then
+	elseif scene_name == "HallScene" then
 		audio.stopMusic(false)
 	end
 end

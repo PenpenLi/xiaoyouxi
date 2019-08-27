@@ -26,6 +26,10 @@ function GameCollect:ctor( param )
 			self:goingCollectCoin()
 		end
 	})
+	local is_open = G_GetModel("Model_Sound"):isVoiceOpen()
+	if is_open then
+		audio.playSound("csbslot/hall/hmp3/sound_daily_wheel_collect.mp3",false)
+	end
 end
 function GameCollect:onEnter()
 	GameCollect.super.onEnter( self )
@@ -46,7 +50,10 @@ function GameCollect:goingCollectCoin()
 	if self._collect then
 		return
 	end
-	
+	local is_open = G_GetModel("Model_Sound"):isVoiceOpen()
+	if is_open then
+		audio.playSound("csbslot/hall/hmp3/sound_daily_wheel_collect_click.mp3",false)
+	end
 	self._collect = true
 	self:collectCoin()
 	performWithDelay( self,function ()

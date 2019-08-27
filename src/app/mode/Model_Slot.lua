@@ -17,7 +17,7 @@ function Model_Slot:reset()
 	self._coin = nil
 	self._time = nil
 	self._num = nil
-	self._timing = 3600 -- 中间倒计时时长
+	self._timing = 2 -- 中间倒计时时长
 	self._collectCoin = 1000 -- 倒计时获取金币数
 	self._level = nil
 	self._toTime = nil -- 每日抽奖目标时间

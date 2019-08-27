@@ -52,25 +52,31 @@ function GameSet:loadUi( ... )
 end
 
 function GameSet:setMusic( ... )
-	local is_open = G_GetModel("Model_Sound"):getInstance():isMusicOpen()
+	local model = G_GetModel("Model_Sound"):getInstance()
+	local is_open = model:isMusicOpen()
 	if is_open then
 		self.ImageMusic:loadTexture( "image/set/guan.png",1 )
 		self.ImageMusic:setPositionX( 37 )
+		model:setMusicState( model.State.Closed )
 		G_GetModel("Model_Sound"):stopPlayBgMusic()
 	else
 		self.ImageMusic:loadTexture( "image/set/kai.png",1 )
 		self.ImageMusic:setPositionX( 83 )
+		model:setMusicState( model.State.Open )
 		G_GetModel("Model_Sound"):playBgMusic()
 	end
 end
 function GameSet:setSound( ... )
-	local is_open = G_GetModel("Model_Sound"):getInstance():isVoiceOpen()
+	local model = G_GetModel("Model_Sound"):getInstance()
+	local is_open = model:isVoiceOpen()
 	if is_open then
 		self.ImageSound:loadTexture( "image/set/guan.png",1 )
 		self.ImageSound:setPositionX( 37 )
+		model:setVoiceState( model.State.Closed )
 	else
 		self.ImageSound:loadTexture( "image/set/kai.png",1 )
 		self.ImageSound:setPositionX( 83 )
+		model:setVoiceState( model.State.Open )
 	end
 end
 function GameSet:close( ... )

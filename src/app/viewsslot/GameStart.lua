@@ -93,7 +93,7 @@ end
 function GameStart:loadMuisc()
 	local state = G_GetModel("Model_Sound"):getInstance():isMusicOpen()
 	if state then
-		G_GetModel("Model_Sound"):playBgMusic()
+		G_GetModel("Model_Sound"):getInstance():playBgMusic()
 	end
 end
 function GameStart:loadLevel( ... )

@@ -59,7 +59,11 @@ function GameZhuanPan:turnBegan()
 	if self._turnMark then
 		return
 	end
-	
+	local is_open = G_GetModel("Model_Sound"):getInstance():isVoiceOpen()
+	if is_open then
+		audio.playSound( "csbslot/hall/hmp3/sound_daily_wheel_spin.mp3",false )
+	end
+
 	self._turnMark = true
 
 	local turn_num = 5
@@ -70,11 +74,18 @@ function GameZhuanPan:turnBegan()
 	local rotate_end = cc.RotateBy:create( 0.5,-15 )
 	local easeSineInOut = cc.EaseSineInOut:create( rotate )
 	local call = cc.CallFunc:create(function ()
+		if is_open then
+			audio.playSound( "csbslot/hall/hmp3/sound_daily_wheel_roulette_end.mp3",false )
+		end
+		self:unSchedule()
 		self.Sprite_20:setVisible( true )
 		self:playCsbAction( "zhongjiang",true )
 	end)
 	local delay1 = cc.DelayTime:create( 2 )
 	local call1 = cc.CallFunc:create(function ()
+		if is_open then
+			audio.playSound( "csbslot/hall/hmp3/sound_daily_wheel_collect.mp3",false )
+		end
 		addUIToScene( UIDefine.SLOT_KEY.Collect_UI,{haveCoin = haveCoin,parent = self._parent} )
 	end)
 	local seq = cc.Sequence:create({ delay,rotate_began,easeSineInOut,rotate_end,call,delay1,call1 })
@@ -87,6 +98,9 @@ function GameZhuanPan:turnBegan()
 		local rot = rot_last - rot_began
 		local num = rot / 24
 		if num > 1 then
+			if is_open then
+				audio.playSound( "csbslot/hall/hmp3/sound_daily_wheel_zhizhen.mp3",false )
+			end
 			local bool_go = true
 			while bool_go do
 				index = index + 1

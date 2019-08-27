@@ -29,6 +29,11 @@ function CoinFly:ctor( startPoint,endPoint,callBack,rate )
 	self:flyAction()
 	-- 添加闪烁的星星
 	self:starAction()
+
+	local is_open = G_GetModel("Model_Sound"):isVoiceOpen()
+	if is_open then
+		audio.playSound("csbslot/hall/hmp3/sound_daily_wheel_coin_fly.mp3",false)
+	end
 end
 
 function CoinFly:flyAction()
