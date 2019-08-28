@@ -14,6 +14,7 @@ function GameZhuanPan:ctor( param )
 	self:addCsb( "csbslot/hall/TurnTable.csb" )
 
 	self:addNodeClick( self.ButtonSpin11,{
+		sound = "csbslot/hall/hmp3/sound_daily_wheel_spin.mp3",
 		endCallBack = function ()
 			self:turnBegan()
 		end
@@ -60,9 +61,9 @@ function GameZhuanPan:turnBegan()
 		return
 	end
 	local is_open = G_GetModel("Model_Sound"):getInstance():isVoiceOpen()
-	if is_open then
-		audio.playSound( "csbslot/hall/hmp3/sound_daily_wheel_spin.mp3",false )
-	end
+	-- if is_open then
+	-- 	audio.playSound( "csbslot/hall/hmp3/sound_daily_wheel_spin.mp3",false )
+	-- end
 
 	self._turnMark = true
 
@@ -83,9 +84,7 @@ function GameZhuanPan:turnBegan()
 	end)
 	local delay1 = cc.DelayTime:create( 2 )
 	local call1 = cc.CallFunc:create(function ()
-		if is_open then
-			audio.playSound( "csbslot/hall/hmp3/sound_daily_wheel_collect.mp3",false )
-		end
+		
 		addUIToScene( UIDefine.SLOT_KEY.Collect_UI,{haveCoin = haveCoin,parent = self._parent} )
 	end)
 	local seq = cc.Sequence:create({ delay,rotate_began,easeSineInOut,rotate_end,call,delay1,call1 })

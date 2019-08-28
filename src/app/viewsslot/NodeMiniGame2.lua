@@ -20,6 +20,10 @@ function NodeMiniGame2:onExit()
 end
 
 function NodeMiniGame2:collect( ... )
+	local is_open = G_GetModel("Model_Sound"):isVoiceOpen()
+	if is_open then
+		audio.playSound("csbslot/hall/hmp3/card_recovery_select_card.mp3",false)
+	end
 	self._parent:collectCoin( NodeMiniGame2.coin )
 	self.node_coins:setVisible( false )
 	self:textCoinAction()

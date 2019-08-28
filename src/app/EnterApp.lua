@@ -29,13 +29,13 @@ function EnterApp:create()
 	print(">>>>>EnterApp:create<<<<<<")
 	self:loadAppFile()
 
-	-- local scene = require("app.scenes.LiKuiScene").new()
-	-- return scene
+	local scene = require("app.scenes.BuYuScene").new()
+	return scene
 
-	-- slot
-	import("app.viewsslot.SceneManager")
-	local loading_scene = require("app.viewsslot.LoadingScene").new( SceneManager.SCENE_TYPE.HALL )
-	return loading_scene
+	-- -- slot
+	-- import("app.viewsslot.SceneManager")
+	-- local loading_scene = require("app.viewsslot.LoadingScene").new( SceneManager.SCENE_TYPE.HALL )
+	-- return loading_scene
 end
 
 function EnterApp:run()

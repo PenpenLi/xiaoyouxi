@@ -14,6 +14,11 @@ function GameMini2:ctor( param )
 end
 
 function GameMini2:loadUi( ... )
+	local is_open = G_GetModel("Model_Sound"):isMusicOpen()
+	if is_open then
+		audio.stopMusic(false)
+		audio.playMusic("csbslot/hall/hmp3/card_recovery_bgm.mp3",true)
+	end
 
 	local rotate = cc.RotateTo:create( 4,360 )
 	local repeatForever = cc.RepeatForever:create( rotate )
@@ -82,6 +87,11 @@ function GameMini2:play()
 			self:unSchedule()
 			performWithDelay(self,function()
 				self._parent:loadMiniGame()
+				local is_open = G_GetModel("Model_Sound"):isMusicOpen()
+				if is_open then
+					audio.stopMusic(false)
+					G_GetModel("Model_Sound"):playBgMusic()
+				end
 				addUIToScene( UIDefine.SLOT_KEY.OverMini2_UI,self._coin )
 				self:removeFromParent()
 			end,2)

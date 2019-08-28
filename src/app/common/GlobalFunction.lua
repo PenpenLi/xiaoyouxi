@@ -287,7 +287,13 @@ local function G_AddNodeClick( node,param )
 				param.endCallBack()
 
 				-- 播放音效
-				G_GetModel("Model_Sound"):playVoice()
+				if param.sound then
+					assert( type(param.sound) == "string"," !! sound path type must be string !! ")
+					G_GetModel("Model_Sound"):playVoice(param.sound)
+				else
+					G_GetModel("Model_Sound"):playVoice()
+				end
+				-- G_GetModel("Model_Sound"):playVoice()
 			end
 			node:setScale( node.__orgScale )
 		elseif event.name == "cancelled" then

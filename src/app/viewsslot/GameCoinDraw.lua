@@ -19,7 +19,9 @@ function GameCoinDraw:ctor( param )
 	}
 
 	self:addNodeClick( self.ButtonSpin,{
+		sound = "csbslot/hall/hmp3/sound_daily_wheel_spin.mp3",
 		endCallBack = function ()
+			
 			self:beganGame()
 		end
 	})
@@ -42,6 +44,10 @@ end
 function GameCoinDraw:beganGame()
 	if self._start == 1 then
 		return
+	end
+	local is_open = G_GetModel("Model_Sound"):isVoiceOpen()
+	if is_open then
+		audio.playSound("csbslot/hall/hmp3/sound_draw_roll.mp3",false)
 	end
 	self._start = 1
 	self:playCsbAction( "yaogan",false )
