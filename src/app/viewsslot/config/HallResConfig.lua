@@ -19,8 +19,8 @@ local HallResConfig = class("HallResConfig")
 
 
 HallResConfig.plist = {
-	{ "csbslot/hall/SlotPlist1.png","csbslot/SlotPlist1.plist" },
-	{ "csbslot/hall/SlotPlist2.png","csbslot/SlotPlist2.plist" },
+	{ "csbslot/hall/SlotPlist1.png","csbslot/hall/SlotPlist1.plist" },
+	{ "csbslot/hall/SlotPlist2.png","csbslot/hall/SlotPlist2.plist" },
 }
 
 
