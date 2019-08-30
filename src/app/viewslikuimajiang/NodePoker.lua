@@ -15,6 +15,7 @@ function NodePoker:ctor( panelParent,numberIndex )
 	self.Icon:setVisible( false )
 	self.ImageQuan2:setVisible( false )
 	self.ImageQuan1:setVisible( false )
+	self.ImageQuan3:setVisible( false )
 
 	self.Icon:loadTexture( likui_config.poker[self._numberIndex].path,1 )
 end
@@ -40,6 +41,9 @@ end
 
 function NodePoker:showQuan2( value )
 	self.ImageQuan2:setVisible( value )
+end
+function NodePoker:showQuan3( value )
+	self.ImageQuan3:setVisible( value )
 end
 
 function NodePoker:showObtAniUseScaleTo( time )
