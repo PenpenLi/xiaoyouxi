@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>image/start/rank.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{407,887},{257,61}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{257,61}</string>
+			</dict>
+			<key>image/start/right.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,965},{38,44}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{38,44}</string>
+			</dict>
+			<key>image/start/shop.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{315,957},{257,61}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{257,61}</string>
+			</dict>
+			<key>image/start/shouji.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{407,808},{77,31}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{77,31}</string>
+			</dict>
+			<key>image/start/sound.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{315,891},{64,64}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{64,64}</string>
+			</dict>
+			<key>image/start/title.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,721},{446,85}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{446,85}</string>
+			</dict>
+			<key>image/start/you1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{109,965},{28,54}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{28,54}</string>
+			</dict>
+			<key>image/start/you2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{41,965},{52,32}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{52,32}</string>
+			</dict>
+			<key>image/start/zuo.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{75,965},{52,32}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{52,32}</string>
+			</dict>
+			<key>image/start/likui.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1},{660,718}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{660,718}</string>
+			</dict>
+			<key>image/frame/shou1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{315,808},{81,90}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{81,90}</string>
+			</dict>
+			<key>image/frame/shou2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{449,721},{155,155}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{155,155}</string>
+			</dict>
+			<key>image/frame/shou3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,808},{155,155}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{155,155}</string>
+			</dict>
+			<key>image/frame/shou4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{158,808},{155,155}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{155,155}</string>
+			</dict>
+			<key>image/frame/shou5.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{606,721},{155,155}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{155,155}</string>
+			</dict>
+			<key>image/frame/shou6.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{663,1},{155,155}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{155,155}</string>
+			</dict>
+			<key>image/frame/shou7.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{663,158},{155,155}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{155,155}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>LiKuiPlist2.png</string>
+			<key>realTextureFileName</key>
+			<string>LiKuiPlist2.png</string>
+			<key>size</key>
+			<string>{1024,1024}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>1024</integer>
+			<key>height</key>
+			<integer>1024</integer>
+		</dict>
+	</dict>
+</plist>

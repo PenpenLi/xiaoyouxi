@@ -65,6 +65,8 @@ function Model_Sound:isMusicOpen()
 			self._musicState = user_default:getIntegerForKey("hejiMusicState", 1)
 		elseif scene_name == "HallScene" then
 			self._musicState = user_default:getIntegerForKey("slotMusicState", 1)
+		elseif scene_name == "LiKuiMaJiangScene" then
+			self._musicState = user_default:getIntegerForKey("likuiMusicState", 1)
 		end
 	end
 	return self._musicState == 1
@@ -106,6 +108,8 @@ function Model_Sound:setMusicState( state )
 		user_default:setIntegerForKey("hejiMusicState", state)
 	elseif scene_name == "HallScene" then
 		user_default:setIntegerForKey("slotMusicState", state)
+	elseif scene_name == "LiKuiMaJiangScene" then
+		user_default:setIntegerForKey("likuiMusicState", state)
 	end
 end
 
@@ -144,6 +148,8 @@ function Model_Sound:isVoiceOpen()
 			self._voiceState = user_default:getIntegerForKey("hejiVoiceState", 1)
 		elseif scene_name == "HallScene" then
 			self._voiceState = user_default:getIntegerForKey("slotVoiceState", 1)
+		elseif scene_name == "LiKuiMaJiangScene" then
+			self._voiceState = user_default:getIntegerForKey("likuiVoiceState", 1)
 		end
 
 	end
@@ -187,6 +193,8 @@ function Model_Sound:setVoiceState( state )
 		user_default:setIntegerForKey("hejiVoiceState", state)
 	elseif scene_name == "HallScene" then
 		user_default:setIntegerForKey("slotVoiceState", state)
+	elseif scene_name == "LiKuiMaJiangScene" then
+		user_default:setIntegerForKey("likuiVoiceState", state)
 	end
 end
 
@@ -258,6 +266,10 @@ function Model_Sound:playBgMusic()
 		if self:isMusicOpen() then
 			audio.playMusic("csbslot/hall/hmp3/SlotUltimate_sound_map_bgm1.mp3",true)
 		end
+	elseif scene_name == "LiKuiMaJiangScene" then
+		if self:isMusicOpen() then
+			audio.playMusic("lkmp3/music.mp3",true)
+		end
 	end
 
 
@@ -296,6 +308,8 @@ function Model_Sound:stopPlayBgMusic()
 	elseif scene_name == "HeJiScene" then
 		audio.stopMusic(false)
 	elseif scene_name == "HallScene" then
+		audio.stopMusic(false)
+	elseif scene_name == "LiKuiMaJiangScene" then
 		audio.stopMusic(false)
 	end
 end

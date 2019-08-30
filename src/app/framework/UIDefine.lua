@@ -237,6 +237,17 @@ UIDefine.LayerFlag = {
 -- 	Rank_UI 			= { layer = import("app.viewslikui.RankMain"),         		flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Rank_UI"				    	},
 -- }
 
+-- 李逵麻将的ui
+UIDefine.LIKUI_KEY	= {
+	Loading_UI 			= { layer = import("app.viewslikuimajiang.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Loading_UI" 			  	    },
+	Start_UI 			= { layer = import("app.viewslikuimajiang.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Start_UI"                     },
+	Over_UI             = { layer = import("app.viewslikuimajiang.GameOver"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Over_UI"    			        },
+	Shop_UI	    	    = { layer = import("app.viewslikuimajiang.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Shop_UI"    		   		  	},
+	Buy_UI	    	    = { layer = import("app.viewslikuimajiang.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Buy_UI"    		   		  	},
+	Play_UI             = { layer = import("app.viewslikuimajiang.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Play_UI"    			   		},
+	Rank_UI 			= { layer = import("app.viewslikuimajiang.RankMain"),         			flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Rank_UI"				    	},
+}
+
 -- -- 三个游戏的合集
 -- UIDefine.HEJI_KEY    = {
 -- 	Loading_UI 			= { layer = import("app.viewsheji.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "HeJi_Loading_UI" 			  	    },
@@ -261,11 +272,11 @@ UIDefine.LayerFlag = {
 
 -- }
 
--- 捕鱼
-UIDefine.BUYU_KEY 	= {
-	Loading_UI 			= { layer = import("app.viewsbuyu.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Loading_UI" 			  	    },
-	Play_UI             = { layer = import("app.viewsbuyu.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Play_UI"    			   		},
-}
+-- -- 捕鱼
+-- UIDefine.BUYU_KEY 	= {
+-- 	Loading_UI 			= { layer = import("app.viewsbuyu.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Loading_UI" 			  	    },
+-- 	Play_UI             = { layer = import("app.viewsbuyu.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Play_UI"    			   		},
+-- }
 
 
 -- UIDefine.SLOT_KEY  = {
