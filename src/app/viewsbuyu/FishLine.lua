@@ -44,9 +44,9 @@ function FishLine:line1( fish )
 	-- 1，鱼从左出现
 	if move_began == 1 then
 		-- 从左边出现
-		local x = -200
+		local x = -300
 		-- 随机出现高度y
-		local y = random( -200,display.height )
+		local y = random( -200,display.height + 200 )
 		-- c_point1 = cc.p( x,y )
 		fish:setPosition( x,y )
 
@@ -55,9 +55,9 @@ function FishLine:line1( fish )
 		-- 随机中间区域的高度y，与出现相对随机
 		local y1 = nil
 		if y < display.height / 2 then
-			y1 = random( y,display.height - 100 )
+			y1 = random( y,display.height )
 		else
-			y1 = random( 100,y )
+			y1 = random( 0,y )
 		end
 		c_point1 = cc.p( x1,y1 )
 
@@ -65,9 +65,9 @@ function FishLine:line1( fish )
 		local x2 = random( display.width / 2,display.width * 3 / 4 )
 		local y2 = nil
 		if y1 < display.height / 2 then
-			y2 = random( y1,display.height - 100 )
+			y2 = random( y1,display.height )
 		else
-			y2 = random( 100,y1 )
+			y2 = random( 0,y1 )
 		end
 		c_point2 = cc.p( x2,y2 )
 
@@ -76,28 +76,28 @@ function FishLine:line1( fish )
 		local y3 = nil
 		local move_end = random( 1,4 ) -- 1,2,消失在右  3，消失在上，4，消失在下
 		if move_end <= 2 then
-			x3 = display.width + 200
+			x3 = display.width + 300
 			-- 继续根据出现的高度y，给一个结束的y
 			if y2 < display.height / 2 then
-				y3 = random( 0,y2 ) + 200
+				y3 = random( 0,y2 )
 			else
-				y3 = random( y2,display.height ) + 200
+				y3 = random( y2,display.height )
 			end
 			end_point = cc.p( x3,y3 )
 		elseif move_end == 3 then
 			x3 = random( display.width * 3 / 4,display.width ) + 200
-			y3 = display.height + 200
+			y3 = display.height + 300
 			end_point = cc.p( x3,y3 )
 		elseif move_end == 4 then
 			x3 = random( display.width * 3 / 4,display.width ) + 200
-			y3 = 0 - 200
+			y3 = 0 - 300
 			end_point = cc.p( x3,y3 )
 		end
 	end
 	-- 2，鱼从右出现
 	if move_began == 2 then
 		-- 从左边出现
-		local x = display.width + 200
+		local x = display.width + 300
 		-- 随机出现高度y
 		local y = random( -200,display.height + 200 )
 		-- c_point1 = cc.p( x,y )
@@ -108,9 +108,9 @@ function FishLine:line1( fish )
 		-- 随机中间区域的高度y，与出现相对随机
 		local y1 = nil
 		if y < display.height / 2 then
-			y1 = random( y,display.height - 100 )
+			y1 = random( y,display.height )
 		else
-			y1 = random( 100,y )
+			y1 = random( 0,y )
 		end
 		c_point1 = cc.p( x1,y1 )
 
@@ -118,9 +118,9 @@ function FishLine:line1( fish )
 		local x2 = random( display.width / 4,display.width / 2 )
 		local y2 = nil
 		if y1 < display.height / 2 then
-			y2 = random( y1,display.height - 100 )
+			y2 = random( y1,display.height )
 		else
-			y2 = random( 100,y1 )
+			y2 = random( 0,y1 )
 		end
 		c_point2 = cc.p( x2,y2 )
 
@@ -129,7 +129,7 @@ function FishLine:line1( fish )
 		local y3 = nil
 		local move_end = random( 1,4 ) -- 1,2,消失在右  3，消失在上，4，消失在下
 		if move_end <= 2 then
-			x3 = -200
+			x3 = -300
 			-- 继续根据出现的高度y，给一个结束的y
 			if y2 < display.height / 2 then
 				y3 = random( 0,y2 )
@@ -139,11 +139,11 @@ function FishLine:line1( fish )
 			end_point = cc.p( x3,y3 )
 		elseif move_end == 3 then
 			x3 = random( 0,display.width / 4 ) - 200
-			y3 = display.height + 200
+			y3 = display.height + 300
 			end_point = cc.p( x3,y3 )
 		elseif move_end == 4 then
 			x3 = random( 0,display.width / 4 ) - 200
-			y3 = 0 - 200
+			y3 = 0 - 300
 			end_point = cc.p( x3,y3 )
 		end
 	end
@@ -152,7 +152,7 @@ function FishLine:line1( fish )
 		-- 从上边出现随机x
 		local x = random( -200,display.width + 200 )
 		-- 出现高度y
-		local y = display.height + 200
+		local y = display.height + 300
 		-- c_point1 = cc.p( x,y )
 		fish:setPosition( x,y )
 
@@ -161,9 +161,9 @@ function FishLine:line1( fish )
 		-- 随机中间区域的x，与出现相对随机
 		local x1 = nil
 		if x < display.width / 2 then
-			x1 = random( x,display.width - 100 )
+			x1 = random( x,display.width )
 		else
-			x1 = random( 100,x )
+			x1 = random( 0,x )
 		end
 		c_point1 = cc.p( x1,y1 )
 
@@ -171,9 +171,9 @@ function FishLine:line1( fish )
 		local y2 = random( display.height / 4,display.height / 2 )
 		local x2 = nil
 		if x1 < display.width / 2 then
-			x2 = random( x1,display.width - 100 )
+			x2 = random( x1,display.width )
 		else
-			x2 = random( 100,x1 )
+			x2 = random( 0,x1 )
 		end
 		c_point2 = cc.p( x2,y2 )
 
@@ -182,7 +182,7 @@ function FishLine:line1( fish )
 		local y3 = nil
 		local move_end = random( 1,4 ) -- 1,2,消失在下  3，消失在左，4，消失在右
 		if move_end <= 2 then
-			y3 = -200
+			y3 = -300
 			-- 继续根据出现的高度y，给一个结束的y
 			if x2 < display.width / 2 then
 				x3 = random( 0,x2 )
@@ -192,11 +192,11 @@ function FishLine:line1( fish )
 			end_point = cc.p( x3,y3 )
 		elseif move_end == 3 then
 			y3 = random( 0,display.height / 4 )
-			x3 = -200
+			x3 = -300
 			end_point = cc.p( x3,y3 )
 		elseif move_end == 4 then
 			y3 = random( 0,display.height / 4 )
-			x3 =  display.width + 200
+			x3 =  display.width + 300
 			end_point = cc.p( x3,y3 )
 		end
 	end
@@ -205,7 +205,7 @@ function FishLine:line1( fish )
 		-- 从下边出现随机x
 		local x = random( -200,display.width + 200 )
 		-- 出现高度y
-		local y = -200
+		local y = -300
 		-- c_point1 = cc.p( x,y )
 		fish:setPosition( x,y )
 
@@ -214,9 +214,9 @@ function FishLine:line1( fish )
 		-- 随机中间区域的x，与出现相对随机
 		local x1 = nil
 		if x < display.width / 2 then
-			x1 = random( x,display.width - 100 )
+			x1 = random( x,display.width )
 		else
-			x1 = random( 100,x )
+			x1 = random( 0,x )
 		end
 		c_point1 = cc.p( x1,y1 )
 
@@ -224,9 +224,9 @@ function FishLine:line1( fish )
 		local y2 = random( display.height / 4,display.height / 2 )
 		local x2 = nil
 		if x1 < display.width / 2 then
-			x2 = random( x1,display.width - 100 )
+			x2 = random( x1,display.width )
 		else
-			x2 = random( 100,x1 )
+			x2 = random( 0,x1 )
 		end
 		c_point2 = cc.p( x2,y2 )
 
@@ -235,7 +235,7 @@ function FishLine:line1( fish )
 		local y3 = nil
 		local move_end = random( 1,4 ) -- 1,2,消失在上  3，消失在左，4，消失在右
 		if move_end <= 2 then
-			y3 = display.height + 200
+			y3 = display.height + 300
 			-- 继续根据出现的高度y，给一个结束的y
 			if x2 < display.width / 2 then
 				x3 = random( x2,display.width )
@@ -245,11 +245,11 @@ function FishLine:line1( fish )
 			end_point = cc.p( x3,y3 )
 		elseif move_end == 3 then
 			y3 = random( display.height * 3 / 4,display.height )
-			x3 = -200
+			x3 = -300
 			end_point = cc.p( x3,y3 )
 		elseif move_end == 4 then
 			y3 = random( display.height * 3 / 4,display.height )
-			x3 =  display.width + 200
+			x3 =  display.width + 300
 			end_point = cc.p( x3,y3 )
 		end
 	end
@@ -265,7 +265,7 @@ end
 -- 从左往右
 function FishLine:line2( fish )
 	-- 随机起点和终点，第二个值取区间的值
-	local x_began = -200
+	local x_began = -300
 	local y_began = random( -200,display.height + 200 )
 	local began_pos = cc.p( x_began,y_began )
 	local x_first = display.width / 4
@@ -274,7 +274,7 @@ function FishLine:line2( fish )
 	local x_second = display.width * 3 / 4 
 	local y_second = random( 100,display.height - 100 )
 	local second_pos = cc.p( x_second,y_second )
-	local x_end = display.width + 200
+	local x_end = display.width + 300
 	local y_end = random( -200,display.height + 200 )
 	local end_pos = cc.p( x_end,y_end )
 	fish:setPosition( began_pos )
@@ -286,7 +286,7 @@ end
 -- 从右往左
 function FishLine:line3( fish )
 	-- 随机起点和终点，第二个值取区间的值
-	local x_began = display.width + 200
+	local x_began = display.width + 300
 	local y_began = random( -200,display.height + 200 )
 	local began_pos = cc.p( x_began,y_began )
 	local x_first = display.width * 3 / 4
@@ -295,7 +295,7 @@ function FishLine:line3( fish )
 	local x_second = display.width / 4 
 	local y_second = random( 100,display.height - 100 )
 	local second_pos = cc.p( x_second,y_second )
-	local x_end = -200
+	local x_end = -300
 	local y_end = random( -200,display.height + 200 )
 	local end_pos = cc.p( x_end,y_end )
 
@@ -310,7 +310,7 @@ end
 function FishLine:line4( fish )
 	-- 随机起点和终点，第二个值取区间的值
 	local x_began = random( -200,display.width + 200 )
-	local y_began = display.height + 200
+	local y_began = display.height + 300
 	local began_pos = cc.p( x_began,y_began )
 	local x_first = random( 100,display.width - 100 )
 	local y_first = display.height * 3 / 4
@@ -319,7 +319,7 @@ function FishLine:line4( fish )
 	local y_second = display.height / 4
 	local second_pos = cc.p( x_second,y_second )
 	local x_end = random( -200,display.width + 200 )
-	local y_end = -200
+	local y_end = -300
 	local end_pos = cc.p( x_end,y_end )
 
 	fish:setPosition( began_pos )
@@ -333,7 +333,7 @@ end
 function FishLine:line5( fish )
 	-- 随机起点和终点，第二个值取区间的值
 	local x_began = random( -200,display.width + 200 )
-	local y_began = -200
+	local y_began = -300
 	local began_pos = cc.p( x_began,y_began )
 	local x_first = random( 100,display.width - 100 )
 	local y_first = display.height / 4
@@ -342,7 +342,7 @@ function FishLine:line5( fish )
 	local y_second = display.height * 3 / 4
 	local second_pos = cc.p( x_second,y_second )
 	local x_end = random( -200,display.width + 200 )
-	local y_end = display.height + 200
+	local y_end = display.height + 300
 	local end_pos = cc.p( x_end,y_end )
 
 	fish:setPosition( began_pos )
@@ -355,13 +355,13 @@ end
 
 -- 从左上下角，到右上下角
 function FishLine:line6( fish )
-	local x_began = -200
+	local x_began = -300
 	local num = random( 1,2 ) -- 1，左上，2，左下 --- 出现
 	local y_began
 	if num == 1 then
-		y_began = display.height + 200
+		y_began = display.height + 300
 	else
-		y_began = -200
+		y_began = -300
 	end
 	
 	local began_pos = cc.p( x_began,y_began )
@@ -371,13 +371,13 @@ function FishLine:line6( fish )
 	local x_second = display.width * 3 / 5
 	local y_second = random( display.height / 2 - 100,display.height / 2 + 100 )
 	local second_pos = cc.p( x_second,y_second )
-	local x_end = display.width + 200
+	local x_end = display.width + 300
 	num = random( 1,2 ) -- 1，左上，2，左下 --- 消失
 	local y_end
 	if num == 1 then
-		y_end = display.height + 200
+		y_end = display.height + 300
 	else
-		y_end = -200
+		y_end = -300
 	end
 	local end_pos = cc.p( x_end,y_end )
 
@@ -390,13 +390,13 @@ function FishLine:line6( fish )
 end
 -- 从右上下角，到左上下角
 function FishLine:line7( fish )
-	local x_began = display.width + 200
+	local x_began = display.width + 300
 	local num = random( 1,2 ) -- 1，右上，2，右下 --- 消失
 	local y_began
 	if num == 1 then
-		y_began = display.height + 200
+		y_began = display.height + 300
 	else
-		y_began = -200
+		y_began = -300
 	end
 	
 	local began_pos = cc.p( x_began,y_began )
@@ -406,13 +406,13 @@ function FishLine:line7( fish )
 	local x_second = display.width * 2 / 5
 	local y_second = random( display.height / 2 - 100,display.height / 2 + 100 )
 	local second_pos = cc.p( x_second,y_second )
-	local x_end = -200
+	local x_end = -300
 	num = random( 1,2 ) -- 1，左上，2，左下 --- 出现
 	local y_end
 	if num == 1 then
-		y_end = display.height + 200
+		y_end = display.height + 300
 	else
-		y_end = -200
+		y_end = -300
 	end
 	local end_pos = cc.p( x_end,y_end )
 
