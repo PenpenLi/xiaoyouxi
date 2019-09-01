@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>image/fish28/4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{452,1},{449,468}}</string>
+				<key>offset</key>
+				<string>{0,6}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{449,480}</string>
+			</dict>
+			<key>image/fish28/5.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1391,1},{449,464}}</string>
+				<key>offset</key>
+				<string>{0,8}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{449,480}</string>
+			</dict>
+			<key>image/fish28/6.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{452,917},{449,461}}</string>
+				<key>offset</key>
+				<string>{0,10}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{449,480}</string>
+			</dict>
+			<key>image/fish28/7.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{903,452},{449,460}}</string>
+				<key>offset</key>
+				<string>{0,10}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{449,480}</string>
+			</dict>
+			<key>image/fish28/8.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{452,1380},{449,461}}</string>
+				<key>offset</key>
+				<string>{0,10}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{449,480}</string>
+			</dict>
+			<key>image/fish28/9.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{452,452},{449,463}}</string>
+				<key>offset</key>
+				<string>{0,9}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{449,480}</string>
+			</dict>
+			<key>image/fish28/10.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{922,1},{449,467}}</string>
+				<key>offset</key>
+				<string>{0,7}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{449,480}</string>
+			</dict>
+			<key>image/fish28/11.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1437},{449,470}}</string>
+				<key>offset</key>
+				<string>{0,5}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{449,480}</string>
+			</dict>
+			<key>image/fish28/12.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,961},{449,474}}</string>
+				<key>offset</key>
+				<string>{0,3}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{449,480}</string>
+			</dict>
+			<key>image/fish28/13.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,482},{449,477}}</string>
+				<key>offset</key>
+				<string>{0,2}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{449,480}</string>
+			</dict>
+			<key>image/fish28/14.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1},{449,479}}</string>
+				<key>offset</key>
+				<string>{0,1}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{449,480}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>PlistFish7.png</string>
+			<key>realTextureFileName</key>
+			<string>PlistFish7.png</string>
+			<key>size</key>
+			<string>{1856,1908}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>1856</integer>
+			<key>height</key>
+			<integer>1908</integer>
+		</dict>
+	</dict>
+</plist>

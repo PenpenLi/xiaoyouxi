@@ -13,6 +13,13 @@ function GameLoading:ctor( param )
 
     self._plist = {
 		"csbbuyu/PlistFish1.plist",
+		"csbbuyu/PlistFish2.plist",
+		"csbbuyu/PlistFish3.plist",
+		"csbbuyu/PlistFish4.plist",
+		"csbbuyu/PlistFish5.plist",
+		"csbbuyu/PlistFish6.plist",
+		"csbbuyu/PlistFish7.plist",
+		"csbbuyu/PlistFish8.plist",
 	}
 	self._music = {
 		
