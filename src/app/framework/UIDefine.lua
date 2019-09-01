@@ -237,16 +237,16 @@ UIDefine.LayerFlag = {
 -- 	Rank_UI 			= { layer = import("app.viewslikui.RankMain"),         		flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Rank_UI"				    	},
 -- }
 
--- 李逵麻将的ui
-UIDefine.LIKUI_KEY	= {
-	Loading_UI 			= { layer = import("app.viewslikuimajiang.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Loading_UI" 			  	    },
-	Start_UI 			= { layer = import("app.viewslikuimajiang.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Start_UI"                     },
-	Over_UI             = { layer = import("app.viewslikuimajiang.GameOver"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Over_UI"    			        },
-	Shop_UI	    	    = { layer = import("app.viewslikuimajiang.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Shop_UI"    		   		  	},
-	Buy_UI	    	    = { layer = import("app.viewslikuimajiang.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Buy_UI"    		   		  	},
-	Play_UI             = { layer = import("app.viewslikuimajiang.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Play_UI"    			   		},
-	Rank_UI 			= { layer = import("app.viewslikuimajiang.RankMain"),         			flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Rank_UI"				    	},
-}
+-- -- 李逵麻将的ui
+-- UIDefine.LIKUI_KEY	= {
+-- 	Loading_UI 			= { layer = import("app.viewslikuimajiang.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Loading_UI" 			  	    },
+-- 	Start_UI 			= { layer = import("app.viewslikuimajiang.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Start_UI"                     },
+-- 	Over_UI             = { layer = import("app.viewslikuimajiang.GameOver"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Over_UI"    			        },
+-- 	Shop_UI	    	    = { layer = import("app.viewslikuimajiang.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Shop_UI"    		   		  	},
+-- 	Buy_UI	    	    = { layer = import("app.viewslikuimajiang.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Buy_UI"    		   		  	},
+-- 	Play_UI             = { layer = import("app.viewslikuimajiang.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Play_UI"    			   		},
+-- 	Rank_UI 			= { layer = import("app.viewslikuimajiang.RankMain"),         			flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Rank_UI"				    	},
+-- }
 
 -- -- 三个游戏的合集
 -- UIDefine.HEJI_KEY    = {
@@ -270,12 +270,6 @@ UIDefine.LIKUI_KEY	= {
 -- 	ZhiPai_Pause_UI	    = { layer = import("app.viewsheji.GameZhiPaiPause"),		    flag = UIDefine.LayerFlag.Main.name,	name = "HeJi_ZhiPai_Pause_UI"    		    },
 -- 	ZhiPai_Help_UI      = { layer = import("app.viewsheji.GameZhiPaiHelp"),	    	    flag = UIDefine.LayerFlag.Main.name,	name = "HeJi_ZhiPai_Help_UI"                },
 
--- }
-
--- -- 捕鱼
--- UIDefine.BUYU_KEY 	= {
--- 	Loading_UI 			= { layer = import("app.viewsbuyu.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Loading_UI" 			  	    },
--- 	Play_UI             = { layer = import("app.viewsbuyu.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Play_UI"    			   		},
 -- }
 
 
@@ -314,6 +308,13 @@ UIDefine.LIKUI_KEY	= {
 -- 	RuleOfRed_UI            = { layer = import("app.viewsslot.GameRuleOfRed"),	    		    	flag = UIDefine.LayerFlag.Main.name,	name = "Slot_RuleOfRed_UI"                  },
 
 -- }
+
+
+-- 捕鱼
+UIDefine.BUYU_KEY 	= {
+	Loading_UI 				= { layer = import("app.viewsbuyu.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Loading_UI" 			  	    		},
+	Play_UI             	= { layer = import("app.viewsbuyu.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Play_UI"    			   				},
+}
 
 
 rawset(_G,"UIDefine",UIDefine)

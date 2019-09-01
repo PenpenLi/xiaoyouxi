@@ -22,12 +22,12 @@ end
 
 
 function BuYuScene:loadAppFile()
-	-- import( "app.viewslikui.config.likui_config" )
+	import( "app.viewsbuyu.config.buyu_config" )
 end
 
 function BuYuScene:onEnter()
 	-- 创建LoadingUI
-	addUIToScene( UIDefine.BUYU_KEY.Play_UI )
+	addUIToScene( UIDefine.BUYU_KEY.Loading_UI )
 end
 
 function BuYuScene:getSceneName()

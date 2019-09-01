@@ -1,21 +1,46 @@
 
 
-local FishLine = class( "FishLine",BaseLayer)
+local FishLine = class( "FishLine" )
 
+function FishLine:ctor()
+end
 
-
-
+function FishLine:createLine( fish,dirType )
+	if dirType == "all" then
+		local index = random(1,7)
+		if index == 1 then
+			self:line1( fish )
+		elseif index == 2 then
+			self:line2( fish )
+		elseif index == 3 then
+			self:line3( fish )
+		elseif index == 4 then
+			self:line4( fish )
+		elseif index == 5 then
+			self:line5( fish )
+		elseif index == 6 then
+			self:line6( fish )
+		elseif index == 7 then
+			self:line7( fish )
+		end
+	elseif dirType == "left_right" then
+		local random_dir = random(1,2)
+		if random_dir == 1 then
+			self:line2( fish )
+		else
+			fish._fish:setFlippedY( true )
+			self:line3( fish )
+		end
+	end
+end
 
 
 -- 4向可出现的鱼
 function FishLine:line1( fish )
 	local move_began = random( 1,4 )-- 1,左  2,右  3,上  4,下
-	-- local move_began = 1
-	-- local move_began = 4
 	local c_point1 = nil
 	local c_point2 = nil
 	local end_point = nil
-
 	-- 1，鱼从左出现
 	if move_began == 1 then
 		-- 从左边出现
@@ -24,7 +49,6 @@ function FishLine:line1( fish )
 		local y = random( -200,display.height )
 		-- c_point1 = cc.p( x,y )
 		fish:setPosition( x,y )
-		dump( c_point1,"---------------c_point1 = ")
 
 		-- 第一次移动到中间区域的x位置
 		local x1 = random( display.width / 4,display.width / 2 )
@@ -36,7 +60,6 @@ function FishLine:line1( fish )
 			y1 = random( 100,y )
 		end
 		c_point1 = cc.p( x1,y1 )
-		dump( c_point1,"---------------c_point1 = ")
 
 		-- 第二次移动到位置
 		local x2 = random( display.width / 2,display.width * 3 / 4 )
@@ -61,17 +84,14 @@ function FishLine:line1( fish )
 				y3 = random( y2,display.height ) + 200
 			end
 			end_point = cc.p( x3,y3 )
-			dump( end_point,"---------------end_point = ")
 		elseif move_end == 3 then
 			x3 = random( display.width * 3 / 4,display.width ) + 200
 			y3 = display.height + 200
 			end_point = cc.p( x3,y3 )
-			dump( end_point,"---------------end_point = ")
 		elseif move_end == 4 then
 			x3 = random( display.width * 3 / 4,display.width ) + 200
 			y3 = 0 - 200
 			end_point = cc.p( x3,y3 )
-			dump( end_point,"---------------end_point = ")
 		end
 	end
 	-- 2，鱼从右出现
@@ -82,7 +102,6 @@ function FishLine:line1( fish )
 		local y = random( -200,display.height + 200 )
 		-- c_point1 = cc.p( x,y )
 		fish:setPosition( x,y )
-		dump( c_point1,"---------------c_point1 = ")
 
 		-- 第一次移动到中间区域的x位置
 		local x1 = random( display.width * 3 / 4,display.width )
@@ -94,7 +113,6 @@ function FishLine:line1( fish )
 			y1 = random( 100,y )
 		end
 		c_point1 = cc.p( x1,y1 )
-		dump( c_point1,"---------------c_point1 = ")
 
 		-- 第二次移动到位置
 		local x2 = random( display.width / 4,display.width / 2 )
@@ -119,17 +137,14 @@ function FishLine:line1( fish )
 				y3 = random( y2,display.height )
 			end
 			end_point = cc.p( x3,y3 )
-			dump( end_point,"---------------end_point = ")
 		elseif move_end == 3 then
 			x3 = random( 0,display.width / 4 ) - 200
 			y3 = display.height + 200
 			end_point = cc.p( x3,y3 )
-			dump( end_point,"---------------end_point = ")
 		elseif move_end == 4 then
 			x3 = random( 0,display.width / 4 ) - 200
 			y3 = 0 - 200
 			end_point = cc.p( x3,y3 )
-			dump( end_point,"---------------end_point = ")
 		end
 	end
 	-- 3，鱼从上出现
@@ -140,7 +155,6 @@ function FishLine:line1( fish )
 		local y = display.height + 200
 		-- c_point1 = cc.p( x,y )
 		fish:setPosition( x,y )
-		dump( c_point1,"---------------c_point1 = ")
 
 		-- 第一次移动到中间区域的y位置
 		local y1 = random( display.height / 2,display.height * 3 / 4 )
@@ -152,7 +166,6 @@ function FishLine:line1( fish )
 			x1 = random( 100,x )
 		end
 		c_point1 = cc.p( x1,y1 )
-		dump( c_point1,"---------------c_point1 = ")
 
 		-- 第二次移动到位置
 		local y2 = random( display.height / 4,display.height / 2 )
@@ -177,17 +190,14 @@ function FishLine:line1( fish )
 				x3 = random( x2,display.width )
 			end
 			end_point = cc.p( x3,y3 )
-			dump( end_point,"---------------end_point = ")
 		elseif move_end == 3 then
 			y3 = random( 0,display.height / 4 )
 			x3 = -200
 			end_point = cc.p( x3,y3 )
-			dump( end_point,"---------------end_point = ")
 		elseif move_end == 4 then
 			y3 = random( 0,display.height / 4 )
 			x3 =  display.width + 200
 			end_point = cc.p( x3,y3 )
-			dump( end_point,"---------------end_point = ")
 		end
 	end
 	-- 4，鱼从下出现
@@ -198,7 +208,6 @@ function FishLine:line1( fish )
 		local y = -200
 		-- c_point1 = cc.p( x,y )
 		fish:setPosition( x,y )
-		dump( c_point1,"---------------c_point1 = ")
 
 		-- 第一次移动到中间区域的y位置
 		local y1 = random( 0,display.height / 4 )
@@ -210,7 +219,6 @@ function FishLine:line1( fish )
 			x1 = random( 100,x )
 		end
 		c_point1 = cc.p( x1,y1 )
-		dump( c_point1,"---------------c_point1 = ")
 
 		-- 第二次移动到位置
 		local y2 = random( display.height / 4,display.height / 2 )
@@ -235,22 +243,24 @@ function FishLine:line1( fish )
 				x3 = random( 0,x2 )
 			end
 			end_point = cc.p( x3,y3 )
-			dump( end_point,"---------------end_point = ")
 		elseif move_end == 3 then
 			y3 = random( display.height * 3 / 4,display.height )
 			x3 = -200
 			end_point = cc.p( x3,y3 )
-			dump( end_point,"---------------end_point = ")
 		elseif move_end == 4 then
 			y3 = random( display.height * 3 / 4,display.height )
 			x3 =  display.width + 200
 			end_point = cc.p( x3,y3 )
-			dump( end_point,"---------------end_point = ")
 		end
 	end
-	-- 鱼游出屏幕还需不需要remove？
-	local bz = cc.BezierTo:create(15,{ c_point1,c_point2,end_point })
-	fish:runAction( bz )
+
+	-- end_point.x = end_point.x + display.width / 2
+	-- end_point.y = end_point.y + display.height / 2
+
+	local remove = cc.RemoveSelf:create()
+	local bz = cc.BezierTo:create( random(15,25),{ c_point1,c_point2,end_point })
+	local seq = cc.Sequence:create({ bz,remove })
+	fish:runAction( seq )
 end
 -- 从左往右
 function FishLine:line2( fish )
@@ -267,10 +277,11 @@ function FishLine:line2( fish )
 	local x_end = display.width + 200
 	local y_end = random( -200,display.height + 200 )
 	local end_pos = cc.p( x_end,y_end )
-
 	fish:setPosition( began_pos )
-	local bz = cc.BezierTo:create(15,{ first_pos,second_pos,end_pos })
-	fish:runAction( bz )
+	local remove = cc.RemoveSelf:create()
+	local bz = cc.BezierTo:create(random(15,25),{ first_pos,second_pos,end_pos })
+	local seq = cc.Sequence:create({ bz,remove })
+	fish:runAction( seq )
 end
 -- 从右往左
 function FishLine:line3( fish )
@@ -289,8 +300,11 @@ function FishLine:line3( fish )
 	local end_pos = cc.p( x_end,y_end )
 
 	fish:setPosition( began_pos )
-	local bz = cc.BezierTo:create(15,{ first_pos,second_pos,end_pos })
-	fish:runAction( bz )
+
+	local remove = cc.RemoveSelf:create()
+	local bz = cc.BezierTo:create(random(15,25),{ first_pos,second_pos,end_pos })
+	local seq = cc.Sequence:create({ bz,remove })
+	fish:runAction( seq )
 end
 -- 从上往下
 function FishLine:line4( fish )
@@ -309,8 +323,11 @@ function FishLine:line4( fish )
 	local end_pos = cc.p( x_end,y_end )
 
 	fish:setPosition( began_pos )
-	local bz = cc.BezierTo:create(15,{ first_pos,second_pos,end_pos })
-	fish:runAction( bz )
+
+	local remove = cc.RemoveSelf:create()
+	local bz = cc.BezierTo:create(random(15,25),{ first_pos,second_pos,end_pos })
+	local seq = cc.Sequence:create({ bz,remove })
+	fish:runAction( seq )
 end
 -- 从下往上
 function FishLine:line5( fish )
@@ -329,8 +346,11 @@ function FishLine:line5( fish )
 	local end_pos = cc.p( x_end,y_end )
 
 	fish:setPosition( began_pos )
-	local bz = cc.BezierTo:create(15,{ first_pos,second_pos,end_pos })
-	fish:runAction( bz )
+
+	local remove = cc.RemoveSelf:create()
+	local bz = cc.BezierTo:create(random(15,25),{ first_pos,second_pos,end_pos })
+	local seq = cc.Sequence:create({ bz,remove })
+	fish:runAction( seq )
 end
 
 -- 从左上下角，到右上下角
@@ -362,8 +382,11 @@ function FishLine:line6( fish )
 	local end_pos = cc.p( x_end,y_end )
 
 	fish:setPosition( began_pos )
-	local bz = cc.BezierTo:create(15,{ first_pos,second_pos,end_pos })
-	fish:runAction( bz )
+
+	local remove = cc.RemoveSelf:create()
+	local bz = cc.BezierTo:create(random(15,25),{ first_pos,second_pos,end_pos })
+	local seq = cc.Sequence:create({ bz,remove })
+	fish:runAction( seq )
 end
 -- 从右上下角，到左上下角
 function FishLine:line7( fish )
@@ -394,9 +417,15 @@ function FishLine:line7( fish )
 	local end_pos = cc.p( x_end,y_end )
 
 	fish:setPosition( began_pos )
-	local bz = cc.BezierTo:create(15,{ first_pos,second_pos,end_pos })
-	fish:runAction( bz )
+
+	local remove = cc.RemoveSelf:create()
+	local bz = cc.BezierTo:create(random(15,25),{ first_pos,second_pos,end_pos })
+	local seq = cc.Sequence:create({ bz,remove })
+	fish:runAction( seq )
 end
+
+
+
 -- 小鱼串，从左上下角出现，对角线消失
 function FishLine:line8( fish )
 	local x_began = -200
