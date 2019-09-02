@@ -3,10 +3,10 @@ local FishLine = import(".FishLine")
 local FishNode = import(".FishNode")
 local FishLayer = class( "FishLayer",BaseLayer )
 
-function FishLayer:ctor()
+function FishLayer:ctor( gameLayer )
     FishLayer.super.ctor( self,"FishLayer" )
 
-    self._fishArray = {}
+    self._gameLayer = gameLayer
     self._fishLine = FishLine.new()
 end
 
@@ -22,10 +22,8 @@ end
 function FishLayer:createFish()
 	local childs = self:getChildren()
 	if #childs >= 50 then
-		print("------------------> 不需要创建新鱼")
 		return
 	end
-	print("-----------------> 创建新鱼")
 	local fish_index = random( 1,#buyu_config.fish )
 	local fish = FishNode.new( fish_index,self._fishLine )
 	self:addChild( fish )
