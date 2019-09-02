@@ -26,7 +26,10 @@ function GamePlay:onEnter()
 	GamePlay.super.onEnter( self )
 end
 
-
+-- 获取鱼层
+function GamePlay:getFishLayer( ... )
+	return self._fishLayer
+end
 
 
 

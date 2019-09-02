@@ -367,6 +367,15 @@ local function playCsbActionForIndex(csbAct,startIndex,endIndex,loop,func)
     end
 end
 
+-- 计算两点夹角
+local function getAngleByPos( p1,p2 )
+	local p = {}
+	p.x = p2.x - p1.x
+	p.y = p2.y - p1.y
+	local r = math.atan2( p.y,p.x ) * 180 / math.pi
+	return r
+end
+
 rawset(_G, "addUIToScene", addUIToScene)
 rawset(_G, "removeUIFromScene", removeUIFromScene)
 rawset(_G, "getMatrixDataByColumn", getMatrixDataByColumn)
