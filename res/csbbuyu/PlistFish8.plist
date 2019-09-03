@@ -7,18 +7,18 @@
 			<key>image/guns/Bullet1_Normal_1_b.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{81,188},{20,52}}</string>
+				<string>{{565,1002},{20,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{20,52}</string>
 			</dict>
 			<key>image/guns/Bullet1_Normal_2_b.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{898,105},{20,52}}</string>
+				<string>{{619,1002},{20,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -29,7 +29,7 @@
 			<key>image/guns/Bullet1_Normal_3_b.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{898,127},{20,52}}</string>
+				<string>{{673,990},{20,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -40,18 +40,18 @@
 			<key>image/guns/Bullet1_Normal_4_b.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{952,131},{20,52}}</string>
+				<string>{{638,888},{20,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{20,52}</string>
 			</dict>
 			<key>image/guns/Bullet1_Normal_5_b.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{844,141},{20,52}}</string>
+				<string>{{692,888},{20,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -62,7 +62,7 @@
 			<key>image/guns/Bullet1_Normal_6_b.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{898,149},{20,52}}</string>
+				<string>{{748,946},{20,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -73,117 +73,117 @@
 			<key>image/guns/Bullet1_Specialt_a.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{987,55},{36,66}}</string>
+				<string>{{565,964},{36,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{36,66}</string>
 			</dict>
 			<key>image/guns/Bullet1_Specialt_b.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{987,123},{36,66}}</string>
+				<string>{{612,910},{36,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{36,66}</string>
 			</dict>
 			<key>image/guns/Bullet2_Normal_1_b.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{736,55},{50,52}}</string>
+				<string>{{409,964},{50,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{50,52}</string>
 			</dict>
 			<key>image/guns/Bullet2_Normal_2_b.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{512,69},{50,52}}</string>
+				<string>{{456,910},{50,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{50,52}</string>
 			</dict>
 			<key>image/guns/Bullet2_Normal_3_b.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{398,109},{50,52}}</string>
+				<string>{{461,964},{50,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{50,52}</string>
 			</dict>
 			<key>image/guns/Bullet2_Normal_4_b.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{452,109},{50,52}}</string>
+				<string>{{508,910},{50,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{50,52}</string>
 			</dict>
 			<key>image/guns/Bullet2_Normal_5_b.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{566,69},{50,52}}</string>
+				<string>{{513,964},{50,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{50,52}</string>
 			</dict>
 			<key>image/guns/Bullet2_Normal_6_b.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{620,69},{50,52}}</string>
+				<string>{{560,910},{50,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{50,52}</string>
 			</dict>
 			<key>image/guns/Bullet2_Specialt_a.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{592,1},{70,66}}</string>
+				<string>{{774,808},{70,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{70,66}</string>
 			</dict>
 			<key>image/guns/Bullet2_Specialt_b.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{664,1},{70,66}}</string>
+				<string>{{802,880},{70,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{70,66}</string>
 			</dict>
 			<key>image/guns/Bullet3_Normal_1_b.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{113,78},{52,52}}</string>
+				<string>{{78,920},{52,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -194,7 +194,7 @@
 			<key>image/guns/Bullet3_Normal_2_b.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{113,132},{52,52}}</string>
+				<string>{{132,920},{52,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -205,7 +205,7 @@
 			<key>image/guns/Bullet3_Normal_3_b.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{113,186},{52,52}}</string>
+				<string>{{186,920},{52,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -216,7 +216,7 @@
 			<key>image/guns/Bullet3_Normal_4_b.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{736,1},{52,52}}</string>
+				<string>{{240,920},{52,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -227,7 +227,7 @@
 			<key>image/guns/Bullet3_Normal_5_b.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{790,1},{52,52}}</string>
+				<string>{{294,920},{52,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -238,7 +238,7 @@
 			<key>image/guns/Bullet3_Normal_6_b.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{844,1},{52,52}}</string>
+				<string>{{348,910},{52,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -249,29 +249,29 @@
 			<key>image/guns/Bullet3_Specialt_a.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,188},{78,66}}</string>
+				<string>{{638,808},{78,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{78,66}</string>
 			</dict>
 			<key>image/guns/Bullet3_Specialt_b.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{512,1},{78,66}}</string>
+				<string>{{706,808},{78,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{78,66}</string>
 			</dict>
 			<key>image/guns/gold_coin_0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{898,1},{52,52}}</string>
+				<string>{{355,964},{52,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -282,7 +282,7 @@
 			<key>image/guns/gold_coin_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{674,69},{52,48}}</string>
+				<string>{{139,974},{52,48}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -293,7 +293,7 @@
 			<key>image/guns/gold_coin_10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{790,105},{52,36}}</string>
+				<string>{{680,910},{52,36}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -304,7 +304,7 @@
 			<key>image/guns/gold_coin_11.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{790,55},{52,48}}</string>
+				<string>{{193,974},{52,48}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -315,7 +315,7 @@
 			<key>image/guns/gold_coin_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{674,119},{52,34}}</string>
+				<string>{{734,910},{52,34}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -326,18 +326,18 @@
 			<key>image/guns/gold_coin_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1006,1},{52,16}}</string>
+				<string>{{748,968},{52,16}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{52,16}</string>
 			</dict>
 			<key>image/guns/gold_coin_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{728,107},{52,36}}</string>
+				<string>{{694,948},{52,36}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -348,7 +348,7 @@
 			<key>image/guns/gold_coin_5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{844,55},{52,48}}</string>
+				<string>{{247,974},{52,48}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -359,7 +359,7 @@
 			<key>image/guns/gold_coin_6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{952,1},{52,52}}</string>
+				<string>{{402,910},{52,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -370,7 +370,7 @@
 			<key>image/guns/gold_coin_7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{898,55},{52,48}}</string>
+				<string>{{301,974},{52,48}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -381,7 +381,7 @@
 			<key>image/guns/gold_coin_8.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{844,105},{52,34}}</string>
+				<string>{{727,986},{52,34}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -392,7 +392,7 @@
 			<key>image/guns/gold_coin_9.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{782,143},{52,16}}</string>
+				<string>{{781,986},{52,16}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -403,7 +403,7 @@
 			<key>image/guns/gun_1_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{282,103},{100,114}}</string>
+				<string>{{418,808},{100,114}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -414,18 +414,18 @@
 			<key>image/guns/gun_1_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{170,1},{108,110}}</string>
+				<string>{{78,808},{108,110}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{108,110}</string>
 			</dict>
 			<key>image/guns/gun_2_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{167,111},{100,102}}</string>
+				<string>{{534,808},{100,102}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -436,18 +436,18 @@
 			<key>image/guns/gun_2_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{402,1},{108,106}}</string>
+				<string>{{784,270},{108,106}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{108,106}</string>
 			</dict>
 			<key>image/guns/gun_3_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{282,1},{100,118}}</string>
+				<string>{{298,808},{100,118}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -458,35 +458,167 @@
 			<key>image/guns/gun_3_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,78},{108,110}}</string>
+				<string>{{188,808},{108,110}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{108,110}</string>
 			</dict>
 			<key>image/guns/gunPlatformButtom.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{952,55},{74,33}}</string>
+				<string>{{63,977},{74,33}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{74,33}</string>
 			</dict>
 			<key>image/guns/gunPlatformCenter.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,1},{167,75}}</string>
+				<string>{{1,808},{167,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{167,75}</string>
+			</dict>
+			<key>image/net/1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1},{267,259}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{267,259}</string>
+			</dict>
+			<key>image/net/10.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,270},{267,259}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{267,259}</string>
+			</dict>
+			<key>image/net/2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,539},{267,259}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{267,259}</string>
+			</dict>
+			<key>image/net/3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{262,1},{267,259}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{267,259}</string>
+			</dict>
+			<key>image/net/4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{262,270},{267,259}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{267,259}</string>
+			</dict>
+			<key>image/net/5.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{262,539},{267,259}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{267,259}</string>
+			</dict>
+			<key>image/net/6.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{523,1},{267,259}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{267,259}</string>
+			</dict>
+			<key>image/net/7.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{523,270},{267,259}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{267,259}</string>
+			</dict>
+			<key>image/net/8.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{523,539},{267,259}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{267,259}</string>
+			</dict>
+			<key>image/net/9.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{784,1},{267,259}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{267,259}</string>
+			</dict>
+			<key>image/guns/add.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,977},{41,60}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{41,60}</string>
+			</dict>
+			<key>image/guns/subtract.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{633,948},{40,59}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{40,59}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>
@@ -498,14 +630,14 @@
 			<key>realTextureFileName</key>
 			<string>PlistFish8.png</string>
 			<key>size</key>
-			<string>{1024,256}</string>
+			<string>{2048,1024}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>1024</integer>
+			<integer>2048</integer>
 			<key>height</key>
-			<integer>256</integer>
+			<integer>1024</integer>
 		</dict>
 	</dict>
 </plist>

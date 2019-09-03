@@ -13,7 +13,49 @@ function BulletLayer:ctor( gameLayer )
     self._bulletStartPoint = self.BulletNode:getParent():convertToWorldSpace( cc.p( self.BulletNode:getPosition() ) )
 
     self._bulletIndex = 6 -- 子弹倍数
-    self._level = 1 -- 子弹等级/炮台等级
+    self._level = G_GetModel("Model_BuYu"):getLevel() -- 等级
+    self._multiple = 1 -- 开局初始倍数
+    -- 子弹等级/炮台等级
+    local config = buyu_config.bullet
+	self._bulletAndBatteryLevel = nil -- 子弹等级/炮台等级
+	local num = 0
+	-- local level_end = nil
+	for i=1,#config do
+		num = num + 5
+		if self._level <= num then
+			self._bulletAndBatteryLevel = i
+			break
+		end
+	end
+
+    self:addNodeClick( self.ButtonAdd,{
+    	endCallBack = function ()
+    		self:addMultiple()
+    	end
+    })
+    self:addNodeClick( self.ButtonSubtract,{
+    	endCallBack = function ()
+    		self:subtractMultiple()
+    	end
+    })
+    self:loadUi()
+end
+function BulletLayer:loadUi()
+	-- local level = G_GetModel("Model_BuYu"):getLevel()
+	-- local config = buyu_config.bullet
+	-- local index = nil
+	-- local num = 0
+	-- -- local level_end = nil
+	-- for i=1,#config do
+	-- 	num = num + 5
+	-- 	if level <= num then
+	-- 		index = i
+	-- 		break
+	-- 	end
+	-- end
+	self.ImageGun:loadTexture( buyu_config.bullet[self._bulletAndBatteryLevel].battery,1 )
+	self.TextMultiple:setString( buyu_config.multiple[self._multiple] )
+	
 end
 -- 创建子弹
 function BulletLayer:createBullet(cur_point)
@@ -28,7 +70,8 @@ function BulletLayer:createBullet(cur_point)
 		index = self._bulletIndex,
 		level = self._level,
 		bulletRotate = r,
-		layer = self._gameLayer
+		layer = self._gameLayer,
+		bulletAndBatteryLevel = self._bulletAndBatteryLevel
 	}
 	local bullet = BulletNode.new( self,param )
 	self.BulletNode:addChild( bullet )
@@ -154,9 +197,24 @@ function BulletLayer:onTouchEnded( touch, event )
 	
 
 end
+-- -- 获取子弹node
+-- function BulletLayer:getBulletNode( ... )
+-- 	return self.BulletNode
+-- end
 
-
-
-
+function BulletLayer:addMultiple()
+	if self._multiple >= 10 then
+		return
+	end
+	self._multiple = self._multiple + 1
+	self.TextMultiple:setString( buyu_config.multiple[self._multiple] )
+end
+function BulletLayer:subtractMultiple()
+	if self._multiple <= 1 then
+		return
+	end
+	self._multiple = self._multiple - 1
+	self.TextMultiple:setString( buyu_config.multiple[self._multiple] )
+end
 
 return BulletLayer

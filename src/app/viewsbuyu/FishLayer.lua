@@ -8,6 +8,9 @@ function FishLayer:ctor( gameLayer )
 
     self._gameLayer = gameLayer
     self._fishLine = FishLine.new()
+
+    self._fishContainer = cc.Node:create()
+    self:addChild( self._fishContainer )
 end
 
 
@@ -25,8 +28,8 @@ function FishLayer:createFish()
 		return
 	end
 	local fish_index = random( 1,#buyu_config.fish )
-	local fish = FishNode.new( fish_index,self._fishLine )
-	self:addChild( fish )
+	local fish = FishNode.new( self._gameLayer,fish_index,self._fishLine )
+	self._fishContainer:addChild( fish )
 end
 
 

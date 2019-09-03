@@ -2,7 +2,7 @@
 local FishNode = class("FishNode",BaseNode)
 
 
-function FishNode:ctor( fishIndex,fishLine )
+function FishNode:ctor( gameLayer,fishIndex,fishLine )
 	FishNode.super.ctor( self,"FishNode" )
 
 	self._fishIndex = self:randomFish()
@@ -11,7 +11,13 @@ function FishNode:ctor( fishIndex,fishLine )
 	self:addChild( fish )
 
 	self._fish = fish
+	self._gameLayer = gameLayer
 	self._fishLine = fishLine
+	-- local box = self._fish:getBoundingBox()
+	-- dump(box,"-----------------box = ")
+
+	-- hp
+	self._hp = self._config.blood
 end
 
 
@@ -73,9 +79,106 @@ function FishNode:getMultiple( ... )
 end
 
 
+function FishNode:fishBeAttacked( hitNum )
+	self._hp = self._hp - hitNum
+	if self._hp <= 0 then
+		-- 死亡动画
+		self:actionOfDead()
+		performWithDelay( self,function ()
+			self:removeFromParent()
+		end,1)
+		
+	else
+		-- 受伤动画
+		local index = 0 -- 控制变色时间
+		self:onUpdate( function( dt ) 
+			redSprite( self._fish:getVirtualRenderer():getSprite() )
+			index = index + 1
+			if index >= 10 then
+				self:unscheduleUpdate()
+			end
+
+		end)
 
 
 
+
+
+
+
+
+
+
+		-- local index = 0
+		-- schedule( self,function ()
+		-- 	redSprite( self._fish:getVirtualRenderer():getSprite() )
+		-- 	index = index + 1
+		-- 	if index >= 15 then
+		-- 		unSchedule()
+		-- 	end
+		-- end,0.02)
+
+
+		-- redSprite( self._fish:getVirtualRenderer():getSprite() )
+		-- performWithDelay( self,function ()
+		-- 	ungraySprite( self._fish:getVirtualRenderer():getSprite() )
+		-- end,2)
+	end
+end
+function FishNode:getBlood( ... )
+	return self._hp
+end
+function FishNode:setBlood( harm )
+	self._hp = self._hp - harm
+end
+function FishNode:getFish()
+	return self._fish
+end
+function FishNode:getFishIndex( ... )
+	return self._fishIndex
+end
+-- 死亡动画
+function FishNode:actionOfDead( ... )
+	-- 死亡从node移除到世界坐标，避免死了一直能攻击
+	local dead_pos = cc.p(self:getPosition())
+	local dead_worldPos = self:getParent():convertToWorldSpace( dead_pos )
+	self:retain()
+	self:removeFromParent()
+	self._gameLayer:addChild( self )
+	self:release()
+	self:setPosition( dead_worldPos )
+
+
+
+	self:stopAllActions()
+	self:unSchedule()
+	local index = 0
+	local rot_node = self:getRotation()
+	local rot_fish = self._fish:getRotation()
+	dump( rot_node,"------------rot = ")
+	self:schedule( function ()
+		-- if index == 0 then
+		-- 	dump( rot_node,"------------rot = ")
+		-- end
+		local path = self._config.path..index..".png"
+		self._fish:loadTexture( path,1 )
+		-- self._fish:setRotation( rot_fish )
+		-- self:setRotation( rot_node )
+		
+		index = index + 1
+		if index > self._config.endNum then
+			local rot = self:getRotation()
+			dump( rot,"------------rot = ")
+			index = 0
+		end
+
+	end,0.02)
+end
+
+-- 捕鱼获得金币
+function FishNode:getCoin()
+	
+end
 
 
 return FishNode
