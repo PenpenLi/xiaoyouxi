@@ -24,7 +24,7 @@ buyu_config.fish={
 	[20] = { startNum = 0,endNum = 7,  path = "image/fish20/",dir = "left_right",	angle = 0,	imageScheduleTime = 0.12,multiple = 35,weight = 40,blood = 350   	},
 	[21] = { startNum = 0,endNum = 18, path = "image/fish21/",dir = "all",			angle = 0,	imageScheduleTime = 0.12,multiple = 28,weight = 50,blood = 280   	},
 	[22] = { startNum = 0,endNum = 18, path = "image/fish22/",dir = "all",			angle = 0,	imageScheduleTime = 0.18,multiple = 28,weight = 50,blood = 280   	},
-	[23] = { startNum = 0,endNum = 18, path = "image/fish23/",dir = "all",			angle = 0,	imageScheduleTime = 0.12,Multiple = 33,weight = 40,blood = 330   	},
+	[23] = { startNum = 0,endNum = 18, path = "image/fish23/",dir = "all",			angle = 0,	imageScheduleTime = 0.12,multiple = 33,weight = 40,blood = 330   	},
 	[24] = { startNum = 0,endNum = 18, path = "image/fish24/",dir = "all",			angle = 0,	imageScheduleTime = 0.15,multiple = 36,weight = 40,blood = 360   	},
 	[25] = { startNum = 0,endNum = 29, path = "image/fish25/",dir = "left_right",	angle = 0,	imageScheduleTime = 0.16,multiple = 50,weight = 10,blood = 500   	},
 	[26] = { startNum = 0,endNum = 13, path = "image/fish26/",dir = "all",			angle = 0,	imageScheduleTime = 0.15,multiple = 34,weight = 20,blood = 340   	},

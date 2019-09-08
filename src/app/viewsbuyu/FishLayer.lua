@@ -10,7 +10,10 @@ function FishLayer:ctor( gameLayer )
     self._fishLine = FishLine.new()
 
     self._fishContainer = cc.Node:create()
+    -- dump( self._fishContainer,"-----------self._fishContainer = ")
     self:addChild( self._fishContainer )
+
+    self._iceState = false -- 冰封技能，不创建鱼
 end
 
 
@@ -23,7 +26,11 @@ function FishLayer:onEnter()
 end
 
 function FishLayer:createFish()
-	local childs = self:getChildren()
+	if self._iceState then
+		return
+	end
+	local childs = self._fishContainer:getChildren()
+	-- dump( childs,"--------------childs = ")
 	if #childs >= 50 then
 		return
 	end

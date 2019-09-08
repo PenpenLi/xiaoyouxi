@@ -313,7 +313,12 @@ UIDefine.LayerFlag = {
 -- 捕鱼
 UIDefine.BUYU_KEY 	= {
 	Loading_UI 				= { layer = import("app.viewsbuyu.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Loading_UI" 			  	    		},
+	Start_UI 				= { layer = import("app.viewsbuyu.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Start_UI"                     },
 	Play_UI             	= { layer = import("app.viewsbuyu.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Play_UI"    			   				},
+	Shop_UI	    	 	   	= { layer = import("app.viewsbuyu.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Shop_UI"    		   		  	},
+	Buy_UI	    	   	 	= { layer = import("app.viewsbuyu.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Buy_UI"    		   		  	},
+	Sign_UI	    	   	 	= { layer = import("app.viewsbuyu.GameQiandao"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Sign_UI"    		   		  	},
+
 }
 
 
