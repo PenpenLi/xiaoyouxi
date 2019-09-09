@@ -319,7 +319,7 @@ UIDefine.BUYU_KEY 	= {
 	Sign_UI	    	   	 	= { layer = import("app.viewsbuyu.GameQiandao"),		      	flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Sign_UI"    		   		  			},
 	Assignment_UI	    	= { layer = import("app.viewsbuyu.GameRenwu"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Assignment_UI"    		   		  		},
 	Choose_UI	    		= { layer = import("app.viewsbuyu.GameChoose"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Choose_UI"    		   		  			},
-	Voice_UI	       		= { layer = import("app.viewssuoha.GameVoiceSet"),	      		flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Voice_UI"    			     			},
+	Voice_UI	       		= { layer = import("app.viewsbuyu.GameVoiceSet"),	      		flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Voice_UI"    			     			},
 
 }
 
