@@ -18,18 +18,18 @@
 			<key>NewCandy/ui/Lollipop_anniu_collect.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{876,1873},{264,88}}</string>
+				<string>{{558,709},{264,88}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{264,88}</string>
 			</dict>
 			<key>NewCandy/ui/Lollipop_anniu_collect2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{364,1272},{264,88}}</string>
+				<string>{{517,975},{264,88}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -40,7 +40,7 @@
 			<key>NewCandy/ui/Lollipop_anniu_start.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{364,1538},{264,88}}</string>
+				<string>{{1,1190},{264,88}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -51,7 +51,7 @@
 			<key>NewCandy/ui/Lollipop_anniu_start2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{454,1272},{264,88}}</string>
+				<string>{{1,796},{264,88}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -62,33 +62,33 @@
 			<key>NewCandy/ui/NewCandy_anniu.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{544,1272},{264,88}}</string>
+				<string>{{1,1062},{264,88}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{264,88}</string>
 			</dict>
 			<key>NewCandy/ui/NewCandy_anniuwenzi.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{364,1628},{178,46}}</string>
+				<string>{{334,307},{178,46}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{178,46}</string>
 			</dict>
 			<key>NewCandy/ui/NewCandy_anniuwenzi01.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{544,1628},{133,47}}</string>
+				<string>{{294,487},{133,47}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{133,47}</string>
 			</dict>
@@ -106,20 +106,20 @@
 			<key>NewCandy/ui/NewCandy_Effect_tanchuangsg_00.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{382,146},{561,102}}</string>
+				<string>{{699,692},{26,34}}</string>
 				<key>offset</key>
-				<string>{0,0}</string>
+				<string>{-265,23}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{561,102}</string>
 			</dict>
 			<key>NewCandy/ui/NewCandy_Effect_tanchuangsg_01.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{486,146},{561,102}}</string>
+				<string>{{83,480},{66,80}}</string>
 				<key>offset</key>
-				<string>{0,0}</string>
+				<string>{-247,9}</string>
 				<key>rotated</key>
 				<true />
 				<key>sourceSize</key>
@@ -128,31 +128,31 @@
 			<key>NewCandy/ui/NewCandy_Effect_tanchuangsg_02.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{590,146},{561,102}}</string>
+				<string>{{125,395},{112,83}}</string>
 				<key>offset</key>
-				<string>{0,0}</string>
+				<string>{-224,9}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{561,102}</string>
 			</dict>
 			<key>NewCandy/ui/NewCandy_Effect_tanchuangsg_03.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,307},{561,102}}</string>
+				<string>{{171,307},{161,86}}</string>
 				<key>offset</key>
-				<string>{0,0}</string>
+				<string>{-200,6}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{561,102}</string>
 			</dict>
 			<key>NewCandy/ui/NewCandy_Effect_tanchuangsg_04.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{105,307},{561,102}}</string>
+				<string>{{192,796},{192,97}}</string>
 				<key>offset</key>
-				<string>{0,0}</string>
+				<string>{-168,-2}</string>
 				<key>rotated</key>
 				<true />
 				<key>sourceSize</key>
@@ -161,9 +161,9 @@
 			<key>NewCandy/ui/NewCandy_Effect_tanchuangsg_05.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{209,307},{561,102}}</string>
+				<string>{{291,796},{200,92}}</string>
 				<key>offset</key>
-				<string>{0,0}</string>
+				<string>{-118,-5}</string>
 				<key>rotated</key>
 				<true />
 				<key>sourceSize</key>
@@ -172,9 +172,9 @@
 			<key>NewCandy/ui/NewCandy_Effect_tanchuangsg_06.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,870},{561,102}}</string>
+				<string>{{267,1052},{190,95}}</string>
 				<key>offset</key>
-				<string>{0,0}</string>
+				<string>{-74,-3}</string>
 				<key>rotated</key>
 				<true />
 				<key>sourceSize</key>
@@ -183,9 +183,9 @@
 			<key>NewCandy/ui/NewCandy_Effect_tanchuangsg_07.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{105,870},{561,102}}</string>
+				<string>{{91,796},{203,99}}</string>
 				<key>offset</key>
-				<string>{0,0}</string>
+				<string>{-34,2}</string>
 				<key>rotated</key>
 				<true />
 				<key>sourceSize</key>
@@ -194,9 +194,9 @@
 			<key>NewCandy/ui/NewCandy_Effect_tanchuangsg_08.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{209,870},{561,102}}</string>
+				<string>{{385,796},{197,83}}</string>
 				<key>offset</key>
-				<string>{0,0}</string>
+				<string>{24,10}</string>
 				<key>rotated</key>
 				<true />
 				<key>sourceSize</key>
@@ -205,9 +205,9 @@
 			<key>NewCandy/ui/NewCandy_Effect_tanchuangsg_09.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{364,709},{561,102}}</string>
+				<string>{{364,1201},{193,84}}</string>
 				<key>offset</key>
-				<string>{0,0}</string>
+				<string>{67,9}</string>
 				<key>rotated</key>
 				<true />
 				<key>sourceSize</key>
@@ -216,9 +216,9 @@
 			<key>NewCandy/ui/NewCandy_Effect_tanchuangsg_10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,1433},{561,102}}</string>
+				<string>{{267,1244},{194,77}}</string>
 				<key>offset</key>
-				<string>{0,0}</string>
+				<string>{114,7}</string>
 				<key>rotated</key>
 				<true />
 				<key>sourceSize</key>
@@ -227,9 +227,9 @@
 			<key>NewCandy/ui/NewCandy_Effect_tanchuangsg_11.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{105,1433},{561,102}}</string>
+				<string>{{385,995},{204,80}}</string>
 				<key>offset</key>
-				<string>{0,0}</string>
+				<string>{166,8}</string>
 				<key>rotated</key>
 				<true />
 				<key>sourceSize</key>
@@ -238,31 +238,31 @@
 			<key>NewCandy/ui/NewCandy_Effect_tanchuangsg_12.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{209,1433},{561,102}}</string>
+				<string>{{1,307},{168,83}}</string>
 				<key>offset</key>
-				<string>{0,0}</string>
+				<string>{197,10}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{561,102}</string>
 			</dict>
 			<key>NewCandy/ui/NewCandy_Effect_tanchuangsg_13.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{468,709},{561,102}}</string>
+				<string>{{1,392},{122,83}}</string>
 				<key>offset</key>
-				<string>{0,0}</string>
+				<string>{220,10}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{561,102}</string>
 			</dict>
 			<key>NewCandy/ui/NewCandy_Effect_tanchuangsg_14.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{572,709},{561,102}}</string>
+				<string>{{1,477},{75,80}}</string>
 				<key>offset</key>
-				<string>{0,0}</string>
+				<string>{243,9}</string>
 				<key>rotated</key>
 				<true />
 				<key>sourceSize</key>
@@ -271,9 +271,9 @@
 			<key>NewCandy/ui/NewCandy_Effect_tanchuangsg_15.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{313,1681},{561,102}}</string>
+				<string>{{699,634},{23,56}}</string>
 				<key>offset</key>
-				<string>{0,0}</string>
+				<string>{265,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
@@ -282,29 +282,29 @@
 			<key>NewCandy/ui/NewCandy_jackpotwenzi.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{313,1873},{561,88}}</string>
+				<string>{{558,146},{561,88}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{561,88}</string>
 			</dict>
 			<key>NewCandy/ui/NewCandy_jackpotwenzi01.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{399,1963},{486,84}}</string>
+				<string>{{648,146},{486,84}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{486,84}</string>
 			</dict>
 			<key>NewCandy/ui/NewCandy_jackpotwenzi02.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{694,146},{648,86}}</string>
+				<string>{{382,146},{648,86}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -315,40 +315,40 @@
 			<key>NewCandy/ui/NewCandy_jackpotwenzi03.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{313,1785},{644,86}}</string>
+				<string>{{470,146},{644,86}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{644,86}</string>
 			</dict>
 			<key>NewCandy/ui/NewCandy_won.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1138,1963},{193,47}}</string>
+				<string>{{467,1190},{193,47}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{193,47}</string>
 			</dict>
 			<key>NewCandy/ui/NewCandy_xiawenzi.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{630,1538},{155,53}}</string>
+				<string>{{239,395},{155,53}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{155,53}</string>
 			</dict>
 			<key>NewCandy/ui/NewCandy_xiawenzi01.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{313,307},{771,49}}</string>
+				<string>{{734,146},{771,49}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -359,7 +359,7 @@
 			<key>NewCandy/ui/NewCandy_xiawenzi02.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{313,1080},{599,49}}</string>
+				<string>{{648,634},{599,49}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -370,18 +370,18 @@
 			<key>NewCandy/ui/NewCandy_xiawenzi03.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,1996},{396,45}}</string>
+				<string>{{470,792},{396,45}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{396,45}</string>
 			</dict>
 			<key>NewCandy/ui/NewCandy_xiawenzi04.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{887,1963},{249,49}}</string>
+				<string>{{91,1001},{249,49}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -410,14 +410,14 @@
 			<key>realTextureFileName</key>
 			<string>NewCandy_UI_Plist2.png</string>
 			<key>size</key>
-			<string>{2048,2048}</string>
+			<string>{1236,1439}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>2048</integer>
+			<integer>1236</integer>
 			<key>height</key>
-			<integer>2048</integer>
+			<integer>1439</integer>
 		</dict>
 	</dict>
 </plist>

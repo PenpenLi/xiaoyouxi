@@ -18,6 +18,9 @@ end
 function GameLoading:onEnter()
 	GameLoading.super.onEnter( self )
 
+	-- 停止播放背景音乐
+	audio.stopMusic()
+
 	-- 卸载预加载的csb缓存池
 	SymbolCsbCache:clearCache()
 	EffectCsbCache:clearCache()

@@ -20,6 +20,12 @@ end
 
 function GameWolfFreeSpinStart:onEnter()
 	GameWolfFreeSpinStart.super.onEnter( self )
+
+	-- 播放音效
+	if G_GetModel("Model_Sound"):isVoiceOpen() then
+		audio.playSound("csbslot/hall/hmp3/free_spin.mp3")
+	end
+
 	self:playCsbAction( "start",false,function() 
 		self:playCsbAction( "idle" )
 

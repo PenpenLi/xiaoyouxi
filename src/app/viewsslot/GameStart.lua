@@ -1,5 +1,4 @@
 
-local NodeImageDraw = import( "app.viewsslot.NodeImageDraw" )
 local GameStart = class( "GameStart",BaseLayer )
 
 function GameStart:ctor( param )
@@ -99,6 +98,10 @@ end
 function GameStart:loadLevel( ... )
 	local level = G_GetModel("Model_Slot"):getInstance():getLevel()
 	self.TextLevel:setString( level )
+
+	local need_exp = G_GetModel("Model_Slot"):getNeedExpForLevelUp()
+	local now_exp = G_GetModel("Model_Slot"):getExpress()
+	self.ExpressBar:setPercent( now_exp / need_exp * 100 )
 end
 function GameStart:onEnter( ... )
 	GameStart.super.onEnter( self )
@@ -108,9 +111,7 @@ function GameStart:onEnter( ... )
 	self:loadMiniGame()
 	self:loadLevel()
 	self:loadMuisc()
-	-- 每日抽奖图标
-	local node = NodeImageDraw.new()
-	self.NodeLotteryDraw:addChild( node )
+
 	-- 添加监听
 	self:addMsgListener( InnerProtocol.INNER_EVENT_SLOT_BUY_COIN,function ()
 		local coin = G_GetModel("Model_Slot"):getInstance():getCoin()
@@ -122,7 +123,7 @@ function GameStart:onEnter( ... )
 	self.GetCoinToByNode:setVisible( false )
 
 	self:schedule( function ()
-		self:loadNowTime()
+		-- self:loadNowTime()
 		self:countDown()
 		-- 每日抽奖
 		self:loadEveryDayDraw()
@@ -172,20 +173,27 @@ function GameStart:countDown( )
 	index = index + 1
 	self:setLoadingBar( self["LoadingBar"..index],time_long,self._timing )
 	local time_count = self._timing - time_long
-	if time_count <= 0 then
-		self.TextTimeCountDown:setString( os.date("%M:%S",0 ))
-		if index == 5 then
-			self.ShowZhuanpanNode:setVisible( true )
-			self:discSpinningTurn()
-		else
+	if index < 5 then
+		if time_count <= 0 then
+			self.TextTimeCountDown:setVisible( false )
 			self.GetCoinToByNode:setVisible( true )
+			self.GetCoinNode:setVisible( false )
+			self.ShowZhuanpanNode:setVisible( false )
 			local coin = G_GetModel("Model_Slot"):getInstance():getCollectCoin()
 			self.TextCollectCoinNum:setString( coin )
+		else
+			self.TextTimeCountDown:setVisible( true )
+			self.TextTimeCountDown:setString( os.date("%M:%S",time_count ))
+			self.GetCoinNode:setVisible( true )
+			self.ShowZhuanpanNode:setVisible( false )
+			self.GetCoinToByNode:setVisible( false )
 		end
-		
-		return
+	else
+		self.ShowZhuanpanNode:setVisible( true )
+		self:discSpinningTurn()
+		self.GetCoinNode:setVisible( false )
+		self.GetCoinToByNode:setVisible( false )
 	end
-	self.TextTimeCountDown:setString( os.date("%M:%S",time_count ))
 end
 -- 收集金币进度条
 function GameStart:setLoadingBar( node,num,timing )

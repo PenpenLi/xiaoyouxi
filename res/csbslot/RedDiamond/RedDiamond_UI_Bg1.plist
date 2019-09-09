@@ -3,52 +3,7 @@
 <plist version="1.0">
 	<dict>
 		<key>frames</key>
-		<dict>
-			<key>ui/RedDiamond_Bg_left.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{649,0},{621,768}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{621,768}</string>
-			</dict>
-			<key>ui/RedDiamond_Bg_right.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{0,0},{649,768}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{649,768}</string>
-			</dict>
-			<key>ui/RedDiamond_freespinBG_left.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{1417,0},{621,768}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{621,768}</string>
-			</dict>
-			<key>ui/RedDiamond_freespinBG_right.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{0,768},{649,768}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{649,768}</string>
-			</dict>
-		</dict>
+		<dict />
 		<key>metadata</key>
 		<dict>
 			<key>format</key>
@@ -58,14 +13,14 @@
 			<key>realTextureFileName</key>
 			<string>RedDiamond_UI_Bg1.png</string>
 			<key>size</key>
-			<string>{2048,2048}</string>
+			<string>{32,32}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>2048</integer>
+			<integer>32</integer>
 			<key>height</key>
-			<integer>2048</integer>
+			<integer>32</integer>
 		</dict>
 	</dict>
 </plist>

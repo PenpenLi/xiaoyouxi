@@ -383,7 +383,7 @@ function Model_Sound:playVoice( voicePath )
 		if self:isVoiceOpen() then
 			audio.playSound("csbheji/csbsanguo/sgmp3/button.mp3", false)
 		end
-	elseif scene_name == "HallScene" then
+	elseif scene_name == "HallScene" or scene_name == "LevelScene" then
 		if self:isVoiceOpen() then
 			if voicePath == nil then
 				audio.playSound("csbslot/hall/hmp3/button.mp3", false)

@@ -262,9 +262,13 @@ function BaseGamePlay:freeSpinStopRoll( reelData )
 	-- 普通速度
 	local actions = {}
 	for i = 1,scattle_index do
-		local delay = cc.DelayTime:create( 0.1 )
+		local delay = cc.DelayTime:create( 0.2 )
 		local call = cc.CallFunc:create( function()
 			self._reelList[i]:stopRoll( reelData[i] )
+			-- 播放音效
+			if G_GetModel("Model_Sound"):isVoiceOpen() then
+				audio.playSound("csbslot/hall/hmp3/reel_stop.mp3")
+			end
 		end )
 		table.insert( actions,delay )
 		table.insert( actions,call )
@@ -277,6 +281,12 @@ function BaseGamePlay:freeSpinStopRoll( reelData )
 			-- 添加滚动特效
 			self:addQuickEffectByStartCol( i )
 		end
+
+		-- 播放音效
+		if G_GetModel("Model_Sound"):isVoiceOpen() then
+			audio.playSound("csbslot/hall/hmp3/quickroll.mp3")
+		end
+
 	end )
 	local delay_quick = cc.DelayTime:create( 2 )
 	local call_stop = cc.CallFunc:create( function()
@@ -296,9 +306,13 @@ end
 function BaseGamePlay:normalStopRoll( reelData )
 	local actions = {}
 	for i,v in ipairs( self._reelList ) do
-		local delay = cc.DelayTime:create( 0.1 )
+		local delay = cc.DelayTime:create( 0.2 )
 		local call = cc.CallFunc:create( function()
 			v:stopRoll( reelData[i] )
+			-- 播放音效
+			if G_GetModel("Model_Sound"):isVoiceOpen() then
+				audio.playSound("csbslot/hall/hmp3/reel_stop.mp3")
+			end
 		end )
 		table.insert( actions,delay )
 		table.insert( actions,call )

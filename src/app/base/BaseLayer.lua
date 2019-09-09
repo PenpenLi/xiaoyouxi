@@ -173,56 +173,56 @@ end
         voicePath = nil                 -- 默认为nil
     }
 ]]
-function BaseLayer:addNodeClick( node,param )
-    -- assert( node," !! node is nil !! ")
-    -- assert( param," !! param is nil !! ")
-    -- if param.beganCallBack == nil and param.moveCallBack == nil and param.endCallBack == nil then
-    --     assert( false," !! node callback is nil !! " )
-    --     return
-    -- end
 
-    -- -- 按钮默认开启放大缩小
-    -- if param.scaleAction == nil then
-    --     param.scaleAction = true
-    -- end
 
-    -- -- 默认吞噬监听
-    -- if param.swallowTouche == nil then
-    --     param.swallowTouche = true
-    -- end
+-- function BaseLayer:addNodeClick( node,param )
+--     assert( node," !! node is nil !! ")
+--     assert( param," !! param is nil !! ")
+--     if param.beganCallBack == nil and param.moveCallBack == nil and param.endCallBack == nil then
+--         assert( false," !! node callback is nil !! " )
+--         return
+--     end
 
-    -- -- 默认播放点击音效
-    -- if param.palyVoice == nil then
-    --     param.palyVoice = true
-    -- end
+--     -- 按钮默认开启放大缩小
+--     if param.scaleAction == nil then
+--         param.scaleAction = true
+--     end
 
-    -- local node_size = node:getContentSize()
-    -- if node_size.width <= 0 or node_size.height <= 0 then
-    --     assert( false," !! node_size condition is error !! " )
-    --     return
-    -- end
-    -- local name = node:getName()
+--     -- 默认吞噬监听
+--     if param.swallowTouche == nil then
+--         param.swallowTouche = true
+--     end
 
-    -- if name == nil or string.trim( name ) == "" then
-    --     assert( false," !! name condition is error !! " )
-    --     return
-    -- end
+--     -- 默认播放点击音效
+--     if param.palyVoice == nil then
+--         param.palyVoice = true
+--     end
 
-    -- for i,v in ipairs(self._nodeClickRegist) do
-    --     if v.name == name then
-    --         assert( false," !! node callback is register !! " )
-    --         return
-    --     end
-    -- end
+--     local node_size = node:getContentSize()
+--     if node_size.width <= 0 or node_size.height <= 0 then
+--         assert( false," !! node_size condition is error !! " )
+--         return
+--     end
+--     local name = node:getName()
 
-    -- local callBackParam = {}
-    -- callBackParam.node = node
-    -- callBackParam.param = param
-    -- callBackParam.name = name
-    -- table.insert(self._nodeClickRegist,callBackParam)
+--     if name == nil or string.trim( name ) == "" then
+--         assert( false," !! name condition is error !! " )
+--         return
+--     end
 
-    G_AddNodeClick( node,param )
-end
+--     for i,v in ipairs(self._nodeClickRegist) do
+--         if v.name == name then
+--             assert( false," !! node callback is register !! " )
+--             return
+--         end
+--     end
+
+--     local callBackParam = {}
+--     callBackParam.node = node
+--     callBackParam.param = param
+--     callBackParam.name = name
+--     table.insert(self._nodeClickRegist,callBackParam)
+-- end
 
 function BaseLayer:removeNodeClick( node )
     assert( node," !! node is nil !! " )

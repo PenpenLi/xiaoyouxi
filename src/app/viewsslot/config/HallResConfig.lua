@@ -26,17 +26,28 @@ HallResConfig.plist = {
 
 HallResConfig.mp3 = {
 	music = {
-		-- "hall/mp3/music/SlotUltimate_reel_run.mp3"
+		"csbslot/hall/hmp3/SlotUltimate_sound_map_bgm1.mp3",
+		"csbslot/hall/hmp3/bg1.mp3",
+		"csbslot/hall/hmp3/bg2.mp3",
+		"csbslot/hall/hmp3/bg3.mp3",
 	},
 	effect = {
-		-- "hall/mp3/effect/SlotUltimate_reel_stop_0.mp3",
-		-- "hall/mp3/effect/SlotUltimate_reel_stop_1.mp3",
-		-- "hall/mp3/effect/SlotUltimate_reel_stop_2.mp3",
-		-- "hall/mp3/effect/SlotUltimate_reel_stop_3.mp3",
-		-- "hall/mp3/effect/SlotUltimate_reel_stop_4.mp3",
-		-- "hall/mp3/effect/SlotUltimate_reel_stop_5.mp3",
-		-- "hall/mp3/effect/SlotUltimate_reel_stop_6.mp3",
-		-- "hall/mp3/effect/SlotUltimate_reel_stop_8.mp3"
+		"csbslot/hall/hmp3/button.mp3",
+		"csbslot/hall/hmp3/card_recovery_bgm.mp3",
+		"csbslot/hall/hmp3/card_recovery_select_card.mp3",
+		"csbslot/hall/hmp3/free_spin.mp3",
+		"csbslot/hall/hmp3/quickroll.mp3",
+		"csbslot/hall/hmp3/reel_stop.mp3",
+		"csbslot/hall/hmp3/SlotUltimate_sound_slots_click.mp3",
+		"csbslot/hall/hmp3/sound_daily_wheel_coin_fly.mp3",
+		"csbslot/hall/hmp3/sound_daily_wheel_collect.mp3",
+		"csbslot/hall/hmp3/sound_daily_wheel_collect_click.mp3",
+		"csbslot/hall/hmp3/sound_daily_wheel_collect_click.mp3",
+		"csbslot/hall/hmp3/sound_daily_wheel_roulette_end.mp3",
+		"csbslot/hall/hmp3/sound_daily_wheel_show_value.mp3",
+		"csbslot/hall/hmp3/sound_daily_wheel_spin.mp3",
+		"csbslot/hall/hmp3/sound_daily_wheel_zhizhen.mp3",
+		"csbslot/hall/hmp3/sound_draw_roll.mp3",
 	}
 }
 

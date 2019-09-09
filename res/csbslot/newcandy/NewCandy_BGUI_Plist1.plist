@@ -7,220 +7,44 @@
 			<key>NewCandy/ui/NewCandy_norbg_cheng.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{2,1641},{399,409}}</string>
+				<string>{{2,473},{399,409}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{399,409}</string>
-			</dict>
-			<key>NewCandy/ui/NewCandy_norbg_yun1.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{1666,2},{466,312}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{466,312}</string>
-			</dict>
-			<key>NewCandy/ui/NewCandy_norbg_yun2.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{473,1138},{360,202}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{360,202}</string>
-			</dict>
-			<key>NewCandy/ui/NewCandy_norbg_yun3.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{473,1502},{340,135}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{340,135}</string>
-			</dict>
-			<key>NewCandy/ui/NewCandy_norbg_yun4.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{817,1460},{340,135}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{340,135}</string>
-			</dict>
-			<key>NewCandy/ui/NewCandy_norbg_yun5.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{1038,1310},{340,135}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{340,135}</string>
-			</dict>
-			<key>NewCandy/ui/NewCandy_norbg_yun6.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{701,774},{318,134}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{318,134}</string>
-			</dict>
-			<key>NewCandy/ui/NewCandy_norbg_yun7.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{1023,774},{318,134}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{318,134}</string>
 			</dict>
 			<key>NewCandy/ui/NewCandy_fsbg_xing.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1964,472},{94,71}}</string>
+				<string>{{869,2},{94,71}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{94,71}</string>
-			</dict>
-			<key>NewCandy/ui/NewCandy_bg2_yun1.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{1045,912},{318,134}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{318,134}</string>
-			</dict>
-			<key>NewCandy/ui/NewCandy_bg2_yun2.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{473,774},{360,224}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{360,224}</string>
-			</dict>
-			<key>NewCandy/ui/NewCandy_bg2_yun3.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{1367,774},{318,134}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{318,134}</string>
-			</dict>
-			<key>NewCandy/ui/NewCandy_bg2_yun4.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{701,938},{340,135}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{340,135}</string>
-			</dict>
-			<key>NewCandy/ui/NewCandy_bg2_yun5.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{1666,472},{462,294}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{462,294}</string>
-			</dict>
-			<key>NewCandy/ui/NewCandy_bg2_yun6.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{679,1310},{355,146}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{355,146}</string>
-			</dict>
-			<key>NewCandy/ui/NewCandy_bg2_yun7.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{679,1138},{381,168}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{381,168}</string>
 			</dict>
 			<key>NewCandy/ui/NewCandy_bg2cheng.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{415,1641},{306,409}}</string>
+				<string>{{405,473},{306,409}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{306,409}</string>
-			</dict>
-			<key>NewCandy/ui/liuxing.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{415,1951},{213,89}}</string>
-				<key>offset</key>
-				<string>{0,6}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{232,146}</string>
-			</dict>
-			<key>NewCandy/ui/NewCandy_bg_normal.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{2,2},{1660,768}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{1660,768}</string>
 			</dict>
 			<key>NewCandy/paytable/NewCandy_p1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{2,774},{863,467}}</string>
+				<string>{{2,2},{863,467}}</string>
 				<key>offset</key>
 				<string>{4,3}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{1002,475}</string>
 			</dict>
@@ -234,14 +58,14 @@
 			<key>realTextureFileName</key>
 			<string>NewCandy_BGUI_Plist1.png</string>
 			<key>size</key>
-			<string>{2037,2042}</string>
+			<string>{965,884}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>2037</integer>
+			<integer>965</integer>
 			<key>height</key>
-			<integer>2042</integer>
+			<integer>884</integer>
 		</dict>
 	</dict>
 </plist>
