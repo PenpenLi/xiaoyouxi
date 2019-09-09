@@ -71,7 +71,7 @@ function GameLoading:loadEffect()
 		end,0.02 )
 	else
 		removeUIFromScene( UIDefine.BUYU_KEY.Loading_UI )
-		addUIToScene( UIDefine.BUYU_KEY.Play_UI )
+		addUIToScene( UIDefine.BUYU_KEY.Start_UI )
 	end
 end
 

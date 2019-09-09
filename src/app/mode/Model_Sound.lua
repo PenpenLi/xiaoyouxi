@@ -67,6 +67,8 @@ function Model_Sound:isMusicOpen()
 			self._musicState = user_default:getIntegerForKey("slotMusicState", 1)
 		elseif scene_name == "LiKuiMaJiangScene" then
 			self._musicState = user_default:getIntegerForKey("likuiMusicState", 1)
+		elseif scene_name == "BuYuScene" then
+			self._musicState = user_default:getIntegerForKey("buyuMusicState", 1)
 		end
 	end
 	return self._musicState == 1
@@ -110,6 +112,8 @@ function Model_Sound:setMusicState( state )
 		user_default:setIntegerForKey("slotMusicState", state)
 	elseif scene_name == "LiKuiMaJiangScene" then
 		user_default:setIntegerForKey("likuiMusicState", state)
+	elseif scene_name == "BuYuScene" then
+		user_default:setIntegerForKey("buyuMusicState", state)
 	end
 end
 
@@ -150,6 +154,8 @@ function Model_Sound:isVoiceOpen()
 			self._voiceState = user_default:getIntegerForKey("slotVoiceState", 1)
 		elseif scene_name == "LiKuiMaJiangScene" then
 			self._voiceState = user_default:getIntegerForKey("likuiVoiceState", 1)
+		elseif scene_name == "BuYuScene" then
+			self._voiceState = user_default:getIntegerForKey("buyuVoiceState", 1)
 		end
 
 	end
@@ -195,6 +201,8 @@ function Model_Sound:setVoiceState( state )
 		user_default:setIntegerForKey("slotVoiceState", state)
 	elseif scene_name == "LiKuiMaJiangScene" then
 		user_default:setIntegerForKey("likuiVoiceState", state)
+	elseif scene_name == "BuYuScene" then
+		user_default:setIntegerForKey("buyuVoiceState", state)
 	end
 end
 
@@ -270,6 +278,10 @@ function Model_Sound:playBgMusic()
 		if self:isMusicOpen() then
 			audio.playMusic("lkmp3/music.mp3",true)
 		end
+	elseif scene_name == "BuYuScene" then
+		if self:isMusicOpen() then
+			audio.playMusic("bymp3/LOAD_BACK.mp3",true)
+		end
 	end
 
 
@@ -310,6 +322,8 @@ function Model_Sound:stopPlayBgMusic()
 	elseif scene_name == "HallScene" then
 		audio.stopMusic(false)
 	elseif scene_name == "LiKuiMaJiangScene" then
+		audio.stopMusic(false)
+	elseif scene_name == "BuYuScene" then
 		audio.stopMusic(false)
 	end
 end
