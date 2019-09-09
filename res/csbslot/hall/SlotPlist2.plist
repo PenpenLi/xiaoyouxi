@@ -7,7 +7,7 @@
 			<key>image/carddraw/card_yj_dz.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{590,553},{496,173}}</string>
+				<string>{{1740,294},{496,173}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -18,7 +18,7 @@
 			<key>image/cardturntable/icon_coins1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{553,1051},{298,185}}</string>
+				<string>{{1,1699},{298,185}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -29,7 +29,7 @@
 			<key>image/cardturntable/words_YouWin.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,1596},{215,76}}</string>
+				<string>{{1,902},{215,76}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -37,21 +37,10 @@
 				<key>sourceSize</key>
 				<string>{215,76}</string>
 			</dict>
-			<key>image/cardturntable/ZhuanPan_1.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{1370,487},{252,256}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{252,256}</string>
-			</dict>
 			<key>image/cardturntable/BTN_spin1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,609},{304,109}}</string>
+				<string>{{728,377},{304,109}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -62,7 +51,7 @@
 			<key>image/cardturntable/BTN_spin2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{442,996},{304,109}}</string>
+				<string>{{620,1394},{304,109}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -73,7 +62,7 @@
 			<key>image/cardturntable/Card_lunpan_kuaigun_01.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,996},{370,224}}</string>
+				<string>{{1,524},{370,224}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -84,7 +73,7 @@
 			<key>image/cardturntable/Card_lunpan_kuaigun_02.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,767},{370,224}}</string>
+				<string>{{373,524},{370,224}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -95,51 +84,51 @@
 			<key>image/cardturntable/Card_lunpan_kuaigun_03.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,383},{370,224}}</string>
+				<string>{{1104,337},{370,224}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{370,224}</string>
 			</dict>
 			<key>image/cardturntable/Card_lunpan_kuaigun_04.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,1754},{370,224}}</string>
+				<string>{{745,488},{370,224}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{370,224}</string>
 			</dict>
 			<key>image/cardturntable/Card_lunpan_kuaigun_05.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,1343},{370,224}}</string>
+				<string>{{410,902},{370,224}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{370,224}</string>
 			</dict>
 			<key>image/cardturntable/Card_lunpan_kuaigun_06.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{817,1626},{370,224}}</string>
+				<string>{{1,1327},{370,224}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{370,224}</string>
 			</dict>
 			<key>image/cardturntable/Card_lunpan_kuaigun_07.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{918,1003},{370,224}}</string>
+				<string>{{745,860},{370,224}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -150,18 +139,18 @@
 			<key>image/cardturntable/Card_lunpan_kuaigun_08.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{988,1375},{370,224}}</string>
+				<string>{{394,1274},{370,224}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{370,224}</string>
 			</dict>
 			<key>image/cardturntable/Card_lunpan_kuaigun_09.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1144,1003},{370,224}}</string>
+				<string>{{1080,709},{370,224}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -172,7 +161,7 @@
 			<key>image/cardturntable/Card_lunpan_kuaigun_10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1189,1601},{370,224}}</string>
+				<string>{{740,1232},{370,224}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -183,7 +172,18 @@
 			<key>image/cardturntable/Card_lunpan_kuaigun_11.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1360,1375},{370,224}}</string>
+				<string>{{388,1646},{370,224}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{370,224}</string>
+			</dict>
+			<key>image/cardturntable/Card_lunpan_kuaigun_12.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{614,1700},{370,224}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -191,54 +191,43 @@
 				<key>sourceSize</key>
 				<string>{370,224}</string>
 			</dict>
-			<key>image/cardturntable/Card_lunpan_kuaigun_12.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{1370,1003},{370,224}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{370,224}</string>
-			</dict>
 			<key>image/cardturntable/Card_lunpan_kuaigun_13.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1596,1003},{370,224}}</string>
+				<string>{{966,1274},{370,224}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{370,224}</string>
 			</dict>
 			<key>image/cardturntable/Card_lunpan_kuaigun_14.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1732,1375},{370,224}}</string>
+				<string>{{1306,1003},{370,224}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{370,224}</string>
 			</dict>
 			<key>image/cardturntable/Card_lunpan_kuaigun_15.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1822,1003},{370,224}}</string>
+				<string>{{1306,721},{370,224}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{370,224}</string>
 			</dict>
 			<key>image/cardturntable/Card_lunpan_kuaigun_16.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1415,1601},{370,224}}</string>
+				<string>{{1678,792},{370,224}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -249,18 +238,18 @@
 			<key>image/cardturntable/Card_lunpan_kuaigun_17.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1641,1747},{370,224}}</string>
+				<string>{{1678,1164},{370,224}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{370,224}</string>
 			</dict>
 			<key>image/cardturntable/Card_lunpan_kuaigun_18.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{918,585},{370,224}}</string>
+				<string>{{1338,1229},{370,224}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -271,7 +260,7 @@
 			<key>image/cardturntable/Card_lunpan_kuaigun_19.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1144,585},{370,224}}</string>
+				<string>{{993,1500},{370,224}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -282,7 +271,7 @@
 			<key>image/cardturntable/Card_lunpan_kuaigun_20.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1264,261},{370,224}}</string>
+				<string>{{1564,1536},{370,224}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -293,18 +282,18 @@
 			<key>image/cardturntable/Title_cong.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{449,269},{725,139}}</string>
+				<string>{{1,383},{725,139}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{725,139}</string>
 			</dict>
 			<key>image/cardturntable/ZhuanPan_BTN_COLLECTNOW.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{740,1193},{300,102}}</string>
+				<string>{{641,790},{300,102}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -315,7 +304,7 @@
 			<key>image/cardturntable/ZhuanPan_BTN_COLLECTNOW2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{713,1495},{300,102}}</string>
+				<string>{{636,1092},{300,102}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -326,7 +315,7 @@
 			<key>image/cardturntable/ZhuanPan_zhizhen.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{442,1596},{133,82}}</string>
+				<string>{{296,1355},{133,82}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -337,7 +326,7 @@
 			<key>image/effect/Card_book_star_02.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1636,261},{256,256}}</string>
+				<string>{{1543,1762},{256,256}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -348,18 +337,18 @@
 			<key>image/effect/Card_spinsg00.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{307,609},{129,38}}</string>
+				<string>{{449,337},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{129,38}</string>
 			</dict>
 			<key>image/effect/Card_spinsg01.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,720},{129,38}}</string>
+				<string>{{580,337},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -370,7 +359,7 @@
 			<key>image/effect/Card_spinsg02.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{132,720},{129,38}}</string>
+				<string>{{711,337},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -381,18 +370,18 @@
 			<key>image/effect/Card_spinsg03.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{817,1495},{129,38}}</string>
+				<string>{{1,750},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{129,38}</string>
 			</dict>
 			<key>image/effect/Card_spinsg04.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{193,1980},{129,38}}</string>
+				<string>{{132,750},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -403,18 +392,18 @@
 			<key>image/effect/Card_spinsg05.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{315,1569},{129,38}}</string>
+				<string>{{263,750},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{129,38}</string>
 			</dict>
 			<key>image/effect/Card_spinsg06.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,1700},{129,38}}</string>
+				<string>{{394,750},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -425,7 +414,7 @@
 			<key>image/effect/Card_spinsg07.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{132,1700},{129,38}}</string>
+				<string>{{525,750},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -436,7 +425,7 @@
 			<key>image/effect/Card_spinsg08.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,1222},{129,38}}</string>
+				<string>{{842,337},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -447,7 +436,7 @@
 			<key>image/effect/Card_spinsg09.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{132,1222},{129,38}}</string>
+				<string>{{973,337},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -458,40 +447,40 @@
 			<key>image/effect/Card_spinsg10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,1262},{129,38}}</string>
+				<string>{{971,488},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{129,38}</string>
 			</dict>
 			<key>image/effect/Card_spinsg11.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,1302},{129,38}}</string>
+				<string>{{971,619},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{129,38}</string>
 			</dict>
 			<key>image/effect/Card_spinsg12.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{132,1262},{129,38}}</string>
+				<string>{{971,750},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{129,38}</string>
 			</dict>
 			<key>image/effect/Card_spinsg13.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{132,1302},{129,38}}</string>
+				<string>{{1,1999},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -502,7 +491,7 @@
 			<key>image/effect/Card_spinsg14.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{324,1985},{129,38}}</string>
+				<string>{{132,1999},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -513,29 +502,29 @@
 			<key>image/effect/Card_spinsg15.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{455,1985},{129,38}}</string>
+				<string>{{1011,761},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{129,38}</string>
 			</dict>
 			<key>image/effect/Card_spinsg16.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{586,1985},{129,38}}</string>
+				<string>{{971,881},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{129,38}</string>
 			</dict>
 			<key>image/effect/Card_spinsg17.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{697,1797},{129,38}}</string>
+				<string>{{1011,892},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -546,40 +535,40 @@
 			<key>image/effect/Card_spinsg18.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{697,1928},{129,38}}</string>
+				<string>{{971,1012},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{129,38}</string>
 			</dict>
 			<key>image/effect/Card_spinsg19.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{717,1968},{129,38}}</string>
+				<string>{{1011,1023},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{129,38}</string>
 			</dict>
 			<key>image/effect/Card_spinsg20.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{717,2008},{129,38}}</string>
+				<string>{{971,1143},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{129,38}</string>
 			</dict>
 			<key>image/effect/Card_spinsg21.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{737,1797},{129,38}}</string>
+				<string>{{188,1749},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -590,18 +579,18 @@
 			<key>image/effect/Card_spinsg22.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{777,1797},{129,38}}</string>
+				<string>{{731,1604},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{129,38}</string>
 			</dict>
 			<key>image/effect/Card_spinsg23.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{817,1852},{129,38}}</string>
+				<string>{{731,1644},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -612,7 +601,7 @@
 			<key>image/effect/Card_spinsg24.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{828,1892},{129,38}}</string>
+				<string>{{862,1604},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -623,7 +612,7 @@
 			<key>image/effect/Card_spinsg25.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{948,1852},{129,38}}</string>
+				<string>{{862,1644},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -634,7 +623,7 @@
 			<key>image/effect/Card_spinsg26.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{857,1512},{129,38}}</string>
+				<string>{{711,1926},{129,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -645,18 +634,18 @@
 			<key>image/effect/Card_yaogan_01.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{373,383},{67,190}}</string>
+				<string>{{218,902},{67,190}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{67,190}</string>
 			</dict>
 			<key>image/effect/Card_yaogan_02.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{373,575},{67,190}}</string>
+				<string>{{1034,377},{67,190}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -667,7 +656,7 @@
 			<key>image/effect/Card_yaogan_03.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{373,767},{67,190}}</string>
+				<string>{{1330,337},{67,190}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -678,7 +667,7 @@
 			<key>image/effect/Card_yaogan_04.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{373,959},{67,190}}</string>
+				<string>{{1330,529},{67,190}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -689,7 +678,7 @@
 			<key>image/effect/Card_yaogan_05.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{373,1151},{67,190}}</string>
+				<string>{{1011,569},{67,190}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -700,18 +689,18 @@
 			<key>image/effect/Card_yaogan_06.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,1980},{67,190}}</string>
+				<string>{{325,971},{67,190}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{67,190}</string>
 			</dict>
 			<key>image/effect/Card_yaogan_07.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{373,1343},{67,190}}</string>
+				<string>{{325,1163},{67,190}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -722,7 +711,7 @@
 			<key>image/effect/Card_yaogan_08.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{373,1535},{67,190}}</string>
+				<string>{{227,1327},{67,190}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -744,51 +733,51 @@
 			<key>image/level/ChipLighting.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{940,1},{258,489}}</string>
+				<string>{{449,1},{291,491}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<true />
 				<key>sourceSize</key>
-				<string>{258,489}</string>
+				<string>{291,491}</string>
 			</dict>
 			<key>image/level/CoinTree.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{449,1},{266,489}}</string>
+				<string>{{942,1},{291,491}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<true />
 				<key>sourceSize</key>
-				<string>{266,489}</string>
+				<string>{291,491}</string>
 			</dict>
 			<key>image/level/DoubleRapid.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1431,1},{258,489}}</string>
+				<string>{{1435,1},{291,491}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<true />
 				<key>sourceSize</key>
-				<string>{258,489}</string>
+				<string>{291,491}</string>
 			</dict>
 			<key>image/load/loading.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{875,553},{957,41}}</string>
+				<string>{{449,294},{957,41}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{957,41}</string>
 			</dict>
 			<key>image/load/loadingbg.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1922,1},{1000,86}}</string>
+				<string>{{1928,1},{1000,86}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -799,7 +788,7 @@
 			<key>image/shop/rate_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{552,1581},{171,149}}</string>
+				<string>{{1051,1081},{171,149}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -810,7 +799,7 @@
 			<key>image/shop/rate_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1628,519},{233,226}}</string>
+				<string>{{1801,1762},{233,226}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -821,7 +810,7 @@
 			<key>image/shop/rate_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{590,269},{330,282}}</string>
+				<string>{{1408,294},{330,282}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -832,7 +821,7 @@
 			<key>image/start/FixLayer_bottom_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{2010,1},{96,17}}</string>
+				<string>{{2016,1},{96,17}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -843,7 +832,7 @@
 			<key>image/start/FixLayer_bottom_5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{2029,1},{91,13}}</string>
+				<string>{{2016,99},{91,13}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -854,7 +843,7 @@
 			<key>image/start/FixLayer_bottom_7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{442,1302},{292,108}}</string>
+				<string>{{263,1749},{292,108}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -865,18 +854,18 @@
 			<key>image/start/FixLayer_bottom_9.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{765,553},{638,108}}</string>
+				<string>{{1,792},{638,108}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{638,108}</string>
 			</dict>
 			<key>image/start/FixLayer_da_jinbi.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{940,261},{322,322}}</string>
+				<string>{{1,1003},{322,322}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -887,7 +876,7 @@
 			<key>image/start/FixLayer_da_jinbi_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{373,1754},{322,229}}</string>
+				<string>{{1219,1601},{322,229}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -898,7 +887,7 @@
 			<key>image/start/FixLayer_yidaduijinbi.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{552,1351},{228,159}}</string>
+				<string>{{227,1519},{228,159}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -909,18 +898,18 @@
 			<key>image/start/FixLayer_yixiaoduijinbi.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{263,1700},{96,46}}</string>
+				<string>{{188,1880},{96,46}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{96,46}</string>
 			</dict>
 			<key>image/start/FixLayer_zhuanpan.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{218,1569},{95,95}}</string>
+				<string>{{614,1926},{95,95}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>

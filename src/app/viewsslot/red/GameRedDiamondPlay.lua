@@ -14,6 +14,11 @@ end
 
 function GameRedDiamondPlay:loadGameCsb()
 	self:addCsb( "csbslot/RedDiamond/GameScreenRedDiamond.csb" )
+
+	-- 播放背景音乐
+	if G_GetModel("Model_Sound"):isMusicOpen() then
+		audio.playMusic("csbslot/hall/hmp3/bg2.mp3",true)
+	end
 end
 
 function GameRedDiamondPlay:initReelNode()

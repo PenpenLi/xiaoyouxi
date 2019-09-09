@@ -22,6 +22,18 @@ function GameTop:ctor( param )
 			SceneManager:goToHallScene()
 		end
 	})
+
+	self:addNodeClick( self.ButtonSet,{
+		endCallBack = function ()
+			self:setMusic()
+		end
+	})
+
+	self:addNodeClick( self.ButtonBuy,{
+		endCallBack = function ()
+			self:store()
+		end
+	})
 end
 
 
@@ -56,10 +68,14 @@ end
 
 
 
+function GameTop:setMusic()
+	addUIToScene( UIDefine.SLOT_KEY.Set_UI )
+end
 
 
-
-
+function GameTop:store()
+	addUIToScene( UIDefine.SLOT_KEY.Shop_UI )
+end
 
 
 return GameTop

@@ -103,4 +103,9 @@ function BaseNode:unSchedule()
 end
 
 
+function BaseNode:addNodeClick( node,param )
+     G_AddNodeClick( node,param )
+end
+
+
 rawset(_G, "BaseNode", BaseNode)

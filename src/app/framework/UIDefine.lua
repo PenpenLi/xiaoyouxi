@@ -310,7 +310,6 @@ UIDefine.LayerFlag = {
 -- }
 
 
--- 捕鱼
 UIDefine.BUYU_KEY 	= {
 	Loading_UI 				= { layer = import("app.viewsbuyu.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Loading_UI" 			  	    		},
 	Start_UI 				= { layer = import("app.viewsbuyu.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Start_UI"                     			},
@@ -323,6 +322,7 @@ UIDefine.BUYU_KEY 	= {
 	Voice_UI	       		= { layer = import("app.viewsbuyu.GameVoiceSet"),	      		flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Voice_UI"    			     			},
 
 }
+
 
 
 rawset(_G,"UIDefine",UIDefine)

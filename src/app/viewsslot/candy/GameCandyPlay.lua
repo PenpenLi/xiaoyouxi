@@ -14,6 +14,10 @@ end
 
 function GameCandyPlay:loadGameCsb()
 	self:addCsb( "csbslot/newcandy/GameScreenNewCandy.csb" )
+	-- 播放背景音乐
+	if G_GetModel("Model_Sound"):isMusicOpen() then
+		audio.playMusic("csbslot/hall/hmp3/bg3.mp3",true)
+	end
 end
 
 function GameCandyPlay:initReelNode()

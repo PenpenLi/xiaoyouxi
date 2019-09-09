@@ -136,6 +136,7 @@ gameconfigwolf.mp3 = {
 		
 	},
 	effect = {
+
 	}
 }
 

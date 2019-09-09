@@ -14,6 +14,11 @@ end
 
 function GameWolfPlay:loadGameCsb()
 	self:addCsb( "csbslot/wolfLighting/GameScreenPharaoh.csb" )
+
+	-- 播放背景音乐
+	if G_GetModel("Model_Sound"):isMusicOpen() then
+		audio.playMusic("csbslot/hall/hmp3/bg1.mp3",true)
+	end
 end
 
 function GameWolfPlay:initReelNode()
