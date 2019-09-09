@@ -1,7 +1,38 @@
 local buyu_config = {}
 
 
-buyu_config.fish={
+buyu_config.fish1={
+	[1]  = { startNum = 0,endNum = 18, path = "image/fish1/", dir = "all",			angle = 0,	imageScheduleTime = 0.02,multiple = 2, weight = 100,blood = 20    	},
+	-- [2]  = { startNum = 0,endNum = 7,  path = "image/fish2/", dir = "left_right",	angle = 0,	imageScheduleTime = 0.06,multiple = 2, weight = 100,blood = 20    	},
+	-- [3]  = { startNum = 0,endNum = 11, path = "image/fish3/", dir = "all",			angle = 90,	imageScheduleTime = 0.1, multiple = 30,weight = 40,blood = 300   	},
+	-- [4]  = { startNum = 0,endNum = 18, path = "image/fish4/", dir = "all",			angle = 0,	imageScheduleTime = 0.08,multiple = 10,weight = 50,blood = 100   	},
+	-- [5]  = { startNum = 0,endNum = 7,  path = "image/fish5/", dir = "left_right",	angle = 0,	imageScheduleTime = 0.04,multiple = 4, weight = 100,blood = 40  	},
+	-- [6]  = { startNum = 0,endNum = 31, path = "image/fish6/", dir = "all",			angle = 0,	imageScheduleTime = 0.06,multiple = 5, weight = 100,blood = 50  	},
+	-- [7]  = { startNum = 0,endNum = 18, path = "image/fish7/", dir = "all",			angle = 0,	imageScheduleTime = 0.03,multiple = 6, weight = 100,blood = 60   	},
+	-- [8]  = { startNum = 0,endNum = 18, path = "image/fish8/", dir = "left_right",	angle = 0,	imageScheduleTime = 0.04,multiple = 6, weight = 100,blood = 60   	},
+	-- [9]  = { startNum = 0,endNum = 7,  path = "image/fish9/", dir = "left_right",	angle = 0,	imageScheduleTime = 0.06,multiple = 6, weight = 100,blood = 60   	},
+	-- [10] = { startNum = 0,endNum = 18, path = "image/fish10/",dir = "left_right",	angle = 0,	imageScheduleTime = 0.3, multiple = 8, weight = 100,blood = 80   	},
+	-- [11] = { startNum = 0,endNum = 18, path = "image/fish11/",dir = "all",			angle = 0,	imageScheduleTime = 0.04,multiple = 15,weight = 70,blood = 150   	},
+	-- [12] = { startNum = 0,endNum = 18, path = "image/fish12/",dir = "all",			angle = 0,	imageScheduleTime = 0.1, multiple = 15,weight = 70,blood = 150   	},
+	-- [13] = { startNum = 0,endNum = 7,  path = "image/fish13/",dir = "left_right",	angle = 0,	imageScheduleTime = 0.1, multiple = 15,weight = 70,blood = 150   	},
+	-- [14] = { startNum = 0,endNum = 7,  path = "image/fish14/",dir = "left_right",	angle = 0,	imageScheduleTime = 0.06,multiple = 13,weight = 80,blood = 130   	},
+	-- [15] = { startNum = 0,endNum = 18, path = "image/fish15/",dir = "left_right",	angle = 0,	imageScheduleTime = 0.1, multiple = 20,weight = 60,blood = 200   	},
+	-- [16] = { startNum = 0,endNum = 18, path = "image/fish16/",dir = "all",			angle = 0,	imageScheduleTime = 0.08,multiple = 16,weight = 70,blood = 160   	},
+	-- [17] = { startNum = 0,endNum = 18, path = "image/fish17/",dir = "all",			angle = 0,	imageScheduleTime = 0.1, multiple = 22,weight = 60,blood = 220   	},
+	-- [18] = { startNum = 0,endNum = 13, path = "image/fish18/",dir = "left_right",	angle = 0,	imageScheduleTime = 0.1, multiple = 22,weight = 60,blood = 220  	},
+	-- [19] = { startNum = 0,endNum = 18, path = "image/fish19/",dir = "all",			angle = 0,	imageScheduleTime = 0.12,multiple = 35,weight = 40,blood = 350   	},
+	-- [20] = { startNum = 0,endNum = 7,  path = "image/fish20/",dir = "left_right",	angle = 0,	imageScheduleTime = 0.12,multiple = 35,weight = 40,blood = 350   	},
+	-- [21] = { startNum = 0,endNum = 18, path = "image/fish21/",dir = "all",			angle = 0,	imageScheduleTime = 0.12,multiple = 28,weight = 50,blood = 280   	},
+	-- [22] = { startNum = 0,endNum = 18, path = "image/fish22/",dir = "all",			angle = 0,	imageScheduleTime = 0.18,multiple = 28,weight = 50,blood = 280   	},
+	-- [23] = { startNum = 0,endNum = 18, path = "image/fish23/",dir = "all",			angle = 0,	imageScheduleTime = 0.12,multiple = 33,weight = 40,blood = 330   	},
+	-- [24] = { startNum = 0,endNum = 18, path = "image/fish24/",dir = "all",			angle = 0,	imageScheduleTime = 0.15,multiple = 36,weight = 40,blood = 360   	},
+	-- [25] = { startNum = 0,endNum = 29, path = "image/fish25/",dir = "left_right",	angle = 0,	imageScheduleTime = 0.16,multiple = 50,weight = 10,blood = 500   	},
+	-- [26] = { startNum = 0,endNum = 13, path = "image/fish26/",dir = "all",			angle = 0,	imageScheduleTime = 0.15,multiple = 34,weight = 20,blood = 340   	},
+	-- [27] = { startNum = 0,endNum = 18, path = "image/fish27/",dir = "left_right",	angle = 0,	imageScheduleTime = 0.16,multiple = 40,weight = 20,blood = 400   	},
+	-- [28] = { startNum = 0,endNum = 14, path = "image/fish28/",dir = "left_right",	angle = 0,	imageScheduleTime = 0.12,multiple = 65,weight = 10,blood = 650   	},
+	-- [29] = { startNum = 0,endNum = 8,  path = "image/fish29/",dir = "all",			angle = 0,	imageScheduleTime = 0.03,multiple = 3, weight = 100,blood = 30   	},
+}
+buyu_config.fish2={
 	[1]  = { startNum = 0,endNum = 18, path = "image/fish1/", dir = "all",			angle = 0,	imageScheduleTime = 0.02,multiple = 2, weight = 100,blood = 20    	},
 	[2]  = { startNum = 0,endNum = 7,  path = "image/fish2/", dir = "left_right",	angle = 0,	imageScheduleTime = 0.06,multiple = 2, weight = 100,blood = 20    	},
 	[3]  = { startNum = 0,endNum = 11, path = "image/fish3/", dir = "all",			angle = 90,	imageScheduleTime = 0.1, multiple = 30,weight = 40,blood = 300   	},
@@ -31,21 +62,19 @@ buyu_config.fish={
 	[27] = { startNum = 0,endNum = 18, path = "image/fish27/",dir = "left_right",	angle = 0,	imageScheduleTime = 0.16,multiple = 40,weight = 20,blood = 400   	},
 	[28] = { startNum = 0,endNum = 14, path = "image/fish28/",dir = "left_right",	angle = 0,	imageScheduleTime = 0.12,multiple = 65,weight = 10,blood = 650   	},
 	[29] = { startNum = 0,endNum = 8,  path = "image/fish29/",dir = "all",			angle = 0,	imageScheduleTime = 0.03,multiple = 3, weight = 100,blood = 30   	},
-
-
 }
 -- 炮台和子弹
 buyu_config.bullet = {
-	[1]  = { beganLevel = 1,	endLevel = 5,	harm = 10,	exp = 100,	bullet = "image/guns/Bullet1_Normal_1_b.png",battery = "image/guns/gun_1_1.png" },
-	[2]  = { beganLevel = 6,	endLevel = 10,	harm = 10,	exp = 200,	bullet = "image/guns/Bullet1_Normal_2_b.png",battery = "image/guns/gun_1_1.png" },
-	[3]  = { beganLevel = 11,	endLevel = 15,	harm = 10,	exp = 300,	bullet = "image/guns/Bullet1_Normal_3_b.png",battery = "image/guns/gun_1_1.png" },
-	[4]  = { beganLevel = 16,	endLevel = 20,	harm = 10,	exp = 400,	bullet = "image/guns/Bullet1_Normal_4_b.png",battery = "image/guns/gun_1_1.png" },
-	[5]  = { beganLevel = 21,	endLevel = 25,	harm = 10,	exp = 500,	bullet = "image/guns/Bullet1_Normal_5_b.png",battery = "image/guns/gun_1_1.png" },
-	[6]  = { beganLevel = 26,	endLevel = 30,	harm = 10,	exp = 600,	bullet = "image/guns/Bullet1_Normal_6_b.png",battery = "image/guns/gun_1_1.png" },
-	[7]  = { beganLevel = 31,	endLevel = 35,	harm = 10,	exp = 700,	bullet = "image/guns/Bullet1_Specialt_a.png",battery = "image/guns/gun_1_2.png" },
-	[8]  = { beganLevel = 36,	endLevel = 40,	harm = 10,	exp = 800,	bullet = "image/guns/Bullet1_Specialt_b.png",battery = "image/guns/gun_1_2.png" },
-	[9]  = { beganLevel = 41,	endLevel = 45,	harm = 10,	exp = 900,	bullet = "image/guns/Bullet2_Normal_1_b.png",battery = "image/guns/gun_2_1.png" },
-	[10] = { beganLevel = 46,	endLevel = 50,	harm = 10,	exp = 1000,	bullet = "image/guns/Bullet2_Normal_2_b.png",battery = "image/guns/gun_2_1.png" },
+	[1]  = { beganLevel = 1,	endLevel = 5,	harm = 10,	exp = 1,	bullet = "image/guns/Bullet1_Normal_1_b.png",battery = "image/guns/gun_1_1.png" },
+	[2]  = { beganLevel = 6,	endLevel = 10,	harm = 10,	exp = 2,	bullet = "image/guns/Bullet1_Normal_2_b.png",battery = "image/guns/gun_1_1.png" },
+	[3]  = { beganLevel = 11,	endLevel = 15,	harm = 10,	exp = 3,	bullet = "image/guns/Bullet1_Normal_3_b.png",battery = "image/guns/gun_1_1.png" },
+	[4]  = { beganLevel = 16,	endLevel = 20,	harm = 10,	exp = 4,	bullet = "image/guns/Bullet1_Normal_4_b.png",battery = "image/guns/gun_1_1.png" },
+	[5]  = { beganLevel = 21,	endLevel = 25,	harm = 10,	exp = 5,	bullet = "image/guns/Bullet1_Normal_5_b.png",battery = "image/guns/gun_1_1.png" },
+	[6]  = { beganLevel = 26,	endLevel = 30,	harm = 10,	exp = 6,	bullet = "image/guns/Bullet1_Normal_6_b.png",battery = "image/guns/gun_1_1.png" },
+	[7]  = { beganLevel = 31,	endLevel = 35,	harm = 10,	exp = 7,	bullet = "image/guns/Bullet1_Specialt_a.png",battery = "image/guns/gun_1_2.png" },
+	[8]  = { beganLevel = 36,	endLevel = 40,	harm = 10,	exp = 8,	bullet = "image/guns/Bullet1_Specialt_b.png",battery = "image/guns/gun_1_2.png" },
+	[9]  = { beganLevel = 41,	endLevel = 45,	harm = 10,	exp = 9,	bullet = "image/guns/Bullet2_Normal_1_b.png",battery = "image/guns/gun_2_1.png" },
+	[10] = { beganLevel = 46,	endLevel = 50,	harm = 10,	exp = 10,	bullet = "image/guns/Bullet2_Normal_2_b.png",battery = "image/guns/gun_2_1.png" },
 	[11] = { beganLevel = 51,	endLevel = 55,	harm = 10,	exp = 1100,	bullet = "image/guns/Bullet2_Normal_3_b.png",battery = "image/guns/gun_2_1.png" },
 	[12] = { beganLevel = 56,	endLevel = 60,	harm = 10,	exp = 1200,	bullet = "image/guns/Bullet2_Normal_4_b.png",battery = "image/guns/gun_2_1.png" },
 	[13] = { beganLevel = 61,	endLevel = 65,	harm = 10,	exp = 1300,	bullet = "image/guns/Bullet2_Normal_5_b.png",battery = "image/guns/gun_2_1.png" },
@@ -74,6 +103,32 @@ buyu_config.multiple = {
 	[8] = 200,
 	[9] = 500,
 	[10] = 1000
+}
+
+
+-- 捕鱼任务配置表
+buyu_config.task = {
+	{ fish_id = 2,task_num = 100,coin = 1000,path = "image/lock/0.png" },
+	{ fish_id = 4,task_num = 100,coin = 5000,path = "image/lock/1.png" },
+	{ fish_id = 5,task_num = 100,coin = 2000,path = "image/lock/2.png" },
+	{ fish_id = 6,task_num = 100,coin = 2500,path = "image/lock/3.png" },
+	{ fish_id = 7,task_num = 100,coin = 3000,path = "image/lock/4.png" },
+	{ fish_id = 9,task_num = 100,coin = 3000,path = "image/lock/5.png" },
+	{ fish_id = 10,task_num = 100,coin = 4000,path = "image/lock/6.png" },
+	{ fish_id = 11,task_num = 100,coin = 7500,path = "image/lock/7.png" },
+	{ fish_id = 13,task_num = 100,coin = 7500,path = "image/lock/8.png" },
+	{ fish_id = 14,task_num = 100,coin = 6500,path = "image/lock/9.png" },
+	{ fish_id = 15,task_num = 100,coin = 10000,path = "image/lock/10.png" },
+	{ fish_id = 16,task_num = 100,coin = 8000,path = "image/lock/11.png" },
+	{ fish_id = 17,task_num = 100,coin = 11000,path = "image/lock/12.png" },
+	{ fish_id = 20,task_num = 100,coin = 17500,path = "image/lock/13.png" },
+	{ fish_id = 21,task_num = 100,coin = 14000,path = "image/lock/14.png" },
+	{ fish_id = 23,task_num = 100,coin = 16500,path = "image/lock/15.png" },
+	{ fish_id = 24,task_num = 100,coin = 18000,path = "image/lock/16.png" },
+	{ fish_id = 25,task_num = 100,coin = 25000,path = "image/lock/17.png" },
+	{ fish_id = 26,task_num = 100,coin = 17000,path = "image/lock/18.png" },
+	{ fish_id = 27,task_num = 100,coin = 20000,path = "image/lock/19.png" },
+	{ fish_id = 28,task_num = 100,coin = 40000,path = "image/lock/20.png" },
 }
 
 rawset(_G,"buyu_config",buyu_config)

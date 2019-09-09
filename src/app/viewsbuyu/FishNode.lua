@@ -5,14 +5,19 @@ local FishNode = class("FishNode",BaseNode)
 function FishNode:ctor( gameLayer,fishIndex,fishLine )
 	FishNode.super.ctor( self,"FishNode" )
 
-	self._fishIndex = self:randomFish()
-	self._config = buyu_config.fish[self._fishIndex]
-	local fish = ccui.ImageView:create( self._config.path..self._config.startNum..".png",1 )
-	self:addChild( fish )
-
-	self._fish = fish
 	self._gameLayer = gameLayer
 	self._fishLine = fishLine
+
+	self._fishIndex = self:randomFish()
+	if self._gameLayer._playLevel == 1 then
+		self._config = buyu_config.fish1[self._fishIndex]
+	else
+		self._config = buyu_config.fish2[self._fishIndex]
+	end
+	local fish = ccui.ImageView:create( self._config.path..self._config.startNum..".png",1 )
+	self:addChild( fish )
+	self._fish = fish
+	
 	-- self._deadOfPoint = nil -- 死亡时世界坐标
 	-- self:setAnchorPoint(cc.p(0.5,0.5))
 	-- local box = self._fish:getBoundingBox()
@@ -62,17 +67,32 @@ end
 -- 随机出现的鱼
 function FishNode:randomFish()
 	local weight = 0
-	for i=1,#buyu_config.fish do
-		weight = weight + buyu_config.fish[i].weight
-	end
-	local fish_all = random( 1,weight )
-	local fish_now = 0
-	for i=1,#buyu_config.fish do
-		fish_now = fish_now + buyu_config.fish[i].weight
-		if fish_all <= fish_now then
-			return i
+	if self._gameLayer._playLevel == 1 then
+		for i=1,#buyu_config.fish1 do
+			weight = weight + buyu_config.fish1[i].weight
+		end
+		local fish_all = random( 1,weight )
+		local fish_now = 0
+		for i=1,#buyu_config.fish1 do
+			fish_now = fish_now + buyu_config.fish1[i].weight
+			if fish_all <= fish_now then
+				return i
+			end
+		end
+	else
+		for i=1,#buyu_config.fish2 do
+			weight = weight + buyu_config.fish2[i].weight
+		end
+		local fish_all = random( 1,weight )
+		local fish_now = 0
+		for i=1,#buyu_config.fish2 do
+			fish_now = fish_now + buyu_config.fish2[i].weight
+			if fish_all <= fish_now then
+				return i
+			end
 		end
 	end
+	
 	assert( false,"没有找到鱼的数据！！！")
 end
 
@@ -86,6 +106,7 @@ end
 function FishNode:fishBeAttacked( hitNum )
 	self._hp = self._hp - hitNum
 	if self._hp <= 0 then
+
 		-- 死亡动画
 		self:actionOfDead()
 		local pos = cc.p(self:getPosition())
@@ -150,6 +171,8 @@ function FishNode:actionOfDead( ... )
 	if self._dead then
 		return
 	end
+	-- 记录任务数据
+	G_GetModel("Model_BuYu"):saveTaskList( self._fishIndex )
 	self._dead = true
 	-- -- 死亡从node移除到世界坐标，避免死了一直能攻击
 	-- local dead_pos = cc.p(self:getPosition())

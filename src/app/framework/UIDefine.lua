@@ -313,11 +313,14 @@ UIDefine.LayerFlag = {
 -- 捕鱼
 UIDefine.BUYU_KEY 	= {
 	Loading_UI 				= { layer = import("app.viewsbuyu.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Loading_UI" 			  	    		},
-	Start_UI 				= { layer = import("app.viewsbuyu.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Start_UI"                     },
+	Start_UI 				= { layer = import("app.viewsbuyu.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Start_UI"                     			},
 	Play_UI             	= { layer = import("app.viewsbuyu.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Play_UI"    			   				},
-	Shop_UI	    	 	   	= { layer = import("app.viewsbuyu.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Shop_UI"    		   		  	},
-	Buy_UI	    	   	 	= { layer = import("app.viewsbuyu.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Buy_UI"    		   		  	},
-	Sign_UI	    	   	 	= { layer = import("app.viewsbuyu.GameQiandao"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Sign_UI"    		   		  	},
+	Shop_UI	    	 	   	= { layer = import("app.viewsbuyu.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Shop_UI"    		   		  			},
+	Buy_UI	    	   	 	= { layer = import("app.viewsbuyu.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Buy_UI"    		   		  			},
+	Sign_UI	    	   	 	= { layer = import("app.viewsbuyu.GameQiandao"),		      	flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Sign_UI"    		   		  			},
+	Assignment_UI	    	= { layer = import("app.viewsbuyu.GameRenwu"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Assignment_UI"    		   		  		},
+	Choose_UI	    		= { layer = import("app.viewsbuyu.GameChoose"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Choose_UI"    		   		  			},
+	Voice_UI	       		= { layer = import("app.viewssuoha.GameVoiceSet"),	      		flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Voice_UI"    			     			},
 
 }
 

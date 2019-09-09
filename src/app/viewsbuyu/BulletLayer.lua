@@ -13,10 +13,11 @@ function BulletLayer:ctor( gameLayer )
     self._bulletStartPoint = self.BulletNode:getParent():convertToWorldSpace( cc.p( self.BulletNode:getPosition() ) )
 
     -- self._bulletIndex = 6 -- 子弹倍数
-    self._level = G_GetModel("Model_BuYu"):getLevel() -- 等级
+    self._level = nil -- 等级
     self._multiple = 1 -- 开局初始倍数
     -- 子弹等级/炮台等级
 	self._bulletAndBatteryLevel = nil
+	self._upLevelState = false -- 升级子弹状态
 	self._harmNum = 5 -- 子弹伤害值
 
 	self._insaneShootState = 1 -- 疯狂射击状态，1，正常，2，开启，3，关闭，关闭针对连续射击
@@ -51,6 +52,12 @@ function BulletLayer:ctor( gameLayer )
     		self:automaticAttack()
     	end
     })
+
+    self:addNodeClick( self.ButtonReturn,{
+		endCallBack = function ()
+			self:back()
+		end
+	})
     
     -- -- 商店
     -- self:addNodeClick( self.ButtonShop,{
@@ -78,6 +85,7 @@ function BulletLayer:bulletHarmNum()
 	return self._bulletAndBatteryLevel
 end
 function BulletLayer:loadUi()
+	self._level = G_GetModel("Model_BuYu"):getLevel()
 	local coin = G_GetModel("Model_BuYu"):getCoin()
 	self.TextCoin:setString( coin )
 	-- 子弹炮台等级
@@ -100,17 +108,36 @@ function BulletLayer:loadUi()
 	self.ImageGun:ignoreContentAdaptWithSize( true )
 	self.ImageGun:loadTexture( buyu_config.bullet[self._bulletAndBatteryLevel].battery,1 )
 	self.TextMultiple:setString( buyu_config.multiple[self._multiple] )
-	
 end
+-- --升级更换炮台
+-- function BulletLayer:upBulletAndBattery()
+-- 	self._level = G_GetModel("Model_BuYu"):getLevel()
+-- 	-- 子弹炮台等级
+-- 	self:bulletHarmNum()
+-- 	-- 子弹倍数
+-- 	G_GetModel("Model_BuYu"):setMultiple( self._multiple )
+	
+-- 	self.ImageGun:ignoreContentAdaptWithSize( true )
+-- 	local x = 1
+-- 	self.ImageGun:loadTexture( buyu_config.bullet[self._bulletAndBatteryLevel].battery,1 )
+-- 	self.TextMultiple:setString( buyu_config.multiple[self._multiple] )
+-- end
 function BulletLayer:onEnter( ... )
 	BulletLayer.super.onEnter( self )
 	self:addMsgListener( InnerProtocol.INNER_EVENT_BUYU_KILL_COIN,function ()
 		local coin = G_GetModel("Model_BuYu"):getInstance():getCoin()
 		self.TextCoin:setString( coin )
 	end )
+	G_GetModel("Model_BuYu"):getUpgradeExp()
 end
 -- 创建子弹
 function BulletLayer:createBullet(cur_point,targetFish)
+	local upLevel = G_GetModel("Model_BuYu"):setExp()
+	if upLevel then
+		dump( self._level,"---------self._level = ")
+		self:loadUi()
+	end
+
 	local coin = G_GetModel("Model_BuYu"):getCoin()
 	if coin < buyu_config.multiple[self._multiple] then
 		if self._multiple > 1 then
@@ -162,33 +189,29 @@ function BulletLayer:createBullet(cur_point,targetFish)
 end
 
 function BulletLayer:onTouchBegan( touch, event )
+	-- 自动攻击
+	if self._automaticAttackState == 2 then
+		return false
+	end
+
 	local createTime = 0.2
 	-- 疯狂射击，快速发射
 	if self._insaneShootState == 2 then
 		createTime = 0.1
 	end
-	-- 自动攻击
-	if self._automaticAttackState == 2 then
-		
-		return false
-	end
+	
 	-- 触摸发射
 	local cur_point = touch:getLocation()
 	self:createBullet(cur_point)
 	self:schedule( function ()
 		if self._insaneShootState == 3 then
 			self._insaneShootState = 1
-			self:onTouchEnded()
+			self:unSchedule()
 			return
 		end
 		local cur_point = touch:getLocation()
 		self:createBullet(cur_point)
 	end,createTime)
-	-- self._beganState = 1
-
-	-- local cur_point = touch:getLocation()
-	-- self:createBullet(cur_point)
-	-- print("------------------------11111")
 
 	return true
 end
@@ -328,9 +351,12 @@ function BulletLayer:iceCapped()
 	-- self._gameLayer._fishLayer._fishContainer:pause()
 
 	-- 冰封，找个冰霜图片替代.....下面冰封时间到还有个layer
-	local layer = cc.LayerColor:create( cc.c4b( 0,0,150,40))
+	local layer = cc.LayerColor:create( cc.c4b( 0,0,0,0))
 	self:addChild( layer )
-
+	-- 冰封下雪粒子
+	local lizi = cc.ParticleSystemQuad:create("image/particle/skin_buyu.plist") 
+	layer:addChild(lizi)
+	-- lizi:setPosition( display.width,display.height )
 
 	local fishLayer = self._gameLayer._fishLayer
 	local fishs = fishLayer._fishContainer:getChildren()
@@ -350,18 +376,18 @@ function BulletLayer:iceCapped()
 		-- self._gameLayer._fishLayer._fishContainer:resume()
 		fishLayer._iceState = false
 		print("---------------------恢复游動")
-	end,5)
+	end,10)
 end
 -- 疯狂射击
 function BulletLayer:insaneShoot()
-	if self._automaticAttackState == 2 then -- 自动攻击时不疯狂射击
+	if self._automaticAttackState == 2 or self._insaneShootState == 2 then -- 自动攻击时不疯狂射击
 		
 		return 
 	end
 	self._insaneShootState = 2
 	performWithDelay( self,function ()
 		self._insaneShootState = 3
-	end,15)
+	end,20)
 end
 
 -- function BulletLayer:shop()
@@ -370,59 +396,50 @@ end
 
 -- 自动攻击
 function BulletLayer:automaticAttack()
-	-- performWithDelay( self,function ()
-	-- 	self._automaticAttackState = 1
-	-- 	self:unSchedule()
-	-- end,5)
+	if self._automaticAttackState == 2 or self._insaneShootState == 2 then
+		return
+	end
 	self._automaticAttackState = 2 -- 开启
 	local index = 100
-	local fish = nil --最大倍数的鱼
+	self._maxFish = nil
 	-- local fishs = nil
 	self:schedule( function ()
-		if self._automaticAttackState == 1 then
-			-- self._automaticAttackState = 1
-			self:onTouchEnded()
+		if self._maxFish == nil then
+			self._maxFish = self:getFishOfDisplay()
+		end
+
+		if self._maxFish == nil then -- 屏幕内可能没鱼
 			return
 		end
-		
-		-- self:stopAllActions()
-		
-		-- local fish = nil --最大倍数的鱼
-		if fish == nil then
-			fish = self:getFishOfDisplay()
-		end
-		if fish == nil then -- 屏幕内可能没鱼
+
+		if self._maxFish._dead then
+			self._maxFish = nil
 			return
 		end
-		-- print("------------------------1111111111111111")
-		if fish._dead then
-			fish = nil
+		if self._maxFish._hp == nil or self._maxFish._hp <= 0 then
+			self._maxFish = nil
 			return
 		end
-		dump( fish,"----------------fish = ")
+
+		dump( self._maxFish,"----------------self._maxFish = ")
+		dump( self._maxFish._hp,"----------------self._maxFish._hp = ")
 		
-		local fish_pos = cc.p( fish:getPosition())
-		local fish_worldPos = fish:getParent():convertToWorldSpace( fish_pos )
-		-- print("------------------------2222222222222222222")
+		local fish_pos = cc.p( self._maxFish:getPosition())
+		local fish_worldPos = self._maxFish:getParent():convertToWorldSpace( fish_pos )
+		if fish_worldPos.x < 0 or fish_worldPos.y < 0 or fish_worldPos.x > display.width or fish_worldPos.y > display.height  then
+			self._maxFish = nil
+			return
+		end
+
 		index = index - 1
 		if index == 0 then
 			self._automaticAttackState = 1
+			self._maxFish = nil
 			self:unSchedule()
+			return
 		end
-		self:createBullet( fish_worldPos,fish )
-		-- if fish._dead then
-		-- 	fish = nil
-		-- 	return
-		-- end
-		-- print("------------------------333333333333333333")
-		-- 鱼游出屏幕，设置nil，重新选鱼
-		-- dump( fish_worldPos.y,"-----------fffffff = ")
-		if fish_worldPos.x < 0 or fish_worldPos.y < 0 or fish_worldPos.x > display.width or fish_worldPos.y > display.height  then
-			fish = nil
-		end
-		
-		-- dump(fish,"--------------------fish = ")
-		-- print( index,"---------index = ")
+
+		self:createBullet( fish_worldPos,self._maxFish )
 	end,0.2)
 	
 
@@ -451,5 +468,9 @@ function BulletLayer:getFishOfDisplay( ... )
 	return fish
 end
 
+function BulletLayer:back()
+	removeUIFromScene( UIDefine.BUYU_KEY.Play_UI )
+	addUIToScene( UIDefine.BUYU_KEY.Start_UI )
+end
 
 return BulletLayer

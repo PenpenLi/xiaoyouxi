@@ -125,6 +125,28 @@
 				<key>sourceSize</key>
 				<string>{449,480}</string>
 			</dict>
+			<key>image/start/roomicon_roomlist_2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1365,757},{296,407}}</string>
+				<key>offset</key>
+				<string>{-1,-19}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{400,460}</string>
+			</dict>
+			<key>image/start/roomicon_roomlist_3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1365,452},{303,410}}</string>
+				<key>offset</key>
+				<string>{-4,-18}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{400,460}</string>
+			</dict>
 		</dict>
 		<key>metadata</key>
 		<dict>

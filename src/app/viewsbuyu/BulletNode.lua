@@ -8,6 +8,7 @@ function BulletNode:ctor( parent,param )
 	self._bulletLevel = param.bulletAndBatteryLevel -- 子弹等级
 	-- self._bulletStartPoint = param.startPoint
 	self._bulletRotate = param.bulletRotate -- 子弹角度
+	self._playLayer = param.layer -- 游戏层
 	self._fishLayer = param.layer._fishLayer -- 鱼层
 	self._insaneShootState = param.insaneShootState --疯狂射击状态
 	self._automaticAttackState = param.automaticAttackState -- 自动攻击状态，1正常，2自动
@@ -27,6 +28,7 @@ function BulletNode:ctor( parent,param )
 	self:getBulletHarmNum() -- 子弹伤害值
 	
 	self._config = buyu_config.bullet
+	dump( self._bulletLevel,"----------self._bulletLevel = ")
 	self._bullet = ccui.ImageView:create( self._config[self._bulletLevel].bullet,1 )
 	-- self._bullet = ccui.ImageView:create( "image/guns/Bullet"..self._bulletLevel.."_Normal_"..self._bulletIndex.."_b.png",1 )
 	self:addChild( self._bullet )
@@ -135,6 +137,7 @@ function BulletNode:bulletMoveTarget( fish )
 		local call = cc.CallFunc:create(function ()
 			-- print("-------------被打了")
 			-- dump( fish._hp,"------------fish._hp = ")
+			self._playLayer:stateOfBullet( self )
 			if fish._hp == nil then
 				self:removeFromParent()
 			else
@@ -179,13 +182,17 @@ end
 
 -- 疯狂射击时子弹加速
 function BulletNode:setSpeed()
-	if self._insaneShootState == 2 then
+	if self._insaneShootState == 2 or self._automaticAttackState == 2 then
 		self._hypotenuse = 600 -- 子弹速度
 	end
 	-- performWithDelay( self,function ()
 	-- 	self._hypotenuse = 300
 	-- end,time)
 end
+-- function BulletNode:setSpeed()
+-- 	self._hypotenuse = 300 -- 子弹速度
+	
+-- end
 
 -- 子弹伤害值
 function BulletNode:getBulletHarmNum()

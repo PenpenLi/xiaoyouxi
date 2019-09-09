@@ -10,6 +10,7 @@ function GamePlay:ctor( param )
     assert( param.name," !! param.name is nil !! ")
     GamePlay.super.ctor( self,param.name )
     self:addCsb( "csbbuyu/Play.csb" )
+    self._playLevel = param.data
 
     -- 1:创建鱼层
 	local fish_layer = FishLayer.new( self )
@@ -21,6 +22,7 @@ function GamePlay:ctor( param )
 	self._bulletLayer = bullet_layer
 
 	-- self._deadFishIndex = nil -- 标记死亡鱼
+	
 
 end
 
@@ -44,6 +46,8 @@ function GamePlay:bandingBox( dt )
 	if self._bulletLayer._automaticAttackState == 2 then
 		return
 	end
+	local node_pos = cc.p( self._bulletLayer.BulletNode:getPosition())
+
 	
 	-- 非自动攻击时碰撞检测
 	-- local bullets_node = self._bulletLayer:getBulletNode()
@@ -55,8 +59,13 @@ function GamePlay:bandingBox( dt )
 		if bullets[i]._state then
 			-- 自动攻击状态，不执行碰撞检测
 		else
+
 			local bullet_box = bullets[i]._bullet:getBoundingBox()
 			local bullet_world_pos = bullets[i]._bullet:getParent():convertToWorldSpace(cc.p( bullets[i]._bullet:getPosition() ))
+			-- 子弹在炮台内部不检测，好看点
+			if bullet_world_pos.x < node_pos.x + 60 and bullet_world_pos.x > node_pos.x - 60 and bullet_world_pos.y < node_pos.y + 50 then
+				return
+			end
 			bullet_box.x = bullet_world_pos.x - bullet_box.width / 2
 			bullet_box.y = bullet_world_pos.y - bullet_box.height / 2
 			bullet_box.width = bullet_box.width * 0.8
@@ -81,7 +90,7 @@ function GamePlay:bandingBox( dt )
 					-- print( "-----------------111111111111")
 					-- dump( bullets[i]._harmNum,"--------------bullets[i]._harmNum = ")
 					fishs[j]:fishBeAttacked( harmNum )
-					dump( fishs[j]._hp,"---------------fishs[j]._hp = ")
+					-- dump( fishs[j]._hp,"---------------fishs[j]._hp = ")
 					-- self:fishBeAttacked( fishs[j],1000 )
 					-- self._deadFishIndex = fishs[j]:getFishGetCoin()
 
