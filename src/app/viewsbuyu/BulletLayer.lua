@@ -149,8 +149,12 @@ function BulletLayer:createBullet(cur_point,targetFish)
 					break
 				end
 			end
-		-- else
-			-- return
+		else
+			local is_open = G_GetModel("Model_Sound"):isVoiceOpen()
+			if is_open then
+				audio.playSound("bymp3/SmashFail.mp3", false)
+			end
+			self:back()
 		end
 		return
 	end
@@ -177,6 +181,10 @@ function BulletLayer:createBullet(cur_point,targetFish)
 		fishPoint = cur_point, -- 自动攻击时需要的鱼的位置
 		-- targetFish = targetFish -- 自动攻击目标鱼
 	}
+	local is_open = G_GetModel("Model_Sound"):isVoiceOpen()
+	if is_open then
+		audio.playSound("bymp3/special_shoot.mp3", false)
+	end
 	local bullet = BulletNode.new( self,param )
 	self.BulletNode:addChild( bullet )
 	if self._automaticAttackState == 2 then
@@ -203,6 +211,10 @@ function BulletLayer:onTouchBegan( touch, event )
 	-- 触摸发射
 	local cur_point = touch:getLocation()
 	self:createBullet(cur_point)
+	local coin = G_GetModel("Model_BuYu"):getCoin()
+	if coin <= 0 then
+		return
+	end
 	self:schedule( function ()
 		if self._insaneShootState == 3 then
 			self._insaneShootState = 1
@@ -347,11 +359,12 @@ function BulletLayer:iceCapped()
 	if self._gameLayer._fishLayer._iceState then
 		return
 	end
+	self.ButtonCongelation:loadTexture( "image/particle/lock1.png",1 )
 	-- print("---------------冰封")
 	-- self._gameLayer._fishLayer._fishContainer:pause()
 
 	-- 冰封，找个冰霜图片替代.....下面冰封时间到还有个layer
-	local layer = cc.LayerColor:create( cc.c4b( 0,0,0,0))
+	local layer = cc.LayerColor:create( cc.c4b( 0,0,40,50))
 	self:addChild( layer )
 	-- 冰封下雪粒子
 	local lizi = cc.ParticleSystemQuad:create("image/particle/skin_buyu.plist") 
@@ -375,18 +388,20 @@ function BulletLayer:iceCapped()
 		end
 		-- self._gameLayer._fishLayer._fishContainer:resume()
 		fishLayer._iceState = false
+		self.ButtonCongelation:loadTexture( "image/particle/lock0.png",1 )
 		print("---------------------恢复游動")
 	end,10)
 end
 -- 疯狂射击
 function BulletLayer:insaneShoot()
 	if self._automaticAttackState == 2 or self._insaneShootState == 2 then -- 自动攻击时不疯狂射击
-		
 		return 
 	end
+	self.ButtonInsane:loadTexture( "image/particle/speed_fast.png",1 )
 	self._insaneShootState = 2
 	performWithDelay( self,function ()
 		self._insaneShootState = 3
+		self.ButtonInsane:loadTexture( "image/particle/speed_slow.png",1 )
 	end,20)
 end
 
@@ -399,6 +414,7 @@ function BulletLayer:automaticAttack()
 	if self._automaticAttackState == 2 or self._insaneShootState == 2 then
 		return
 	end
+	self.ButtonTarget:loadTexture( "image/particle/byself1.png",1 )
 	self._automaticAttackState = 2 -- 开启
 	local index = 100
 	self._maxFish = nil
@@ -435,6 +451,7 @@ function BulletLayer:automaticAttack()
 		if index == 0 then
 			self._automaticAttackState = 1
 			self._maxFish = nil
+			self.ButtonTarget:loadTexture( "image/particle/byself0.png",1 )
 			self:unSchedule()
 			return
 		end

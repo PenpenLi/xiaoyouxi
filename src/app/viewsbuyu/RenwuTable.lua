@@ -8,7 +8,7 @@ function RenwuTable:setViewData()
 end
 
 function RenwuTable:cellSizeForTable( table,idx )
-	return 765,76
+	return 916,76
 end
 
 

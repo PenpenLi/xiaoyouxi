@@ -47,11 +47,11 @@ function GameVoiceSet:loadUi()
 	end
 	is_open = G_GetModel("Model_Sound"):isVoiceOpen()
 	if is_open then
-		self.ImageVoice:loadTexture( "image/set/music1.png",1 )
-		self.ImageVoice:setPositionX( 38 )
+		self.ImageSound:loadTexture( "image/set/music1.png",1 )
+		self.ImageSound:setPositionX( 38 )
 	else
-		self.ImageVoice:loadTexture( "image/set/music2.png",1 )
-		self.ImageVoice:setPositionX( 118 )
+		self.ImageSound:loadTexture( "image/set/music2.png",1 )
+		self.ImageSound:setPositionX( 118 )
 	end
 end
 
@@ -62,6 +62,7 @@ function GameVoiceSet:setMusic()
 		self.ImageMusic:loadTexture( "image/set/music2.png",1 )
 		model:setMusicState(model.State.Closed)
 		self.ImageMusic:setPositionX( 118 )
+		model:stopPlayBgMusic()
 	else
 		self.ImageMusic:loadTexture( "image/set/music1.png",1 )
 		model:setMusicState(model.State.Open)
@@ -75,13 +76,13 @@ function GameVoiceSet:setVoice()
 	local model = G_GetModel("Model_Sound")
 	local is_open = model:isVoiceOpen()
 	if is_open then
-		self.ImageVoice:loadTexture( "image/set/music2.png",1 )
+		self.ImageSound:loadTexture( "image/set/music2.png",1 )
 		model:setVoiceState(model.State.Closed)
-		self.ImageVoice:setPositionX( 118 )
+		self.ImageSound:setPositionX( 118 )
 	else
-		self.ImageVoice:loadTexture( "image/set/music1.png",1 )
+		self.ImageSound:loadTexture( "image/set/music1.png",1 )
 		model:setVoiceState(model.State.Open)
-		self.ImageVoice:setPositionX( 38 )
+		self.ImageSound:setPositionX( 38 )
 	-- body
 	end
 end

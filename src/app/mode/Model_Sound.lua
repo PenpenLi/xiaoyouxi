@@ -406,7 +406,12 @@ function Model_Sound:playVoice( voicePath )
 			end
 			
 		end
+	elseif scene_name == "BuYuScene" then
+		if self:isVoiceOpen() then
+			audio.playSound("bymp3/button.mp3", false)
+		end
 	end
+
 end
 
 -- 保存音量大小( 只针对24点 )

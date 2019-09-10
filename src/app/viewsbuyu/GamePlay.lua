@@ -11,6 +11,13 @@ function GamePlay:ctor( param )
     GamePlay.super.ctor( self,param.name )
     self:addCsb( "csbbuyu/Play.csb" )
     self._playLevel = param.data
+    if G_GetModel("Model_Sound"):isMusicOpen() then
+    	if self._playLevel == 1 then
+    		audio.playMusic("bymp3/MUSIC_BACK_01.mp3",true)
+    	else
+    		audio.playMusic("bymp3/MUSIC_BACK_02.mp3",true)
+    	end
+    end
 
     -- 1:创建鱼层
 	local fish_layer = FishLayer.new( self )
@@ -210,9 +217,17 @@ function GamePlay:createCoin( pos,coin )
 	local remove = cc.RemoveSelf:create()
 	local seq = cc.Sequence:create({ spawn,remove })
 	textCoin:runAction( seq )
-	local coin = CoinNode.new( self,start_worldPos,end_worldPos )
-	self:addChild( coin,3 )
-	coin:setPosition( start_worldPos )
+	local index = 0
+	self:schedule( function ()
+		local coin = CoinNode.new( self,start_worldPos,end_worldPos )
+		self:addChild( coin,3 )
+		coin:setPosition( start_worldPos )
+		index = index + 1
+		if index == 5 then
+			self:unSchedule()
+		end
+	end,0.2)
+	
 	-- coin:coinMove()
 end
 

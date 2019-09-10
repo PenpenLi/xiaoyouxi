@@ -10,10 +10,20 @@ function GameStart:ctor( param )
 
     self:addCsb( "csbbuyu/GameStart.csb" )
 
-    self:addNodeClick( self.ButtonPlay,{
-    	endCallBack = function ()
-    		self:play()
-    	end
+    -- self:addNodeClick( self.ButtonPlay,{
+    -- 	endCallBack = function ()
+    -- 		self:play()
+    -- 	end
+    -- })
+    self:addNodeClick( self.ButtonLevel1,{
+        endCallBack = function ()
+            self:goGame1()
+        end
+    })
+    self:addNodeClick( self.ButtonLevel2,{
+        endCallBack = function ()
+            self:goGame2()
+        end
     })
     self:addNodeClick( self.ButtonShop,{
     	endCallBack = function ()
@@ -55,7 +65,7 @@ function GameStart:loadUi()
 			return
 		end
 		local fishLine = FishLine.new()
-		local fish_index = random( 1,#buyu_config.fish1 )
+		local fish_index = random( 1,#buyu_config.fish )
 		local fish = FishNode.new( self,fish_index,fishLine )
 		fishContainer:addChild( fish )
 	end,5 )
@@ -72,12 +82,34 @@ function GameStart:onEnter()
 	end )
 end
 
-function GameStart:play( ... )
-    addUIToScene( UIDefine.BUYU_KEY.Choose_UI )
+-- function GameStart:play( ... )
+--     addUIToScene( UIDefine.BUYU_KEY.Choose_UI )
     
-	-- self:unSchedule()
-	-- addUIToScene( UIDefine.BUYU_KEY.Play_UI )
- --    removeUIFromScene( UIDefine.BUYU_KEY.Start_UI )
+-- 	-- self:unSchedule()
+-- 	-- addUIToScene( UIDefine.BUYU_KEY.Play_UI )
+--  --    removeUIFromScene( UIDefine.BUYU_KEY.Start_UI )
+-- end
+function GameStart:goGame1( ... )
+    local coin = G_GetModel("Model_BuYu"):getCoin()
+    if coin <= 0 then
+        self:shop()
+        return
+    end
+    G_GetModel("Model_Sound"):stopPlayBgMusic()
+    addUIToScene( UIDefine.BUYU_KEY.Play_UI,1 )
+    removeUIFromScene( UIDefine.BUYU_KEY.Start_UI )
+    -- removeUIFromScene( UIDefine.BUYU_KEY.Choose_UI )
+end
+function GameStart:goGame2( ... )
+    local coin = G_GetModel("Model_BuYu"):getCoin()
+    if coin <= 0 then
+        self:shop()
+        return
+    end
+    G_GetModel("Model_Sound"):stopPlayBgMusic()
+    addUIToScene( UIDefine.BUYU_KEY.Play_UI,2 )
+    removeUIFromScene( UIDefine.BUYU_KEY.Start_UI )
+    -- removeUIFromScene( UIDefine.BUYU_KEY.Choose_UI )
 end
 function GameStart:shop( ... )
 	addUIToScene( UIDefine.BUYU_KEY.Shop_UI )

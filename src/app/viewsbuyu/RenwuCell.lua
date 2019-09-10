@@ -59,11 +59,16 @@ function RenwuCell:getCoin( event )
 	if task_data.state ~= 2 then
 		return
 	end
-	
+	local is_open = G_GetModel("Model_Sound"):isVoiceOpen()
+	if is_open then
+		audio.playSound("bymp3/coinfly.mp3", false)
+	end
 	task_data.state = 3
 	self:loadDataUi( self._data,self._index )
 	local coin = self.TextCoin:getString()
-	G_GetModel("Model_BuYu"):saveTaskListState( self._index )
+	
+	G_GetModel("Model_BuYu"):saveTaskListState( self._data.fish_id )
+	print("----------321")
 	G_GetModel("Model_BuYu"):setCoin( coin )
 	EventManager:getInstance():dispatchInnerEvent( InnerProtocol.INNER_EVENT_BUYU_BUY_COIN )
 end

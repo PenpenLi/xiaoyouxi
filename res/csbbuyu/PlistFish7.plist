@@ -128,24 +128,156 @@
 			<key>image/start/roomicon_roomlist_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1365,757},{296,407}}</string>
+				<string>{{1750,452},{296,407}}</string>
 				<key>offset</key>
 				<string>{-1,-19}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{400,460}</string>
 			</dict>
 			<key>image/start/roomicon_roomlist_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1365,452},{303,410}}</string>
+				<string>{{1674,1222},{303,410}}</string>
 				<key>offset</key>
 				<string>{-4,-18}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{400,460}</string>
+			</dict>
+			<key>image/particle/byself0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1909},{93,95}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{93,95}</string>
+			</dict>
+			<key>image/particle/byself1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{96,1909},{93,95}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{93,95}</string>
+			</dict>
+			<key>image/particle/lock0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{191,1909},{93,95}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{93,95}</string>
+			</dict>
+			<key>image/particle/lock1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{286,1909},{93,95}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{93,95}</string>
+			</dict>
+			<key>image/particle/speed_fast.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{381,1909},{84,84}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{84,84}</string>
+			</dict>
+			<key>image/particle/speed_slow.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1857,1},{84,84}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{84,84}</string>
+			</dict>
+			<key>image/fish30/0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{903,903},{382,384}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{382,384}</string>
+			</dict>
+			<key>image/fish30/1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1365,452},{383,383}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{384,384}</string>
+			</dict>
+			<key>image/fish30/10.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{903,1287},{380,383}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{380,384}</string>
+			</dict>
+			<key>image/fish30/11.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1365,837},{383,383}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{384,384}</string>
+			</dict>
+			<key>image/fish30/12.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1289,1222},{383,381}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{384,382}</string>
+			</dict>
+			<key>image/fish30/13.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1288,1605},{380,383}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{380,384}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>
@@ -157,14 +289,14 @@
 			<key>realTextureFileName</key>
 			<string>PlistFish7.png</string>
 			<key>size</key>
-			<string>{1856,1908}</string>
+			<string>{2047,2005}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>1856</integer>
+			<integer>2047</integer>
 			<key>height</key>
-			<integer>1908</integer>
+			<integer>2005</integer>
 		</dict>
 	</dict>
 </plist>

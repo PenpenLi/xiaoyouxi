@@ -9,11 +9,13 @@ function FishNode:ctor( gameLayer,fishIndex,fishLine )
 	self._fishLine = fishLine
 
 	self._fishIndex = self:randomFish()
-	if self._gameLayer._playLevel == 1 then
-		self._config = buyu_config.fish1[self._fishIndex]
-	else
-		self._config = buyu_config.fish2[self._fishIndex]
-	end
+	self._config = buyu_config.fish[self._fishIndex]
+	-- if self._gameLayer._playLevel == 1 then
+	-- 	self._config = buyu_config.fish1[self._fishIndex]
+	-- else
+	-- 	self._config = buyu_config.fish2[self._fishIndex]
+	-- end
+	-- dump( self._fishIndex,"-------self._fishIndex  = ")
 	local fish = ccui.ImageView:create( self._config.path..self._config.startNum..".png",1 )
 	self:addChild( fish )
 	self._fish = fish
@@ -34,7 +36,7 @@ end
 function FishNode:onEnter()
 	FishNode.super.onEnter( self )
 
-	local index = 0
+	local index = self._config.startNum
 	local last_point = cc.p( 0,0 )
 	self:schedule( function()
 		
@@ -52,7 +54,7 @@ function FishNode:onEnter()
 		last_point = clone( cur_point )
 		index = index + 1
 		if index > self._config.endNum then
-			index = 0
+			index = self._config.startNum
 		end
 	end,self._config.imageScheduleTime )
 
@@ -66,34 +68,57 @@ end
 
 -- 随机出现的鱼
 function FishNode:randomFish()
+	local fish_config = G_GetModel("Model_BuYu"):getFishList( self._gameLayer._playLevel )
+	-- dump( fish_config,"--------------fish_config = ")
+	local fishIndex = nil
 	local weight = 0
-	if self._gameLayer._playLevel == 1 then
-		for i=1,#buyu_config.fish1 do
-			weight = weight + buyu_config.fish1[i].weight
-		end
-		local fish_all = random( 1,weight )
-		local fish_now = 0
-		for i=1,#buyu_config.fish1 do
-			fish_now = fish_now + buyu_config.fish1[i].weight
-			if fish_all <= fish_now then
-				return i
-			end
-		end
-	else
-		for i=1,#buyu_config.fish2 do
-			weight = weight + buyu_config.fish2[i].weight
-		end
-		local fish_all = random( 1,weight )
-		local fish_now = 0
-		for i=1,#buyu_config.fish2 do
-			fish_now = fish_now + buyu_config.fish2[i].weight
-			if fish_all <= fish_now then
-				return i
-			end
+	for i=1,#fish_config do
+		weight = weight + buyu_config.fish[fish_config[i]].weight
+	end
+	local fish_all = random( 1,weight )
+	-- dump( fish_all,"-----------fish_all = ")
+	local fish_now = 0
+	for i=1,#fish_config do
+		fish_now = fish_now + buyu_config.fish[fish_config[i]].weight
+		-- dump( fish_now,"-----------fish_now = ")
+		if fish_all <= fish_now then
+			
+			return fish_config[i]
+			
 		end
 	end
+
+
+
+
+	-- local fishIndex = nil
+	-- local weight = 0
+	-- for i=1,#buyu_config.fish do
+	-- 	weight = weight + buyu_config.fish[i].weight
+	-- end
+	-- local fish_all = random( 1,weight )
+	-- -- dump( fish_all,"-----------fish_all = ")
+	-- local fish_now = 0
+	-- for i=1,#buyu_config.fish do
+	-- 	fish_now = fish_now + buyu_config.fish[i].weight
+	-- 	-- dump( fish_now,"-----------fish_now = ")
+	-- 	if fish_all <= fish_now then
+	-- 		if buyu_config.fish[i].playLevel == self._gameLayer._playLevel or buyu_config.fish[i].playLevel == 3 then
+	-- 			dump( i,"------------i = ")
+	-- 			fishIndex = i
+	-- 			-- break
+	-- 			return fishIndex
+	-- 		else
+	-- 			print("----------------11111111")
+				
+	-- 			-- break
+	-- 			-- return
+	-- 		end
+	-- 	end
+	-- end
+	-- self:randomFish()
 	
-	assert( false,"没有找到鱼的数据！！！")
+	-- -- assert( false,"没有找到鱼的数据！！！")
 end
 
 -- 获取鱼的倍数
@@ -128,30 +153,6 @@ function FishNode:fishBeAttacked( hitNum )
 			end
 
 		end)
-
-
-
-
-
-
-
-
-
-
-		-- local index = 0
-		-- schedule( self,function ()
-		-- 	redSprite( self._fish:getVirtualRenderer():getSprite() )
-		-- 	index = index + 1
-		-- 	if index >= 15 then
-		-- 		unSchedule()
-		-- 	end
-		-- end,0.02)
-
-
-		-- redSprite( self._fish:getVirtualRenderer():getSprite() )
-		-- performWithDelay( self,function ()
-		-- 	ungraySprite( self._fish:getVirtualRenderer():getSprite() )
-		-- end,2)
 	end
 end
 function FishNode:getBlood( ... )

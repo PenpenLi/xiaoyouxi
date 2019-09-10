@@ -196,7 +196,7 @@ end
 
 -- 子弹伤害值
 function BulletNode:getBulletHarmNum()
-	local config = buyu_config.bullet
+	local config = buyu_config.bullet[self._bulletLevel]
 	local num = 0
 	-- for i=1,#config do
 	-- 	num = num + 5
@@ -205,9 +205,12 @@ function BulletNode:getBulletHarmNum()
 	-- 		break
 	-- 	end
 	-- end
-	self._harmNum = 30
+	self._harmNum = config.harm -- 伤害值
 	-- GODO
-
+	local double = random( 1,2 )
+	if double == 2 then
+		self._harmNum = self._harmNum * 2
+	end
 
 	return self._harmNum
 end

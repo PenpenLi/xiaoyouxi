@@ -16,6 +16,10 @@ end
 function CoinNode:onEnter()
 	CoinNode.super.onEnter( self )
 	self:coinAction()
+	local is_open = G_GetModel("Model_Sound"):isVoiceOpen()
+	if is_open then
+		audio.playSound("bymp3/coinfly.mp3", false)
+	end
 	performWithDelay(self,function ()
 		self:coinMove()
 	end,0.1)
@@ -33,6 +37,7 @@ function CoinNode:coinAction()
 	end,0.03 )
 end
 function CoinNode:coinMove()
+
 	local x_index = self._startPos.x - self._endPos.x
 	local y_index = self._startPos.y - self._endPos.y
 	local x_first = self._startPos.x * 2 / 3 - y_index/2

@@ -12,6 +12,9 @@ function Model_BuYu:ctor()
 	-- self:reset()
 	self._signIn = nil -- 签到日
 	self._signInTime = nil -- 签到时间
+	self._gameLevelListOfFish = nil -- start界面用，所有鱼的表
+	self._gameLevelListOfFish1 = nil -- 关卡1的鱼配置表
+	self._gameLevelListOfFish2 = nil -- 关卡2的鱼配置表
 end
 
 -- function Model_BuYu:reset()
@@ -181,7 +184,7 @@ function Model_BuYu:getTastList()
 	return self._taskList
 end
 
--- 存储记录数据,捕鱼任务
+-- 存储记录数据,捕鱼任务,进度
 function Model_BuYu:saveTaskList( fishId )
 	assert( fishId," !! score is nil !! " )
 
@@ -215,12 +218,15 @@ function Model_BuYu:saveTaskListState( fishId )
 	assert( fishId," !! score is nil !! " )
 
 	self:getTastList()
-
+	dump( fishId,"---------fishId = ")
+	dump( self._taskList,"------self._taskList = ")
 	if not self._taskList[fishId] then
+		-- print("-------------123")
 		return
 	end
 
 	self._taskList[fishId].state = 3
+
 	local json_data = json.encode( self._taskList )
 	local user_default = cc.UserDefault:getInstance()
 	user_default:setStringForKey( "buyu_taskList",json_data )
@@ -232,7 +238,49 @@ function Model_BuYu:getTaskById( fishId )
 	return self._taskList[fishId]
 end
 
-
+function Model_BuYu:getFishList( gameLevel )
+	-- assert( gameLevel == 1 or gameLevel == 2," !! gameLevel is error !! ")
+	if gameLevel == nil then
+		if self._gameLevelListOfFish == nil then
+			self._gameLevelListOfFish = {}
+			-- dump( gameLevel,"------------gameLevel = ")
+			local config = buyu_config.fish
+			for i=1,#config do
+				
+				table.insert( self._gameLevelListOfFish,i )
+				
+			end
+		end
+		return self._gameLevelListOfFish
+	end
+	if gameLevel == 1 then
+		if self._gameLevelListOfFish1 == nil then
+			self._gameLevelListOfFish1 = {}
+			-- dump( gameLevel,"------------gameLevel = ")
+			local config = buyu_config.fish
+			for i=1,#config do
+				if config[i].playLevel == gameLevel or config[i].playLevel == 3 then
+					table.insert( self._gameLevelListOfFish1,i )
+				end
+			end
+		end
+		return self._gameLevelListOfFish1
+	end
+	if gameLevel == 2 then
+		if self._gameLevelListOfFish2 == nil then
+			self._gameLevelListOfFish2 = {}
+			-- dump( gameLevel,"------------gameLevel = ")
+			local config = buyu_config.fish
+			for i=1,#config do
+				if config[i].playLevel == gameLevel or config[i].playLevel == 3 then
+					table.insert( self._gameLevelListOfFish2,i )
+				end
+			end
+		end
+		return self._gameLevelListOfFish2
+	end
+	
+end
 
 
 

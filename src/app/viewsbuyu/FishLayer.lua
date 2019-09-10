@@ -34,11 +34,12 @@ function FishLayer:createFish()
 	if #childs >= 50 then
 		return
 	end
-	if self._gameLayer._playLevel == 1 then
-		local fish_index = random( 1,#buyu_config.fish1 )
-	else
-		local fish_index = random( 1,#buyu_config.fish2 )
-	end
+	local fish_index = random( 1,#buyu_config.fish )
+	-- if self._gameLayer._playLevel == 1 then
+	-- 	local fish_index = random( 1,#buyu_config.fish1 )
+	-- else
+	-- 	local fish_index = random( 1,#buyu_config.fish2 )
+	-- end
 	
 	local fish = FishNode.new( self._gameLayer,fish_index,self._fishLine )
 	self._fishContainer:addChild( fish )
