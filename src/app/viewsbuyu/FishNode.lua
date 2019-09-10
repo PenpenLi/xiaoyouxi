@@ -108,15 +108,10 @@ function FishNode:randomFish()
 	-- 			fishIndex = i
 	-- 			-- break
 	-- 			return fishIndex
-	-- 		else
-	-- 			print("----------------11111111")
-				
-	-- 			-- break
-	-- 			-- return
 	-- 		end
 	-- 	end
 	-- end
-	-- self:randomFish()
+	-- return self:randomFish()
 	
 	-- -- assert( false,"没有找到鱼的数据！！！")
 end
