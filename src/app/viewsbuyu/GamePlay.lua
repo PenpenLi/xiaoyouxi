@@ -92,7 +92,7 @@ function GamePlay:bandingBox( dt )
 				if cc.rectIntersectsRect( bullet_box,fish_box ) then
 				-- if cc.rectContainsPoint( fish_box,bullet_pos ) then
 					-- print("----------------------------打中鱼了~！！！")
-					self:stateOfBullet( bullets[i] )     -------------------------------------这里传参bullets[i]._bullet，45行出问题是什么鬼？？
+					self:stateOfBullet( bullets[i],fishs[j] )     -------------------------------------这里传参bullets[i]._bullet，45行出问题是什么鬼？？
 					-- self:stateOfFish( fishs[j] )
 					-- print( "-----------------111111111111")
 					-- dump( bullets[i]._harmNum,"--------------bullets[i]._harmNum = ")
@@ -113,11 +113,11 @@ function GamePlay:bandingBox( dt )
 end
 
 -- 子弹碰撞效果
-function GamePlay:stateOfBullet( bullet )
+function GamePlay:stateOfBullet( bullet,fish )
 	-- dump( bullet,"-----------bullet = ")
 	-- dump( bullet._bullet,"-----------bullet._bullet = ")
-	local bullet_pos = cc.p(bullet._bullet:getPosition())
-	local net_pos = bullet._bullet:getParent():convertToWorldSpace( bullet_pos )
+	local bullet_pos = cc.p(fish:getPosition())
+	local net_pos = fish:getParent():convertToWorldSpace( bullet_pos )
 	
 	local fishNet = ccui.ImageView:create( "image/net/1.png",1 )
 	self:addChild( fishNet,1001 )

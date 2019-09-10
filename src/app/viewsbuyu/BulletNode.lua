@@ -137,7 +137,7 @@ function BulletNode:bulletMoveTarget( fish )
 		local call = cc.CallFunc:create(function ()
 			-- print("-------------被打了")
 			-- dump( fish._hp,"------------fish._hp = ")
-			self._playLayer:stateOfBullet( self )
+			self._playLayer:stateOfBullet( self,fish )
 			if fish._hp == nil then
 				self:removeFromParent()
 			else
