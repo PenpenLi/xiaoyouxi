@@ -126,6 +126,8 @@ function BulletNode:bulletMoveTarget( fish )
 	-- 自动攻击时
 		self._state = true
 		local start_pos =cc.p( self._parent.BulletNode:getPosition())
+		local fish_pos = cc.p(fish:getPosition())
+		local net_pos = fish:getParent():convertToWorldSpace( fish_pos )
 		
 		local distance = math.sqrt(math.pow((self._cur_point.y-start_pos.y),2)+math.pow((self._cur_point.x-start_pos.x),2))
 		local move_time = distance / self._hypotenuse
@@ -137,7 +139,7 @@ function BulletNode:bulletMoveTarget( fish )
 		local call = cc.CallFunc:create(function ()
 			-- print("-------------被打了")
 			-- dump( fish._hp,"------------fish._hp = ")
-			self._playLayer:stateOfBullet( self,fish )
+			self._playLayer:stateOfBullet( self,net_pos )
 			if fish._hp == nil then
 				self:removeFromParent()
 			else

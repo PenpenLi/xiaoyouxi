@@ -6,6 +6,9 @@ function GameBuy:ctor( param )
 	assert( param," !! param is nil !! ")
     assert( param.name," !! param.name is nil !! ")
     GameBuy.super.ctor( self,param.name )
+    local layer = cc.LayerColor:create(cc.c4b(0,0,0,150))
+    self:addChild( layer )
+    self._layer = layer
     self._index = param.data
     self:addCsb( "csbbuyu/GameBuy.csb" )
     self._coin = {
@@ -46,6 +49,8 @@ end
 
 function GameBuy:onEnter()
 	GameBuy.super.onEnter( self )
+    casecadeFadeInNode( self._csbNode,0.5 )
+    casecadeFadeInNode( self._layer,0.5,150 )
 end
 
 function GameBuy:close()

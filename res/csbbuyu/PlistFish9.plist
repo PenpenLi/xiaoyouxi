@@ -7,7 +7,7 @@
 			<key>image/fish30/14.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{886,1},{382,384}}</string>
+				<string>{{841,1},{382,384}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -18,7 +18,7 @@
 			<key>image/fish30/15.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{500,387},{382,380}}</string>
+				<string>{{455,387},{382,380}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -40,7 +40,7 @@
 			<key>image/fish30/17.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1272,1},{384,382}}</string>
+				<string>{{1227,1},{384,382}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -73,7 +73,7 @@
 			<key>image/fish30/2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1272,385},{380,382}}</string>
+				<string>{{1227,385},{380,382}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -106,7 +106,7 @@
 			<key>image/fish30/5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1656,385},{380,382}}</string>
+				<string>{{1611,385},{380,382}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -117,7 +117,7 @@
 			<key>image/fish30/6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{500,1},{384,384}}</string>
+				<string>{{455,1},{384,384}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -128,7 +128,7 @@
 			<key>image/fish30/7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1658,1},{382,384}}</string>
+				<string>{{1613,1},{382,384}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -139,7 +139,7 @@
 			<key>image/fish30/8.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{886,385},{382,384}}</string>
+				<string>{{841,385},{382,384}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -150,7 +150,7 @@
 			<key>image/fish30/9.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1272,767},{382,380}}</string>
+				<string>{{1227,767},{382,380}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -161,7 +161,7 @@
 			<key>image/fish31/0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1813,767},{469,155}}</string>
+				<string>{{1768,767},{469,155}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -172,7 +172,7 @@
 			<key>image/fish31/1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{864,1730},{475,147}}</string>
+				<string>{{1349,1761},{475,147}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -183,7 +183,7 @@
 			<key>image/fish31/2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{387,1730},{475,151}}</string>
+				<string>{{387,1761},{475,151}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -194,18 +194,18 @@
 			<key>image/fish31/3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1138,1879},{479,141}}</string>
+				<string>{{387,1242},{479,141}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{479,141}</string>
 			</dict>
 			<key>image/fish31/4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1656,767},{473,155}}</string>
+				<string>{{1611,767},{473,155}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -216,18 +216,18 @@
 			<key>image/fish31/5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1654,1242},{483,137}}</string>
+				<string>{{952,1910},{483,137}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{483,137}</string>
 			</dict>
 			<key>image/fish31/6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1813,1238},{469,155}}</string>
+				<string>{{1768,1238},{469,155}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -238,7 +238,7 @@
 			<key>image/fish31/7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1341,1730},{485,139}}</string>
+				<string>{{452,769},{485,139}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -249,7 +249,7 @@
 			<key>image/fish31/8.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{653,1883},{483,147}}</string>
+				<string>{{864,1761},{483,147}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -260,7 +260,7 @@
 			<key>image/fish32/0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1828,1730},{244,209}}</string>
+				<string>{{1826,1761},{244,209}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -271,62 +271,62 @@
 			<key>image/fish32/1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{677,769},{240,207}}</string>
+				<string>{{873,980},{240,207}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{240,207}</string>
 			</dict>
 			<key>image/fish32/10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{466,799},{242,209}}</string>
+				<string>{{939,769},{242,209}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{242,209}</string>
 			</dict>
 			<key>image/fish32/11.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{387,1285},{244,209}}</string>
+				<string>{{387,910},{244,209}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{244,209}</string>
 			</dict>
 			<key>image/fish32/2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{886,769},{234,205}}</string>
+				<string>{{1216,1149},{234,205}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{234,205}</string>
 			</dict>
 			<key>image/fish32/3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1339,1285},{230,207}}</string>
+				<string>{{1085,1356},{230,207}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{230,207}</string>
 			</dict>
 			<key>image/fish32/4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1111,1149},{226,211}}</string>
+				<string>{{1533,1248},{226,211}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -337,7 +337,7 @@
 			<key>image/fish32/5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{875,1220},{226,211}}</string>
+				<string>{{857,1189},{226,211}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -348,7 +348,7 @@
 			<key>image/fish32/6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{598,1382},{226,211}}</string>
+				<string>{{530,1330},{226,211}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -359,7 +359,7 @@
 			<key>image/fish32/7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1103,1362},{230,207}}</string>
+				<string>{{1294,1356},{230,207}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -370,7 +370,7 @@
 			<key>image/fish32/8.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{875,1011},{234,207}}</string>
+				<string>{{548,1121},{234,207}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -381,18 +381,18 @@
 			<key>image/fish32/9.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{664,1142},{238,209}}</string>
+				<string>{{633,910},{238,209}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{238,209}</string>
 			</dict>
 			<key>image/fish33/0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{585,1883},{43,66}}</string>
+				<string>{{387,326},{43,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -403,18 +403,18 @@
 			<key>image/fish33/1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{387,878},{41,66}}</string>
+				<string>{{1999,1},{41,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{41,66}</string>
 			</dict>
 			<key>image/fish33/10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{579,1236},{43,66}}</string>
+				<string>{{387,371},{43,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -425,7 +425,7 @@
 			<key>image/fish33/11.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{387,1883},{45,66}}</string>
+				<string>{{175,1996},{45,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -436,40 +436,40 @@
 			<key>image/fish33/2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1619,1149},{35,66}}</string>
+				<string>{{387,495},{35,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{35,66}</string>
 			</dict>
 			<key>image/fish33/3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{466,663},{31,66}}</string>
+				<string>{{387,641},{31,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{31,66}</string>
 			</dict>
 			<key>image/fish33/4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{466,731},{31,66}}</string>
+				<string>{{387,674},{31,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{31,66}</string>
 			</dict>
 			<key>image/fish33/5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{488,1252},{31,66}}</string>
+				<string>{{387,707},{31,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -480,18 +480,18 @@
 			<key>image/fish33/6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1619,1217},{33,66}}</string>
+				<string>{{387,570},{33,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{33,66}</string>
 			</dict>
 			<key>image/fish33/7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{387,1091},{37,66}}</string>
+				<string>{{387,416},{37,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -502,29 +502,29 @@
 			<key>image/fish33/8.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{387,1008},{39,66}}</string>
+				<string>{{1999,264},{39,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{39,66}</string>
 			</dict>
 			<key>image/fish33/9.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{387,921},{41,66}}</string>
+				<string>{{1999,69},{41,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{41,66}</string>
 			</dict>
 			<key>image/fish34/0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1724,1988},{52,63}}</string>
+				<string>{{387,164},{52,63}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -535,18 +535,18 @@
 			<key>image/fish34/1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1932,1976},{52,63}}</string>
+				<string>{{387,218},{52,63}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{52,63}</string>
 			</dict>
 			<key>image/fish34/10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{387,826},{50,63}}</string>
+				<string>{{110,1996},{50,63}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -557,18 +557,18 @@
 			<key>image/fish34/11.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1986,1976},{52,63}}</string>
+				<string>{{387,272},{52,63}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{52,63}</string>
 			</dict>
 			<key>image/fish34/2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{455,1883},{46,63}}</string>
+				<string>{{243,1996},{46,63}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -579,7 +579,7 @@
 			<key>image/fish34/3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{536,1108},{36,63}}</string>
+				<string>{{387,532},{36,63}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -590,7 +590,7 @@
 			<key>image/fish34/4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{601,1108},{32,63}}</string>
+				<string>{{387,740},{32,63}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -601,51 +601,51 @@
 			<key>image/fish34/5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{576,1043},{34,63}}</string>
+				<string>{{387,605},{34,63}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{34,63}</string>
 			</dict>
 			<key>image/fish34/6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{536,1043},{38,63}}</string>
+				<string>{{387,455},{38,63}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{38,63}</string>
 			</dict>
 			<key>image/fish34/7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{387,1049},{40,63}}</string>
+				<string>{{1999,332},{40,63}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{40,63}</string>
 			</dict>
 			<key>image/fish34/8.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{387,964},{42,63}}</string>
+				<string>{{1999,137},{42,63}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{42,63}</string>
 			</dict>
 			<key>image/fish34/9.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{520,1883},{46,63}}</string>
+				<string>{{308,1996},{46,63}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -656,7 +656,7 @@
 			<key>image/fish35/0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{488,1149},{101,89}}</string>
+				<string>{{1115,1188},{101,89}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -667,18 +667,18 @@
 			<key>image/fish35/1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1724,1871},{115,97}}</string>
+				<string>{{1699,1910},{115,97}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{115,97}</string>
 			</dict>
 			<key>image/fish35/10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{455,1043},{79,87}}</string>
+				<string>{{1452,1234},{79,87}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -689,29 +689,29 @@
 			<key>image/fish35/11.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{579,1149},{85,83}}</string>
+				<string>{{1452,1149},{85,83}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{85,83}</string>
 			</dict>
 			<key>image/fish35/2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{500,1931},{119,99}}</string>
+				<string>{{1598,1910},{119,99}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{119,99}</string>
 			</dict>
 			<key>image/fish35/3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{387,1149},{111,99}}</string>
+				<string>{{1115,980},{111,99}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -722,18 +722,18 @@
 			<key>image/fish35/4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1619,1871},{93,99}}</string>
+				<string>{{1115,1093},{93,99}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{93,99}</string>
 			</dict>
 			<key>image/fish35/5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1970,1419},{71,101}}</string>
+				<string>{{784,1121},{71,101}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -744,18 +744,18 @@
 			<key>image/fish35/6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1970,1621},{55,107}}</string>
+				<string>{{346,1933},{55,107}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{55,107}</string>
 			</dict>
 			<key>image/fish35/7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1823,1976},{49,107}}</string>
+				<string>{{1,1996},{49,107}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -766,7 +766,7 @@
 			<key>image/fish35/8.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1619,1976},{57,103}}</string>
+				<string>{{373,1990},{57,103}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -777,7 +777,7 @@
 			<key>image/fish35/9.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1970,1522},{69,97}}</string>
+				<string>{{1539,1149},{69,97}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -788,18 +788,18 @@
 			<key>image/fish36/0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1970,928},{71,165}}</string>
+				<string>{{455,1914},{71,165}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{71,165}</string>
 			</dict>
 			<key>image/fish36/1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1970,1256},{65,161}}</string>
+				<string>{{387,1},{65,161}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -810,18 +810,18 @@
 			<key>image/fish36/10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,1933},{87,163}}</string>
+				<string>{{1925,767},{87,163}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{87,163}</string>
 			</dict>
 			<key>image/fish36/11.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{387,329},{81,165}}</string>
+				<string>{{1925,1594},{81,165}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -832,73 +832,73 @@
 			<key>image/fish36/2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1970,1095},{71,159}}</string>
+				<string>{{387,1149},{71,159}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{71,159}</string>
 			</dict>
 			<key>image/fish36/3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1970,767},{75,159}}</string>
+				<string>{{1437,1910},{75,159}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{75,159}</string>
 			</dict>
 			<key>image/fish36/4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{387,663},{77,161}}</string>
+				<string>{{789,1914},{77,161}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{77,161}</string>
 			</dict>
 			<key>image/fish36/5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{387,496},{81,165}}</string>
+				<string>{{622,1914},{81,165}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{81,165}</string>
 			</dict>
 			<key>image/fish36/6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{166,1933},{85,165}}</string>
+				<string>{{1925,932},{85,165}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{85,165}</string>
 			</dict>
 			<key>image/fish36/7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{333,1933},{85,165}}</string>
+				<string>{{1925,1099},{85,165}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{85,165}</string>
 			</dict>
 			<key>image/fish36/8.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{387,164},{85,163}}</string>
+				<string>{{1925,1429},{85,163}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -909,13 +909,35 @@
 			<key>image/fish36/9.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{387,1},{87,161}}</string>
+				<string>{{1925,1266},{87,161}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{87,161}</string>
+			</dict>
+			<key>image/start/Express.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1933},{343,61}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{343,61}</string>
+			</dict>
+			<key>image/start/GameLayer_top_4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1999,202},{60,44}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{60,44}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>

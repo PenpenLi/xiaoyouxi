@@ -7,7 +7,9 @@ function GameQiandao:ctor( param )
 	assert( param," !! param is nil !! ")
     assert( param.name," !! param.name is nil !! ")
     GameQiandao.super.ctor( self,param.name )
-
+    local layer = cc.LayerColor:create(cc.c4b(0,0,0,150))
+    self:addChild( layer )
+    self._layer = layer
     self:addCsb( "csbbuyu/GameQiandao.csb" )
     self._state = 1 -- 1,不能签到，2，能签到
 
@@ -47,6 +49,8 @@ end
 
 function GameQiandao:onEnter()
 	GameQiandao.super.onEnter( self )
+	casecadeFadeInNode( self._csbNode,0.5 )
+    casecadeFadeInNode( self._layer,0.5,150 )
 end
 
 function GameQiandao:signIn()

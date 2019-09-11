@@ -84,12 +84,22 @@ function BulletLayer:bulletHarmNum()
 
 	return self._bulletAndBatteryLevel
 end
+function BulletLayer:loadLvAndExp( ... )
+	self.TextLvNum:setString(G_GetModel("Model_BuYu"):getLevel())
+	local exp = G_GetModel("Model_BuYu"):getExp()
+	dump( exp,"----------exp = ")
+	local targetExp = buyu_config.bullet[self._bulletAndBatteryLevel].exp
+
+	self.LoadingBar_1:setPercent( exp / targetExp * 100)
+end
 function BulletLayer:loadUi()
 	self._level = G_GetModel("Model_BuYu"):getLevel()
 	local coin = G_GetModel("Model_BuYu"):getCoin()
 	self.TextCoin:setString( coin )
 	-- 子弹炮台等级
 	self:bulletHarmNum()
+	-- 等级经验
+	self:loadLvAndExp()
 	-- 子弹倍数
 	G_GetModel("Model_BuYu"):setMultiple( self._multiple )
 	
@@ -137,7 +147,7 @@ function BulletLayer:createBullet(cur_point,targetFish)
 		dump( self._level,"---------self._level = ")
 		self:loadUi()
 	end
-
+	self:loadLvAndExp()
 	local coin = G_GetModel("Model_BuYu"):getCoin()
 	if coin < buyu_config.multiple[self._multiple] then
 		if self._multiple > 1 then

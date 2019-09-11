@@ -7,7 +7,9 @@ function GameRenwu:ctor( param )
 	assert( param," !! param is nil !! ")
     assert( param.name," !! param.name is nil !! ")
     GameRenwu.super.ctor( self,param.name )
-
+    local layer = cc.LayerColor:create(cc.c4b(0,0,0,150))
+    self:addChild( layer )
+    self._layer = layer
     self:addCsb( "csbbuyu/GameAssignment.csb" )
 
     self:addNodeClick( self.ButtonClose,{
@@ -22,6 +24,7 @@ end
 function GameRenwu:onEnter()
 	GameRenwu.super.onEnter( self )
 	casecadeFadeInNode( self.Bg,0.5 )
+    casecadeFadeInNode( self._layer,0.5,150 )
 	-- casecadeFadeInNode( self.ImageShadow,0.5,150 )
 end
 

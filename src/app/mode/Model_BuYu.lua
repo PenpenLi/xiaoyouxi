@@ -32,7 +32,7 @@ end
 function Model_BuYu:getCoin()
 	if self._coin == nil then
 		local user_default = cc.UserDefault:getInstance()
-		self._coin = user_default:getIntegerForKey( "buyuCoin",50 )
+		self._coin = user_default:getIntegerForKey( "buyuCoin",1000 )
 		user_default:setIntegerForKey( "buyuCoin",self._coin )
 	end
 	return self._coin
