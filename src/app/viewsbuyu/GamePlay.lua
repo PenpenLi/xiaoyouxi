@@ -27,10 +27,6 @@ function GamePlay:ctor( param )
 	local bullet_layer = BulletLayer.new( self )
 	self:addChild( bullet_layer,2 )
 	self._bulletLayer = bullet_layer
-
-	-- self._deadFishIndex = nil -- 标记死亡鱼
-	
-
 end
 
 -- 创建鱼和控制鱼数量的方法
@@ -57,7 +53,6 @@ function GamePlay:bandingBox( dt )
 
 	
 	-- 非自动攻击时碰撞检测
-	-- local bullets_node = self._bulletLayer:getBulletNode()
 	local bullets = self._bulletLayer.BulletNode:getChildren()
 	local fishs = self._fishLayer._fishContainer:getChildren()
 
@@ -77,7 +72,6 @@ function GamePlay:bandingBox( dt )
 			bullet_box.y = bullet_world_pos.y - bullet_box.height / 2
 			bullet_box.width = bullet_box.width * 0.8
 			bullet_box.height = bullet_box.height * 0.8
-			-- local bullet_pos = cc.p( bullets[i]._bullet:getParent() ) 
 			local harmNum = bullets[i]._harmNum
 
 			for j=1,#fishs do
@@ -86,21 +80,9 @@ function GamePlay:bandingBox( dt )
 				fish_box.x = fish_world_pos.x - fish_box.width / 2
 				fish_box.y = fish_world_pos.y - fish_box.height / 2
 
-				-- fish_box.width = fish_box.width * 0.8
-				-- fish_box.height = fish_box.height * 0.8
-				
 				if cc.rectIntersectsRect( bullet_box,fish_box ) then
-				-- if cc.rectContainsPoint( fish_box,bullet_pos ) then
-					-- print("----------------------------打中鱼了~！！！")
-					self:stateOfBullet( bullets[i],fish_world_pos )     -------------------------------------这里传参bullets[i]._bullet，45行出问题是什么鬼？？
-					-- self:stateOfFish( fishs[j] )
-					-- print( "-----------------111111111111")
-					-- dump( bullets[i]._harmNum,"--------------bullets[i]._harmNum = ")
+					self:stateOfBullet( bullets[i],fish_world_pos ) 
 					fishs[j]:fishBeAttacked( harmNum )
-					-- dump( fishs[j]._hp,"---------------fishs[j]._hp = ")
-					-- self:fishBeAttacked( fishs[j],1000 )
-					-- self._deadFishIndex = fishs[j]:getFishGetCoin()
-
 					break
 				end
 			end
@@ -114,10 +96,6 @@ end
 
 -- 子弹碰撞效果
 function GamePlay:stateOfBullet( bullet,net_pos )
-	-- dump( bullet,"-----------bullet = ")
-	-- dump( bullet._bullet,"-----------bullet._bullet = ")
-	-- local fish_pos = cc.p(fish:getPosition())
-	-- local net_pos = fish:getParent():convertToWorldSpace( bullet_pos )
 	
 	local fishNet = ccui.ImageView:create( "image/net/1.png",1 )
 	self:addChild( fishNet,1001 )
@@ -127,84 +105,12 @@ function GamePlay:stateOfBullet( bullet,net_pos )
 	end,0.3)
 	bullet:removeFromParent()
 end
--- -- 鱼的碰撞效果
--- function GamePlay:fishBeAttacked( fish,harmNum )
--- 	fish:setBlood( harmNum )
--- 	local hp = fish:getBlood()
--- 	if hp <= 0 then
--- 		-- 死亡动画
--- 		self:actionOfDead( fish )
--- 		-- performWithDelay( self,function ()
--- 		-- 	fish:removeFromParent()
--- 		-- end,1)
-		
--- 	else
--- 		-- 受伤动画
--- 		local index = 0 -- 控制变色时间
--- 		self:onUpdate( function( dt ) 
--- 			redSprite( fish._fish:getVirtualRenderer():getSprite() )
--- 			index = index + 1
--- 			if index >= 10 then
--- 				self:unscheduleUpdate()
--- 			end
-
--- 		end)
-
---     end
--- end
--- -- 死亡动画
--- function GamePlay:actionOfDead( fish )
--- 	-- 死亡从node移除到世界坐标，避免死了一直能攻击
--- 	local dead_pos = cc.p(fish:getPosition())
--- 	local dead_worldPos = fish:getParent():convertToWorldSpace( dead_pos )
--- 	local rot = fish:getRotation()
-
-	
--- 	-- fish._fish:retain()
--- 	-- fish:removeFromParent()
--- 	-- self:addChild( fish._fish )
--- 	-- fish._fish:release()
--- 	-- fish._fish:setPosition( dead_worldPos )
-
--- 	local fishIndex = fish:getFishIndex()
--- 	self._config = buyu_config.fish[fishIndex]
--- 	local img_fish = ccui.ImageView:create( self._config.path.."0.png",1)
--- 	self:addChild( img_fish )
--- 	img_fish:setPosition( dead_worldPos )
-
--- 	fish:stopAllActions()
--- 	fish:unSchedule()
--- 	local index = 0
-	
--- 	-- dump( rot,"------------rot = ")
--- 	schedule( img_fish,function ()
--- 		local path = self._config.path..index..".png"
--- 		redSprite( img_fish:getVirtualRenderer():getSprite() )
--- 		img_fish:loadTexture( path,1 )
--- 		img_fish:setRotation( rot )
--- 		-- local rot1 = img_fish:getRotation()
--- 		-- dump( rot1,"------------rot1 = ")
--- 		index = index + 1
--- 		if index > self._config.endNum then
--- 			index = 0
--- 		end
--- 	end,0.02)
--- 	performWithDelay( self,function ()
--- 		img_fish:removeFromParent()
--- 	end,1)
--- 	fish:removeFromParent()
--- end
 
 -- 创建金币
 function GamePlay:createCoin( pos,coin )
-	-- local start_nodePos = cc.p( node:getPosition())
-	-- local start_worldPos = node:getParent():convertToWorldSpace( start_nodePos )
 	local start_worldPos = pos
-	-- dump( start_worldPos,"-----------start_worldPos = ")
 	local end_nodePos = cc.p( self._bulletLayer.ImageCoin:getPosition())
 	local end_worldPos = self._bulletLayer.ImageCoin:getParent():convertToWorldSpace( end_nodePos )
-	-- dump( end_worldPos,"-----------end_worldPos = ")
-	-- dump(coin,"--------------coin = ")
 	local textCoin = ccui.Text:create()
 	self:addChild( textCoin,4 )
 	textCoin:setString( coin )
@@ -227,8 +133,6 @@ function GamePlay:createCoin( pos,coin )
 			self:unSchedule()
 		end
 	end,0.2)
-	
-	-- coin:coinMove()
 end
 
 
