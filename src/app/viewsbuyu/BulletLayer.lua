@@ -59,12 +59,6 @@ function BulletLayer:ctor( gameLayer )
 		end
 	})
     
-    -- -- 商店
-    -- self:addNodeClick( self.ButtonShop,{
-    -- 	endCallBack = function ()
-    -- 		self:shop()
-    -- 	end
-    -- })
     self:loadUi()
 end
 -- 子弹炮台等级
@@ -78,16 +72,12 @@ function BulletLayer:bulletHarmNum()
 			break
 		end
 	end
-	-- self._harmNum = 5
-	-- GODO
-
 
 	return self._bulletAndBatteryLevel
 end
 function BulletLayer:loadLvAndExp( ... )
 	self.TextLvNum:setString(G_GetModel("Model_BuYu"):getLevel())
 	local exp = G_GetModel("Model_BuYu"):getExp()
-	dump( exp,"----------exp = ")
 	local targetExp = buyu_config.bullet[self._bulletAndBatteryLevel].exp
 
 	self.LoadingBar_1:setPercent( exp / targetExp * 100)
@@ -103,35 +93,11 @@ function BulletLayer:loadUi()
 	-- 子弹倍数
 	G_GetModel("Model_BuYu"):setMultiple( self._multiple )
 	
-	-- local level = G_GetModel("Model_BuYu"):getLevel()
-	-- local config = buyu_config.bullet
-	-- local index = nil
-	-- local num = 0
-	-- -- local level_end = nil
-	-- for i=1,#config do
-	-- 	num = num + 5
-	-- 	if level <= num then
-	-- 		index = i
-	-- 		break
-	-- 	end
-	-- end
 	self.ImageGun:ignoreContentAdaptWithSize( true )
 	self.ImageGun:loadTexture( buyu_config.bullet[self._bulletAndBatteryLevel].battery,1 )
 	self.TextMultiple:setString( buyu_config.multiple[self._multiple] )
 end
--- --升级更换炮台
--- function BulletLayer:upBulletAndBattery()
--- 	self._level = G_GetModel("Model_BuYu"):getLevel()
--- 	-- 子弹炮台等级
--- 	self:bulletHarmNum()
--- 	-- 子弹倍数
--- 	G_GetModel("Model_BuYu"):setMultiple( self._multiple )
-	
--- 	self.ImageGun:ignoreContentAdaptWithSize( true )
--- 	local x = 1
--- 	self.ImageGun:loadTexture( buyu_config.bullet[self._bulletAndBatteryLevel].battery,1 )
--- 	self.TextMultiple:setString( buyu_config.multiple[self._multiple] )
--- end
+
 function BulletLayer:onEnter( ... )
 	BulletLayer.super.onEnter( self )
 	self:addMsgListener( InnerProtocol.INNER_EVENT_BUYU_KILL_COIN,function ()
@@ -144,7 +110,6 @@ end
 function BulletLayer:createBullet(cur_point,targetFish)
 	local upLevel = G_GetModel("Model_BuYu"):setExp()
 	if upLevel then
-		dump( self._level,"---------self._level = ")
 		self:loadUi()
 	end
 	self:loadLvAndExp()
@@ -200,7 +165,6 @@ function BulletLayer:createBullet(cur_point,targetFish)
 	if self._automaticAttackState == 2 then
 		bullet:bulletMoveTarget( targetFish )
 	end
-
 end
 
 function BulletLayer:onTouchBegan( touch, event )
@@ -240,7 +204,6 @@ end
 
 function BulletLayer:onTouchEnded( touch, event )
 	self:unSchedule()
-
 end
 
 -- 加倍
@@ -291,7 +254,6 @@ function BulletLayer:iceCapped()
 		end
 		fishLayer._iceState = false
 		self.ButtonCongelation:loadTexture( "image/particle/lock0.png",1 )
-		print("---------------------恢复游動")
 	end,10)
 end
 -- 疯狂射击
@@ -306,7 +268,6 @@ function BulletLayer:insaneShoot()
 		self.ButtonInsane:loadTexture( "image/particle/speed_slow.png",1 )
 	end,20)
 end
-
 
 -- 自动攻击
 function BulletLayer:automaticAttack()
