@@ -245,7 +245,6 @@ function BulletLayer:iceCapped()
 		fishs[i]:pause()
 		fishs[i]:stopSchedule()
 	end
-	-- dump( self._gameLayer._fishLayer._fishContainer,"--------------self._gameLayer._fishLayer._fishContainer = ")
 	performWithDelay( fishLayer._fishContainer,function ()
 		layer:removeFromParent()
 		fishs = fishLayer._fishContainer:getChildren()
@@ -253,7 +252,6 @@ function BulletLayer:iceCapped()
 			fishs[i]:resume()
 			fishs[i]:startSchedule()
 		end
-		-- self._gameLayer._fishLayer._fishContainer:resume()
 		fishLayer._iceState = false
 		self.ButtonCongelation:loadTexture( "image/particle/lock0.png",1 )
 	end,10)
@@ -298,7 +296,7 @@ function BulletLayer:automaticAttack()
 			self._maxFish = nil
 			return
 		end
-		
+
 		local fish_pos = cc.p( self._maxFish:getPosition())
 		local fish_worldPos = self._maxFish:getParent():convertToWorldSpace( fish_pos )
 		if fish_worldPos.x < 0 or fish_worldPos.y < 0 or fish_worldPos.x > display.width or fish_worldPos.y > display.height  then
