@@ -19,6 +19,7 @@ end
 
 function BaseNode:init()
     self:enableNodeEvents()
+    self:setCascadeColorEnabled(true)
 end
 
 function BaseNode:addCsb( fileName,zOrder )
