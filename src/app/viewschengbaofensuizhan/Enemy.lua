@@ -15,7 +15,9 @@ function Enemy:createIcon()
 end
 
 
-
+function Enemy:getEnemyList()
+	return self._gameLayer._soldierList
+end
 
 
 
