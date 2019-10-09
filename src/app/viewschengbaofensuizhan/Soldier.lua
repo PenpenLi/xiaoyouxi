@@ -10,6 +10,7 @@ end
 
 -- 士兵的逻辑
 function Soldier:aiLogic()
+	self._soldierState = 1	-- 1,初始状态，2，攻击状态，3，奔跑状态
 	-- 1:搜索敌人(搜索距离最近的敌人)
 	local enemy_list = self._gameLayer:getEnemyList()
 	if #enemy_list == 0 then
@@ -42,7 +43,7 @@ function Soldier:searchAttackToEnemy()
 		if v:getHp() > 0 then
 			local enemy_pos = v:getParent():convertToWorldSpace( cc.p( v:getPosition() ) )
 			local dis = cc.pGetDistance( m_pos,enemy_pos )
-			if dis < self._config.attack_dis then
+			if dis < self._config.attack_dis + self._config.size + 1 then
 				return v
 			end
 		end
@@ -80,13 +81,27 @@ end
 function Soldier:runToEnemy( enemyNode )
 	-- 播放跑的动画
 	self:playRunAction()
+
+	local m_pos = self:getParent():convertToWorldSpace( cc.p( self:getPosition() ) )
+	local enemy_pos = enemyNode:getParent():convertToWorldSpace( cc.p( enemyNode:getPosition() ) )
 	-- 设置X轴
-	self:setPositionX( self:getPositionX() + self._config.speed )
+	if (enemy_pos.x - m_pos.x) > self._config.attack_dis + self._config.size then
+		self:setPositionX( self:getPositionX() + self._config.speed )
+	end
+	
 	-- 设置Y轴
+
+	local move_y = self._config.speed / (enemy_pos.x - m_pos.x) * (enemy_pos.y - m_pos.y)
+	self:setPositionY( self:getPositionY() + move_y )
+	-- if self:getPositionY() > enemyNode:getPositionY() then
+	-- 	self:setPositionY( ( self:getPositionX() + self._config.speed) / dis.x * dis.y )
+	-- else
+	-- end
 end
 
 -- 攻击敌人
 function Soldier:attackEnemy( enemyNode )
+	self:playAttackAction()
 end
 
 

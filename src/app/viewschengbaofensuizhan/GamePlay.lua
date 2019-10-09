@@ -1,4 +1,5 @@
 
+local LoadPersonLayer = import(".LoadPersonLayer")
 local Soldier = import(".Soldier")
 local Enemy = import(".Enemy")
 local GamePlay = class( "GamePlay",BaseLayer )
@@ -8,7 +9,9 @@ function GamePlay:ctor( param )
 	assert( param.name," !! param.name is nil !! " )
 	GamePlay.super.ctor( self,param.name )
 
-	-- self:addCsb("csbchengbaofensuizhan/GamePlay.csb")
+	self:addCsb("csbchengbaofensuizhan/GamePlay.csb")
+	self._loadPersonLayer = LoadPersonLayer.new(self)
+	self:addChild( self._loadPersonLayer )
 
 	self:loadPerson()
 
