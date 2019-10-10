@@ -7,73 +7,73 @@
 			<key>image/people/player_0001/01.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{405,405},{250,200}}</string>
+				<string>{{203,907},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{250,200}</string>
 			</dict>
 			<key>image/people/player_0001/02.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{657,405},{250,200}}</string>
+				<string>{{203,1159},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{250,200}</string>
 			</dict>
 			<key>image/people/player_0001/03.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{909,405},{250,200}}</string>
+				<string>{{203,1411},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{250,200}</string>
 			</dict>
 			<key>image/people/player_0001/04.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1161,405},{250,200}}</string>
+				<string>{{303,1663},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{250,200}</string>
 			</dict>
 			<key>image/people/player_0001/05.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1413,405},{250,200}}</string>
+				<string>{{405,605},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{250,200}</string>
 			</dict>
 			<key>image/people/player_0001/06.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1665,405},{250,200}}</string>
+				<string>{{405,857},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{250,200}</string>
 			</dict>
 			<key>image/people/player_0001/07.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{405,607},{250,200}}</string>
+				<string>{{405,1109},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -84,7 +84,7 @@
 			<key>image/people/player_0001/08.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{405,859},{250,200}}</string>
+				<string>{{405,1361},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -95,7 +95,7 @@
 			<key>image/people/player_0001/09.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{405,1111},{250,200}}</string>
+				<string>{{505,1613},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -106,51 +106,51 @@
 			<key>image/people/player_0001/10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,705},{300,200}}</string>
+				<string>{{1,1},{300,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{300,200}</string>
 			</dict>
 			<key>image/people/player_0001/11.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,1007},{300,200}}</string>
+				<string>{{303,1},{300,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{300,200}</string>
 			</dict>
 			<key>image/people/player_0001/12.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,1309},{300,200}}</string>
+				<string>{{605,1},{300,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{300,200}</string>
 			</dict>
 			<key>image/people/player_0001/13.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,1611},{300,200}}</string>
+				<string>{{907,1},{300,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{300,200}</string>
 			</dict>
 			<key>image/people/player_0001/14.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{203,203},{300,200}}</string>
+				<string>{{1209,1},{300,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -161,7 +161,7 @@
 			<key>image/people/player_0002/01.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{405,1363},{250,200}}</string>
+				<string>{{607,605},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -172,7 +172,7 @@
 			<key>image/people/player_0002/02.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{405,1615},{250,200}}</string>
+				<string>{{607,857},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -183,40 +183,40 @@
 			<key>image/people/player_0002/03.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{607,607},{250,200}}</string>
+				<string>{{607,1109},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{250,200}</string>
 			</dict>
 			<key>image/people/player_0002/04.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{859,607},{250,200}}</string>
+				<string>{{607,1361},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{250,200}</string>
 			</dict>
 			<key>image/people/player_0002/05.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1111,607},{250,200}}</string>
+				<string>{{707,1613},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{250,200}</string>
 			</dict>
 			<key>image/people/player_0002/06.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1363,607},{250,200}}</string>
+				<string>{{809,405},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -227,7 +227,7 @@
 			<key>image/people/player_0002/07.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1615,607},{250,200}}</string>
+				<string>{{1061,405},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -238,18 +238,18 @@
 			<key>image/people/player_0002/08.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{607,809},{250,200}}</string>
+				<string>{{1313,405},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{250,200}</string>
 			</dict>
 			<key>image/people/player_0002/09.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{607,1061},{250,200}}</string>
+				<string>{{1565,405},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -260,7 +260,7 @@
 			<key>image/people/player_0002/10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{505,203},{300,200}}</string>
+				<string>{{1511,1},{300,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -271,18 +271,18 @@
 			<key>image/people/player_0002/11.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{807,203},{300,200}}</string>
+				<string>{{1813,1},{300,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{300,200}</string>
 			</dict>
 			<key>image/people/player_0002/12.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1109,203},{300,200}}</string>
+				<string>{{1,203},{300,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -293,7 +293,7 @@
 			<key>image/people/player_0002/13.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1411,203},{300,200}}</string>
+				<string>{{303,203},{300,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -304,7 +304,7 @@
 			<key>image/people/player_0002/14.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1713,203},{300,200}}</string>
+				<string>{{605,203},{300,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -312,197 +312,43 @@
 				<key>sourceSize</key>
 				<string>{300,200}</string>
 			</dict>
-			<key>image/people/player_0004/01.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{607,1313},{250,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{250,200}</string>
-			</dict>
-			<key>image/people/player_0004/02.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{607,1565},{250,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{250,200}</string>
-			</dict>
-			<key>image/people/player_0004/03.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{607,1817},{250,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{250,200}</string>
-			</dict>
-			<key>image/people/player_0004/04.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{809,809},{250,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{250,200}</string>
-			</dict>
-			<key>image/people/player_0004/05.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{809,1061},{250,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{250,200}</string>
-			</dict>
-			<key>image/people/player_0004/06.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{809,1313},{250,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{250,200}</string>
-			</dict>
-			<key>image/people/player_0004/07.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{809,1565},{250,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{250,200}</string>
-			</dict>
-			<key>image/people/player_0004/08.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{859,1817},{250,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{250,200}</string>
-			</dict>
-			<key>image/people/player_0004/09.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{1011,809},{250,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{250,200}</string>
-			</dict>
-			<key>image/people/player_0004/10.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{1,1},{500,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{500,200}</string>
-			</dict>
-			<key>image/people/player_0004/11.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{503,1},{500,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{500,200}</string>
-			</dict>
-			<key>image/people/player_0004/12.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{1005,1},{500,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{500,200}</string>
-			</dict>
-			<key>image/people/player_0004/13.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{1507,1},{500,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{500,200}</string>
-			</dict>
-			<key>image/people/player_0004/14.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{1,203},{500,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{500,200}</string>
-			</dict>
 			<key>image/people/player_0005/01.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1011,1061},{250,200}}</string>
+				<string>{{1767,605},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{250,200}</string>
 			</dict>
 			<key>image/people/player_0005/02.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1011,1313},{250,200}}</string>
+				<string>{{809,607},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{250,200}</string>
 			</dict>
 			<key>image/people/player_0005/03.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1011,1565},{250,200}}</string>
+				<string>{{1061,607},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{250,200}</string>
 			</dict>
 			<key>image/people/player_0005/04.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1111,1817},{250,200}}</string>
+				<string>{{1313,607},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -513,62 +359,18 @@
 			<key>image/people/player_0005/05.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1213,809},{250,200}}</string>
+				<string>{{1565,657},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{250,200}</string>
 			</dict>
 			<key>image/people/player_0005/06.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1213,1011},{250,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{250,200}</string>
-			</dict>
-			<key>image/people/player_0005/07.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{1213,1263},{250,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{250,200}</string>
-			</dict>
-			<key>image/people/player_0005/08.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{1213,1515},{250,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{250,200}</string>
-			</dict>
-			<key>image/people/player_0005/09.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{1363,1767},{250,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{250,200}</string>
-			</dict>
-			<key>image/people/player_0005/10.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{1415,1011},{250,200}}</string>
+				<string>{{1767,807},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -576,10 +378,54 @@
 				<key>sourceSize</key>
 				<string>{250,200}</string>
 			</dict>
+			<key>image/people/player_0005/07.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{809,809},{250,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{250,200}</string>
+			</dict>
+			<key>image/people/player_0005/08.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1061,809},{250,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{250,200}</string>
+			</dict>
+			<key>image/people/player_0005/09.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1313,809},{250,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{250,200}</string>
+			</dict>
+			<key>image/people/player_0005/10.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1565,909},{250,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{250,200}</string>
+			</dict>
 			<key>image/people/player_0005/11.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1465,809},{250,200}}</string>
+				<string>{{1767,1009},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -590,7 +436,7 @@
 			<key>image/people/player_0005/12.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1415,1213},{250,200}}</string>
+				<string>{{809,1161},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -601,29 +447,29 @@
 			<key>image/people/player_0005/13.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1415,1465},{250,200}}</string>
+				<string>{{1011,1011},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{250,200}</string>
 			</dict>
 			<key>image/people/player_0005/14.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1565,1717},{250,200}}</string>
+				<string>{{1263,1011},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{250,200}</string>
 			</dict>
 			<key>image/people/player_0006/01.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1617,1213},{250,200}}</string>
+				<string>{{1515,1161},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -634,7 +480,7 @@
 			<key>image/people/player_0006/02.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1667,1011},{250,200}}</string>
+				<string>{{1767,1211},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -645,7 +491,7 @@
 			<key>image/people/player_0006/03.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1717,809},{250,200}}</string>
+				<string>{{1011,1213},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -656,18 +502,18 @@
 			<key>image/people/player_0006/04.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1617,1415},{250,200}}</string>
+				<string>{{1263,1213},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{250,200}</string>
 			</dict>
 			<key>image/people/player_0006/05.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1767,1667},{250,200}}</string>
+				<string>{{1515,1363},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -678,51 +524,84 @@
 			<key>image/people/player_0006/06.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1819,1415},{250,200}}</string>
+				<string>{{1767,1413},{250,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
+				<key>sourceSize</key>
+				<string>{250,200}</string>
+			</dict>
+			<key>image/people/player_0006/07.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{909,1415},{250,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{250,200}</string>
+			</dict>
+			<key>image/people/player_0006/08.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1161,1415},{250,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{250,200}</string>
+			</dict>
+			<key>image/people/player_0006/09.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1413,1565},{250,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
 				<key>sourceSize</key>
 				<string>{250,200}</string>
 			</dict>
 			<key>image/people/player_0006/10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{203,405},{300,200}}</string>
+				<string>{{907,203},{300,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{300,200}</string>
 			</dict>
 			<key>image/people/player_0006/11.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{203,707},{300,200}}</string>
+				<string>{{1209,203},{300,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{300,200}</string>
 			</dict>
 			<key>image/people/player_0006/12.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{203,1009},{300,200}}</string>
+				<string>{{1511,203},{300,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{300,200}</string>
 			</dict>
 			<key>image/people/player_0006/13.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{203,1311},{300,200}}</string>
+				<string>{{1813,303},{300,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -733,7 +612,128 @@
 			<key>image/people/player_0006/14.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{203,1613},{300,200}}</string>
+				<string>{{1,605},{300,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{300,200}</string>
+			</dict>
+			<key>image/people/player_0007/01.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1665,1615},{250,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{250,200}</string>
+			</dict>
+			<key>image/people/player_0007/02.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{909,1767},{250,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{250,200}</string>
+			</dict>
+			<key>image/people/player_0007/03.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1111,1617},{250,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{250,200}</string>
+			</dict>
+			<key>image/people/player_0007/04.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1363,1767},{250,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{250,200}</string>
+			</dict>
+			<key>image/people/player_0007/05.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1111,1819},{250,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{250,200}</string>
+			</dict>
+			<key>image/people/player_0007/06.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1565,1817},{250,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{250,200}</string>
+			</dict>
+			<key>image/people/player_0007/10.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,907},{300,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{300,200}</string>
+			</dict>
+			<key>image/people/player_0007/11.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1209},{300,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{300,200}</string>
+			</dict>
+			<key>image/people/player_0007/12.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1511},{300,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{300,200}</string>
+			</dict>
+			<key>image/people/player_0007/13.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1813},{300,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{300,200}</string>
+			</dict>
+			<key>image/people/player_0007/14.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{203,605},{300,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>

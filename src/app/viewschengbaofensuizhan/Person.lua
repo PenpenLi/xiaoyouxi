@@ -130,8 +130,13 @@ function Person:searchAttackToEnemy()
 			local enemy_pos = dest_node:getParent():convertToWorldSpace( cc.p( dest_node:getPosition() ) )
 			local dis = cc.pGetDistance( m_pos,enemy_pos )
 			if dis <= self._config.attack_dis then
-				return dest_node
+				local dis_y = math.abs( m_pos.y - enemy_pos.y )
+				if dis_y < 10 then
+					return dest_node
+				end
+				--return dest_node
 			end
+			
 		end
 	end
 	return nil
@@ -173,6 +178,7 @@ function Person:runToEnemy( enemyNode )
 	local enemy_pos = enemyNode:getParent():convertToWorldSpace( cc.p( enemyNode:getPosition() ) )
 
 	local move_x = nil
+	local move_y = nil
 	if m_pos.x > enemy_pos.x - self._config.attack_dis and m_pos.x < enemy_pos.x then
 		move_x = 0
 	elseif m_pos.x < enemy_pos.x - self._config.attack_dis then
@@ -183,16 +189,27 @@ function Person:runToEnemy( enemyNode )
 	elseif m_pos.x > enemy_pos.x - self._config.attack_dis then
 		enemy_pos.x = enemy_pos.x + self._config.attack_dis
 	end
-	local x = enemy_pos.x - m_pos.x
-	local y = enemy_pos.y - m_pos.y
-	local k = math.atan2( y,x )
-	local r = 90 - k * 180 / math.pi
-	local radian = 2 * math.pi/360 * r
+	
 
 	if move_x == nil then
+		local x = enemy_pos.x - m_pos.x
+		local y = enemy_pos.y - m_pos.y
+		local k = math.atan2( y,x )
+		local r = 90 - k * 180 / math.pi
+		local radian = 2 * math.pi/360 * r
 		move_x = math.sin( radian ) * self._config.speed
+		move_y = math.cos( radian ) * self._config.speed
+	elseif move_x == 0 then
+		local x = 0
+		local y = enemy_pos.y - m_pos.y
+		local k = math.atan2( y,x )
+		local r = 90 - k * 180 / math.pi
+		local radian = 2 * math.pi/360 * r
+		move_x = math.sin( radian ) * self._config.speed
+		move_y = math.cos( radian ) * self._config.speed
 	end
-	local move_y = math.cos( radian ) * self._config.speed
+
+	
 	dump( move_x,"--------------------move_x = ")
 	dump( move_y,"--------------------move_y = ")
 	--local move_by_pos = cc.p( move_x,move_y )
