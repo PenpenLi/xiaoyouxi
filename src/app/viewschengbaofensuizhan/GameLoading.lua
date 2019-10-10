@@ -63,6 +63,7 @@ function GameLoading:loadEffect()
 	if self._sound == nil then
 		removeUIFromScene( UIDefine.CHENGBAOFENSUIZHAN_KEY.Loading_UI )
 		addUIToScene( UIDefine.CHENGBAOFENSUIZHAN_KEY.Play_UI )
+		addUIToScene( UIDefine.CHENGBAOFENSUIZHAN_KEY.Operation_UI )
 		return
 	end
 	local index = 1
@@ -73,6 +74,7 @@ function GameLoading:loadEffect()
 			self:unSchedule()
 			removeUIFromScene( UIDefine.CHENGBAOFENSUIZHAN_KEY.Loading_UI )
 			addUIToScene( UIDefine.CHENGBAOFENSUIZHAN_KEY.Start_UI )
+			addUIToScene( UIDefine.CHENGBAOFENSUIZHAN_KEY.Operation_UI )
 		end
 	end,0.02)
 end

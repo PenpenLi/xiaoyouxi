@@ -326,6 +326,7 @@ UIDefine.CHENGBAOFENSUIZHAN_KEY 	= {
 	Loading_UI 				= { layer = import("app.viewschengbaofensuizhan.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "ChengBaoFenSuiZhan_Loading_UI" 			  	    		},
 	Start_UI 				= { layer = import("app.viewschengbaofensuizhan.GameStart"),	    		flag = UIDefine.LayerFlag.Main.name,	name = "ChengBaoFenSuiZhan_Start_UI"                     		},
 	Play_UI             	= { layer = import("app.viewschengbaofensuizhan.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "ChengBaoFenSuiZhan_Play_UI"    			   				},
+	Operation_UI            = { layer = import("app.viewschengbaofensuizhan.GameOperationLayer"),		flag = UIDefine.LayerFlag.UI.name,	name = "ChengBaoFenSuiZhan_Operation_UI"    			   				},
 	--Shop_UI	    	 	   	= { layer = import("app.viewsbuyu.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Shop_UI"    		   		  			},
 	--Buy_UI	    	   	 	= { layer = import("app.viewsbuyu.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Buy_UI"    		   		  			},
 	--Sign_UI	    	   	 	= { layer = import("app.viewsbuyu.GameQiandao"),		      	flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Sign_UI"    		   		  			},

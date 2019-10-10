@@ -1,5 +1,5 @@
 
-local LoadPersonLayer = import(".LoadPersonLayer")
+local GameOperationLayer = import(".GameOperationLayer")
 
 local Build = import(".Build")
 local Soldier = import(".Soldier")
@@ -13,8 +13,8 @@ function GamePlay:ctor( param )
 
 	self:addCsb("csbchengbaofensuizhan/GamePlay.csb")
 
-	-- self._loadPersonLayer = LoadPersonLayer.new(self)
-	-- self:addChild( self._loadPersonLayer )
+	-- self._gameOperationLayer = GameOperationLayer.new(self)
+	-- self:addChild( self._gameOperationLayer )
 
 	
 
@@ -42,6 +42,11 @@ function GamePlay:onEnter()
 	self:schedule( function()
 		self:createEnemy()
 	end,1 )
+
+	-- 添加监听
+	self:addMsgListener( InnerProtocol.INNER_EVENT_CHENGBAOFENSUI_CREATESOLDIER,function( event )
+		self:createSoldier(event.data[1].id,event.data[1].pos)
+	end )
 end
 
 function GamePlay:createBuildWall()

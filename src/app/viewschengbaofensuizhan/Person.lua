@@ -172,19 +172,48 @@ function Person:runToEnemy( enemyNode )
 	local m_pos = self:getParent():convertToWorldSpace( cc.p( self:getPosition() ) )
 	local enemy_pos = enemyNode:getParent():convertToWorldSpace( cc.p( enemyNode:getPosition() ) )
 
-	-- 设置X轴
-	if enemy_pos.x >= m_pos.x then
-		self:setPositionX( self:getPositionX() + self._config.speed )
-	else
-		self:setPositionX( self:getPositionX() - self._config.speed )
+	local move_x = nil
+	if m_pos.x > enemy_pos.x - self._config.attack_dis and m_pos.x < enemy_pos.x then
+		move_x = 0
+	elseif m_pos.x < enemy_pos.x - self._config.attack_dis then
+		enemy_pos.x = enemy_pos.x - self._config.attack_dis
 	end
-	-- 设置Y轴
-	local move_y = self._config.speed / (math.abs(enemy_pos.x - m_pos.x)) * math.abs((enemy_pos.y - m_pos.y))
-	if enemy_pos.y >= m_pos.y then
-		self:setPositionY( self:getPositionY() + move_y )
-	else
-		self:setPositionY( self:getPositionY() - move_y )
+	if m_pos.x < enemy_pos.x + self._config.attack_dis and m_pos.x > enemy_pos.x then
+		move_x = 0
+	elseif m_pos.x > enemy_pos.x - self._config.attack_dis then
+		enemy_pos.x = enemy_pos.x + self._config.attack_dis
 	end
+	local x = enemy_pos.x - m_pos.x
+	local y = enemy_pos.y - m_pos.y
+	local k = math.atan2( y,x )
+	local r = 90 - k * 180 / math.pi
+	local radian = 2 * math.pi/360 * r
+
+	if move_x == nil then
+		move_x = math.sin( radian ) * self._config.speed
+	end
+	local move_y = math.cos( radian ) * self._config.speed
+	dump( move_x,"--------------------move_x = ")
+	dump( move_y,"--------------------move_y = ")
+	--local move_by_pos = cc.p( move_x,move_y )
+	m_pos.x = m_pos.x + move_x
+	m_pos.y = m_pos.y + move_y
+	self:setPosition( cc.p( m_pos.x,m_pos.y ) )
+
+
+	-- -- 设置X轴
+	-- if enemy_pos.x >= m_pos.x then
+	-- 	self:setPositionX( self:getPositionX() + self._config.speed )
+	-- else
+	-- 	self:setPositionX( self:getPositionX() - self._config.speed )
+	-- end
+	-- -- 设置Y轴
+	-- local move_y = self._config.speed / (math.abs(enemy_pos.x - m_pos.x)) * math.abs((enemy_pos.y - m_pos.y))
+	-- if enemy_pos.y >= m_pos.y then
+	-- 	self:setPositionY( self:getPositionY() + move_y )
+	-- else
+	-- 	self:setPositionY( self:getPositionY() - move_y )
+	-- end
 end
 
 -- 攻击敌人
