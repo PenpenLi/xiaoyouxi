@@ -34,7 +34,7 @@ end
 function Person:createIcon()
 	self._icon = ccui.ImageView:create(self._config.path.."01.png",1)
 	self:addChild( self._icon )
-	-- self._icon:setAnchorPoint( cc.p( 1,0 ) )
+	self._icon:setScale( 0.5 )
 	self._scheduleTime = 0.18
 end
 
@@ -271,7 +271,8 @@ end
 
 -- 死亡
 function Person:dead()
-	print("---------------->死亡")
+	-- print("---------------->死亡")
+	self:removeFromParent()
 end
 
 

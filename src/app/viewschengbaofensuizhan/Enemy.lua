@@ -20,7 +20,16 @@ function Enemy:getEnemyList()
 end
 
 
-
+-- 死亡
+function Enemy:dead()
+	-- for i,v in ipairs( self._gameLayer._enemyList ) do
+	-- 	if self == v.node then
+	-- 		table.remove( self._gameLayer._enemyList,i )
+	-- 		break
+	-- 	end
+	-- end
+	-- self:removeFromParent()
+end
 
 
 
