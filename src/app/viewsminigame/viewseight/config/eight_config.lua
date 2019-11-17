@@ -1,0 +1,63 @@
+
+
+local eight_poker_config = {}
+
+eight_poker_config.poker_config = {
+	[1]  	= { path = "image/poker/meihuaa.png", num = 1,color = 1 },
+	[2]  	= { path = "image/poker/meihua2.png", num = 2,color = 1 },
+	[3]  	= { path = "image/poker/meihua3.png", num = 3,color = 1 },
+	[4] 	= { path = "image/poker/meihua4.png", num = 4,color = 1 },
+	[5]  	= { path = "image/poker/meihua5.png", num = 5,color = 1 },
+	[6]  	= { path = "image/poker/meihua6.png", num = 6,color = 1 },
+	[7]  	= { path = "image/poker/meihua7.png", num = 7,color = 1 },
+	[8]  	= { path = "image/poker/meihua8.png", num = 8,color = 1 },
+	[9]  	= { path = "image/poker/meihua9.png", num = 9,color = 1 },
+	[10]  	= { path = "image/poker/meihua10.png", num = 10,color = 1 },
+	[11]  	= { path = "image/poker/meihuaj.png", num = 11,color = 1 },
+	[12]    = { path = "image/poker/meihuaq.png", num = 12,color = 1 },
+	[13]    = { path = "image/poker/meihuak.png", num = 13,color = 1 },
+
+	[14]     = { path = "image/poker/fangkuaia.png", num = 1,color = 2 },
+	[15]     = { path = "image/poker/fangkuai2.png", num = 2,color = 2 },
+	[16]     = { path = "image/poker/fangkuai3.png", num = 3,color = 2 },
+	[17]     = { path = "image/poker/fangkuai4.png", num = 4,color = 2 },
+	[18]     = { path = "image/poker/fangkuai5.png", num = 5,color = 2 },
+	[19]     = { path = "image/poker/fangkuai6.png", num = 6,color = 2 },
+	[20]     = { path = "image/poker/fangkuai7.png", num = 7,color = 2 },
+	[21]     = { path = "image/poker/fangkuai8.png", num = 8,color = 2 },
+	[22]     = { path = "image/poker/fangkuai9.png", num = 9,color = 2 },
+	[23]     = { path = "image/poker/fangkuai10.png", num = 10,color = 2 },
+	[24]     = { path = "image/poker/fangkuaij.png", num = 11,color = 2 },
+	[25]     = { path = "image/poker/fangkuaiq.png", num = 12,color = 2 },
+	[26]     = { path = "image/poker/fangkuaik.png", num = 13,color = 2 },
+
+	[27]     = { path = "image/poker/heitao2.png", num = 2,color = 3 },
+	[28]     = { path = "image/poker/heitao3.png", num = 3,color = 3 },
+	[29]     = { path = "image/poker/heitao4.png", num = 4,color = 3 },
+	[30]     = { path = "image/poker/heitao5.png", num = 5,color = 3 },
+	[31]     = { path = "image/poker/heitao6.png", num = 6,color = 3 },
+	[32]     = { path = "image/poker/heitao7.png", num = 7,color = 3 },
+	[33]     = { path = "image/poker/heitao8.png", num = 8,color = 3 },
+	[34]     = { path = "image/poker/heitao9.png", num = 9,color = 3 },
+	[35]     = { path = "image/poker/heitao10.png", num = 10,color = 3 },
+	[36]     = { path = "image/poker/heitaoj.png", num = 11,color = 3 },
+	[37]     = { path = "image/poker/heitaok.png", num = 13,color = 3 },
+	[38]     = { path = "image/poker/heitaoq.png", num = 12,color = 3 },
+	[39]     = { path = "image/poker/heitaoa.png", num = 1,color = 3 },
+
+	[40]     = { path = "image/poker/hongxin2.png", num = 2,color = 4 },
+	[41]     = { path = "image/poker/hongxin3.png", num = 3,color = 4 },
+	[42]     = { path = "image/poker/hongxin4.png", num = 4,color = 4 },
+	[43]     = { path = "image/poker/hongxin5.png", num = 5,color = 4 },
+	[44]     = { path = "image/poker/hongxin6.png", num = 6,color = 4 },
+	[45]     = { path = "image/poker/hongxin7.png", num = 7,color = 4 },
+	[46]     = { path = "image/poker/hongxin8.png", num = 8,color = 4 },
+	[47]     = { path = "image/poker/hongxin9.png", num = 9,color = 4 },
+	[48]     = { path = "image/poker/hongxin10.png", num = 10,color = 4 },
+	[49]     = { path = "image/poker/hongxina.png", num = 1,color = 4 },
+	[50]     = { path = "image/poker/hongxinj.png", num = 11,color = 4 },
+	[51]     = { path = "image/poker/hongxink.png", num = 13,color = 4 },
+	[52]     = { path = "image/poker/hongxinq.png", num = 12,color = 4 },
+}
+
+rawset(_G,"eight_poker_config",eight_poker_config)

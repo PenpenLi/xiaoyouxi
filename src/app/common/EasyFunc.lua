@@ -209,9 +209,17 @@ local function coinFly( startPoint,endPoint,callBack,rate )
     scene:addChild( coin_layer,10000 )
 end
 
+--通用方法，用于注册手机返回按钮回调
+local function registerReturnKey( scene,callback )
+    local layer = Layer:create()
+    scene:addChild(layer)
+    layer:onKeypad( callback )
+end
+
 rawset(_G, "easyWriteFileLog", easyWriteFileLog)
 rawset(_G, "dumpStrToDisk", dumpStrToDisk)
 rawset(_G, "getFormatTime", getFormatTime)
 rawset(_G, "random", random)
 rawset(_G, "getRandomArray", getRandomArray)
 rawset(_G, "coinFly", coinFly)
+rawset(_G, "registerReturnKey", registerReturnKey)
