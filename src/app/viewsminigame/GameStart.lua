@@ -38,6 +38,16 @@ function GameStart:ctor( param )
     		self:playSuoHa()
     	end
     })
+    self:addNodeClick(self.Image_7,{
+    	endCallBack = function ()
+    		self:playZhiPai()
+    	end
+    })
+    self:addNodeClick(self.Image_8,{
+    	endCallBack = function ()
+    		self:playLaBa()
+    	end
+    })
 end
 
 
@@ -135,8 +145,32 @@ function GameStart:playSuoHa()
 	-- local scene = require("app.scenes.EightScene").new()
 	display.runScene(scene)
 end
+function GameStart:playZhiPai()
+	removeUIFromScene( UIDefine.MINIGAME_KEY.Start_UI )
+	-- 停止播放背景音乐
+	audio.stopMusic()
+	-- 释放上一个场景的资源 内存
+	cc.Director:getInstance():purgeCachedData()
 
+	cc.FileUtils:getInstance():addSearchPath( "res" )
 
+	local scene = require("app.viewsminigame.ZhiPaiScene").new()
+	-- local scene = require("app.scenes.EightScene").new()
+	display.runScene(scene)
+end
+function GameStart:playLaBa()
+	removeUIFromScene( UIDefine.MINIGAME_KEY.Start_UI )
+	-- 停止播放背景音乐
+	audio.stopMusic()
+	-- 释放上一个场景的资源 内存
+	cc.Director:getInstance():purgeCachedData()
+
+	cc.FileUtils:getInstance():addSearchPath( "res" )
+
+	local scene = require("app.viewsminigame.LaBaScene").new()
+	-- local scene = require("app.scenes.EightScene").new()
+	display.runScene(scene)
+end
 
 
 

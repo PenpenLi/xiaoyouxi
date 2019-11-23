@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>image/shop/more.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{687,706},{235,234}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{235,234}</string>
+			</dict>
+			<key>image/shop/morebg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,524},{304,442}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{304,442}</string>
+			</dict>
+			<key>image/shop/mediumbg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{307,524},{304,442}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{304,442}</string>
+			</dict>
+			<key>image/shop/medium.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{724,1},{246,181}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{246,181}</string>
+			</dict>
+			<key>image/shop/lessbg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{418,1},{304,442}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{304,442}</string>
+			</dict>
+			<key>image/shop/muchbg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{687,943},{322,78}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{322,78}</string>
+			</dict>
+			<key>image/shop/goldbg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{686,445},{260,259}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{260,259}</string>
+			</dict>
+			<key>image/game/999.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,968},{203,40}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{203,40}</string>
+			</dict>
+			<key>image/game/9999.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{572,968},{113,31}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{113,31}</string>
+			</dict>
+			<key>image/game/9999bg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{418,445},{266,61}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{266,61}</string>
+			</dict>
+			<key>image/game/add.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{613,601},{65,66}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{65,66}</string>
+			</dict>
+			<key>image/game/bet.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{206,968},{143,41}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{143,41}</string>
+			</dict>
+			<key>image/game/choose.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{724,184},{178,176}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{178,176}</string>
+			</dict>
+			<key>image/game/halfyuan.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{351,968},{123,40}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{123,40}</string>
+			</dict>
+			<key>image/game/logo.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1},{415,521}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{415,521}</string>
+			</dict>
+			<key>image/game/minus.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{923,706},{75,74}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{75,74}</string>
+			</dict>
+			<key>image/game/return.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{613,508},{91,69}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{91,69}</string>
+			</dict>
+			<key>image/game/start.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{476,968},{94,47}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{94,47}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>LaBaPlist2.png</string>
+			<key>realTextureFileName</key>
+			<string>LaBaPlist2.png</string>
+			<key>size</key>
+			<string>{1024,1024}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>1024</integer>
+			<key>height</key>
+			<integer>1024</integer>
+		</dict>
+	</dict>
+</plist>
