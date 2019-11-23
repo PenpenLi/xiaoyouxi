@@ -322,82 +322,77 @@ UIDefine.LayerFlag = {
 
 -- }
 
--- UIDefine.CHENGBAOFENSUIZHAN_KEY 	= {
--- 	Loading_UI 				= { layer = import("app.viewschengbaofensuizhan.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "ChengBaoFenSuiZhan_Loading_UI" 			  	    		},
--- 	Start_UI 				= { layer = import("app.viewschengbaofensuizhan.GameStart"),	    		flag = UIDefine.LayerFlag.Main.name,	name = "ChengBaoFenSuiZhan_Start_UI"                     		},
--- 	Play_UI             	= { layer = import("app.viewschengbaofensuizhan.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "ChengBaoFenSuiZhan_Play_UI"    			   				},
--- 	Operation_UI            = { layer = import("app.viewschengbaofensuizhan.GameOperationLayer"),		flag = UIDefine.LayerFlag.UI.name,	name = "ChengBaoFenSuiZhan_Operation_UI"    			   				},
--- 	--Shop_UI	    	 	   	= { layer = import("app.viewsbuyu.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Shop_UI"    		   		  			},
--- 	--Buy_UI	    	   	 	= { layer = import("app.viewsbuyu.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Buy_UI"    		   		  			},
--- 	--Sign_UI	    	   	 	= { layer = import("app.viewsbuyu.GameQiandao"),		      	flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Sign_UI"    		   		  			},
--- 	--Assignment_UI	    	= { layer = import("app.viewsbuyu.GameRenwu"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Assignment_UI"    		   		  		},
--- 	--Voice_UI	       		= { layer = import("app.viewsbuyu.GameVoiceSet"),	      		flag = UIDefine.LayerFlag.Main.name,	name = "BuYu_Voice_UI"    			     			},
-
--- }
-UIDefine.MINIGAME_KEY 	= {
-	Loading_UI 				= { layer = import("app.viewsminigame.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "MiniGame_Loading_UI" 			  	    		},
-	Start_UI 				= { layer = import("app.viewsminigame.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "MiniGame_Start_UI"                     		},
--- 8点的ui
-	Eight_Loading_UI 		= { layer = import("app.viewsminigame.viewseight.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Loading_UI" 			  	    },
-	Eight_Start_UI 			= { layer = import("app.viewsminigame.viewseight.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Start_UI"                     },
-	Eight_Help_UI 			= { layer = import("app.viewsminigame.viewseight.GameHelp"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Help_UI"    			   		},
-	Eight_Over_UI           = { layer = import("app.viewsminigame.viewseight.GameOver"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Over_UI"    			        },
-	Eight_Stop_UI	        = { layer = import("app.viewsminigame.viewseight.GameStop"),	      			flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Stop_UI"    			     	},
-	Eight_Shop_UI	    	= { layer = import("app.viewsminigame.viewseight.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Shop_UI"    		   		  	},
-	Eight_Buy_UI	    	= { layer = import("app.viewsminigame.viewseight.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Buy_UI"    		   		  	},
-	Eight_Play_UI           = { layer = import("app.viewsminigame.viewseight.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Play_UI"    			   		},
-	Eight_Choice_UI         = { layer = import("app.viewsminigame.viewseight.GameChoice"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Choice_UI"    		 		},
-	Eight_Disband_UI        = { layer = import("app.viewsminigame.viewseight.GameDisband"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Disband_UI"    				},
--- 李逵的ui
-	LiKui_Loading_UI 		= { layer = import("app.viewsminigame.viewslikui.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Loading_UI" 			  	    },
-	LiKui_Start_UI 			= { layer = import("app.viewsminigame.viewslikui.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Start_UI"                     },
-	LiKui_Over_UI           = { layer = import("app.viewsminigame.viewslikui.GameOver"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Over_UI"    			        },
-	LiKui_Shop_UI	    	= { layer = import("app.viewsminigame.viewslikui.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Shop_UI"    		   		  	},
-	LiKui_Buy_UI	    	= { layer = import("app.viewsminigame.viewslikui.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Buy_UI"    		   		  	},
-	LiKui_Play_UI           = { layer = import("app.viewsminigame.viewslikui.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Play_UI"    			   		},
-	LiKui_Rank_UI 			= { layer = import("app.viewsminigame.viewslikui.RankMain"),         		flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Rank_UI"				    	},
--- 军事纸牌的ui
-	JunShi_Loading_UI 		= { layer = import("app.viewsminigame.viewsjunshi.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Loading_UI" 			        },
-	JunShi_Start_UI 		= { layer = import("app.viewsminigame.viewsjunshi.GameStart"),	    		flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Start_UI"                    },
-	JunShi_Help_UI 			= { layer = import("app.viewsminigame.viewsjunshi.GameHelp"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Help_UI"    			        },
-	JunShi_Voice_UI	        = { layer = import("app.viewsminigame.viewsjunshi.GameVoiceSet"),		        flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Voice_UI"    		        },
-	JunShi_Shop_UI	       	= { layer = import("app.viewsminigame.viewsjunshi.GameShop"),		            flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Shop_UI"    		            },
-	JunShi_Play_UI          = { layer = import("app.viewsminigame.viewsjunshi.GamePlay"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Play_UI"    			        },
-	JunShi_Select_UI        = { layer = import("app.viewsminigame.viewsjunshi.SelectPeople"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Select_UI"    			    },
-	JunShi_Choose_UI        = { layer = import("app.viewsminigame.viewsjunshi.ChooseCard"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Choose_UI"    			    },
-	JunShi_Over_UI          = { layer = import("app.viewsminigame.viewsjunshi.GameOver"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Over_UI"    			        },
-	JunShi_Rank_UI 			= { layer = import("app.viewsminigame.viewsjunshi.RankMain"),         		flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Rank_UI"				    	},
-	JunShi_Buy_UI 			= { layer = import("app.viewsminigame.viewsjunshi.GameBuy"),         			flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Buy_UI"				        },
--- 足球的ui
-	ZuQiu_Loading_UI 		= { layer = import("app.viewsminigame.viewszuqiu.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Loading_UI" 			  	    },
-	ZuQiu_Start_UI 			= { layer = import("app.viewsminigame.viewszuqiu.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Start_UI"                     },
-	ZuQiu_Help_UI 			= { layer = import("app.viewsminigame.viewszuqiu.GameHelp"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Help_UI"    			   		},
-	ZuQiu_Voice_UI	        = { layer = import("app.viewsminigame.viewszuqiu.GameVoiceSet"),	      		flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Voice_UI"    			     	},
-	ZuQiu_Play_UI           = { layer = import("app.viewsminigame.viewszuqiu.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Play_UI"    			   		},
-	ZuQiu_Lose_UI           = { layer = import("app.viewsminigame.viewszuqiu.GameLose"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Lose_UI"    			    	},
-	ZuQiu_Win_UI            = { layer = import("app.viewsminigame.viewszuqiu.GameWin"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Win_UI"    			        },
--- 战斗的ui
-	ZhanDou_Loading_UI 			= { layer = import("app.viewsminigame.viewszhandou.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Loading_UI" 		        },
-	ZhanDou_Start_UI 			= { layer = import("app.viewsminigame.viewszhandou.GameStart"),	    		flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Start_UI"                   },
-	ZhanDou_Play_UI             = { layer = import("app.viewsminigame.viewszhandou.GamePlay"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Play_UI"    			    },
-	ZhanDou_Help_UI 			= { layer = import("app.viewsminigame.viewszhandou.GameHelp"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Help_UI"    			    },
-	ZhanDou_Voice_UI	        = { layer = import("app.viewsminigame.viewszhandou.GameVoiceSet"),	        flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Voice_UI"    		     	},
-	ZhanDou_Shop_UI	    	    = { layer = import("app.viewsminigame.viewszhandou.GameShop"),		        flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Shop_UI"    		   	  	},
-	ZhanDou_Buy_UI	    	    = { layer = import("app.viewsminigame.viewszhandou.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Buy_UI"    		   		  	},
-	ZhanDou_Pause_UI	    	= { layer = import("app.viewsminigame.viewszhandou.GamePause"),		      	flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Pause_UI"    		   		},
-	ZhanDou_Win_UI              = { layer = import("app.viewsminigame.viewszhandou.GameWin"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Win_UI"    			        },
-	ZhanDou_Lose_UI             = { layer = import("app.viewsminigame.viewszhandou.GameLose"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Lose_UI"    			    },
--- 梭哈的ui
-	SuoHa_Loading_UI 		= { layer = import("app.viewsminigame.viewssuoha.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "SuoHa_Loading_UI" 			  	    },
-	SuoHa_Start_UI 			= { layer = import("app.viewsminigame.viewssuoha.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "SuoHa_Start_UI"                     },
-	SuoHa_Help_UI 			= { layer = import("app.viewsminigame.viewssuoha.GameHelp"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "SuoHa_Help_UI"    			   		},
-	SuoHa_Over_UI           = { layer = import("app.viewsminigame.viewssuoha.GameOver"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "SuoHa_Over_UI"    			        },
-	SuoHa_Voice_UI	        = { layer = import("app.viewsminigame.viewssuoha.GameVoiceSet"),	      		flag = UIDefine.LayerFlag.Main.name,	name = "SuoHa_Voice_UI"    			     	},
-	SuoHa_Shop_UI	    	= { layer = import("app.viewsminigame.viewssuoha.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "SuoHa_Shop_UI"    		   		  	},
-	SuoHa_Buy_UI	    	= { layer = import("app.viewsminigame.viewssuoha.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "SuoHa_Buy_UI"    		   		  	},
-	SuoHa_Play_UI           = { layer = import("app.viewsminigame.viewssuoha.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "SuoHa_Play_UI"    			   		},
-	SuoHa_Rank_UI 			= { layer = import("app.viewsminigame.viewssuoha.Leaderboard"),         		flag = UIDefine.LayerFlag.Main.name,	name = "SuoHa_Rank_UI"				    	},
+UIDefine.FENSUIZHAN_KEY 	= {
+	Loading_UI = { layer = import("app.viewsfensuizhan.GameLoading"),flag = UIDefine.LayerFlag.Main.name,name = "FenSuiZhan_Loading_UI" },
+	Fight_UI = { layer = import("app.viewsfensuizhan.GameFight"),flag = UIDefine.LayerFlag.Main.name,name = "FenSuiZhan_Fight_UI" }
 }
+
+
+
+-- UIDefine.MINIGAME_KEY 	= {
+-- 	Loading_UI 				= { layer = import("app.viewsminigame.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "MiniGame_Loading_UI" 			  	    		},
+-- 	Start_UI 				= { layer = import("app.viewsminigame.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "MiniGame_Start_UI"                     		},
+-- -- 8点的ui
+-- 	Eight_Loading_UI 		= { layer = import("app.viewsminigame.viewseight.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Loading_UI" 			  	    },
+-- 	Eight_Start_UI 			= { layer = import("app.viewsminigame.viewseight.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Start_UI"                     },
+-- 	Eight_Help_UI 			= { layer = import("app.viewsminigame.viewseight.GameHelp"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Help_UI"    			   		},
+-- 	Eight_Over_UI           = { layer = import("app.viewsminigame.viewseight.GameOver"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Over_UI"    			        },
+-- 	Eight_Stop_UI	        = { layer = import("app.viewsminigame.viewseight.GameStop"),	      			flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Stop_UI"    			     	},
+-- 	Eight_Shop_UI	    	= { layer = import("app.viewsminigame.viewseight.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Shop_UI"    		   		  	},
+-- 	Eight_Buy_UI	    	= { layer = import("app.viewsminigame.viewseight.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Buy_UI"    		   		  	},
+-- 	Eight_Play_UI           = { layer = import("app.viewsminigame.viewseight.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Play_UI"    			   		},
+-- 	Eight_Choice_UI         = { layer = import("app.viewsminigame.viewseight.GameChoice"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Choice_UI"    		 		},
+-- 	Eight_Disband_UI        = { layer = import("app.viewsminigame.viewseight.GameDisband"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "Eight_Disband_UI"    				},
+-- -- 李逵的ui
+-- 	LiKui_Loading_UI 		= { layer = import("app.viewsminigame.viewslikui.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Loading_UI" 			  	    },
+-- 	LiKui_Start_UI 			= { layer = import("app.viewsminigame.viewslikui.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Start_UI"                     },
+-- 	LiKui_Over_UI           = { layer = import("app.viewsminigame.viewslikui.GameOver"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Over_UI"    			        },
+-- 	LiKui_Shop_UI	    	= { layer = import("app.viewsminigame.viewslikui.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Shop_UI"    		   		  	},
+-- 	LiKui_Buy_UI	    	= { layer = import("app.viewsminigame.viewslikui.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Buy_UI"    		   		  	},
+-- 	LiKui_Play_UI           = { layer = import("app.viewsminigame.viewslikui.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Play_UI"    			   		},
+-- 	LiKui_Rank_UI 			= { layer = import("app.viewsminigame.viewslikui.RankMain"),         		flag = UIDefine.LayerFlag.Main.name,	name = "LiKui_Rank_UI"				    	},
+-- -- 军事纸牌的ui
+-- 	JunShi_Loading_UI 		= { layer = import("app.viewsminigame.viewsjunshi.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Loading_UI" 			        },
+-- 	JunShi_Start_UI 		= { layer = import("app.viewsminigame.viewsjunshi.GameStart"),	    		flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Start_UI"                    },
+-- 	JunShi_Help_UI 			= { layer = import("app.viewsminigame.viewsjunshi.GameHelp"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Help_UI"    			        },
+-- 	JunShi_Voice_UI	        = { layer = import("app.viewsminigame.viewsjunshi.GameVoiceSet"),		        flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Voice_UI"    		        },
+-- 	JunShi_Shop_UI	       	= { layer = import("app.viewsminigame.viewsjunshi.GameShop"),		            flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Shop_UI"    		            },
+-- 	JunShi_Play_UI          = { layer = import("app.viewsminigame.viewsjunshi.GamePlay"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Play_UI"    			        },
+-- 	JunShi_Select_UI        = { layer = import("app.viewsminigame.viewsjunshi.SelectPeople"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Select_UI"    			    },
+-- 	JunShi_Choose_UI        = { layer = import("app.viewsminigame.viewsjunshi.ChooseCard"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Choose_UI"    			    },
+-- 	JunShi_Over_UI          = { layer = import("app.viewsminigame.viewsjunshi.GameOver"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Over_UI"    			        },
+-- 	JunShi_Rank_UI 			= { layer = import("app.viewsminigame.viewsjunshi.RankMain"),         		flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Rank_UI"				    	},
+-- 	JunShi_Buy_UI 			= { layer = import("app.viewsminigame.viewsjunshi.GameBuy"),         			flag = UIDefine.LayerFlag.Main.name,	name = "JunShi_Buy_UI"				        },
+-- -- 足球的ui
+-- 	ZuQiu_Loading_UI 		= { layer = import("app.viewsminigame.viewszuqiu.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Loading_UI" 			  	    },
+-- 	ZuQiu_Start_UI 			= { layer = import("app.viewsminigame.viewszuqiu.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Start_UI"                     },
+-- 	ZuQiu_Help_UI 			= { layer = import("app.viewsminigame.viewszuqiu.GameHelp"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Help_UI"    			   		},
+-- 	ZuQiu_Voice_UI	        = { layer = import("app.viewsminigame.viewszuqiu.GameVoiceSet"),	      		flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Voice_UI"    			     	},
+-- 	ZuQiu_Play_UI           = { layer = import("app.viewsminigame.viewszuqiu.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Play_UI"    			   		},
+-- 	ZuQiu_Lose_UI           = { layer = import("app.viewsminigame.viewszuqiu.GameLose"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Lose_UI"    			    	},
+-- 	ZuQiu_Win_UI            = { layer = import("app.viewsminigame.viewszuqiu.GameWin"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "ZuQiu_Win_UI"    			        },
+-- -- 战斗的ui
+-- 	ZhanDou_Loading_UI 			= { layer = import("app.viewsminigame.viewszhandou.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Loading_UI" 		        },
+-- 	ZhanDou_Start_UI 			= { layer = import("app.viewsminigame.viewszhandou.GameStart"),	    		flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Start_UI"                   },
+-- 	ZhanDou_Play_UI             = { layer = import("app.viewsminigame.viewszhandou.GamePlay"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Play_UI"    			    },
+-- 	ZhanDou_Help_UI 			= { layer = import("app.viewsminigame.viewszhandou.GameHelp"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Help_UI"    			    },
+-- 	ZhanDou_Voice_UI	        = { layer = import("app.viewsminigame.viewszhandou.GameVoiceSet"),	        flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Voice_UI"    		     	},
+-- 	ZhanDou_Shop_UI	    	    = { layer = import("app.viewsminigame.viewszhandou.GameShop"),		        flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Shop_UI"    		   	  	},
+-- 	ZhanDou_Buy_UI	    	    = { layer = import("app.viewsminigame.viewszhandou.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Buy_UI"    		   		  	},
+-- 	ZhanDou_Pause_UI	    	= { layer = import("app.viewsminigame.viewszhandou.GamePause"),		      	flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Pause_UI"    		   		},
+-- 	ZhanDou_Win_UI              = { layer = import("app.viewsminigame.viewszhandou.GameWin"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Win_UI"    			        },
+-- 	ZhanDou_Lose_UI             = { layer = import("app.viewsminigame.viewszhandou.GameLose"),		    	flag = UIDefine.LayerFlag.Main.name,	name = "ZhanDou_Lose_UI"    			    },
+-- -- 梭哈的ui
+-- 	SuoHa_Loading_UI 		= { layer = import("app.viewsminigame.viewssuoha.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "SuoHa_Loading_UI" 			  	    },
+-- 	SuoHa_Start_UI 			= { layer = import("app.viewsminigame.viewssuoha.GameStart"),	    			flag = UIDefine.LayerFlag.Main.name,	name = "SuoHa_Start_UI"                     },
+-- 	SuoHa_Help_UI 			= { layer = import("app.viewsminigame.viewssuoha.GameHelp"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "SuoHa_Help_UI"    			   		},
+-- 	SuoHa_Over_UI           = { layer = import("app.viewsminigame.viewssuoha.GameOver"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "SuoHa_Over_UI"    			        },
+-- 	SuoHa_Voice_UI	        = { layer = import("app.viewsminigame.viewssuoha.GameVoiceSet"),	      		flag = UIDefine.LayerFlag.Main.name,	name = "SuoHa_Voice_UI"    			     	},
+-- 	SuoHa_Shop_UI	    	= { layer = import("app.viewsminigame.viewssuoha.GameShop"),		    	    flag = UIDefine.LayerFlag.Main.name,	name = "SuoHa_Shop_UI"    		   		  	},
+-- 	SuoHa_Buy_UI	    	= { layer = import("app.viewsminigame.viewssuoha.GameBuy"),		      	    flag = UIDefine.LayerFlag.Main.name,	name = "SuoHa_Buy_UI"    		   		  	},
+-- 	SuoHa_Play_UI           = { layer = import("app.viewsminigame.viewssuoha.GamePlay"),		    		flag = UIDefine.LayerFlag.Main.name,	name = "SuoHa_Play_UI"    			   		},
+-- 	SuoHa_Rank_UI 			= { layer = import("app.viewsminigame.viewssuoha.Leaderboard"),         		flag = UIDefine.LayerFlag.Main.name,	name = "SuoHa_Rank_UI"				    	},
+-- }
 
 
 
