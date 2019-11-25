@@ -376,6 +376,19 @@ local function getAngleByPos( p1,p2 )
 	return r
 end
 
+-- 获取唯一标识 guid
+local function getGUID()
+	local str = "abcdefghigklmnopqrstuvwxyz1234567890ABCDEFGHIGKLMNOPQRSTUVWXYZ"
+	local len = string.len(str)
+	local guid = ""
+	for i = 1,16 do
+	    local index = random(1,len)
+	    local char = string.sub(str,index,index)
+	    guid = guid..char
+	end
+	return guid
+end
+
 rawset(_G, "addUIToScene", addUIToScene)
 rawset(_G, "removeUIFromScene", removeUIFromScene)
 rawset(_G, "getMatrixDataByColumn", getMatrixDataByColumn)
@@ -397,3 +410,4 @@ rawset(_G, "G_AddNodeClick", G_AddNodeClick)
 rawset(_G, "playCsbEndActionCallFunc", playCsbEndActionCallFunc)
 rawset(_G, "playCsbActionForKey", playCsbActionForKey)
 rawset(_G, "playCsbActionForIndex", playCsbActionForIndex)
+rawset(_G, "getGUID", getGUID)

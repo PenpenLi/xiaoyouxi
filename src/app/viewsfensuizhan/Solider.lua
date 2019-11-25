@@ -4,13 +4,24 @@ local Solider = class("Solider",BaseNode)
 
 
 
+Solider.STATUS = {
+	CREATE = 0, -- 刚刚创建的状态
+	MARCH = 1, -- 行军状态
+	CANFIGHT = 2, -- 可以战斗的状态
+	FIGHT = 3, -- 正在战斗的状态
+}
 
-function Solider:ctor( soliderId )
-	Solider.super.ctor( self,"RankCell" )
+function Solider:ctor( soliderId,gameLayer )
+	assert( soliderId," !! soliderId is nil !! " )
+	assert( gameLayer," !! gameLayer is nil !! " )
+	Solider.super.ctor( self,"Solider" )
 	self:addCsb( "csbfensuizhan/NodeSolider.csb" )
-
 	self._id = soliderId
+	self._gameLayer = gameLayer
+	self._orgTrack = random( 1,10 )
+	self._guid = getGUID()
 	self._config = solider_config[self._id]
+	self._status = self.STATUS.CREATE
 end
 
 
@@ -23,8 +34,18 @@ function Solider:setDirection( strType )
 	end
 end
 
+function Solider:onEnter()
+	Solider.super.onEnter( self )
+	self:schedule( function()
+		self:updateStatus()
+	end,0.1 )
+end
 
 function Solider:playFrameAction( frameName )
+	if self._curFrameName == frameName then
+		return
+	end
+	self._curFrameName = frameName
 	local index = self._config[frameName].fstart
 	self.Icon:stopAllActions()
 	schedule( self.Icon,function()
@@ -34,9 +55,8 @@ function Solider:playFrameAction( frameName )
 		if index > self._config[frameName].fend then
 			index = self._config[frameName].fstart
 		end
-	end,0.2 )
+	end,0.1 )
 end
-
 -- 播放idle动画
 function Solider:playIdle()
 	self:playFrameAction("idle_frame")
@@ -55,10 +75,27 @@ function Solider:playDead()
 end
 
 
+function Solider:getOrgTrack()
+	return self._orgTrack
+end
+
+function Solider:updateStatus()
+	if self._status == self.STATUS.CREATE then
+		-- 进入行军状态
+		self._status = self.STATUS.MARCH
+		self:playMove()
+	elseif self._status == self.STATUS.MARCH then
+		-- 行军状态
+		self:moveToBattleRegion()
+	elseif self._status == self.STATUS.CANFIGHT then
+		-- 可以战斗的状态 进行搜索敌人
+		-- 让GameFight调度器进行敌人的搜索匹配
+	end
+end
 
 
-
-
-
+function Solider:moveToBattleRegion()
+	
+end
 
 return Solider
