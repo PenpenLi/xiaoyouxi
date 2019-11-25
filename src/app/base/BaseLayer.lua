@@ -45,7 +45,7 @@ function BaseLayer:registTouchEvent()
     self.listener:registerScriptHandler(handler(self, self.onTouchBegan), cc.Handler.EVENT_TOUCH_BEGAN)
     self.listener:registerScriptHandler(handler(self, self.onTouchMoved), cc.Handler.EVENT_TOUCH_MOVED)
     self.listener:registerScriptHandler(handler(self, self.onTouchEnded), cc.Handler.EVENT_TOUCH_ENDED)
-    -- self.listener:registerScriptHandler(handler(self, self.onTouchCancelled), cc.Handler.EVENT_TOUCH_CANCELLED)
+    self.listener:registerScriptHandler(handler(self, self.onTouchCancelled), cc.Handler.EVENT_TOUCH_CANCELLED)
     local eventDispatcher = self:getEventDispatcher()
     eventDispatcher:addEventListenerWithSceneGraphPriority(self.listener, self)
 end
@@ -56,6 +56,9 @@ function BaseLayer:onTouchMoved( touch, event )
     
 end
 function BaseLayer:onTouchEnded( touch, event )
+    
+end
+function BaseLayer:onTouchCancelled( touch, event )
     
 end
 

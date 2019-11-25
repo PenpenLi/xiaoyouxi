@@ -1,4 +1,5 @@
 
+local GameOperation = import(".GameOperation")
 
 local PeopleSolider = import(".PeopleSolider")
 local EnemySolider = import(".EnemySolider")
@@ -13,6 +14,7 @@ function GameFight:ctor( param )
 
     self:addCsb( "csbfensuizhan/FightLayer.csb" )
 
+
     self._enemyList = {}
     self._peopleList = {}
 
@@ -25,6 +27,9 @@ function GameFight:ctor( param )
     for i = 1,10 do
     	table.insert( self._trackPosY,first_posy + (i-1) * 50 )
     end
+
+    self:loadUi()
+
 end
 
 
@@ -35,9 +40,26 @@ function GameFight:onEnter()
 	for i = 1,3 do
 		self:createEnemySolider()
 	end
+	
 	-- 创建一个自己的战士
 	local people = self:createPeopleSolider()
 	people:setPosition( cc.p( 20,self._trackPosY[1] ) )
+
+	-- 放置位置透明
+	self:seatOpacity()
+	-- 注册消息监听,点击人物时，放置位置闪烁
+    self:addMsgListener( InnerProtocol.INNER_EVENT_FENSUI_LOADPEOPLE_TOUCHBEGAN,function ()
+		self:setSeatBlink()
+	end )
+	-- 注册消息监听,点击人物end时，放置位置成功闪烁停止
+    self:addMsgListener( InnerProtocol.INNER_EVENT_FENSUI_LOADPEOPLE_TOUCHEND_TRUE,function (event)
+    	self:createSoider(event.data[1].id,event.data[1].pos)
+		self:stopSeatBlink()
+	end )
+	-- 注册消息监听,点击人物end时，放置位置失败闪烁停止
+    self:addMsgListener( InnerProtocol.INNER_EVENT_FENSUI_LOADPEOPLE_TOUCHEND_FALSE,function ()
+		self:stopSeatBlink()
+	end )
 end
 
 
@@ -52,6 +74,44 @@ function GameFight:createEnemySolider()
 	solider:setPosition( x,y )
 	solider:setLocalZOrder( 100 - solider:getOrgTrack() )
 	return solider
+end
+
+
+function GameFight:loadUi()
+	
+end
+
+
+-- 放置位置闪烁
+function GameFight:setSeatBlink()
+	self:stopSeatBlink()
+	local fade_in = cc.FadeIn:create( 1 )
+	local fade_out = cc.FadeOut:create( 1 )
+	local seq = cc.Sequence:create( fade_in,fade_out)
+	local rep = cc.Repeat:create(seq, 3)
+	self.LeftPanel:runAction(rep)
+end
+-- 放置位置闪烁停止
+function GameFight:stopSeatBlink()
+	self.LeftPanel:stopAllActions()
+	self:seatOpacity()
+end
+-- 放置位置透明
+function GameFight:seatOpacity()
+	self.LeftPanel:setOpacity(0)
+end
+-- 创建士兵
+function GameFight:createSoider( id,pos )
+	dump(id,"------------create of id is ------")
+	dump(pos,"------------create of pos is ------")
+end
+
+function GameFight:loadStartEnemy()
+	for i = 1,3 do
+		local solider = EnemySolider:create(1)
+		self["enemyNode"..i]:addChild( solider )
+		solider:playIdle()
+	end
 end
 
 
