@@ -60,6 +60,7 @@ function GameLoading:loadEffect()
 			self:unSchedule()
 			removeUIFromScene( UIDefine.FENSUIZHAN_KEY.Loading_UI )
 			addUIToScene( UIDefine.FENSUIZHAN_KEY.Fight_UI )
+			addUIToScene( UIDefine.FENSUIZHAN_KEY.Operation_UI )
 		end
 	end,0.02 )
 end
