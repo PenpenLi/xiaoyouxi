@@ -1,6 +1,11 @@
 
 local GameOperation = import(".GameOperation")
+
+
+local EnemySolider = import(".EnemySolider")
+
 local GameFight = class("GameFight",BaseLayer)
+
 
 function GameFight:ctor( param )
     assert( param," !! param is nil !! ")
@@ -11,12 +16,18 @@ function GameFight:ctor( param )
 
     self:loadUi()
 end
-function GameFight:loadUi()
-	
-end
+
+
 
 function GameFight:onEnter()
 	GameFight.super.onEnter( self )
+	-- 默认初始化三个敌人
+	self:loadStartEnemy()
+
+	-- 创建一个自己的战士
+	
+
+
 	-- 放置位置透明
 	self:seatOpacity()
 	-- 注册消息监听,点击人物时，放置位置闪烁
@@ -33,6 +44,12 @@ function GameFight:onEnter()
 		self:stopSeatBlink()
 	end )
 end
+
+
+function GameFight:loadUi()
+	
+end
+
 
 -- 放置位置闪烁
 function GameFight:setSeatBlink()
@@ -56,6 +73,13 @@ end
 function GameFight:createSoider( id,pos )
 	dump(id,"------------create of id is ------")
 	dump(pos,"------------create of pos is ------")
+end
+function GameFight:loadStartEnemy()
+	for i = 1,3 do
+		local solider = EnemySolider:create(1)
+		self["enemyNode"..i]:addChild( solider )
+		solider:playIdle()
+	end
 end
 
 
