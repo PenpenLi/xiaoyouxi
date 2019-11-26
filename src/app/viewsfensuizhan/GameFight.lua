@@ -36,23 +36,33 @@ function GameFight:loadUi()
 end
 
 
-
 function GameFight:onEnter()
 	GameFight.super.onEnter( self )
+
 	-- 默认初始化三个敌人
-	for i = 1,3 do
-		self:createEnemySolider()
+	for i = 1,1 do
+		local solider = self:createEnemySolider()
+		-- 1:移动到战斗区域
+		solider:moveToBattleRegion()
 	end
-	-- 开启计时器，分配战斗对象
-	self:schedule( function()
-		self:controlCenter()
-	end,0.1 )
-	
 
 	-- 创建一个自己的战士
 	local people = self:createPeopleSolider()
 	people:setPosition( cc.p( 20,self._trackPosY[1] ) )
+	people:moveToBattleRegion()
 
+
+
+
+
+
+
+	
+	-- 开启计时器，分配战斗对象
+	self:schedule( function()
+		-- self:controlCenter()
+	end,0.1 )
+	
 	-- 放置位置透明
 	self:seatOpacity()
 	-- 注册消息监听,点击人物时，放置位置闪烁
@@ -69,12 +79,14 @@ function GameFight:onEnter()
 		self:stopSeatBlink()
 	end )
 end
+
+
 -- 战斗控制中心
 function GameFight:controlCenter()
 	-- 1，选择一个玩家士兵，状态可战斗
 	local people_child = nil
 	local people_childs = self._peopleList:getChildren()
-	if #people_childs = 0 then -- 没有士兵
+	if #people_childs == 0 then -- 没有士兵
 		return
 	end
 	for i,v in ipairs(people_childs) do
@@ -86,7 +98,7 @@ function GameFight:controlCenter()
 	-- 2，选择一个敌人，状态可战斗
 	local enemy_child = nil
 	local enemy_childs = self._enemyList:getChildren()
-	if #enemy_childs = 0 then -- 没有敌人
+	if #enemy_childs == 0 then -- 没有敌人
 		return
 	end
 	for i,v in ipairs(enemy_childs) do
@@ -117,9 +129,9 @@ function GameFight:createEnemySolider()
 	solider:playIdle()
 	-- 设置坐标
 	local x = display.width + random( 50,200 )
-	local y = self._trackPosY[solider:getOrgTrack()]
+	local y = self._trackPosY[solider:getTrack()]
 	solider:setPosition( x,y )
-	solider:setLocalZOrder( 100 - solider:getOrgTrack() )
+	solider:setLocalZOrder( 100 - solider:getTrack() )
 	return solider
 end
 

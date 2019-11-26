@@ -17,13 +17,17 @@ end
 
 function EnemySolider:moveToBattleRegion()
 	EnemySolider.super.moveToBattleRegion( self )
-	local posx = self:getPositionX()
-	posx = posx - self._config.speed
-	self:setPositionX(posx)
-	if posx <= self._gameLayer._battleRightX then
-		-- 进入到可以战斗的状态
-		self._status = self.STATUS.CANFIGHT
-		self:playIdle()
+
+	if self._status == self.STATUS.CREATE then
+		self._status = self.STATUS.MARCH
+		self:playMove()
+		local dest_point = cc.p( self._gameLayer._battleRightX,self:getPositionY() )
+		local call_back = function()
+			self._status = self.STATUS.CANFIGHT
+			self:playIdle()
+			self:searchEnemy()
+		end
+		self:moveToDestPoint( dest_point,call_back )
 	end
 end
 
@@ -35,9 +39,6 @@ function EnemySolider:searchEnemy()
 		然后再通知其他 处于 可以战斗状态的人
 	]]
 end
-
-
-
 
 
 

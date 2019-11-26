@@ -11,7 +11,7 @@ local solider_config = {
 		attack_value = 2, -- 攻击力
 		attack_interval = 1, -- 攻击间隔 1秒
 		attack_distance = 10,-- 攻击距离 10像素
-		speed = 5 -- 移动速度 5像素
+		speed = 60 -- 移动速度 1秒移动的像素
 	}
 }
 

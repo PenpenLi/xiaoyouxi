@@ -43,10 +43,8 @@ end
 
 function Solider:onEnter()
 	Solider.super.onEnter( self )
-	self:schedule( function()
-		self:updateStatus()
-	end,0.1 )
 end
+
 
 function Solider:playFrameAction( frameName )
 	if self._curFrameName == frameName then
@@ -87,24 +85,24 @@ function Solider:getTrack()
 end
 
 function Solider:updateStatus()
-	if self._status == self.STATUS.CREATE then
-		-- 进入行军状态
-		self._status = self.STATUS.MARCH
-		self:playMove()
-	elseif self._status == self.STATUS.MARCH then
-		-- 行军状态
-		self:moveToBattleRegion()
-	elseif self._status == self.STATUS.CANFIGHT then
-		-- 可以战斗的状态 进行搜索敌人
-		self:searchEnemy()
-	elseif self._status == self.STATUS.FIGHTMOVE then
-		-- 战斗行军状态
-	end
+	-- if self._status == self.STATUS.CREATE then
+	-- 	-- 进入行军状态
+	-- 	self._status = self.STATUS.MARCH
+	-- 	self:playMove()
+	-- elseif self._status == self.STATUS.MARCH then
+	-- 	-- 行军状态
+	-- 	self:moveToBattleRegion()
+	-- elseif self._status == self.STATUS.CANFIGHT then
+	-- 	-- 可以战斗的状态 进行搜索敌人
+	-- 	self:searchEnemy()
+	-- elseif self._status == self.STATUS.FIGHTMOVE then
+	-- 	-- 战斗行军状态
+	-- end
 end
 
 -- 子类重写
 function Solider:moveToBattleRegion()
-	
+
 end
 
 
@@ -135,7 +133,22 @@ function Solider:getIsAim()
 	-- body
 end
 
+-- 移动到目标位置
+function Solider:moveToDestPoint( destPoint,callBack  )
+	local now_pos = cc.p( self:getPosition() )
+	local end_pos = clone( destPoint )
+	local dis = cc.pGetDistance( now_pos,end_pos )
+	local time = dis / self._config.speed
 
+	local move_to = cc.MoveTo:create( time,end_pos )
+	local call_back = cc.CallFunc:create( function()
+		if callBack then
+			callBack()
+		end
+	end )
+	local seq = cc.Sequence:create( { move_to,call_back } )
+	self:runAction( seq )
+end
 
 
 
