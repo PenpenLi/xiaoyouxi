@@ -40,6 +40,10 @@ function GameFight:onEnter()
 	for i = 1,3 do
 		self:createEnemySolider()
 	end
+	-- 开启计时器，分配战斗对象
+	self:schedule( function()
+		self:controlCenter()
+	end,0.1 )
 	
 	-- 创建一个自己的战士
 	local people = self:createPeopleSolider()
@@ -60,6 +64,45 @@ function GameFight:onEnter()
     self:addMsgListener( InnerProtocol.INNER_EVENT_FENSUI_LOADPEOPLE_TOUCHEND_FALSE,function ()
 		self:stopSeatBlink()
 	end )
+end
+-- 战斗控制中心
+function GameFight:controlCenter()
+	-- 1，选择一个玩家士兵，状态可战斗
+	local people_child = nil
+	local people_childs = self._peopleList:getChildren()
+	if #people_childs = 0 then -- 没有士兵
+		return
+	end
+	for i,v in ipairs(people_childs) do
+		if( v:getStatus() == v.STATUS.CANFIGHT or v:getStatus() == v.STATUS.FIGHT_HALF ) then
+			people_child = v
+			break
+		end
+	end
+	-- 2，选择一个敌人，状态可战斗
+	local enemy_child = nil
+	local enemy_childs = self._enemyList:getChildren()
+	if #enemy_childs = 0 then -- 没有敌人
+		return
+	end
+	for i,v in ipairs(enemy_childs) do
+		if( v:getStatus() == v.STATUS.CANFIGHT or v:getStatus() == v.STATUS.FIGHT_HALF ) then
+			enemy_child = v
+			break
+		end
+	end
+	if people_child == nil and enemy_child == nil then -- 都正在战斗状态，返回
+		return
+	end
+	-- 3，匹配战斗对象
+	-- 查找的士兵和敌人都处于可战斗状态
+	-- self:fightBegan() -- 
+
+	-- 查找的士兵或敌人有攻击对象，未被攻击，可以给他匹配
+
+	-- 4，查看道状态
+	-- 5，分配战斗道
+	-- 6，战斗
 end
 
 
@@ -104,6 +147,8 @@ end
 function GameFight:createSoider( id,pos )
 	dump(id,"------------create of id is ------")
 	dump(pos,"------------create of pos is ------")
+	local people = self:createPeopleSolider()
+	people:setPosition( cc.p( 20,self._trackPosY[5] ) )
 end
 
 function GameFight:loadStartEnemy()
