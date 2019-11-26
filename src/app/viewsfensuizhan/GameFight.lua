@@ -14,7 +14,6 @@ function GameFight:ctor( param )
 
     self:addCsb( "csbfensuizhan/FightLayer.csb" )
 
-
     self._enemyList = {}
     self._peopleList = {}
 
@@ -29,7 +28,11 @@ function GameFight:ctor( param )
     end
 
     self:loadUi()
+end
 
+
+function GameFight:loadUi()
+	
 end
 
 
@@ -45,6 +48,7 @@ function GameFight:onEnter()
 		self:controlCenter()
 	end,0.1 )
 	
+
 	-- 创建一个自己的战士
 	local people = self:createPeopleSolider()
 	people:setPosition( cc.p( 20,self._trackPosY[1] ) )
@@ -120,11 +124,6 @@ function GameFight:createEnemySolider()
 end
 
 
-function GameFight:loadUi()
-	
-end
-
-
 -- 放置位置闪烁
 function GameFight:setSeatBlink()
 	self:stopSeatBlink()
@@ -170,7 +169,12 @@ end
 
 -- 匹配战斗
 function GameFight:matchFight()
+	if #self._enemyList == 0 or #self._peopleList == 0 then
+		return
+	end
+	-- 1:找出敌我双方都处于 CANFIGHT 状态的
 	
+
 end
 
 
