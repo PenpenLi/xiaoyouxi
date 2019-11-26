@@ -8,7 +8,8 @@ Solider.STATUS = {
 	CREATE = 0, -- 刚刚创建的状态
 	MARCH = 1, -- 行军状态
 	CANFIGHT = 2, -- 可以战斗的状态
-	FIGHT = 3, -- 正在战斗的状态
+	FIGHTMOVE = 3, -- 战斗移动状态
+	FIGHT = 4, -- 正在战斗的状态
 }
 
 function Solider:ctor( soliderId,gameLayer )
@@ -18,10 +19,12 @@ function Solider:ctor( soliderId,gameLayer )
 	self:addCsb( "csbfensuizhan/NodeSolider.csb" )
 	self._id = soliderId
 	self._gameLayer = gameLayer
-	self._orgTrack = random( 1,10 )
+	self._track = random( 1,10 )
 	self._guid = getGUID()
 	self._config = solider_config[self._id]
 	self._status = self.STATUS.CREATE
+	self._beAttack = false --是否处于被攻击
+	self._modeType = "" -- 该人物的类型 people:玩家 enemy:电脑
 end
 
 
@@ -75,8 +78,8 @@ function Solider:playDead()
 end
 
 
-function Solider:getOrgTrack()
-	return self._orgTrack
+function Solider:getTrack()
+	return self._track
 end
 
 function Solider:updateStatus()
@@ -89,7 +92,9 @@ function Solider:updateStatus()
 		self:moveToBattleRegion()
 	elseif self._status == self.STATUS.CANFIGHT then
 		-- 可以战斗的状态 进行搜索敌人
-		-- 让GameFight调度器进行敌人的搜索匹配
+		self:searchEnemy()
+	elseif self._status == self.STATUS.FIGHTMOVE then
+		-- 战斗行军状态
 	end
 end
 
@@ -97,5 +102,19 @@ end
 function Solider:moveToBattleRegion()
 	
 end
+
+function Solider:searchEnemy()
+
+end
+
+function Solider:getStatus()
+	return self._status
+end
+
+function Solider:setStatus( status )
+	self._status = status
+end
+
+
 
 return Solider
