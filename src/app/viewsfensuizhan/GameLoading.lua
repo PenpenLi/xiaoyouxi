@@ -13,6 +13,7 @@ function GameLoading:ctor( param )
 
     self._plist = {
 		"FenShuiPlist1.plist",
+		"FenShuiPlist2.plist"
 	}
 	self._music = {
 		

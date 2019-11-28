@@ -24,7 +24,7 @@ function GameFight:ctor( param )
     local center_node = self.CenterPanel
     local first_posy = center_node:getParent():convertToWorldSpace( cc.p( center_node:getPosition() ) ).y
     for i = 1,10 do
-    	table.insert( self._trackPosY,first_posy + (i-1) * 50 )
+    	table.insert( self._trackPosY,{posY = first_posy + (i-1) * 50,bool = false,posX = nil} )
     end
 
     self:loadUi()
@@ -48,7 +48,7 @@ function GameFight:onEnter()
 
 	-- 创建一个自己的战士
 	local people = self:createPeopleSolider()
-	people:setPosition( cc.p( 20,self._trackPosY[1] ) )
+	people:setPosition( cc.p( -200,self._trackPosY[1].posY ) )
 	people:moveToBattleRegion()
 
 
@@ -123,13 +123,16 @@ end
 
 
 function GameFight:createEnemySolider()
-	local solider = EnemySolider:create(1,self)
+	local solider = EnemySolider:create(2,self)
 	table.insert( self._enemyList,solider )
 	self:addChild( solider )
 	solider:playIdle()
 	-- 设置坐标
 	local x = display.width + random( 50,200 )
-	local y = self._trackPosY[solider:getTrack()]
+	local y = self._trackPosY[solider:getTrack()].posY
+	
+	y = self._trackPosY[10].posY -- 测试
+
 	solider:setPosition( x,y )
 	solider:setLocalZOrder( 100 - solider:getTrack() )
 	return solider
@@ -159,7 +162,7 @@ function GameFight:createSoider( id,pos )
 	dump(id,"------------create of id is ------")
 	dump(pos,"------------create of pos is ------")
 	local people = self:createPeopleSolider()
-	people:setPosition( cc.p( 20,self._trackPosY[5] ) )
+	people:setPosition( cc.p( 20,self._trackPosY[5].posY ) )
 end
 
 function GameFight:loadStartEnemy()

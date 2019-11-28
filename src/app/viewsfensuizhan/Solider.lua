@@ -83,6 +83,15 @@ end
 function Solider:getTrack()
 	return self._track
 end
+function Solider:getId()
+	return self._id
+end
+function Solider:getAttackDistance()
+	return self._config.attack_distance
+end
+function Solider:getSpeed()
+	return self._config.speed
+end
 
 function Solider:updateStatus()
 	-- if self._status == self.STATUS.CREATE then
@@ -150,7 +159,195 @@ function Solider:moveToDestPoint( destPoint,callBack  )
 	self:runAction( seq )
 end
 
+-- 匹配敌人后，与自动开始战斗,搜索到敌人，传入敌人node
+function Solider:fighting( node )
+	self:playMove()
+	node:playMove()
+	local m_pos = cc.p(self:getPosition())
+	local e_pos = cc.p(node:getPosition())
+	-- 这里需要设置翻转，根据两人相对位置
 
+	-- local e_dis = node._config.attack_distance -- 敌人攻击距离
+	-- 最大攻击距离
+	local dix_max = self._config.attack_distance
+	if self._config.attack_distance < node:getAttackDistance() then
+		dix_max = node:getAttackDistance()
+	end
+	local e_speed = node._config.speed
+	-- 选择一条合适的道
+	local track = self:chooseTrack(node)
+	local fight_pos_y = self._gameLayer._trackPosY[track].posY -- 战斗Y坐标，战斗的道
+	-- 选择合理的战斗点，还需要根据本条道已有的战斗情况区分
+	-- 战斗中心点，按照直线相遇点设置----可能会与攻击距离产生问题，特殊判定
+	local x_dis = math.abs(m_pos.x - e_pos.x) -- x轴上的距离
+	local fight_pos_x = (self._config.speed * e_pos.x + m_pos.x * e_speed) / (self._config.speed + e_speed) -- 战斗中心点X坐标
+	if self._gameLayer._trackPosY[track].bool then
+		fight_pos_x = self._gameLayer._trackPosY[track].posX
+	else
+		self._gameLayer._trackPosY[track].posX = fight_pos_x
+	end
+	-- local fight_pos_x = cc.pGetDistance( m_mid_pos,e_mid_pos )
+	-- 移动终点位置距离中心点距离，处理特殊情况使用
+	
+	local m_disToMiddle = self._config.speed / (self._config.speed + e_speed) * dix_max
+	local e_disToMiddle = e_speed / (self._config.speed + e_speed) * dix_max
+	
+	-- 区分与敌人的方向
+	if m_pos.x < e_pos.x then
+		-- 士兵在左，敌人在右
+		local m_end_pos = cc.p( fight_pos_x - m_disToMiddle,fight_pos_y)
+		local e_end_pos = cc.p( fight_pos_x + e_disToMiddle,fight_pos_y)
+		-- 超出战斗区域，调整为边界战斗/第一次战斗移动靠着边界移动
+		if m_end_pos.x < m_pos.x then
+			e_end_pos.x = e_end_pos.x + m_pos.x - m_end_pos.x
+			m_end_pos.x = m_pos.x
+		end
+		if e_end_pos.x > e_pos.x then
+			m_end_pos.x = m_end_pos.x - e_end_pos.x + e_pos.x
+			e_end_pos.x = e_pos.x
+		end
+		-- 士兵攻击距离超过战斗区域
+		if self._config.attack_distance > self._gameLayer.CenterPanel:getContentSize().width or node._config.attack_distance > self._gameLayer.CenterPanel:getContentSize().width then
+			m_end_pos.x = m_pos.x
+			e_end_pos.x = e_pos.x
+		end
+		-- 移动后回调
+		local m_callBack = function ()
+			-- 判断是否到达攻击距离
+			local m_mid_pos = cc.p(self:getPosition())
+			local e_mid_pos = cc.p(node:getPosition())
+			local dis = cc.pGetDistance( m_mid_pos,e_mid_pos )
+			-- 在攻击距离，直接攻击
+			if self._config.attack_distance >= dis then
+				self:setStatus( self.STATUS.FIGHT )
+				self:playAttack()
+			else
+				-- 不在攻击距离，继续移动到攻击距离
+				local time = (dis - self._config.attack_distance) / self._config.speed
+				local move_to = cc.MoveTo:create(time,cc.p(m_mid_pos.x + dis - self._config.attack_distance,m_mid_pos.y))
+				local call = cc.CallFunc:create(function ()
+					self:setStatus( self.STATUS.FIGHT )
+					self:playAttack()
+				end)
+				local seq = cc.Sequence:create(move_to,call)
+				self:runAction(seq)
+			end
+		end
+		local e_callBack = function ()
+			-- 判断是否到达攻击距离
+			local m_mid_pos = cc.p(self:getPosition())
+			local e_mid_pos = cc.p(node:getPosition())
+			local dis = cc.pGetDistance( m_mid_pos,e_mid_pos )
+			-- 在攻击距离，直接攻击
+			if node._config.attack_distance >= dis then
+				node:setStatus( self.STATUS.FIGHT )
+				node:playAttack()
+			else
+				-- 不在攻击距离，继续移动到攻击距离
+				local time = (dis - node._config.attack_distance) / node._config.speed
+				local move_to = cc.MoveTo:create(time,cc.p(e_mid_pos.x - dis + node._config.attack_distance,e_mid_pos.y))
+				local call = cc.CallFunc:create(function ()
+					node:setStatus( self.STATUS.FIGHT )
+					node:playAttack()
+				end)
+				local seq = cc.Sequence:create(move_to,call)
+				node:runAction(seq)
+			end
+		end
+		-- 移动到攻击位置
+		self:moveToDestPoint(m_end_pos,m_callBack)
+		node:moveToDestPoint(e_end_pos,e_callBack)
+
+		node:setStatus( self.STATUS.FIGHTMOVE )
+		self:setStatus( self.STATUS.FIGHTMOVE )
+	else
+		-- 士兵在右，敌人在左
+		local m_end_pos = cc.p( fight_pos_x + m_disToMiddle,fight_pos_y)
+		local e_end_pos = cc.p( fight_pos_x - e_disToMiddle,fight_pos_y)
+		-- 超出战斗区域，调整为边界战斗/第一次战斗移动靠着边界移动
+		if m_end_pos.x > m_pos.x then
+			e_end_pos.x = e_end_pos.x + m_pos.x - m_end_pos.x
+			m_end_pos.x = m_pos.x
+		end
+		if e_end_pos.x < e_pos.x then
+			m_end_pos.x = m_end_pos.x - e_end_pos.x + e_pos.x
+			e_end_pos.x = e_pos.x
+		end
+		-- 士兵攻击距离超过战斗区域
+		if self._config.attack_distance > self._gameLayer.CenterPanel:getContentSize().width or node._config.attack_distance > self._gameLayer.CenterPanel:getContentSize().width then
+			m_end_pos.x = m_pos.x
+			e_end_pos.x = e_pos.x
+		end
+		-- 移动后回调
+		local m_callBack = function ()
+			-- 判断是否到达攻击距离
+			local m_mid_pos = cc.p(self:getPosition())
+			local e_mid_pos = cc.p(node:getPosition())
+			local dis = cc.pGetDistance( m_mid_pos,e_mid_pos )
+			-- 在攻击距离，直接攻击
+			if self._config.attack_distance >= dis then
+				self:setStatus( self.STATUS.FIGHT )
+				self:playAttack()
+			else
+				-- 不在攻击距离，继续移动到攻击距离
+				local time = (dis - self._config.attack_distance) / self._config.speed
+				local move_to = cc.MoveTo:create(time,cc.p(m_mid_pos.x - dis + self._config.attack_distance,m_mid_pos.y))
+				local call = cc.CallFunc:create(function ()
+					self:setStatus( self.STATUS.FIGHT )
+					self:playAttack()
+				end)
+				local seq = cc.Sequence:create(move_to,call)
+				self:runAction(seq)
+			end
+		end
+		local e_callBack = function ()
+			-- 判断是否到达攻击距离
+			local m_mid_pos = cc.p(self:getPosition())
+			local e_mid_pos = cc.p(node:getPosition())
+			local dis = cc.pGetDistance( m_mid_pos,e_mid_pos )
+			-- 在攻击距离，直接攻击
+			if node._config.attack_distance >= dis then
+				node:setStatus( self.STATUS.FIGHT )
+				node:playAttack()
+			else
+				-- 不在攻击距离，继续移动到攻击距离
+				local time = (dis - node._config.attack_distance) / node._config.speed
+				local move_to = cc.MoveTo:create(time,cc.p(e_mid_pos.x + dis - node._config.attack_distance,e_mid_pos.y))
+				local call = cc.CallFunc:create(function ()
+					node:setStatus( self.STATUS.FIGHT )
+					node:playAttack()
+				end)
+				local seq = cc.Sequence:create(move_to,call)
+				node:runAction(seq)
+			end
+		end
+		-- 移动到攻击位置
+		self:moveToDestPoint(m_end_pos,m_callBack)
+		node:moveToDestPoint(e_end_pos,e_callBack)
+
+		node:setStatus( self.STATUS.FIGHTMOVE )
+		self:setStatus( self.STATUS.FIGHTMOVE )
+	end
+end
+-- 内部方法，外部不可调用
+-- 根据双方属性，匹配一条道
+function Solider:chooseTrack( node )
+	--测试
+	return 1
+
+
+	-- -- 选择道，需要根据速度，同时需要尽量选择人少的道进行战斗
+	-- local e_track = node:getTrack()
+	-- if e_track == self._track then
+	-- 	return self._track
+	-- end
+	-- -- 移动速度比例
+	-- local t_speed = self._config.speed/node._config.speed
+	-- if t_speed < 0.3 then
+	-- 	return self._track
+	-- elseif t_speed >= 0.3 and t_speed < 0.7 then
+	-- end
+end
 
 
 return Solider
