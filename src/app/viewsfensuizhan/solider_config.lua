@@ -11,7 +11,7 @@ local solider_config = {
 		attack_value = 2, -- 攻击力
 		attack_interval = 1, -- 攻击间隔 1秒
 		attack_distance = 200,-- 攻击距离 10像素 
-		speed = 60 -- 移动速度 1秒移动的像素
+		speed = 100 -- 移动速度 1秒移动的像素
 	},
 	[2] = {
 		id = 2,
@@ -23,8 +23,8 @@ local solider_config = {
 		hp = 100,
 		attack_value = 2, -- 攻击力
 		attack_interval = 1, -- 攻击间隔 1秒
-		attack_distance = 700,-- 攻击距离 10像素
-		speed = 600 -- 移动速度 1秒移动的像素
+		attack_distance = 200,-- 攻击距离 10像素
+		speed = 60 -- 移动速度 1秒移动的像素
 	}
 }
 

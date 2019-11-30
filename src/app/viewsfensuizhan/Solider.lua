@@ -24,6 +24,7 @@ function Solider:ctor( soliderId,gameLayer )
 	self._guid = getGUID()
 	self._config = solider_config[self._id]
 	self._status = self.STATUS.CREATE
+	self._hp = self._config.hp
 
 	self._aim = nil -- 目标敌人
 	self._isAim = nil -- 是谁的目标
@@ -59,8 +60,21 @@ function Solider:playFrameAction( frameName )
 		index = index + 1
 		if index > self._config[frameName].fend then
 			index = self._config[frameName].fstart
+			if frameName == "attack_frame" then -- 每次攻击结束
+				self:resultOfAttack()
+			end
+			if frameName == "dead_frame" then
+				self:removeFromParent()
+			end
 		end
 	end,0.1 )
+end
+function Solider:resultOfAttack( enemy )
+	local hurt_num = self._config.attack_value
+	enemy._hp = enemy._hp - hurt_num
+	if enemy._hp <= 0 then
+		enemy:playDead()
+	end
 end
 -- 播放idle动画
 function Solider:playIdle()
@@ -159,13 +173,22 @@ function Solider:moveToDestPoint( destPoint,callBack  )
 	self:runAction( seq )
 end
 
--- 匹配敌人后，与自动开始战斗,搜索到敌人，传入敌人node
-function Solider:fighting( node )
+-- 匹配未被攻击的敌人后，与自动开始战斗,搜索到敌人，传入敌人node
+function Solider:fightingWithEnemy( node )
+	self:stopAllActions()
+	node:stopAllActions()
 	self:playMove()
 	node:playMove()
 	local m_pos = cc.p(self:getPosition())
 	local e_pos = cc.p(node:getPosition())
 	-- 这里需要设置翻转，根据两人相对位置
+	if m_pos.x < e_pos.x then
+		self:setDirection(false)
+		node:setDirection(true)
+	else
+		self:setDirection(true)
+		node:setDirection(false)
+	end
 
 	-- local e_dis = node._config.attack_distance -- 敌人攻击距离
 	-- 最大攻击距离
@@ -176,6 +199,7 @@ function Solider:fighting( node )
 	local e_speed = node._config.speed
 	-- 选择一条合适的道
 	local track = self:chooseTrack(node)
+	-- dump(track,"------------track = ")
 	local fight_pos_y = self._gameLayer._trackPosY[track].posY -- 战斗Y坐标，战斗的道
 	-- 选择合理的战斗点，还需要根据本条道已有的战斗情况区分
 	-- 战斗中心点，按照直线相遇点设置----可能会与攻击距离产生问题，特殊判定
@@ -211,33 +235,45 @@ function Solider:fighting( node )
 			m_end_pos.x = m_pos.x
 			e_end_pos.x = e_pos.x
 		end
+		-- dump(m_end_pos,"--------m_end_pos = ")
+		-- dump(e_end_pos,"--------e_end_pos = ")
+		-- dump(cc.pGetDistance(m_end_pos,m_pos),"-------------distance = ")
+		-- dump(cc.pGetDistance(e_end_pos,e_pos),"-------------distance = ")
 		-- 移动后回调
 		local m_callBack = function ()
+			-- dump(cc.pGetDistance(cc.p(self:getPosition()),cc.p(node:getPosition())),"-------------distance = ")
 			-- 判断是否到达攻击距离
 			local m_mid_pos = cc.p(self:getPosition())
-			local e_mid_pos = cc.p(node:getPosition())
-			local dis = cc.pGetDistance( m_mid_pos,e_mid_pos )
+			-- local e_mid_pos = cc.p(node:getPosition())
+			local dis = cc.pGetDistance( m_mid_pos,e_end_pos )
+			-- dump(dis,"-----------dis = ")
 			-- 在攻击距离，直接攻击
 			if self._config.attack_distance >= dis then
+				-- print("------------111111 = ",self._id)
 				self:setStatus( self.STATUS.FIGHT )
 				self:playAttack()
 			else
+				-- print("------------222222",self._id)
 				-- 不在攻击距离，继续移动到攻击距离
 				local time = (dis - self._config.attack_distance) / self._config.speed
 				local move_to = cc.MoveTo:create(time,cc.p(m_mid_pos.x + dis - self._config.attack_distance,m_mid_pos.y))
 				local call = cc.CallFunc:create(function ()
 					self:setStatus( self.STATUS.FIGHT )
 					self:playAttack()
+					-- dump(cc.p(self:getPosition()),"--------m_end_pos = ")
+					-- dump(cc.p(node:getPosition()),"--------e_end_pos = ")
+					-- dump(cc.pGetDistance(cc.p(self:getPosition()),cc.p(node:getPosition())),"-------------distance = ")
 				end)
 				local seq = cc.Sequence:create(move_to,call)
 				self:runAction(seq)
 			end
+
 		end
 		local e_callBack = function ()
 			-- 判断是否到达攻击距离
-			local m_mid_pos = cc.p(self:getPosition())
+			-- local m_mid_pos = cc.p(self:getPosition())
 			local e_mid_pos = cc.p(node:getPosition())
-			local dis = cc.pGetDistance( m_mid_pos,e_mid_pos )
+			local dis = cc.pGetDistance( m_end_pos,e_mid_pos )
 			-- 在攻击距离，直接攻击
 			if node._config.attack_distance >= dis then
 				node:setStatus( self.STATUS.FIGHT )
@@ -282,8 +318,8 @@ function Solider:fighting( node )
 		local m_callBack = function ()
 			-- 判断是否到达攻击距离
 			local m_mid_pos = cc.p(self:getPosition())
-			local e_mid_pos = cc.p(node:getPosition())
-			local dis = cc.pGetDistance( m_mid_pos,e_mid_pos )
+			-- local e_mid_pos = cc.p(node:getPosition())
+			local dis = cc.pGetDistance( m_mid_pos,e_end_pos )
 			-- 在攻击距离，直接攻击
 			if self._config.attack_distance >= dis then
 				self:setStatus( self.STATUS.FIGHT )
@@ -302,9 +338,9 @@ function Solider:fighting( node )
 		end
 		local e_callBack = function ()
 			-- 判断是否到达攻击距离
-			local m_mid_pos = cc.p(self:getPosition())
+			-- local m_mid_pos = cc.p(self:getPosition())
 			local e_mid_pos = cc.p(node:getPosition())
-			local dis = cc.pGetDistance( m_mid_pos,e_mid_pos )
+			local dis = cc.pGetDistance( m_end_pos,e_mid_pos )
 			-- 在攻击距离，直接攻击
 			if node._config.attack_distance >= dis then
 				node:setStatus( self.STATUS.FIGHT )
@@ -329,11 +365,54 @@ function Solider:fighting( node )
 		self:setStatus( self.STATUS.FIGHTMOVE )
 	end
 end
+-- 无未被攻击敌人，匹配到被攻击敌人，自动前往开始战斗
+-- 如果已有的正在移动，不好算位置，这里没有匹配敌人先进行等待，发现可攻击敌人或是战斗点，再前往
+function Solider:fightingToEnemy( node )
+	self:stopAllActions()
+	self:playMove()
+	self:setStatus( self.STATUS.FIGHTMOVE )
+	local m_pos = cc.p(self:getPosition())
+	local e_pos = cc.p(node:getPosition())
+	-- 这里需要设置翻转，根据两人相对位置
+	if m_pos.x < e_pos.x then
+		self:setDirection(false)
+		node:setDirection(true)
+	else
+		self:setDirection(true)
+		node:setDirection(false)
+	end
+	local m_dis = self:getAttackDistance()
+	-- 士兵目标坐标
+	local m_end_pos
+	if m_pos.x < e_pos.x then
+		m_end_pos = cc.p(e_pos.x - m_dis,e_pos.y)
+		if m_end_pos.x < m_pos.x then
+			m_end_pos.x = m_pos.x
+		end
+	else
+		m_end_pos = cc.p(e_pos.x + m_dis,e_pos.y)
+		if m_end_pos.x > m_pos.x then
+			m_end_pos.x = m_pos.x
+		end
+	end
+	-- 士兵移动到目标位置
+	local dis = cc.pGetDistance( m_pos,m_end_pos )
+	local time = dis / self._config.speed
+	local move_to = cc.MoveTo:create(time,m_end_pos)
+	local call = cc.CallFunc:create(function ()
+		self:setStatus( self.STATUS.FIGHT_HALF )
+		self:playAttack()
+	end)
+	local seq = cc.Sequence:create(move_to,call)
+	self:runAction(seq)
+end
 -- 内部方法，外部不可调用
 -- 根据双方属性，匹配一条道
 function Solider:chooseTrack( node )
 	--测试
-	return 1
+	local track = random(1,10)
+	dump(track,"----------chooseTrack = ")
+	return track
 
 
 	-- -- 选择道，需要根据速度，同时需要尽量选择人少的道进行战斗

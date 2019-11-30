@@ -34,7 +34,7 @@ end
 function PeopleSolider:searchEnemy()
 
 	if self._status ~= self.STATUS.CANFIGHT then
-		
+		print("---------------self._status ~= self.STATUS.CANFIGHT")
 		return
 	end
 
@@ -44,15 +44,42 @@ function PeopleSolider:searchEnemy()
 		然后再通知其他 处于 可以战斗状态的人
 	]]
 	print("-----------------searchEnemy")
+	-- 定义一个判断敌人情况，否则下面搜索时候可能会没有搜索完全出现错误判断
+	local enemyList_canfight = false -- 先判断是否有未被攻击的敌人，有的话匹配，没有才执行正在战斗或是递归
+	local fighting_enemy = {}
+	for i,v in ipairs(self._enemyList) do
+		if v._status == self.STATUS.CANFIGHT or v._status == self.STATUS.FIGHT_HALF then
+			enemyList_canfight = true
+			break
+		else
+			table.insert( fighting_enemy,v )
+		end
+	end
 	for i,enemy in ipairs( self._enemyList ) do
-		if enemy:getStatus() == self.STATUS.CANFIGHT then
-			-- 自己跑到要战斗的点
-			self:fighting(enemy)
-			
-
+		if enemyList_canfight == true then
+			-- 搜索可战斗状态敌人或未被攻击的敌人
+			if enemy:getStatus() == self.STATUS.CANFIGHT or enemy:getStatus() == self.STATUS.FIGHT_HALF then
+				-- 自己跑到要战斗的点
+				print("-------------PeopleSolider:searchEnemy1111111111111111111111")
+				self:fightingWithEnemy(enemy)
+				return
+			end
+		elseif enemy:getStatus() == self.STATUS.FIGHT then
+			-- 搜索正在战斗的敌人
+			local x = random(1,#fighting_enemy)
+			self:fightingToEnemy(fighting_enemy[x])
+			-- if enemy:getStatus() == self.STATUS.FIGHT then
+			-- 	print("-------------PeopleSolider:searchEnemy22222222222222222222222")
+			-- 	self:fightingToEnemy(enemy)
+			-- 	return
+			-- end
 			return
 		end
 	end
+	-- 未找到敌人
+	performWithDelay(self,function ()
+		self:searchEnemy()
+	end,1)
 end
 
 -- function PeopleSolider:searchEnemy()

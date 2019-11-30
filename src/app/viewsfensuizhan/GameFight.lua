@@ -40,17 +40,36 @@ function GameFight:onEnter()
 	GameFight.super.onEnter( self )
 
 	-- 默认初始化三个敌人
-	for i = 1,1 do
-		local solider = self:createEnemySolider()
-		-- 1:移动到战斗区域
-		solider:moveToBattleRegion()
-	end
+	self:schedule( function()
+		if #self._enemyList < 30 then
+			local solider = self:createEnemySolider()
+			-- 1:移动到战斗区域
+			solider:moveToBattleRegion()
+		end
+		
+	end,1 )
+	-- for i = 1,3 do
+	-- 	local solider = self:createEnemySolider()
+	-- 	-- 1:移动到战斗区域
+	-- 	solider:moveToBattleRegion()
+	-- end
 
 	-- 创建一个自己的战士
 	local people = self:createPeopleSolider()
 	people:setPosition( cc.p( -200,self._trackPosY[1].posY ) )
 	people:moveToBattleRegion()
-
+	-- -- 再创一个
+	-- performWithDelay(self,function ( ... )
+	-- 	local people = self:createPeopleSolider()
+	-- 	people:setPosition( cc.p( -200,self._trackPosY[1].posY ) )
+	-- 	people:moveToBattleRegion()
+	-- end,12)
+	-- -- 再创一个
+	-- performWithDelay(self,function ( ... )
+	-- 	local people = self:createPeopleSolider()
+	-- 	people:setPosition( cc.p( -200,self._trackPosY[1].posY ) )
+	-- 	people:moveToBattleRegion()
+	-- end,16)
 
 
 
@@ -59,9 +78,9 @@ function GameFight:onEnter()
 
 	
 	-- 开启计时器，分配战斗对象
-	self:schedule( function()
-		-- self:controlCenter()
-	end,0.1 )
+	-- self:schedule( function()
+	-- 	-- self:controlCenter()
+	-- end,0.1 )
 	
 	-- 放置位置透明
 	self:seatOpacity()
@@ -131,7 +150,7 @@ function GameFight:createEnemySolider()
 	local x = display.width + random( 50,200 )
 	local y = self._trackPosY[solider:getTrack()].posY
 	
-	y = self._trackPosY[10].posY -- 测试
+	-- y = self._trackPosY[10].posY -- 测试
 
 	solider:setPosition( x,y )
 	solider:setLocalZOrder( 100 - solider:getTrack() )
@@ -162,7 +181,8 @@ function GameFight:createSoider( id,pos )
 	dump(id,"------------create of id is ------")
 	dump(pos,"------------create of pos is ------")
 	local people = self:createPeopleSolider()
-	people:setPosition( cc.p( 20,self._trackPosY[5].posY ) )
+	people:setPosition( pos )
+	people:moveToBattleRegion()
 end
 
 function GameFight:loadStartEnemy()
