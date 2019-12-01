@@ -66,8 +66,9 @@ function GameLoading:loadEffect()
 		if index > #self._sound then
 			self:unSchedule()
 			removeUIFromScene( UIDefine.HUNZHAN_KEY.Loading_UI )
-			addUIToScene( UIDefine.HUNZHAN_KEY.Fight_UI )
-			addUIToScene( UIDefine.HUNZHAN_KEY.Operation_UI )
+			-- addUIToScene( UIDefine.HUNZHAN_KEY.Fight_UI )
+			-- addUIToScene( UIDefine.HUNZHAN_KEY.Operation_UI )
+			addUIToScene( UIDefine.HUNZHAN_KEY.Choose_UI )
 		end
 	end,0.02 )
 end

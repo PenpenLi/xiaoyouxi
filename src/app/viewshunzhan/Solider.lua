@@ -30,7 +30,7 @@ function Solider:ctor( soliderId,gameLayer )
 	local path = self._config["idle_frame"].path.."1.png"
 	self.Icon:loadTexture( path,1 )
 
-	self:setScale( 0.8 )
+	-- self:setScale( 0.8 )
 end
 
 

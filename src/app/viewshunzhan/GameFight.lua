@@ -13,6 +13,9 @@ function GameFight:ctor( param )
 
     self:addCsb( "csbhunzhan/FightLayer.csb" )
 
+    self._stage = param.data
+    self._stageConfig = hunstage_config[self._stage]
+
     self._enemyList = {}
     self._peopleList = {}
 
@@ -27,8 +30,16 @@ function GameFight:ctor( param )
     	table.insert( self._trackPosY,posY )
     end
 
-    self._totalEnemyCount = 30
+    self._totalEnemyCount = self._stageConfig.enemy_count
     self._curEnemyCount = 0
+
+
+    self:addNodeClick( self.ButtonClose,{
+		endCallBack = function ()
+			removeUIFromScene( UIDefine.HUNZHAN_KEY.Fight_UI )
+			addUIToScene( UIDefine.HUNZHAN_KEY.Choose_UI )
+		end
+	})
 end
 
 
@@ -88,7 +99,7 @@ function GameFight:createEnemyByDelay( time )
 	performWithDelay( self,function()
 		-- 创建敌人
 		self._curEnemyCount = self._curEnemyCount + 1
-		local id = random( 1,#hunsolider_config )
+		local id = random( 1,#self._stageConfig.enemy_ids )
 		
 		local pos = nil
 		local random_pos = random(1,2)

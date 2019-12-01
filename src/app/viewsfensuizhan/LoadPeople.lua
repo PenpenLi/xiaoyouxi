@@ -19,7 +19,6 @@ function LoadPeople:ctor( parent,id )
 	self:loadUi()
 end
 function LoadPeople:loadUi()
-	print("---------------------------LoadPeople")
 	self.Icon:loadTexture("frame/role"..self._id.."/idle/1.png",1)
 	-- 添加背景圆形进度
 	self._circleProgressBarBg = self:createCircleLoadingBarBg()
@@ -75,7 +74,6 @@ function LoadPeople:onEnter()
 			ungraySprite( self.Icon:getVirtualRenderer():getSprite() )
 			self._circleProgressBarBg:setVisible( false )
 			ungraySprite( self.Bg:getVirtualRenderer():getSprite() )
-			dump(percentage,"--------------percentage = ")
 		end
 		index = index + 1
 	end,self._scheduleTime)
