@@ -27,6 +27,9 @@ function Solider:ctor( soliderId,gameLayer )
 	self._destEnemy = nil -- 自己的目标敌人
 	self._attackedMyEnemyList = {}  -- 攻击自己的敌人列表
 
+	local path = self._config["idle_frame"].path.."1.png"
+	self.Icon:loadTexture( path,1 )
+
 	self:setScale( 0.8 )
 end
 
@@ -35,7 +38,7 @@ end
 function Solider:setDirection( dir )
 	if self._dir ~= dir then
 		self._dir = dir
-		self.Icon:getVirtualRenderer():getSprite():setFlipX( self._dir == 1 )
+		self.Icon:getVirtualRenderer():getSprite():setFlippedX( self._dir == 1 )
 	end
 end
 
@@ -62,6 +65,7 @@ function Solider:playFrameAction( frameName,isRepeate,callBack )
 		local frame = self._config[frameName].frames[index]
 		local path = self._config[frameName].path..frame..".png"
 		self.Icon:loadTexture( path,1 )
+		self.Icon:getVirtualRenderer():getSprite():setFlippedX( self._dir == 1 )
 		index = index + 1
 		if index > #self._config[frameName].frames then
 			if not isRepeate then
