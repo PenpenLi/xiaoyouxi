@@ -29,7 +29,7 @@ function EnterApp:create()
 	print(">>>>>EnterApp:create<<<<<<")
 	self:loadAppFile()
 
-	local scene = require("app.scenes.FenSuiZhanScene").new()
+	local scene = require("app.scenes.HunZhanScene").new()
 	return scene
 
 	-- -- slot

@@ -329,6 +329,12 @@ UIDefine.FENSUIZHAN_KEY 	= {
 }
 
 
+UIDefine.HUNZHAN_KEY = {
+	Loading_UI = { layer = import("app.viewshunzhan.GameLoading"),flag = UIDefine.LayerFlag.Main.name,name = "HunZhan_Loading_UI" },
+	Fight_UI = { layer = import("app.viewshunzhan.GameFight"),flag = UIDefine.LayerFlag.Main.name,name = "HunZhan_Fight_UI" },
+	Operation_UI = { layer = import("app.viewshunzhan.GameOperation"),flag = UIDefine.LayerFlag.Main.name,name = "HunZhan_Operation_UI" },
+}
+
 
 -- UIDefine.MINIGAME_KEY 	= {
 -- 	Loading_UI 				= { layer = import("app.viewsminigame.GameLoading"),		        flag = UIDefine.LayerFlag.Main.name,	name = "MiniGame_Loading_UI" 			  	    		},
