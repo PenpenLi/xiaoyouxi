@@ -14,6 +14,7 @@ local hunsolider_config = {
 		attack_interval = 0.2, -- 攻击间隔 1秒
 		attack_distance = 50,-- 攻击距离 像素 
 		attack_type = 1, -- 1:近战 2:远程
+		cd = 15,
 		speed = 2 -- 移动速度 1帧移动的像素
 	},
 	[2] = {
@@ -30,6 +31,7 @@ local hunsolider_config = {
 		attack_interval = 0.2, -- 攻击间隔 1秒
 		attack_distance = 50,-- 攻击距离 10像素
 		attack_type = 1, -- 1:近战 2:远程
+		cd = 15,
 		speed = 2 -- 移动速度 1秒移动的像素
 	},
 	[3] = {
@@ -46,6 +48,7 @@ local hunsolider_config = {
 		attack_interval = 0.2, -- 攻击间隔 1秒
 		attack_distance = 50,-- 攻击距离 10像素
 		attack_type = 1, -- 1:近战 2:远程
+		cd = 15,
 		speed = 2 -- 移动速度 1秒移动的像素
 	},
 	[4] = {
@@ -62,6 +65,7 @@ local hunsolider_config = {
 		attack_interval = 0.2, -- 攻击间隔 1秒
 		attack_distance = 50,-- 攻击距离 10像素
 		attack_type = 1, -- 1:近战 2:远程
+		cd = 15,
 		speed = 2 -- 移动速度 1秒移动的像素
 	},
 	[5] = {
@@ -78,6 +82,7 @@ local hunsolider_config = {
 		attack_interval = 0.2, -- 攻击间隔 1秒
 		attack_distance = 550,-- 攻击距离 10像素
 		attack_type = 2, -- 1:近战 2:远程
+		cd = 10,
 		speed = 2 -- 移动速度 1秒移动的像素
 	},
 	[6] = {
@@ -94,6 +99,7 @@ local hunsolider_config = {
 		attack_interval = 0.2, -- 攻击间隔 1秒
 		attack_distance = 50,-- 攻击距离 10像素
 		attack_type = 1, -- 1:近战 2:远程
+		cd = 10,
 		speed = 2 -- 移动速度 1秒移动的像素
 	},
 	[7] = {
@@ -110,6 +116,7 @@ local hunsolider_config = {
 		attack_interval = 0.2, -- 攻击间隔 1秒
 		attack_distance = 50,-- 攻击距离 10像素
 		attack_type = 1, -- 1:近战 2:远程
+		cd = 15,
 		speed = 2 -- 移动速度 1秒移动的像素
 	},
 	[8] = {
@@ -126,6 +133,7 @@ local hunsolider_config = {
 		attack_interval = 0.2, -- 攻击间隔 1秒
 		attack_distance = 600,-- 攻击距离 10像素
 		attack_type = 2, -- 1:近战 2:远程
+		cd = 15,
 		speed = 2 -- 移动速度 1秒移动的像素
 	},
 }

@@ -63,16 +63,16 @@ function GameFight:setSeatBlink()
 	local fade_out = cc.FadeOut:create( 1 )
 	local seq = cc.Sequence:create( fade_in,fade_out)
 	local rep = cc.Repeat:create(seq, 3)
-	self.LeftPanel:runAction(rep)
+	self.CenterPanel:runAction(rep)
 end
 -- 放置位置闪烁停止
 function GameFight:stopSeatBlink()
-	self.LeftPanel:stopAllActions()
+	self.CenterPanel:stopAllActions()
 	self:setLeftPanelOpacity()
 end
 -- 放置位置透明
 function GameFight:setLeftPanelOpacity()
-	self.LeftPanel:setOpacity(0)
+	self.CenterPanel:setOpacity(0)
 end
 
 
@@ -93,11 +93,13 @@ function GameFight:createEnemyByDelay( time )
 		local pos = nil
 		local random_pos = random(1,2)
 		if random_pos == 1 then
-			pos = { x = display.width + random( 50,200 ),y = self._trackPosY[random(1,10)] }
-		else
+			-- 出生在左边
 			pos = { x = -100,y = self._trackPosY[random(1,10)] }
+		else
+			-- 出生在右边
+			pos = { x = display.width + random( 50,200 ),y = self._trackPosY[random(1,10)] }
 		end
-		self:createEnemySolider( id,pos )
+		self:createEnemySolider( id,pos,random_pos )
 
 		local random_time = random( 3,7 )
 		self:createEnemyByDelay( random_time )
@@ -105,11 +107,13 @@ function GameFight:createEnemyByDelay( time )
 end
 
 
-function GameFight:createEnemySolider( id,pos )
+function GameFight:createEnemySolider( id,pos,pointType )
 	assert( id," !! id is nil !! " )
 	assert( pos," !! pos is nil !! " )
+	assert( pointType," !! pointType is nil !! " )
 	local solider = EnemySolider:create(id,self)
 	table.insert( self._enemyList,solider )
+	solider:setCreatePoint( pointType )
 	self:addChild( solider )
 	solider:playIdle()
 	solider:setPosition( pos )

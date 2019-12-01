@@ -37,9 +37,9 @@ end
 
 function Solider:setDirection( strType )
 	if strType == "left" then
-		self.Icon:getVirtualRenderer():getSprite():setFlipX( true )
+		self.Icon:getVirtualRenderer():getSprite():setFlippedX( true )
 	elseif strType == "right" then
-		self.Icon:getVirtualRenderer():getSprite():setFlipX( false )
+		self.Icon:getVirtualRenderer():getSprite():setFlippedX( false )
 	end
 end
 

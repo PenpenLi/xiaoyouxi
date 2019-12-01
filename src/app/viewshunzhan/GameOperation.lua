@@ -5,7 +5,9 @@ local GameOperation = class("GameOperation",BaseLayer)
 function GameOperation:ctor( param )
 	assert( param," !! param is nil !! ")
     assert( param.name," !! param.name is nil !! ")
-    self:addCsb("csbfensuizhan/OperationLayer.csb")
+
+    self:addCsb("csbhunzhan/OperationLayer.csb")
+    self._config = hunsolider_config
     self._people = nil -- 临时存储点击人物时候创建的新人物
     self._choosePeople = nil -- 点击选中的人物
     self._sumLoadPeople = 5 -- 控制界面创建出的人物个数
@@ -32,15 +34,23 @@ function GameOperation:setSoliderPosition( solider )
 	local size = solider:getBgSize()
 	solider:setPosition( (size.width + (p_size.width - size.width*self._sumLoadPeople)/(self._sumLoadPeople + 1)) * cur_num - size.width / 2,p_size.height / 2 + 2 )
 end
-
 --随机一个士兵id
 function GameOperation:randomId()
-	return 1
+	--随机一个人物ID,并返回
+	if #self._config <= 0 then
+		print(" !! solider_config is  empty !! ")
+		return
+	end
+	local id = random(1,#self._config)
+	return id
 end
 
 function GameOperation:onEnter()
 	GameOperation.super.onEnter( self )
 end
+
+
+
 
 function GameOperation:onTouchBegan( touch, event )
 	-- 发送触摸began消息
@@ -62,8 +72,7 @@ end
 function GameOperation:onTouchEnded( touch, event )
 	local location = cc.p(touch:getLocation())
 	self._people:removeFromParent()
-	-- local result_bool = self:resultOfEnd(location)
-	local result_bool = true
+	local result_bool = self:resultOfEnd(location)
 	-- 在可放置区域才发送消息，触摸结果需要创建士兵
 	if result_bool then
 		local args = {
@@ -91,9 +100,13 @@ function GameOperation:findLoadPeople( pos )
 	for i,v in ipairs(childs) do
 		local v_box = v:getBox()
 		if cc.rectContainsPoint(v_box, pos) then
+			if v._status == false then
+				return false
+			end
 			self:logicBegan(v)
 			self._choosePeople = v
-			return
+			
+			return true
 		end
 	end
 	return false
@@ -110,7 +123,7 @@ function GameOperation:logicBegan(node)
 end
 -- 触摸end时，判断是否放入可放区域
 function GameOperation:resultOfEnd( pos )
-	local seat_boundingBox = self.LeftPanel:getBoundingBox()
+	local seat_boundingBox = self.CenterPanel:getBoundingBox()
 	if cc.rectContainsPoint(seat_boundingBox, pos) then
 		return true
 	end
@@ -133,6 +146,7 @@ function GameOperation:resetUi()
 
 	self._choosePeople:removeFromParent() -- 删除已在战斗界面创建的人物
 	self._choosePeople = nil -- 指针重置为空
+	-- self._touchResult = nil -- 操作结束后重置结果
 end
 
 
