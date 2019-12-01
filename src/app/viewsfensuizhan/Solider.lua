@@ -25,6 +25,7 @@ function Solider:ctor( soliderId,gameLayer )
 	self._config = solider_config[self._id]
 	self._status = self.STATUS.CREATE
 	self._hp = self._config.hp
+	self._enemy = nil -- 敌人
 
 	self._aim = nil -- 目标敌人
 	self._isAim = nil -- 是谁的目标
@@ -44,17 +45,55 @@ end
 
 function Solider:onEnter()
 	Solider.super.onEnter( self )
-end
 
+	self.Icon:loadTexture( "frame/role"..self._id.."/idle/1.png",1 )
+	-- -- 注册消息监听
+ --    self:addMsgListener( InnerProtocol.INNER_EVENT_FENSUI_FIGHT_DEAD,function (event)
+	-- 	self:enemyDeadNews(event.data[1].guid)
+	-- end )
+end
+-- 发现目标死亡
+function Solider:enemyDeadNews(guid)
+	if self._hp <= 0 then
+		return
+	end
+	if self._enemy then
+		if self._enemy._guid == guid then
+			self:stopAllActions()
+			self._enemy = nil
+			self:setStatus( self.STATUS.CANFIGHT)
+			self:playIdle()
+			performWithDelay(self,function ( ... )
+
+				self:searchEnemy()
+			end,0.1)
+			
+		end
+	end
+	
+end
+-- 发送死亡消息给所有人
+function Solider:sendDeadNews()
+	local args = {guid = self._guid}
+	EventManager:getInstance():dispatchInnerEvent( InnerProtocol.INNER_EVENT_FENSUI_FIGHT_DEAD,args )
+end
 
 function Solider:playFrameAction( frameName )
 	if self._curFrameName == frameName then
 		return
 	end
+	if frameName == "dead_frame" then
+		self:sendDeadNews() -- 死亡，发送消息给所有人
+		self:destroyOwn()
+	end
 	self._curFrameName = frameName
 	local index = self._config[frameName].fstart
 	self.Icon:stopAllActions()
 	schedule( self.Icon,function()
+		-- if self._hp <= 0 then
+		-- 	self:removeFromParent()
+		-- 	return
+		-- end
 		local path = self._config[frameName].path..index..".png"
 		self.Icon:loadTexture( path,1 )
 		index = index + 1
@@ -64,17 +103,65 @@ function Solider:playFrameAction( frameName )
 				self:resultOfAttack()
 			end
 			if frameName == "dead_frame" then
+				-- self:sendDeadNews() -- 死亡，发送消息给所有人
+				-- self:destroyOwn()
+				-- self:sendDeadNews() -- 死亡，发送消息给所有人
 				self:removeFromParent()
 			end
 		end
 	end,0.1 )
 end
-function Solider:resultOfAttack( enemy )
-	local hurt_num = self._config.attack_value
-	enemy._hp = enemy._hp - hurt_num
-	if enemy._hp <= 0 then
-		enemy:playDead()
+-- 攻击结束，敌人血量减少
+function Solider:resultOfAttack()
+	if self._enemy._hp == nil then
+		self._enemy = nil
+		self:setStatus( self.STATUS.CANFIGHT)
+		self:playIdle()
+		self:searchEnemy()
+		return
 	end
+	
+	local hurt_num = self._config.attack_value
+	self._enemy._hp = self._enemy._hp - hurt_num
+	self:setHpBar()
+	if self._enemy._hp <= 0 then
+
+		self._enemy:playDead()
+		self._enemy = nil
+		self:setStatus( self.STATUS.CANFIGHT)
+		self:playIdle()
+		self:searchEnemy()
+		return
+	end
+
+end
+-- 死亡，销毁
+function Solider:destroyOwn()
+	-- print("-----------dead")
+	-- dump(self._gameLayer._peopleList,"-------------self._peopleList = ")
+	-- dump(self._gameLayer._enemyList,"-------------self._enemyList = ")
+	for i,v in ipairs(self._gameLayer._enemyList) do
+		if v:getGUID() == self._guid then
+			table.remove(self._gameLayer._enemyList,i)
+			-- self:removeFromParent()
+			return
+		end
+	end
+	for i,v in ipairs(self._gameLayer._peopleList) do
+		if v:getGUID() == self._guid then
+			table.remove(self._gameLayer._peopleList,i)
+			-- self:removeFromParent()
+			return
+		end
+	end
+	-- dump(self._peopleList,"-------------self._peopleList = ")
+end
+-- 血条
+function Solider:setHpBar()
+	local rate = math.floor( self._hp / self._config.hp * 100 )
+	self.Hp:setPercent( rate )
+	local rate1 = math.floor( self._enemy._hp / self._enemy._config.hp * 100 )
+	self._enemy.Hp:setPercent( rate1 )
 end
 -- 播放idle动画
 function Solider:playIdle()
@@ -105,6 +192,9 @@ function Solider:getAttackDistance()
 end
 function Solider:getSpeed()
 	return self._config.speed
+end
+function Solider:getGUID()
+	return self._guid
 end
 
 function Solider:updateStatus()
@@ -175,19 +265,23 @@ end
 
 -- 匹配未被攻击的敌人后，与自动开始战斗,搜索到敌人，传入敌人node
 function Solider:fightingWithEnemy( node )
+	self._enemy = node
+	node._enemy = self
 	self:stopAllActions()
 	node:stopAllActions()
+	node:setStatus( self.STATUS.FIGHTMOVE )
+	self:setStatus( self.STATUS.FIGHTMOVE )
 	self:playMove()
 	node:playMove()
 	local m_pos = cc.p(self:getPosition())
 	local e_pos = cc.p(node:getPosition())
 	-- 这里需要设置翻转，根据两人相对位置
 	if m_pos.x < e_pos.x then
-		self:setDirection(false)
-		node:setDirection(true)
+		self:setDirection("right")
+		node:setDirection("left")
 	else
-		self:setDirection(true)
-		node:setDirection(false)
+		self:setDirection("left")
+		node:setDirection("right")
 	end
 
 	-- local e_dis = node._config.attack_distance -- 敌人攻击距离
@@ -294,8 +388,8 @@ function Solider:fightingWithEnemy( node )
 		self:moveToDestPoint(m_end_pos,m_callBack)
 		node:moveToDestPoint(e_end_pos,e_callBack)
 
-		node:setStatus( self.STATUS.FIGHTMOVE )
-		self:setStatus( self.STATUS.FIGHTMOVE )
+		-- node:setStatus( self.STATUS.FIGHTMOVE )
+		-- self:setStatus( self.STATUS.FIGHTMOVE )
 	else
 		-- 士兵在右，敌人在左
 		local m_end_pos = cc.p( fight_pos_x + m_disToMiddle,fight_pos_y)
@@ -361,13 +455,14 @@ function Solider:fightingWithEnemy( node )
 		self:moveToDestPoint(m_end_pos,m_callBack)
 		node:moveToDestPoint(e_end_pos,e_callBack)
 
-		node:setStatus( self.STATUS.FIGHTMOVE )
-		self:setStatus( self.STATUS.FIGHTMOVE )
+		-- node:setStatus( self.STATUS.FIGHTMOVE )
+		-- self:setStatus( self.STATUS.FIGHTMOVE )
 	end
 end
 -- 无未被攻击敌人，匹配到被攻击敌人，自动前往开始战斗
 -- 如果已有的正在移动，不好算位置，这里没有匹配敌人先进行等待，发现可攻击敌人或是战斗点，再前往
 function Solider:fightingToEnemy( node )
+	self._enemy = node
 	self:stopAllActions()
 	self:playMove()
 	self:setStatus( self.STATUS.FIGHTMOVE )
@@ -375,11 +470,11 @@ function Solider:fightingToEnemy( node )
 	local e_pos = cc.p(node:getPosition())
 	-- 这里需要设置翻转，根据两人相对位置
 	if m_pos.x < e_pos.x then
-		self:setDirection(false)
-		node:setDirection(true)
+		self:setDirection("right")
+		-- node:setDirection("left")
 	else
-		self:setDirection(true)
-		node:setDirection(false)
+		self:setDirection("left")
+		-- node:setDirection("right")
 	end
 	local m_dis = self:getAttackDistance()
 	-- 士兵目标坐标
@@ -400,6 +495,24 @@ function Solider:fightingToEnemy( node )
 	local time = dis / self._config.speed
 	local move_to = cc.MoveTo:create(time,m_end_pos)
 	local call = cc.CallFunc:create(function ()
+		-- 敌人已经不再这里，重新搜索
+		if node == nil or node._hp == nil then
+			self:setStatus( self.STATUS.CANFIGHT)
+			self:playIdle()
+			performWithDelay(self,function ( ... )
+				self:searchEnemy()
+			end,0.1)
+			return
+		end
+		if cc.p(node:getPosition()).x ~= e_pos.x or cc.p(node:getPosition()).y ~= e_pos.y then
+			self:setStatus( self.STATUS.CANFIGHT)
+			self:playIdle()
+			performWithDelay(self,function ( ... )
+				self:searchEnemy()
+			end,0.1)
+			
+			return
+		end
 		self:setStatus( self.STATUS.FIGHT_HALF )
 		self:playAttack()
 	end)
@@ -411,7 +524,7 @@ end
 function Solider:chooseTrack( node )
 	--测试
 	local track = random(1,10)
-	dump(track,"----------chooseTrack = ")
+	-- dump(track,"----------chooseTrack = ")
 	return track
 
 

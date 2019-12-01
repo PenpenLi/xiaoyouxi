@@ -7,7 +7,7 @@ function GameOperation:ctor( param )
     assert( param.name," !! param.name is nil !! ")
 
     self:addCsb("csbfensuizhan/OperationLayer.csb")
-
+    self._config = solider_config
     self._people = nil -- 临时存储点击人物时候创建的新人物
     self._choosePeople = nil -- 点击选中的人物
     self._sumLoadPeople = 5 -- 控制界面创建出的人物个数
@@ -38,8 +38,12 @@ end
 --随机一个士兵id
 function GameOperation:randomId()
 	--随机一个人物ID,并返回
-
-	return 1
+	if #self._config <= 0 then
+		print(" !! solider_config is  empty !! ")
+		return
+	end
+	local id = random(1,#self._config)
+	return id
 end
 
 function GameOperation:onEnter()
@@ -100,13 +104,18 @@ end
 function GameOperation:findLoadPeople( pos )
 	local childs = self.Panel_2:getChildren()
 	for i,v in ipairs(childs) do
+
 		-- local v_pos = cc.p(v:getPosition())
 		local v_box = v:getBox()
 		-- dump(v_box,"-----------------v_box = ")
 		if cc.rectContainsPoint(v_box, pos) then
+			if v._status == false then
+				return false
+			end
 			self:logicBegan(v)
 			self._choosePeople = v
-			return
+			
+			return true
 		end
 	end
 	return false

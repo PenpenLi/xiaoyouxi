@@ -46,8 +46,19 @@ function GameFight:onEnter()
 			-- 1:移动到战斗区域
 			solider:moveToBattleRegion()
 		end
-		
 	end,1 )
+
+	-- print("----------------GameFight:onEnter")
+	-- local soldier = ccui.ImageView:create("frame/role".."1".."/idle/1.png",1)
+	-- dump(soldier,"---------------soldier = ")
+	-- -- 创建进度条
+	-- local circleProgressBar = cc.ProgressTimer:create( soldier:getVirtualRenderer():getSprite() )
+	-- -- 设置类型，圆形
+	-- circleProgressBar:setType( cc.PROGRESS_TIMER_TYPE_RADIAL )
+	-- -- 设置进度
+	-- circleProgressBar:setPercentage( 100 )
+	-- circleProgressBar:setPosition(500,500)
+	-- self:addChild(circleProgressBar)
 	-- for i = 1,3 do
 	-- 	local solider = self:createEnemySolider()
 	-- 	-- 1:移动到战斗区域
@@ -55,9 +66,9 @@ function GameFight:onEnter()
 	-- end
 
 	-- 创建一个自己的战士
-	local people = self:createPeopleSolider()
-	people:setPosition( cc.p( -200,self._trackPosY[1].posY ) )
-	people:moveToBattleRegion()
+	-- local people = self:createPeopleSolider()
+	-- people:setPosition( cc.p( -200,self._trackPosY[1].posY ) )
+	-- people:moveToBattleRegion()
 	-- -- 再创一个
 	-- performWithDelay(self,function ( ... )
 	-- 	local people = self:createPeopleSolider()
@@ -96,6 +107,20 @@ function GameFight:onEnter()
 	-- 注册消息监听,点击人物end时，放置位置失败闪烁停止
     self:addMsgListener( InnerProtocol.INNER_EVENT_FENSUI_LOADPEOPLE_TOUCHEND_FALSE,function ()
 		self:stopSeatBlink()
+	end )
+	-- 注册消息监听,有士兵死亡，通知所有士兵查看是否是自己的目标
+    self:addMsgListener( InnerProtocol.INNER_EVENT_FENSUI_FIGHT_DEAD,function (event)
+    	for i,v in ipairs(self._enemyList) do
+    		if v._hp > 0 then
+    			v:enemyDeadNews(event.data[1].guid)
+    		end
+    	end
+    	for i,v in ipairs(self._peopleList) do
+    		if v._hp > 0 then
+    			v:enemyDeadNews(event.data[1].guid)
+    		end
+    	end
+		-- self:enemyDeadNews(event.data[1].guid)
 	end )
 end
 
@@ -180,7 +205,7 @@ end
 function GameFight:createSoider( id,pos )
 	dump(id,"------------create of id is ------")
 	dump(pos,"------------create of pos is ------")
-	local people = self:createPeopleSolider()
+	local people = self:createPeopleSolider( id )
 	people:setPosition( pos )
 	people:moveToBattleRegion()
 end
@@ -194,8 +219,8 @@ function GameFight:loadStartEnemy()
 end
 
 
-function GameFight:createPeopleSolider()
-	local people = PeopleSolider:create(1,self)
+function GameFight:createPeopleSolider(id)
+	local people = PeopleSolider:create(id,self)
 	table.insert( self._peopleList,people )
 	self:addChild( people )
 	people:playIdle()

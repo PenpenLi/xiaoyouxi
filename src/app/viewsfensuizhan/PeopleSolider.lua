@@ -32,7 +32,9 @@ function PeopleSolider:moveToBattleRegion()
 end
 
 function PeopleSolider:searchEnemy()
-
+	if self._hp <= 0 then
+		return
+	end
 	if self._status ~= self.STATUS.CANFIGHT then
 		print("---------------self._status ~= self.STATUS.CANFIGHT")
 		return
@@ -43,7 +45,7 @@ function PeopleSolider:searchEnemy()
 		1:在玩家队列里面 优先选择 玩家处于可以战斗状态的人 选择出来后，通知他 进行战斗 (选择一条道) 
 		然后再通知其他 处于 可以战斗状态的人
 	]]
-	print("-----------------searchEnemy")
+	-- print("-----------------searchEnemy")
 	-- 定义一个判断敌人情况，否则下面搜索时候可能会没有搜索完全出现错误判断
 	local enemyList_canfight = false -- 先判断是否有未被攻击的敌人，有的话匹配，没有才执行正在战斗或是递归
 	local fighting_enemy = {}
@@ -51,7 +53,7 @@ function PeopleSolider:searchEnemy()
 		if v._status == self.STATUS.CANFIGHT or v._status == self.STATUS.FIGHT_HALF then
 			enemyList_canfight = true
 			break
-		else
+		elseif v._status == self.STATUS.FIGHT then
 			table.insert( fighting_enemy,v )
 		end
 	end
@@ -60,20 +62,28 @@ function PeopleSolider:searchEnemy()
 			-- 搜索可战斗状态敌人或未被攻击的敌人
 			if enemy:getStatus() == self.STATUS.CANFIGHT or enemy:getStatus() == self.STATUS.FIGHT_HALF then
 				-- 自己跑到要战斗的点
-				print("-------------PeopleSolider:searchEnemy1111111111111111111111")
+				-- print("-------------PeopleSolider:searchEnemy1111111111111111111111")
 				self:fightingWithEnemy(enemy)
 				return
 			end
-		elseif enemy:getStatus() == self.STATUS.FIGHT then
-			-- 搜索正在战斗的敌人
-			local x = random(1,#fighting_enemy)
-			self:fightingToEnemy(fighting_enemy[x])
+		else
+			if #fighting_enemy > 0 then
+				-- 搜索正在战斗的敌人
+				local x = random(1,#fighting_enemy)
+				self:fightingToEnemy(fighting_enemy[x])
+				return
+			end
 			-- if enemy:getStatus() == self.STATUS.FIGHT then
-			-- 	print("-------------PeopleSolider:searchEnemy22222222222222222222222")
-			-- 	self:fightingToEnemy(enemy)
+			-- 	-- 搜索正在战斗的敌人
+			-- 	local x = random(1,#fighting_enemy)
+			-- 	self:fightingToEnemy(fighting_enemy[x])
+			-- 	-- if enemy:getStatus() == self.STATUS.FIGHT then
+			-- 	-- 	print("-------------PeopleSolider:searchEnemy22222222222222222222222")
+			-- 	-- 	self:fightingToEnemy(enemy)
+			-- 	-- 	return
+			-- 	-- end
 			-- 	return
 			-- end
-			return
 		end
 	end
 	-- 未找到敌人
