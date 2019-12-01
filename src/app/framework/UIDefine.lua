@@ -326,6 +326,7 @@ UIDefine.FENSUIZHAN_KEY 	= {
 	Loading_UI = { layer = import("app.viewsfensuizhan.GameLoading"),flag = UIDefine.LayerFlag.Main.name,name = "FenSuiZhan_Loading_UI" },
 	Fight_UI = { layer = import("app.viewsfensuizhan.GameFight"),flag = UIDefine.LayerFlag.Main.name,name = "FenSuiZhan_Fight_UI" },
 	Operation_UI = { layer = import("app.viewsfensuizhan.GameOperation"),flag = UIDefine.LayerFlag.Main.name,name = "FenSuiZhan_Operation_UI" },
+	Choose_UI = { layer = import("app.viewsfensuizhan.GameChoose"),flag = UIDefine.LayerFlag.Main.name,name = "FenSuiZhan_Choose_UI" },
 }
 
 
