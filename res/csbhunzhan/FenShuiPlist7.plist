@@ -4,285 +4,241 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>frame/role2/attack/1.png</key>
+			<key>frame/role7/idle/1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{164,434},{162,143}}</string>
+				<string>{{237,94},{101,90}}</string>
 				<key>offset</key>
-				<string>{0,-1}</string>
+				<string>{-9,-1}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
-			<key>frame/role2/attack/10.png</key>
+			<key>frame/role7/idle/2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{671,437},{137,141}}</string>
+				<string>{{340,185},{100,90}}</string>
 				<key>offset</key>
-				<string>{17,-2}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{380,320}</string>
-			</dict>
-			<key>frame/role2/attack/11.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{1,435},{162,143}}</string>
-				<key>offset</key>
-				<string>{1,-1}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{380,320}</string>
-			</dict>
-			<key>frame/role2/attack/2.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{888,1},{120,148}}</string>
-				<key>offset</key>
-				<string>{0,5}</string>
+				<string>{-9,-1}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
-			<key>frame/role2/attack/3.png</key>
+			<key>frame/role7/idle/3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,599},{85,178}}</string>
+				<string>{{132,94},{103,89}}</string>
 				<key>offset</key>
-				<string>{-19,21}</string>
+				<string>{-9,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
-			<key>frame/role2/attack/4.png</key>
+			<key>frame/role7/idle/4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{146,579},{93,177}}</string>
+				<string>{{859,184},{106,89}}</string>
 				<key>offset</key>
-				<string>{-28,21}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{380,320}</string>
-			</dict>
-			<key>frame/role2/attack/5.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{532,144},{167,143}}</string>
-				<key>offset</key>
-				<string>{-26,1}</string>
+				<string>{-6,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
-			<key>frame/role2/attack/6.png</key>
+			<key>frame/role7/idle/5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{504,435},{165,138}}</string>
+				<string>{{885,1},{111,90}}</string>
 				<key>offset</key>
-				<string>{12,-5}</string>
+				<string>{-5,-1}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
-			<key>frame/role2/attack/7.png</key>
+			<key>frame/role7/idle/6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{846,315},{150,136}}</string>
+				<string>{{635,91},{112,89}}</string>
 				<key>offset</key>
-				<string>{12,-8}</string>
+				<string>{-4,1}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
-			<key>frame/role2/attack/8.png</key>
+			<key>frame/role7/idle/7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{328,576},{121,138}}</string>
+				<string>{{749,181},{108,89}}</string>
 				<key>offset</key>
-				<string>{8,-10}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{380,320}</string>
-			</dict>
-			<key>frame/role2/attack/9.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{504,575},{139,138}}</string>
-				<key>offset</key>
-				<string>{12,-5}</string>
+				<string>{-6,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
-			<key>frame/role2/dead/1.png</key>
+			<key>frame/role7/idle/8.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{864,151},{162,143}}</string>
+				<string>{{1,275},{102,89}}</string>
 				<key>offset</key>
-				<string>{0,-1}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{380,320}</string>
-			</dict>
-			<key>frame/role2/dead/2.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{1,288},{161,145}}</string>
-				<key>offset</key>
-				<string>{0,-3}</string>
+				<string>{-8,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
-			<key>frame/role2/dead/3.png</key>
+			<key>frame/role7/move/1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{355,283},{162,145}}</string>
+				<string>{{106,185},{101,90}}</string>
 				<key>offset</key>
-				<string>{-2,-4}</string>
+				<string>{-9,-1}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
-			<key>frame/role2/dead/4.png</key>
+			<key>frame/role7/move/2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{519,289},{161,144}}</string>
+				<string>{{209,186},{100,90}}</string>
 				<key>offset</key>
-				<string>{-3,-3}</string>
+				<string>{-9,-1}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
-			<key>frame/role2/idle/1.png</key>
+			<key>frame/role7/move/3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{682,292},{162,143}}</string>
+				<string>{{1,184},{103,89}}</string>
 				<key>offset</key>
-				<string>{0,-1}</string>
+				<string>{-9,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
-			<key>frame/role2/idle/2.png</key>
+			<key>frame/role7/move/4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{701,145},{161,145}}</string>
+				<string>{{745,272},{106,89}}</string>
 				<key>offset</key>
-				<string>{0,-3}</string>
+				<string>{-6,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
-			<key>frame/role2/idle/3.png</key>
+			<key>frame/role7/move/5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{177,287},{162,145}}</string>
+				<string>{{765,89},{111,90}}</string>
 				<key>offset</key>
-				<string>{-2,-4}</string>
+				<string>{-5,-1}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
-			<key>frame/role2/idle/4.png</key>
+			<key>frame/role7/move/6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{341,430},{161,144}}</string>
+				<string>{{878,93},{112,89}}</string>
 				<key>offset</key>
-				<string>{-3,-3}</string>
+				<string>{-4,1}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
-			<key>frame/role2/move/1.png</key>
+			<key>frame/role7/move/7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,1},{175,142}}</string>
+				<string>{{635,182},{108,89}}</string>
 				<key>offset</key>
-				<string>{-1,-2}</string>
+				<string>{-6,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
-			<key>frame/role2/move/2.png</key>
+			<key>frame/role7/move/8.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{178,1},{176,141}}</string>
+				<string>{{340,94},{102,89}}</string>
 				<key>offset</key>
-				<string>{0,-3}</string>
+				<string>{-8,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
-			<key>frame/role2/move/3.png</key>
+			<key>frame/role7/attack/1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{356,1},{176,141}}</string>
+				<string>{{518,90},{115,91}}</string>
 				<key>offset</key>
-				<string>{0,-3}</string>
+				<string>{-20,-1}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
-			<key>frame/role2/move/4.png</key>
+			<key>frame/role7/attack/2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{534,1},{176,141}}</string>
+				<string>{{935,301},{80,92}}</string>
 				<key>offset</key>
-				<string>{0,-2}</string>
+				<string>{-29,-2}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
-			<key>frame/role2/move/5.png</key>
+			<key>frame/role7/attack/3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{712,1},{174,142}}</string>
+				<string>{{392,1},{124,91}}</string>
 				<key>offset</key>
-				<string>{0,-2}</string>
+				<string>{13,-1}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
-			<key>frame/role2/move/6.png</key>
+			<key>frame/role7/attack/4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{178,144},{175,141}}</string>
+				<string>{{264,1},{126,91}}</string>
 				<key>offset</key>
-				<string>{-1,-3}</string>
+				<string>{15,-1}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
-			<key>frame/role2/move/7.png</key>
+			<key>frame/role7/attack/5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{355,144},{175,137}}</string>
+				<string>{{134,1},{128,91}}</string>
+				<key>offset</key>
+				<string>{5,-1}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{380,320}</string>
+			</dict>
+			<key>frame/role7/dead/1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1},{131,90}}</string>
 				<key>offset</key>
 				<string>{-1,-1}</string>
 				<key>rotated</key>
@@ -290,14 +246,80 @@
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
-			<key>frame/role2/move/8.png</key>
+			<key>frame/role7/dead/2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,145},{174,141}}</string>
+				<string>{{1,93},{129,89}}</string>
+				<key>offset</key>
+				<string>{-5,-2}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{380,320}</string>
+			</dict>
+			<key>frame/role7/dead/3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{518,1},{124,87}}</string>
+				<key>offset</key>
+				<string>{2,-1}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{380,320}</string>
+			</dict>
+			<key>frame/role7/dead/4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{765,1},{118,86}}</string>
 				<key>offset</key>
 				<string>{-1,-2}</string>
 				<key>rotated</key>
 				<false />
+				<key>sourceSize</key>
+				<string>{380,320}</string>
+			</dict>
+			<key>frame/role7/dead/5.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{644,1},{119,88}}</string>
+				<key>offset</key>
+				<string>{0,-3}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{380,320}</string>
+			</dict>
+			<key>frame/role7/dead/6.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{853,275},{115,80}}</string>
+				<key>offset</key>
+				<string>{0,-12}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{380,320}</string>
+			</dict>
+			<key>frame/role7/dead/7.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{967,184},{115,46}}</string>
+				<key>offset</key>
+				<string>{0,-20}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{380,320}</string>
+			</dict>
+			<key>frame/role7/dead/8.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{444,94},{115,46}}</string>
+				<key>offset</key>
+				<string>{0,-20}</string>
+				<key>rotated</key>
+				<true />
 				<key>sourceSize</key>
 				<string>{380,320}</string>
 			</dict>
@@ -307,18 +329,18 @@
 			<key>format</key>
 			<integer>2</integer>
 			<key>textureFileName</key>
-			<string>FenShuiPlist2.png</string>
+			<string>FenShuiPlist7.png</string>
 			<key>realTextureFileName</key>
-			<string>FenShuiPlist2.png</string>
+			<string>FenShuiPlist7.png</string>
 			<key>size</key>
-			<string>{1009,778}</string>
+			<string>{1016,394}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>1009</integer>
+			<integer>1016</integer>
 			<key>height</key>
-			<integer>778</integer>
+			<integer>394</integer>
 		</dict>
 	</dict>
 </plist>

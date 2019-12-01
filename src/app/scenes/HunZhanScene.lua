@@ -22,12 +22,12 @@ end
 
 
 function HunZhanScene:loadAppFile()
-	import( "app.viewsfensuizhan.solider_config" )
+	import( "app.viewshunzhan.hunsolider_config" )
 end
 
 function HunZhanScene:onEnter()
 	-- 创建LoadingUI
-	addUIToScene( UIDefine.FENSUIZHAN_KEY.Loading_UI )
+	addUIToScene( UIDefine.HUNZHAN_KEY.Loading_UI )
 end
 
 function HunZhanScene:getSceneName()
