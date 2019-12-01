@@ -11,7 +11,7 @@ function GameFight:ctor( param )
     assert( param.name," !! param.name is nil !! ")
     GameFight.super.ctor( self,param.name )
 
-    self:addCsb( "csbfensuizhan/FightLayer.csb" )
+    self:addCsb( "csbhunzhan/FightLayer.csb" )
 
     self._enemyList = {}
     self._peopleList = {}
@@ -89,7 +89,14 @@ function GameFight:createEnemyByDelay( time )
 		-- 创建敌人
 		self._curEnemyCount = self._curEnemyCount + 1
 		local id = random( 1,#hunsolider_config )
-		local pos = { x = display.width + random( 50,200 ),y = self._trackPosY[random(1,10)] }
+		
+		local pos = nil
+		local random_pos = random(1,2)
+		if random_pos == 1 then
+			pos = { x = display.width + random( 50,200 ),y = self._trackPosY[random(1,10)] }
+		else
+			pos = { x = -100,y = self._trackPosY[random(1,10)] }
+		end
 		self:createEnemySolider( id,pos )
 
 		local random_time = random( 3,7 )

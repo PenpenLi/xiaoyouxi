@@ -14,7 +14,7 @@ function Solider:ctor( soliderId,gameLayer )
 	assert( soliderId," !! soliderId is nil !! " )
 	assert( gameLayer," !! gameLayer is nil !! " )
 	Solider.super.ctor( self,"Solider" )
-	self:addCsb( "csbfensuizhan/NodeSolider.csb" )
+	self:addCsb( "csbhunzhan/NodeSolider.csb" )
 	self._id = soliderId
 	self._gameLayer = gameLayer
 	self._guid = getGUID()
@@ -26,16 +26,16 @@ function Solider:ctor( soliderId,gameLayer )
 
 	self._destEnemy = nil -- 自己的目标敌人
 	self._attackedMyEnemyList = {}  -- 攻击自己的敌人列表
+
+	self:setScale( 0.8 )
 end
 
 
-function Solider:setDirection( strType )
-	if strType == "left" then
-		self._dir = 1
-		self.Icon:getVirtualRenderer():getSprite():setFlipX( true )
-	elseif strType == "right" then
-		self._dir = 2
-		self.Icon:getVirtualRenderer():getSprite():setFlipX( false )
+-- 子类重写
+function Solider:setDirection( dir )
+	if self._dir ~= dir then
+		self._dir = dir
+		self.Icon:getVirtualRenderer():getSprite():setFlipX( self._dir == 1 )
 	end
 end
 
@@ -49,6 +49,10 @@ end
 
 function Solider:playFrameAction( frameName,isRepeate,callBack )
 	if self._curFrameName and self._curFrameName == frameName then
+		self:printLog("帧重复了 self._curFrameName = "..self._curFrameName.." isRepeate = "..tostring(isRepeate))
+		if not isRepeate then
+			callBack()
+		end
 		return
 	end
 	self._curFrameName = frameName
@@ -74,7 +78,7 @@ function Solider:playFrameAction( frameName,isRepeate,callBack )
 end
 
 function Solider:printLog( str )
-	print( string.format( " 自己的 type = %s hp= %s guid = %s,statue= %s 额外信息 = %s",self._modeType,self._hp,self._guid,self._status,str ) )
+	-- print( string.format( " 自己的 type = %s hp= %s guid = %s,statue= %s 额外信息 = %s",self._modeType,self._hp,self._guid,self._status,str ) )
 end
 
 -- 播放idle动画
@@ -87,7 +91,24 @@ function Solider:playMove()
 end
 --播放攻击动画
 function Solider:playAttack( callBack )
-	self:playFrameAction("attack_frame",false,callBack )
+	local call_set = function()
+		-- 添加箭头
+		if self._destEnemy and self._config.attack_type == 2 then
+			local color_layer = cc.LayerColor:create( cc.c4b( 255,0,0,255 ) )
+			color_layer:setContentSize( cc.size( 20,5 ) )
+			self:addChild( color_layer )
+			local world_pos = self._destEnemy:getParent():convertToWorldSpace( cc.p( self._destEnemy:getPosition() ) )
+			local node_pos = self:convertToNodeSpace( world_pos )
+			local move_to = cc.MoveTo:create(0.1,node_pos)
+			local remove = cc.RemoveSelf:create()
+			local seq = cc.Sequence:create({ move_to,remove })
+			color_layer:runAction( seq )
+		end
+		if callBack then
+			callBack()
+		end
+	end
+	self:playFrameAction("attack_frame",false,call_set )
 end
 -- 播放死亡动画
 function Solider:playDead( callBack )
@@ -194,12 +215,12 @@ end
 function Solider:updateStatus()
 	if self._status == self.STATUS.CREATE then
 		-- 进入行军状态
-		-- print( string.format( " 1 >> 士兵 类型 = %s guid = %s,进入状态 %s",self._modeType,self._guid,self._status ) )
+		self:printLog( string.format( " 1 >> 士兵 类型 = %s guid = %s,进入状态 %s",self._modeType,self._guid,self._status ) )
 		self:setStatus( self.STATUS.MARCH )
 		self:playMove()
 	elseif self._status == self.STATUS.MARCH then
 		-- 行军状态
-		-- print( string.format( " 2 >> 士兵 类型 = %s guid = %s,进入状态 %s",self._modeType,self._guid,self._status ) )
+		self:printLog( string.format( " 2 >> 士兵 类型 = %s guid = %s,进入状态 %s",self._modeType,self._guid,self._status ) )
 		self:moveToBattleRegion()
 	elseif self._status == self.STATUS.CANFIGHT then
 		-- 可以战斗的状态 进行搜索敌人
@@ -243,13 +264,18 @@ function Solider:searchEnemyAndMove()
 			self:playMove()
 			local p1 = cc.p( self:getPosition() )
 			local p2 = cc.p( self._destEnemy:getPosition() )
+			-- 设置朝向
+			if p1.x < p2.x then
+				self:setDirection( 2 )
+			elseif p1.x > p2.x then
+				self:setDirection( 1 )
+			end
 			local x_speed,y_speed = self:getAngleBySpeedForXAndY( p1,p2,self._config.speed )
 			local pos_x = self:getPositionX() + x_speed
 			local pos_y = self:getPositionY() + y_speed
 			self:setPositionX( pos_x )
 			self:setPositionY( pos_y )
 		end
-		return
 	end
 	-- 打印
 	if self._destEnemy then
@@ -322,18 +348,21 @@ end
 function Solider:startAttackEnemy()
 	-- 检查状态
 	if self._status ~= self.STATUS.ATTACK then
+		self:printLog(" startAttackEnemy 状态出错 不是攻击状态")
 		return
 	end
 	-- 检查 并重置状态
 	if not self:isDestEnemyLife() then
+		self:printLog(" startAttackEnemy 出错 敌人不存在")
+		self:printLog("从新开帧2")
 		self:resetCanFightStatus()
 		return
 	end
 	-- 1:移动到跟目标位置 y轴一样
 	local my_posY = self:getPositionY()
 	local enemy_posY = self._destEnemy:getPositionY()
-	if math.abs( my_posY - enemy_posY ) > 1 then
-		print("开始校准位置")
+	if math.abs( my_posY - enemy_posY ) > 1 and self._config.attack_type == 1 then
+		self:printLog("开始校准位置 必须是近战")
 		if my_posY > enemy_posY then
 			self:setPositionY( my_posY - 1 )
 		else
@@ -346,20 +375,37 @@ function Solider:startAttackEnemy()
 		local str = string.format( "开始攻击敌人 敌人类型 = %s guid = %s,hp = %s, 状态 = %s",
 			self._destEnemy:getModeType(),self._destEnemy:getSoliderGUID(),self._destEnemy:getHp(), self._destEnemy:getStatus() )
 		self:printLog( str )
-		self:attackEnemy()
+		self:playIdle( false,function() 
+			self:attackEnemy() 
+		end )
 	end
 end
 
 function Solider:attackEnemy()
 	-- 检查状态
 	if self._status ~= self.STATUS.ATTACK then
+		self:printLog(" attackEnemy 状态出错 不是攻击状态")
 		return
 	end
 	-- 检查 并重置状态
 	if not self:isDestEnemyLife() then
+		self:printLog(" attackEnemy 出错 敌人不存在")
+		self:printLog("从新开帧3")
 		self:resetCanFightStatus()
 		return
 	end
+
+	-- 判断自己能否攻击敌人
+	local rect1 = self:getAttackBoundingBox()
+	local rect2 = self._destEnemy:getDesignBoundingBox()
+	if not cc.rectIntersectsRect( rect1, rect2 ) then
+		self:printLog(" attackEnemy 出错 与敌人不相交")
+		self._destEnemy = nil
+		self:printLog("从新开帧4")
+		self:resetCanFightStatus()
+		return
+	end
+
 
 	-- 将自己加入到目标敌人的攻击队列中
 	self._destEnemy:addAttackMyEnemyList( self )
@@ -368,6 +414,7 @@ function Solider:attackEnemy()
 		self:printLog( "攻击动画结束 开始计算 os.time = "..os.time() )
 		-- 检查 并重置状态
 		if not self:isDestEnemyLife() then
+			self:printLog("从新开帧5")
 			self:resetCanFightStatus()
 			return
 		end
@@ -393,6 +440,7 @@ end
 function Solider:resetCanFightStatus()
 	-- 开帧
 	self:setStatus( self.STATUS.CANFIGHT )
+	self._curFrameName = nil
 	self:playIdle( true )
 	self:unscheduleUpdate()
 	self:onUpdate( function() self:updateStatus() end )
@@ -417,8 +465,10 @@ function Solider:clearDestByGuid( guid )
 		return
 	end
 	if self._destEnemy:getSoliderGUID() == guid then
-		self:printLog("目标死亡，清除目标类型的指针 guid = "..guid)
+		self:printLog("自己的目标死亡，清除目标类型的指针 guid = "..guid)
 		self._destEnemy = nil
+		self:printLog("从新开帧1")
+		self:resetCanFightStatus()
 	end
 end
 

@@ -62,7 +62,8 @@ end
 function GameOperation:onTouchEnded( touch, event )
 	local location = cc.p(touch:getLocation())
 	self._people:removeFromParent()
-	local result_bool = self:resultOfEnd(location)
+	-- local result_bool = self:resultOfEnd(location)
+	local result_bool = true
 	-- 在可放置区域才发送消息，触摸结果需要创建士兵
 	if result_bool then
 		local args = {

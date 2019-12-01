@@ -9,7 +9,7 @@ function GameLoading:ctor( param )
     assert( param.name," !! param.name is nil !! ")
     GameLoading.super.ctor( self,param.name )
 
-    self:addCsb( "csbfensuizhan/Loading.csb" )
+    self:addCsb( "csbhunzhan/Loading.csb" )
 
     self._plist = {
 		"FenShuiPlist1.plist",
