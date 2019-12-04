@@ -42,6 +42,14 @@ function Solider:setDirection( dir )
 	end
 end
 
+function Solider:getDir()
+	return self._dir
+end
+
+function Solider:getDestEnemy()
+	return self._destEnemy
+end
+
 function Solider:onEnter()
 	Solider.super.onEnter( self )
 	-- 设置位置的偏移量 让其居中
