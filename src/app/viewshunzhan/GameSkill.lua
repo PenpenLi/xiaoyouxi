@@ -206,7 +206,7 @@ function GameSkill:sendFireBall( node,enemy )
 		local e_pos
 		if node:getDir() == 1 then
 			imageFireBall:getVirtualRenderer():getSprite():setFlippedX( true )
-			e_pos = cc.p(m_pos.x - 2000,0)
+			e_pos = cc.p( - 2000,0)
 			local move_to = cc.MoveTo:create( 1.5,e_pos )
 			local fadeout = cc.FadeOut:create(0.2)
 			local call = cc.CallFunc:create(function ()
@@ -220,7 +220,7 @@ function GameSkill:sendFireBall( node,enemy )
 				self:fireHurt(imageFireBall,hurtedList,config)
 			end,0.02)
 		elseif node:getDir() == 2 then
-			e_pos = cc.p(m_pos.x + 2000,0)
+			e_pos = cc.p(2000,0)
 			local move_to = cc.MoveTo:create( 1.5,e_pos )
 			local fadeout = cc.FadeOut:create(0.2)
 			local call = cc.CallFunc:create(function ()
