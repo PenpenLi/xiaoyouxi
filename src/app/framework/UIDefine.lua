@@ -322,12 +322,12 @@ UIDefine.LayerFlag = {
 
 -- }
 
-UIDefine.FENSUIZHAN_KEY 	= {
-	Loading_UI = { layer = import("app.viewsfensuizhan.GameLoading"),flag = UIDefine.LayerFlag.Main.name,name = "FenSuiZhan_Loading_UI" },
-	Fight_UI = { layer = import("app.viewsfensuizhan.GameFight"),flag = UIDefine.LayerFlag.Main.name,name = "FenSuiZhan_Fight_UI" },
-	Operation_UI = { layer = import("app.viewsfensuizhan.GameOperation"),flag = UIDefine.LayerFlag.Main.name,name = "FenSuiZhan_Operation_UI" },
-	Choose_UI = { layer = import("app.viewsfensuizhan.GameChoose"),flag = UIDefine.LayerFlag.Main.name,name = "FenSuiZhan_Choose_UI" },
-}
+-- UIDefine.FENSUIZHAN_KEY 	= {
+-- 	Loading_UI = { layer = import("app.viewsfensuizhan.GameLoading"),flag = UIDefine.LayerFlag.Main.name,name = "FenSuiZhan_Loading_UI" },
+-- 	Fight_UI = { layer = import("app.viewsfensuizhan.GameFight"),flag = UIDefine.LayerFlag.Main.name,name = "FenSuiZhan_Fight_UI" },
+-- 	Operation_UI = { layer = import("app.viewsfensuizhan.GameOperation"),flag = UIDefine.LayerFlag.Main.name,name = "FenSuiZhan_Operation_UI" },
+-- 	Choose_UI = { layer = import("app.viewsfensuizhan.GameChoose"),flag = UIDefine.LayerFlag.Main.name,name = "FenSuiZhan_Choose_UI" },
+-- }
 
 
 UIDefine.HUNZHAN_KEY = {
@@ -335,6 +335,7 @@ UIDefine.HUNZHAN_KEY = {
 	Fight_UI = { layer = import("app.viewshunzhan.GameFight"),flag = UIDefine.LayerFlag.Main.name,name = "HunZhan_Fight_UI" },
 	Operation_UI = { layer = import("app.viewshunzhan.GameOperation"),flag = UIDefine.LayerFlag.Main.name,name = "HunZhan_Operation_UI" },
 	Choose_UI = { layer = import("app.viewshunzhan.GameChoose"),flag = UIDefine.LayerFlag.Main.name,name = "HunZhan_Choose_UI" },
+	FightOp_UI = { layer = import("app.viewshunzhan.GameFightOperation"),flag = UIDefine.LayerFlag.Main.name,name = "HunZhan_FightOp_UI" },
 }
 
 

@@ -7,7 +7,7 @@ local hunsolider_config = {
 		move_frame = { frames = {1,2,3,4,5,6,7,8},path = "frame/role1/move/" },
 		attack_frame = { frames = {1,2,3,4,5,6,7,8,9,10,1},path = "frame/role1/attack/" },
 		dead_frame = { frames = {1,2,3,4,5,6,7},path = "frame/role1/dead/" },
-		hp = 10,
+		hp = 100,
 		size = { width = 150,height = 150 },
 		image_offsetx = 0, -- 由于每个士兵的图片制作的时候 偏移了 需要一个偏移量 来设置x轴的坐标
 		attack_value = 1, -- 攻击力
@@ -24,7 +24,7 @@ local hunsolider_config = {
 		move_frame = { frames = {1,2,3,4,5,6,7,8},path = "frame/role2/move/" },
 		attack_frame = { frames = {1,2,3,4,5,6,7,8,9,10,1},path = "frame/role2/attack/" },
 		dead_frame = { frames = {1,2,3,4},path = "frame/role2/dead/" },
-		hp = 10,
+		hp = 100,
 		size = { width = 150,height = 150 },
 		image_offsetx = 20,
 		attack_value = 2, -- 攻击力
@@ -41,7 +41,7 @@ local hunsolider_config = {
 		move_frame = { frames = {1,2,3,4,5,6,7,8},path = "frame/role3/move/" },
 		attack_frame = { frames = {1,2,3,4,5,6,7,8,1},path = "frame/role3/attack/" },
 		dead_frame = { frames = {1,2,3,4},path = "frame/role3/dead/" },
-		hp = 15,
+		hp = 500,
 		size = { width = 150,height = 150 },
 		image_offsetx = 20,
 		attack_value = 1, -- 攻击力
@@ -58,7 +58,7 @@ local hunsolider_config = {
 		move_frame = { frames = {1,2,3,4,5,6,7,8},path = "frame/role4/move/" },
 		attack_frame = { frames = {1,2,3,4,5,6,7,8,9,10,1},path = "frame/role4/attack/" },
 		dead_frame = { frames = {1,2,3,4,5,6,7,8},path = "frame/role4/dead/" },
-		hp = 20,
+		hp = 100,
 		size = { width = 150,height = 150 },
 		image_offsetx = 20,
 		attack_value = 2, -- 攻击力
@@ -75,7 +75,7 @@ local hunsolider_config = {
 		move_frame = { frames = {1,2,3,4,5,6,7,8},path = "frame/role5/move/" },
 		attack_frame = { frames = {1,2,3,4,5,6,7,8,9,10,11,1},path = "frame/role5/attack/" },
 		dead_frame = { frames = {1,2,3,4,5,6,7,8},path = "frame/role5/dead/" },
-		hp = 10,
+		hp = 500,
 		size = { width = 150,height = 150 },
 		image_offsetx = 20,
 		attack_value = 2, -- 攻击力
@@ -92,7 +92,7 @@ local hunsolider_config = {
 		move_frame = { frames = {1,2,3,4,5,6,7,8},path = "frame/role6/move/" },
 		attack_frame = { frames = {1,2,3,4,5,6,7,8,1},path = "frame/role6/attack/" },
 		dead_frame = { frames = {1,2,3,4,5,6,7,8},path = "frame/role6/dead/" },
-		hp = 10,
+		hp = 100,
 		size = { width = 150,height = 150 },
 		image_offsetx = 20,
 		attack_value = 1, -- 攻击力
@@ -109,7 +109,7 @@ local hunsolider_config = {
 		move_frame = { frames = {1,2,3,4,5,6,7,8},path = "frame/role7/move/" },
 		attack_frame = { frames = {1,2,3,4,5,1},path = "frame/role7/attack/" },
 		dead_frame = { frames = {1,2,3,4,5,6,7,8},path = "frame/role7/dead/" },
-		hp = 20,
+		hp = 100,
 		size = { width = 150,height = 150 },
 		image_offsetx = 20,
 		attack_value = 2, -- 攻击力
@@ -126,7 +126,7 @@ local hunsolider_config = {
 		move_frame = { frames = {1,2,3,4,5,6,7,8},path = "frame/role8/move/" },
 		attack_frame = { frames = {1,2,3,4,5,6,1},path = "frame/role8/attack/" },
 		dead_frame = { frames = {1,2,3,4,5,6,7,8},path = "frame/role8/dead/" },
-		hp = 20,
+		hp = 100,
 		size = { width = 150,height = 150 },
 		image_offsetx = 20,
 		attack_value = 1, -- 攻击力

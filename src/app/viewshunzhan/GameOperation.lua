@@ -17,13 +17,13 @@ end
 -- 加载UI,初始化6个士兵,显示5个，第六个画面外
 function GameOperation:loadUi()
 	for i=1,self._sumLoadPeople do
-		self:createSolider()
+		self:createSolider(true)
 	end
 end
 --创建一个士兵
-function GameOperation:createSolider()
+function GameOperation:createSolider(loadPeople)
 	local peopleId = self:randomId()
-	local solider = LoadPeople.new( self,peopleId )
+	local solider = LoadPeople.new( self,peopleId,loadPeople )
 	self.Panel_2:addChild( solider )
 	self:setSoliderPosition(solider)
 end

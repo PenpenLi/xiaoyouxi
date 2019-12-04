@@ -24,6 +24,7 @@ end
 function HunZhanScene:loadAppFile()
 	import( "app.viewshunzhan.hunsolider_config" )
 	import( "app.viewshunzhan.hunstage_config" )
+	import( "app.viewshunzhan.hunfight_config" )
 end
 
 function HunZhanScene:onEnter()

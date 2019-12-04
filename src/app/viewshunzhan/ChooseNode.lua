@@ -10,7 +10,7 @@ function ChooseNode:ctor( id,level,parentLayer )
 	self._level = level
 	self._parentLayer = parentLayer
 
-	self:addCsb("csbfensuizhan/NodeLevel.csb")
+	self:addCsb("csbhunzhan/NodeLevel.csb")
 
 	self:loadUi()
 	self:addNodeClick(self.LevelBg,{ 
@@ -64,8 +64,12 @@ function ChooseNode:play()
 	-- end
 	local id = self._id
 	removeUIFromScene( UIDefine.HUNZHAN_KEY.Choose_UI )
-	addUIToScene( UIDefine.HUNZHAN_KEY.Fight_UI,id )
-	addUIToScene( UIDefine.HUNZHAN_KEY.Operation_UI )
+	if id == 1 then
+		addUIToScene( UIDefine.HUNZHAN_KEY.FightOp_UI )
+	else
+		addUIToScene( UIDefine.HUNZHAN_KEY.Fight_UI,id )
+		addUIToScene( UIDefine.HUNZHAN_KEY.Operation_UI )
+	end
 end
 
 

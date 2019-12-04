@@ -7,7 +7,7 @@ function GameChoose:ctor( param )
     assert( param.name," !! param.name is nil !! ")
     GameChoose.super.ctor( self,param.name )
 
-    self:addCsb("csbfensuizhan/ChooseLayer.csb")
+    self:addCsb("csbhunzhan/ChooseLayer.csb")
 
     self._level = 2 -- 当前关
     self._totalLevel = 5

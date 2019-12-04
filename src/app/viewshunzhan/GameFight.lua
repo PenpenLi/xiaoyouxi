@@ -112,7 +112,7 @@ function GameFight:createEnemyByDelay( time )
 		end
 		self:createEnemySolider( id,pos,random_pos )
 
-		local random_time = random( 3,7 )
+		local random_time = random( 1,5 )
 		self:createEnemyByDelay( random_time )
 	end,delay_time )
 end

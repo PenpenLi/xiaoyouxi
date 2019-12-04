@@ -2,13 +2,17 @@
 
 local LoadPeople = class("LoadPeople",BaseNode)
 
-function LoadPeople:ctor( parent,id )
+function LoadPeople:ctor( parent,id,loadPeople )
 	LoadPeople.super.ctor( self )
 	self._parent = parent
 	self._id = id
 	self._config = hunsolider_config[self._id]
 	self._status = false -- CD是否完成状态
 	self._scheduleTime = 0.02 
+	self._cd = self._config.cd
+	if loadPeople then
+		self._cd = 0
+	end
 	self:addCsb("csbhunzhan/NodePeople.csb")
 
 	self:loadUi()
@@ -58,7 +62,7 @@ function LoadPeople:onEnter()
 	-- CD计时器
 	local index = 0
 	self:schedule(function ()
-		local percentage = index / ( self._config.cd / self._scheduleTime )
+		local percentage = index / ( self._cd / self._scheduleTime )
 		self._circleProgressBar:setPercentage( percentage * 100 )
 		self._circleProgressBarBg:setPercentage( percentage * 100 )
 		if percentage >= 1 then
