@@ -22,7 +22,6 @@ end
 
 function GameFightOperation:onEnter()
 	GameFightOperation.super.onEnter( self )
-
 	self:loadPeople()
 	self:loadEnemy()
 end
@@ -85,6 +84,61 @@ function GameFightOperation:soliderDead( guid,modeType )
 		v:clearDestByGuid( guid )
 		v:removeAttackMyEnemyList( guid )
 	end
+	-- 清空选中的要操作的指针
+	if self._selectPeople then
+		if self._selectPeople:getSoliderGUID() == guid then
+			self:clearSelectPeople()
+		end
+	end
+end
+
+
+
+function GameFightOperation:onTouchBegan( touch, event )
+	if #self._peopleList == 0 then
+		self:clearSelectPeople()
+		return false
+	end
+
+	if self._touchStartPos and self._selectPeople then
+		return true
+	end
+
+	local location = cc.p(touch:getLocation())
+	for i,v in ipairs( self._peopleList ) do
+		if not v:isDead() then
+			local rect = v:getDesignBoundingBox()
+			if cc.rectContainsPoint( rect,location ) then
+				self._touchStartPos = location
+				self._selectPeople = v
+				return true
+			end
+		end
+	end
+	return false
+end
+
+
+function GameFightOperation:onTouchEnded( touch, event )
+	if not self._touchStartPos or not self._selectPeople then
+		return
+	end
+	if self._selectPeople:isDead() then
+		self:clearSelectPeople()
+		return
+	end
+    local location = cc.p(touch:getLocation())
+    local dis = cc.pGetDistance( self._touchStartPos,location )
+    if dis <= 30 then
+    	return
+    end
+    -- 移动到当前的位置
+    self._selectPeople:setMoveSelectPos( location )
+end
+
+function GameFightOperation:clearSelectPeople()
+	self._touchStartPos = nil
+	self._selectPeople = nil
 end
 
 
