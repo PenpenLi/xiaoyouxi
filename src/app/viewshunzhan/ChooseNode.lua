@@ -65,7 +65,9 @@ function ChooseNode:play()
 	local id = self._id
 	removeUIFromScene( UIDefine.HUNZHAN_KEY.Choose_UI )
 	if id == 1 then
-		addUIToScene( UIDefine.HUNZHAN_KEY.FightOp_UI )
+		local fightOpLayer = addUIToScene( UIDefine.HUNZHAN_KEY.FightOp_UI )
+		local data = {enemyList = fightOpLayer._enemyList,peopleList = fightOpLayer._peopleList}
+		addUIToScene( UIDefine.HUNZHAN_KEY.Skill_UI,data )
 	else
 		addUIToScene( UIDefine.HUNZHAN_KEY.Fight_UI,id )
 		addUIToScene( UIDefine.HUNZHAN_KEY.Operation_UI )

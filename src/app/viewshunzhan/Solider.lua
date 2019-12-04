@@ -121,6 +121,13 @@ end
 function Solider:getHp()
 	return self._hp
 end
+function Solider:addHp( hp )
+	self._hp = self._hp + hp
+	if self._hp > hunsolider_config[self._id].hp then
+		self._hp = hunsolider_config[self._id].hp
+	end
+	self.Hp:setPercent( self._hp / self._config.hp * 100 )
+end
 function Solider:setHpByHurt( hurtValue )
 	self._hp = self._hp - hurtValue
 	self:printLog( "当前正在受到攻击的log" )

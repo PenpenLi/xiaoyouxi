@@ -336,6 +336,7 @@ UIDefine.HUNZHAN_KEY = {
 	Operation_UI = { layer = import("app.viewshunzhan.GameOperation"),flag = UIDefine.LayerFlag.Main.name,name = "HunZhan_Operation_UI" },
 	Choose_UI = { layer = import("app.viewshunzhan.GameChoose"),flag = UIDefine.LayerFlag.Main.name,name = "HunZhan_Choose_UI" },
 	FightOp_UI = { layer = import("app.viewshunzhan.GameFightOperation"),flag = UIDefine.LayerFlag.Main.name,name = "HunZhan_FightOp_UI" },
+	Skill_UI = { layer = import("app.viewshunzhan.GameSkill"),flag = UIDefine.LayerFlag.Main.name,name = "HunZhan_Skill_UI" },
 }
 
 

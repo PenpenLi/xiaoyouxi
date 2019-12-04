@@ -36,6 +36,7 @@ function GameFightOperation:loadPeople()
 		self:addChild( people )
 		people:playIdle()
 		people:setPosition( v.position )
+		people.mode = v.mode
 	end
 end
 
