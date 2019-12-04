@@ -8,6 +8,7 @@ Solider.STATUS = {
 	CANFIGHT = "can_fight", -- 可以战斗的状态 搜索敌人
 	ATTACK = "attack", -- 攻击敌人状态
 	DEAD = "dead", -- 死亡状态
+	SELECT = "select", -- 选中状态
 }
 
 function Solider:ctor( soliderId,gameLayer )
@@ -145,6 +146,11 @@ function Solider:setHpByHurt( hurtValue )
 		self:setDead()
 	end
 end
+
+function Solider:isDead()
+	return self._status == self.STATUS.DEAD
+end
+
 function Solider:getId()
 	return self._id
 end
@@ -249,6 +255,9 @@ function Solider:updateStatus()
 		-- 攻击状态 攻击自己的目标敌人
 		self:printLog(" 自己开始攻击目标 ")
 		self:startAttackEnemy()
+	elseif self._status == self.STATUS.SELECT then
+		self:printLog(" 自己移动到选中的地点 ")
+		self:moveToSelectPos()
 	end
 end
 
@@ -382,6 +391,7 @@ function Solider:startAttackEnemy()
 	local enemy_posY = self._destEnemy:getPositionY()
 	if math.abs( my_posY - enemy_posY ) > 1 and self._config.attack_type == 1 then
 		self:printLog("开始校准位置 必须是近战")
+		self:playMove()
 		if my_posY > enemy_posY then
 			self:setPositionY( my_posY - 1 )
 		else
@@ -445,6 +455,15 @@ function Solider:attackEnemy()
 	end
 	self:printLog( "播放攻击动画 os.time = "..os.time() )
 	self:playAttack( call_back )
+end
+
+-- 移动到选中的区域
+function Solider:moveToSelectPos()
+end
+
+-- 子类重写
+function Solider:setMoveSelectPos( pos )
+	
 end
 
 -- 检查目标敌人是否存在

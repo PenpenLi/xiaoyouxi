@@ -241,6 +241,7 @@ end
 
 function GameSkill:onEnter()
 	GameSkill.super.onEnter(self)
+	self.listener:setSwallowTouches( false )
 
 	-- -- CD计时器
 	-- local index = 0
