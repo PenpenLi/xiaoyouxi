@@ -35,19 +35,19 @@ function GameSkill:loadUi()
 	-- 第一技能
 	self._skillFirstLoadingBar = self:createSkillLoadingBar("skill/skill1.png")
 	self.ButtonSkill1:addChild(self._skillFirstLoadingBar)
-	graySprite( self.ButtonSkill1:getVirtualRenderer():getSprite() )
+	-- graySprite( self.ButtonSkill1:getVirtualRenderer():getSprite() )
 	local size_skill1 = self.ButtonSkill1:getContentSize()
 	self._skillFirstLoadingBar:setPosition( cc.p( size_skill1.width/2,size_skill1.height/2 ))
 	-- 第二技能
 	self._skillSecondLoadingBar = self:createSkillLoadingBar("skill/skill2.png")
 	self.ButtonSkill2:addChild(self._skillSecondLoadingBar)
-	graySprite( self.ButtonSkill2:getVirtualRenderer():getSprite() )
+	-- graySprite( self.ButtonSkill2:getVirtualRenderer():getSprite() )
 	local size_skill2 = self.ButtonSkill2:getContentSize()
 	self._skillSecondLoadingBar:setPosition( cc.p( size_skill2.width/2,size_skill2.height/2 ))
 	-- 第三技能
 	self._skillThirdLoadingBar = self:createSkillLoadingBar("skill/add_hp.png")
 	self.ButtonAddHp:addChild(self._skillThirdLoadingBar)
-	graySprite( self.ButtonAddHp:getVirtualRenderer():getSprite() )
+	-- graySprite( self.ButtonAddHp:getVirtualRenderer():getSprite() )
 	local size_skill3 = self.ButtonAddHp:getContentSize()
 	self._skillThirdLoadingBar:setPosition( cc.p( size_skill3.width/2,size_skill3.height/2 ))
 end
@@ -67,7 +67,7 @@ function GameSkill:skill1()
 	local boss = nil
 	for i,v in ipairs(self._peopleList) do
 		if v.mode == 2 then
-			self:shockWaveEffect(v)
+			self:shockWavesEffect(v)
 		end
 	end
 end
@@ -120,10 +120,18 @@ function GameSkill:skillAddHp()
 		-- end,0.2}
 	end
 end
-function GameSkill:shockWaveEffect( node )
+function GameSkill:shockWavesEffect( node )
 	local imageShockWave = ccui.ImageView:create("skill/direction.png")
 	node:addChild(imageShockWave)
 	imageShockWave:setAnchorPoint(cc.p(0,0.5))
+
+
+	-- 发射指向技能
+	local pos = 1
+	self:sendFireBall(node,pos)
+end
+function GameSkill:sendFireBall( node )
+	-- body
 end
 function GameSkill:skillFireEffect( node )
 	local imageFire = ccui.ImageView:create("fire/1.png")
