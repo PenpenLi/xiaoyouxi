@@ -9,7 +9,9 @@ function GameSkill:ctor( param )
 
     self._enemyList = param.data.enemyList
     self._peopleList = param.data.peopleList
-
+    self._skillFirstStatus = false
+	self._skillSecondStatus = false
+	self._skillThirdStatus = false
     self:addCsb("csbhunzhan/SkillLayer.csb")
 
     self._scheduleTime = 0.02
@@ -33,39 +35,70 @@ function GameSkill:ctor( param )
 end
 function GameSkill:loadUi()
 	-- 第一技能
-	self._skillFirstLoadingBar = self:createSkillLoadingBar("skill/skill1.png")
-	self.ButtonSkill1:addChild(self._skillFirstLoadingBar)
+	self:loadSkill1()
+	-- 第二技能
+	self:loadSkill2()
+	-- 第三技能
+	self:loadSkill3()
+end
+function GameSkill:loadSkill1( ... )
+	if self._skillFirstLoadingBar == nil then
+		self._skillFirstLoadingBar = self:createSkillLoadingBar("skill/skill1.png")
+		self.ButtonSkill1:addChild(self._skillFirstLoadingBar)
+	end
+	self._skillFirstLoadingBar:setVisible(true)
+	
 	graySprite( self.ButtonSkill1:getVirtualRenderer():getSprite() )
 	local size_skill1 = self.ButtonSkill1:getContentSize()
 	self._skillFirstLoadingBar:setPosition( cc.p( size_skill1.width/2,size_skill1.height/2 ))
+	self:skillSchedule(self.ButtonSkill1,1,self._skillFirstLoadingBar)
+end
+function GameSkill:loadSkill2( ... )
+	if self._skillSecondLoadingBar == nil then
+		self._skillSecondLoadingBar = self:createSkillLoadingBar("skill/skill2.png")
+		self.ButtonSkill2:addChild(self._skillSecondLoadingBar)
+	end
+	self._skillSecondLoadingBar:setVisible(true)
 	
-	-- 第二技能
-	self._skillSecondLoadingBar = self:createSkillLoadingBar("skill/skill2.png")
-	self.ButtonSkill2:addChild(self._skillSecondLoadingBar)
 	graySprite( self.ButtonSkill2:getVirtualRenderer():getSprite() )
 	local size_skill2 = self.ButtonSkill2:getContentSize()
 	self._skillSecondLoadingBar:setPosition( cc.p( size_skill2.width/2,size_skill2.height/2 ))
-	-- 第三技能
-	self._skillThirdLoadingBar = self:createSkillLoadingBar("skill/add_hp.png")
-	self.ButtonAddHp:addChild(self._skillThirdLoadingBar)
+	self:skillSchedule(self.ButtonSkill2,2,self._skillSecondLoadingBar)
+end
+function GameSkill:loadSkill3( ... )
+	if self._skillThirdLoadingBar == nil then
+		self._skillThirdLoadingBar = self:createSkillLoadingBar("skill/add_hp.png")
+		self.ButtonAddHp:addChild(self._skillThirdLoadingBar)
+	end
+	self._skillThirdLoadingBar:setVisible(true)
+	
 	graySprite( self.ButtonAddHp:getVirtualRenderer():getSprite() )
 	local size_skill3 = self.ButtonAddHp:getContentSize()
 	self._skillThirdLoadingBar:setPosition( cc.p( size_skill3.width/2,size_skill3.height/2 ))
+	self:skillSchedule(self.ButtonAddHp,3,self._skillThirdLoadingBar)
 end
--- function GameSkill:skillSchedule( node,skillId,loadingBar,skillStatus )
--- 	local index = 0
--- 	node:schedule(function ()
--- 		local percentage = index / ( hunSkill_config[skillId].cd / self._scheduleTime )
--- 		loadingBar:setPercentage( percentage * 100 )
--- 		if percentage >= 1 then
--- 			skillStatus = true
--- 			node:unSchedule()
--- 			node._circleProgressBar:setVisible( false )
--- 			ungraySprite( node:getVirtualRenderer():getSprite() )
--- 		end
--- 		index = index + 1
--- 	end,self._scheduleTime)
--- end
+function GameSkill:skillSchedule( node,skillId,loadingBar )
+	local index = 0
+	node:stopAllActions()
+	schedule(node,function ()
+		local percentage = index / ( hunSkill_config[skillId].cd / self._scheduleTime )
+		loadingBar:setPercentage( percentage * 100 )
+		if percentage >= 1 then
+			if skillId == 1 then
+				self._skillFirstStatus = true
+			elseif skillId == 2 then
+				self._skillSecondStatus = true
+			elseif skillId == 3 then
+				self._skillThirdStatus = true
+			end
+			-- node:unSchedule()
+			node:stopAllActions()
+			loadingBar:setVisible( false )
+			ungraySprite( node:getVirtualRenderer():getSprite() )
+		end
+		index = index + 1
+	end,self._scheduleTime)
+end
 -- 创建进度条
 function GameSkill:createSkillLoadingBar(path)
 	local skill = ccui.ImageView:create(path)
@@ -79,6 +112,12 @@ function GameSkill:createSkillLoadingBar(path)
 	return circleProgressBar
 end
 function GameSkill:skill1()
+	if self._skillFirstStatus == false then
+		print("111111111111111")
+		return
+	end
+	self._skillFirstStatus = false
+	self:loadSkill1()
 	local boss = nil
 	for i,v in ipairs(self._peopleList) do
 		if v.mode == 2 then
@@ -87,6 +126,11 @@ function GameSkill:skill1()
 	end
 end
 function GameSkill:skill2()
+	if self._skillSecondStatus == false then
+		return
+	end
+	self._skillSecondStatus = false
+	self:loadSkill2()
 	local boss = nil
 	for i,v in ipairs(self._peopleList) do
 		if v.mode == 2 then
@@ -95,6 +139,11 @@ function GameSkill:skill2()
 	end
 end
 function GameSkill:skillAddHp()
+	if self._skillThirdStatus == false then
+		return
+	end
+	self._skillThirdStatus = false
+	self:loadSkill3()
 	local per_addHp = hunSkill_config[3].addHp / 100
 	for i,v in ipairs(self._peopleList) do
 		local node = cc.Node:create()
@@ -139,46 +188,85 @@ function GameSkill:shockWavesEffect( node )
 	-- local imageShockWave = ccui.ImageView:create("skill/direction.png")
 	-- node:addChild(imageShockWave)
 	-- imageShockWave:setAnchorPoint(cc.p(0,0.5))
+
 	-- 发射指向技能
-	local enemy = node:getDestEnemy()
-	self:sendFireBall(node,enemy)
+	if node and not node:isDead() then
+		local enemy = node:getDestEnemy()
+		self:sendFireBall(node,enemy)
+	end
 end
 -- 发射指向技能
 function GameSkill:sendFireBall( node,enemy )
 	local m_pos = cc.p(node:getPosition())
 	local imageFireBall = ccui.ImageView:create("skill/skill_effect_1.png")
 	node:addChild(imageFireBall)
-	if enemy == nil then
-		-- 没有地方，直接直线发射技能
-		return
-	end
-	local e_pos = cc.p(enemy:getPosition())
-	local x = e_pos.x - m_pos.x
-	local y = e_pos.y - m_pos.y
-	local k = math.atan2( y,x )
-	local r = 90 - k * 180 / math.pi
-	imageFireBall:setRotation( r - 90 )
+	-- if enemy == nil then
 
-	local radian = 2 * math.pi/360 * r
-	local move_x = math.sin( radian ) * 2000
-	local move_y = math.cos( radian ) * 2000
-	local move_to_pos = cc.p( move_x,move_y )
-	local move_to = cc.MoveTo:create( 3,move_to_pos )
-	local fadeout = cc.FadeOut:create(0.2)
-	local call = cc.CallFunc:create(function ()
-		imageFireBall:removeFromParent()
-	end)
-	local seq = cc.Sequence:create(move_to,fadeout,call)
-	imageFireBall:runAction(seq)
-	local hurtedList = {}
-	local config = hunSkill_config[1]
-	schedule(imageFireBall,function ()
-		self:fireHurt(imageFireBall,hurtedList,config)
-	end,0.02)
+		-- 没有地方，直接直线发射技能
+		local e_pos
+		if node:getDir() == 1 then
+			imageFireBall:getVirtualRenderer():getSprite():setFlippedX( true )
+			e_pos = cc.p(m_pos.x - 2000,0)
+			local move_to = cc.MoveTo:create( 1.5,e_pos )
+			local fadeout = cc.FadeOut:create(0.2)
+			local call = cc.CallFunc:create(function ()
+				imageFireBall:removeFromParent()
+			end)
+			local seq = cc.Sequence:create(move_to,fadeout,call)
+			imageFireBall:runAction(seq)
+			local hurtedList = {}
+			local config = hunSkill_config[1]
+			schedule(imageFireBall,function ()
+				self:fireHurt(imageFireBall,hurtedList,config)
+			end,0.02)
+		elseif node:getDir() == 2 then
+			e_pos = cc.p(m_pos.x + 2000,0)
+			local move_to = cc.MoveTo:create( 1.5,e_pos )
+			local fadeout = cc.FadeOut:create(0.2)
+			local call = cc.CallFunc:create(function ()
+				imageFireBall:removeFromParent()
+			end)
+			local seq = cc.Sequence:create(move_to,fadeout,call)
+			imageFireBall:runAction(seq)
+			local hurtedList = {}
+			local config = hunSkill_config[1]
+			schedule(imageFireBall,function ()
+				self:fireHurt(imageFireBall,hurtedList,config)
+			end,0.02)
+		end
+		return
+	-- end
+
+
+	-- local e_pos = cc.p(enemy:getPosition())
+	-- local x = e_pos.x - m_pos.x
+	-- local y = e_pos.y - m_pos.y
+	-- local k = math.atan2( y,x )
+	-- local r = 90 - k * 180 / math.pi
+	-- imageFireBall:setRotation( r - 90 )
+
+	-- local radian = 2 * math.pi/360 * r
+	-- local move_x = math.sin( radian ) * 2000
+	-- local move_y = math.cos( radian ) * 2000
+	-- local move_to_pos = cc.p( move_x,move_y )
+	-- local move_to = cc.MoveTo:create( 1,move_to_pos )
+	-- local fadeout = cc.FadeOut:create(0.2)
+	-- local call = cc.CallFunc:create(function ()
+	-- 	imageFireBall:removeFromParent()
+	-- end)
+	-- local seq = cc.Sequence:create(move_to,fadeout,call)
+	-- imageFireBall:runAction(seq)
+	-- local hurtedList = {}
+	-- local config = hunSkill_config[1]
+	-- schedule(imageFireBall,function ()
+	-- 	self:fireHurt(imageFireBall,hurtedList,config)
+	-- end,0.02)
 end
+
 -- function GameSkill:fireBallHurt( node,list )
 	
 -- end
+
 function GameSkill:skillFireEffect( node )
 	local imageFire = ccui.ImageView:create("fire/1.png")
 	node:addChild(imageFire)

@@ -138,6 +138,9 @@ function Solider:addHp( hp )
 	self.Hp:setPercent( self._hp / self._config.hp * 100 )
 end
 function Solider:setHpByHurt( hurtValue )
+	if self._hp <= 0 then
+		return
+	end
 	self._hp = self._hp - hurtValue
 	self:printLog( "当前正在受到攻击的log" )
 	self.Hp:setPercent( self._hp / self._config.hp * 100 )
