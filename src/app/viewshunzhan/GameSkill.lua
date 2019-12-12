@@ -26,7 +26,7 @@ function GameSkill:ctor( param )
 	self._skillTwoScope = nil -- 2技能施法范围
 	self._skillTwoScopeHurt = nil -- 2技能作用范围
 	self._skillTwoRadian = nil -- 技能2的释放角度
-	self._skillTwoMaxDistance = 300 -- 技能2释放距离，半径
+	self._skillTwoMaxDistance = 400 -- 技能2释放距离，半径
 	self._skillTwoHurtRatian = 200 -- 技能2，作用范围直径
 	--
     self:addCsb("csbhunzhan/SkillLayer.csb")
@@ -333,14 +333,13 @@ function GameSkill:createScopeOnHero(pos)
 		self._skillTwoScope = ccui.ImageView:create("skill/quan1.png")
 		self._hero:addChild(self._skillTwoScope)
 		local quan_size = self._skillTwoScope:getContentSize()
-		self._skillTwoScope:setScaleX( self._skillTwoMaxDistance * 2 / quan_size.width )
-		self._skillTwoScope:setScaleY( self._skillTwoMaxDistance * 2 / quan_size.height )
-		-- self._skillTwoScope:setAnchorPoint(0,0.5)
+		-- self._skillTwoScope:setScaleX( self._skillTwoMaxDistance * 2 / quan_size.width )
+		-- self._skillTwoScope:setScaleY( self._skillTwoMaxDistance * 2 / quan_size.height )
 		self._skillTwoScopeHurt = ccui.ImageView:create("skill/quan2.png")
 		self:addChild(self._skillTwoScopeHurt)
 		local fire_size = self._skillTwoScopeHurt:getContentSize()
-		self._skillTwoScopeHurt:setScaleX( self._skillTwoHurtRatian / fire_size.width )
-		self._skillTwoScopeHurt:setScaleY( self._skillTwoHurtRatian / fire_size.height )
+		-- self._skillTwoScopeHurt:setScaleX( self._skillTwoHurtRatian / fire_size.width )
+		-- self._skillTwoScopeHurt:setScaleY( self._skillTwoHurtRatian / fire_size.height )
 	end
 	self._skillTwoScope:setVisible(true)
 	self._skillTwoScopeHurt:setVisible(true)

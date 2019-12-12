@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>image/box_locked.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{241,1},{159,160}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{159,160}</string>
+			</dict>
+			<key>image/box_Pass.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{241,163},{159,160}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{159,160}</string>
+			</dict>
+			<key>image/box_unlock.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,650},{159,160}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{159,160}</string>
+			</dict>
+			<key>image/close.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,812},{79,81}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{79,81}</string>
+			</dict>
+			<key>image/coinbg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,330},{242,318}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{242,318}</string>
+			</dict>
+			<key>image/hp.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,993},{91,13}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{91,13}</string>
+			</dict>
+			<key>image/hp_bg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,895},{96,17}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{96,17}</string>
+			</dict>
+			<key>image/select.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1},{238,327}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{244,333}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>FenShuiPlist9.png</string>
+			<key>realTextureFileName</key>
+			<string>FenShuiPlist9.png</string>
+			<key>size</key>
+			<string>{401,1007}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>401</integer>
+			<key>height</key>
+			<integer>1007</integer>
+		</dict>
+	</dict>
+</plist>

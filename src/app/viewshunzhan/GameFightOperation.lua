@@ -16,6 +16,13 @@ function GameFightOperation:ctor( param )
 
     self._battleLeftX = self.CenterPanel:getPositionX()
     self._battleRightX = self._battleLeftX + self.CenterPanel:getContentSize().width
+
+    self:addNodeClick( self.ButtonClose,{
+		endCallBack = function ()
+			removeUIFromScene( UIDefine.HUNZHAN_KEY.FightOp_UI )
+			addUIToScene( UIDefine.HUNZHAN_KEY.Choose_UI )
+		end
+	})
 end
 
 
