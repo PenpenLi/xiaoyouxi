@@ -1,5 +1,6 @@
 
-
+local PeopleSolider = import(".PeopleSolider")
+local EnemySolider = import(".EnemySolider")
 local MainGame = class("MainGame",BaseLayer)
 
 
@@ -11,7 +12,8 @@ function MainGame:ctor( param )
     MainGame.super.ctor( self,param.name )
 
     self:addCsb( "csbrpgfight/FightLayer.csb" )
-
+    self._enemyList = {}
+    self._peopleList = {}
     self.m_brackPos = {}
 end
 
@@ -19,6 +21,22 @@ end
 function MainGame:onEnter()
 	MainGame.super.onEnter( self )
 	self:loadBrick()
+
+	-- 创建士兵
+	local m_brickId = {col = 1,row = 1}
+	local people = PeopleSolider.new(1,m_brickId,self)
+	self:addChild(people)
+	local m_pos = self:getBrackPos(1,1)
+	people:setPosition(m_pos)
+	table.insert(self._peopleList,people)
+
+	-- 创建一个敌人
+	local e_brickId = {col = 10,row = 5}
+	local enemy = EnemySolider.new(1,e_brickId,self)
+	self:addChild(enemy)
+	local e_pos = self:getBrackPos(10,5)
+	enemy:setPosition(e_pos)
+	table.insert(self._enemyList,enemy)
 end
 
 
@@ -49,7 +67,10 @@ function MainGame:getBrackPos( col,row )
 	return self.m_brackPos[col][row]
 end
 
-
+-- 创建士兵
+function MainGame:createPeopleSolider(  )
+	-- body
+end
 
 
 

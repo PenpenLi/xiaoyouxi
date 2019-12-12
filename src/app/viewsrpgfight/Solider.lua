@@ -9,18 +9,21 @@ Solider.STATUS = {
 	ATTACK = "attack", -- 攻击敌人状态
 	DEAD = "dead", -- 死亡状态
 	SELECT = "select", -- 选中状态
+	MOVE = "move", -- 移动状态
 }
 
-function Solider:ctor( soliderId,gameLayer )
+function Solider:ctor( soliderId,brickId,gameLayer )
 	assert( soliderId," !! soliderId is nil !! " )
 	assert( gameLayer," !! gameLayer is nil !! " )
 	Solider.super.ctor( self,"Solider" )
 	self:addCsb( "csbhunzhan/NodeSolider.csb" )
 	self._id = soliderId
+	self._brickId = brickId	-- 所在砖块行列
 	self._gameLayer = gameLayer
 	self._guid = getGUID()
-	self._config = hunsolider_config[self._id]
-	self._status = self.STATUS.CREATE
+	self._config = rpgsolider_config[self._id]
+	--self._status = self.STATUS.CREATE
+	self._status = self.STATUS.CANFIGHT
 	self._hp = self._config.hp
 	self._dir = 1 -- 方向 1:向左 2:向右
 	self._modeType = "" -- "people" 玩家 "enemy" 敌人
@@ -32,6 +35,7 @@ function Solider:ctor( soliderId,gameLayer )
 	self.Icon:loadTexture( path,1 )
 
 	-- self:setScale( 0.8 )
+	
 end
 
 
@@ -46,7 +50,9 @@ end
 function Solider:getDir()
 	return self._dir
 end
-
+function Solider:getBrickId()
+	return self._brickId
+end
 function Solider:getDestEnemy()
 	return self._destEnemy
 end
@@ -199,9 +205,56 @@ end
 
 
 function Solider:updateStatus()
-	
-end
+	if self._status == self.STATUS.CREATE then
+		-- 进入行军状态
+		self:printLog( string.format( " 1 >> 士兵 类型 = %s guid = %s,进入状态 %s",self._modeType,self._guid,self._status ) )
+		self:setStatus( self.STATUS.MARCH )
+		self:playMove()
+	elseif self._status == self.STATUS.MARCH then
+		-- 行军状态
+		self:printLog( string.format( " 2 >> 士兵 类型 = %s guid = %s,进入状态 %s",self._modeType,self._guid,self._status ) )
+		self:moveToBattleRegion()
+	elseif self._status == self.STATUS.CANFIGHT then
+		-- 可以战斗的状态 进行搜索敌人
+		self:printLog(" 自己正在搜索敌人 ")
+		--self:searchEnemyAndMove()
 
+		--测试
+		self:runToEnemy()
+	elseif self._status == self.STATUS.ATTACK then
+		-- 攻击状态 攻击自己的目标敌人
+		self:printLog(" 自己开始攻击目标 ")
+		self:startAttackEnemy()
+	elseif self._status == self.STATUS.SELECT then
+		self:printLog(" 自己移动到选中的地点 ")
+		self:moveToSelectPos()
+	end
+end
+-- 跑向敌人
+function Solider:runToEnemy( ... )
+	-- 测试，找一个敌人
+	for i,enemy in ipairs(self._enemyList) do
+		self._destEnemy = enemy
+	end
+	local e_brickId = self._destEnemy:getBrickId()
+	if self._brickId.row < e_brickId.row then
+		self._brickId.row = self._brickId.row + 1
+	elseif self._brickId.row > e_brickId.row then
+		self._brickId.row = self._brickId.row - 1
+	elseif self._brickId.col > e_brickId.col then
+		self._brickId.col = self._brickId.col - 1
+	elseif self._brickId.col < e_brickId.col then
+		self._brickId.col = self._brickId.col + 1
+	end
+	self._status = self.STATUS.MOVE
+	local pos = self._gameLayer:getBrackPos(self._brickId.col,self._brickId.row)
+	local move_to = cc.MoveTo:create(1,pos)
+	local call = cc.CallFunc:create(function ()
+		self._status = self.STATUS.CANFIGHT
+	end)
+	local seq = cc.Sequence:create(move_to,call)
+	self:runAction(seq)
+end
 
 -- 检查目标敌人是否存在
 function Solider:isDestEnemyLife()
