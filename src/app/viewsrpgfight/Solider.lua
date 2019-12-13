@@ -236,7 +236,10 @@ function Solider:runToEnemy( ... )
 	for i,enemy in ipairs(self._enemyList) do
 		self._destEnemy = enemy
 	end
-	local e_brickId = self._destEnemy:getBrickId()
+
+	local e_brickId = self._destEnemy:getBrickId() -- 敌人行列
+	
+
 	if self._brickId.row < e_brickId.row then
 		self._brickId.row = self._brickId.row + 1
 	elseif self._brickId.row > e_brickId.row then
