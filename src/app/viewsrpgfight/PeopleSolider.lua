@@ -16,8 +16,6 @@ end
 
 function PeopleSolider:onEnter()
 	PeopleSolider.super.onEnter( self )
-
-	
 end
 
 

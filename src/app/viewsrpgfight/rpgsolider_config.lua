@@ -12,10 +12,10 @@ local rpgsolider_config = {
 		image_offsetx = 0, -- 由于每个士兵的图片制作的时候 偏移了 需要一个偏移量 来设置x轴的坐标
 		attack_value = 1, -- 攻击力
 		attack_interval = 0.2, -- 攻击间隔 1秒
-		attack_distance = 50,-- 攻击距离 像素 
+		attack_distance = 1,-- 攻击距离 单位 砖块
 		attack_type = 1, -- 1:近战 2:远程
 		cd = 15,
-		speed = 2 -- 移动速度 1帧移动的像素
+		speed = 2 -- 移动速度 单位秒 移动一个单元格的花费的时间
 	},
 	[2] = {
 		id = 2,
