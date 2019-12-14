@@ -24,6 +24,7 @@ end
 function RpgFightScene:loadAppFile()
 	import( "app.viewsrpgfight.rpgfight_config" )
 	import( "app.viewsrpgfight.rpgsolider_config" )
+	import( "app.viewsrpgfight.rpgSkill_config" )
 end
 
 function RpgFightScene:onEnter()

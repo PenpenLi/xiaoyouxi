@@ -4,8 +4,8 @@ local BaseSolider = import(".Solider")
 
 local PeopleSolider = class("PeopleSolider",BaseSolider)
 
-function PeopleSolider:ctor( soliderId,brickId,gameLayer )
-	PeopleSolider.super.ctor( self,soliderId,brickId,gameLayer )
+function PeopleSolider:ctor( soliderId,gameLayer )
+	PeopleSolider.super.ctor( self,soliderId,gameLayer )
 	-- 默认 向右边
 	self._modeType = "people"
 	self._enemyList = self._gameLayer._enemyList
