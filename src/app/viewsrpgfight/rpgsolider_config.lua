@@ -15,6 +15,7 @@ local rpgsolider_config = {
 		attack_distance = 1,-- 攻击距离 单位 砖块
 		attack_type = 1, -- 1:近战 2:远程
 		cd = 15,
+		mode = 1,-- mode 1:士兵 2:boss
 		speed = 2 -- 移动速度 单位秒 移动一个单元格的花费的时间
 	},
 	[2] = {
@@ -32,6 +33,7 @@ local rpgsolider_config = {
 		attack_distance = 50,-- 攻击距离 10像素
 		attack_type = 1, -- 1:近战 2:远程
 		cd = 15,
+		mode = 1,-- mode 1:士兵 2:boss
 		speed = 2 -- 移动速度 1秒移动的像素
 	},
 	[3] = {
@@ -49,6 +51,7 @@ local rpgsolider_config = {
 		attack_distance = 50,-- 攻击距离 10像素
 		attack_type = 1, -- 1:近战 2:远程
 		cd = 15,
+		mode = 1,-- mode 1:士兵 2:boss
 		speed = 2 -- 移动速度 1秒移动的像素
 	},
 	[4] = {
@@ -66,6 +69,7 @@ local rpgsolider_config = {
 		attack_distance = 50,-- 攻击距离 10像素
 		attack_type = 1, -- 1:近战 2:远程
 		cd = 15,
+		mode = 1,-- mode 1:士兵 2:boss
 		speed = 2 -- 移动速度 1秒移动的像素
 	},
 	[5] = {
@@ -83,6 +87,7 @@ local rpgsolider_config = {
 		attack_distance = 550,-- 攻击距离 10像素
 		attack_type = 2, -- 1:近战 2:远程
 		cd = 10,
+		mode = 1,-- mode 1:士兵 2:boss
 		speed = 2 -- 移动速度 1秒移动的像素
 	},
 	[6] = {
@@ -100,6 +105,7 @@ local rpgsolider_config = {
 		attack_distance = 50,-- 攻击距离 10像素
 		attack_type = 1, -- 1:近战 2:远程
 		cd = 10,
+		mode = 1,-- mode 1:士兵 2:boss
 		speed = 2 -- 移动速度 1秒移动的像素
 	},
 	[7] = {
@@ -117,6 +123,7 @@ local rpgsolider_config = {
 		attack_distance = 50,-- 攻击距离 10像素
 		attack_type = 1, -- 1:近战 2:远程
 		cd = 15,
+		mode = 1,-- mode 1:士兵 2:boss
 		speed = 2 -- 移动速度 1秒移动的像素
 	},
 	[8] = {
@@ -134,6 +141,7 @@ local rpgsolider_config = {
 		attack_distance = 600,-- 攻击距离 10像素
 		attack_type = 2, -- 1:近战 2:远程
 		cd = 15,
+		mode = 1,-- mode 1:士兵 2:boss
 		speed = 2 -- 移动速度 1秒移动的像素
 	},
 }

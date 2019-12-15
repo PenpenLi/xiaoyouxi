@@ -15,6 +15,7 @@ function MainGame:ctor( param )
     self._brackPos = {}
     self._maxCol = 11
     self._maxRow = 6
+    self._brackSize = cc.size(160,160)
     self:initData()
 end
 
@@ -42,7 +43,7 @@ end
 
 -- 添加砖块
 function MainGame:loadBrick()
-	local brick_size = cc.size(160,160)
+	local brick_size = self._brackSize
 	local start_x,start_y = 100 + brick_size.width / 2,100 + brick_size.height / 2
 	local col = self._maxCol
 	local row = self._maxRow

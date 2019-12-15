@@ -260,6 +260,16 @@ end
 
 ---------------------------- 当搜索到敌人 进入计算状态模块 START ---------------
 function Solider:calSetStatusByDestEnemy()
+	-- 1:当没有敌人了
+	if not self._destEnemy  then
+		-- 开帧从新搜索
+		self:onUpdate( function() self:searchEnemy() end )
+		return
+	end
+	-- 2:当敌人已经死亡
+	if self._destEnemy:isDead() then
+		
+	end
 end
 
 ---------------------------- 当搜索到敌人 进入计算状态模块 END ---------------
