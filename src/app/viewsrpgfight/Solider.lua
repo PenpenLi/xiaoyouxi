@@ -20,6 +20,7 @@ function Solider:ctor( soliderId,gameLayer )
 	self._config = rpgsolider_config[self._id]
 	self._status = self.STATUS.SEARCH
 	self._hp = self._config.hp
+	self._mode = 2 -- 1,士兵，2,英雄
 	
 	self._modeType = "" -- "people" 玩家 "enemy" 敌人
 

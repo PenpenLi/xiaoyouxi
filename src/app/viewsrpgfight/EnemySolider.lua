@@ -4,8 +4,8 @@ local BaseSolider = import(".Solider")
 
 local EnemySolider = class("EnemySolider",BaseSolider)
 
-function EnemySolider:ctor( soliderId,brickId,gameLayer )
-	EnemySolider.super.ctor( self,soliderId,brickId,gameLayer )
+function EnemySolider:ctor( soliderId,gameLayer )
+	EnemySolider.super.ctor( self,soliderId,gameLayer )
 
 	-- 默认 向左边
 	self._modeType = "enemy"

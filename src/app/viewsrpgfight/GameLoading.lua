@@ -67,7 +67,9 @@ function GameLoading:loadEffect()
 		if index > #self._sound then
 			self:unSchedule()
 			removeUIFromScene( UIDefine.RPGFIGHT_KEY.Loading_UI )
-			addUIToScene( UIDefine.RPGFIGHT_KEY.Main_UI )
+			local mainUi = addUIToScene( UIDefine.RPGFIGHT_KEY.Main_UI )
+			local data = {enemyList = mainUi._enemyList,peopleList = mainUi._peopleList}
+			addUIToScene( UIDefine.RPGFIGHT_KEY.Skill_UI,data )
 		end
 	end,0.02 )
 end
