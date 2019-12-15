@@ -13,6 +13,7 @@ function MainGame:ctor( param )
 
     self:addCsb( "csbrpgfight/FightLayer.csb" )
     self._brackPos = {}
+    self._brackImageInformation = {}
     self._maxCol = 11
     self._maxRow = 6
     self._brackSize = cc.size(160,160)
@@ -40,72 +41,87 @@ function MainGame:onEnter()
 	-- 创建一个敌人
 	self:createEnemySolider()
 
-	-- 测试 检查砖块
-	self:onUpdate( function()
-		-- 砖块
-		for i,v in ipairs( self._brackImgList ) do
-			local img = v.img
-			local sp = img:getVirtualRenderer():getSprite()
-			if self._brackState[v.col][v.row] == 0 then
-				-- 空闲
-				-- img:loadTexture("image/box_Pass.png",1)
-				ungraySprite( sp )
-			elseif self._brackState[v.col][v.row] == 1 then
-				-- 占用
-				-- img:loadTexture("image/box_locked.png",1)
-				graySprite( sp )
-			elseif self._brackState[v.col][v.row] == 2 then
-				-- 将被占用
-				-- img:loadTexture("image/box_unlock.png",1)
-				redSprite( sp )
-			end
-		end
-		-- 射线
-		for i,v in ipairs( self._peopleList ) do
-			if v.xianSp == nil then
-				local color_layer = cc.LayerColor:create( cc.c4b(255,0,0,255 ) )
-				color_layer:setContentSize( cc.size( 20,5 ) )
-				color_layer:setAnchorPoint(cc.p(0,0))
-				color_layer:setRotation( 45 )
-				v:addChild( color_layer )
-				v.xianSp = color_layer
-			end
-			-- 设置长度
-			if v._destEnemy then
-				local my_pos = v:getParent():convertToWorldSpace( cc.p(v:getPosition()) )
-				local enemy_pos = v._destEnemy:getParent():convertToWorldSpace( cc.p(v._destEnemy:getPosition()) )
-				local dis = cc.pGetDistance( my_pos,enemy_pos )
-				v.xianSp:setContentSize( cc.size(dis,5) )
-				-- 设置角度
-				local r = self:getRotationDegree( my_pos,enemy_pos )
-				v.xianSp:setRotation( r )
-			else
-				v.xianSp:setContentSize( cc.size(20,5) )
-			end
-		end
-
-		for i,v in ipairs( self._enemyList ) do
-			if v.xianSp == nil then
-				local color_layer = cc.LayerColor:create( cc.c4b( 0,255,0,255 ) )
-				color_layer:setContentSize( cc.size( 20,5 ) )
-				v:addChild( color_layer )
-				color_layer:setAnchorPoint(cc.p(0,0))
-				v.xianSp = color_layer
-			end
-			-- 设置长度
-			if v._destEnemy then
-				local my_pos = v:getParent():convertToWorldSpace( cc.p(v:getPosition()) )
-				local enemy_pos = v._destEnemy:getParent():convertToWorldSpace( cc.p(v._destEnemy:getPosition()) )
-				local dis = cc.pGetDistance( my_pos,enemy_pos )
-				v.xianSp:setContentSize( cc.size(dis,5) )
-				-- 设置角度
-				local r = self:getRotationDegree( my_pos,enemy_pos )
-				v.xianSp:setRotation( r )
-			else
-				v.xianSp:setContentSize( cc.size(20,5) )
-			end
-		end
+	-- 注册消息监听,点击人物时，放置位置闪烁
+    self:addMsgListener( InnerProtocol.INNER_EVENT_RPGFIGHT_LOADPEOPLE_TOUCHBEGAN,function ()
+		self:setSeatBlink()
 	end )
+	-- 注册消息监听,点击人物end时，放置位置成功闪烁停止
+    self:addMsgListener( InnerProtocol.INNER_EVENT_RPGFIGHT_LOADPEOPLE_TOUCHEND_TRUE,function (event)
+    	self:createSoider(event.data[1].id,event.data[1].imageInformation)
+		self:seatOpacity()
+	end )
+	-- 注册消息监听,点击人物end时，放置位置失败闪烁停止
+    self:addMsgListener( InnerProtocol.INNER_EVENT_RPGFIGHT_LOADPEOPLE_TOUCHEND_FALSE,function ()
+		self:seatOpacity()
+	end )
+	self:seatOpacity()
+
+	-- -- 测试 检查砖块
+	-- self:onUpdate( function()
+	-- 	-- 砖块
+	-- 	for i,v in ipairs( self._brackImgList ) do
+	-- 		local img = v.img
+	-- 		local sp = img:getVirtualRenderer():getSprite()
+	-- 		if self._brackState[v.col][v.row] == 0 then
+	-- 			-- 空闲
+	-- 			-- img:loadTexture("image/box_Pass.png",1)
+	-- 			ungraySprite( sp )
+	-- 		elseif self._brackState[v.col][v.row] == 1 then
+	-- 			-- 占用
+	-- 			-- img:loadTexture("image/box_locked.png",1)
+	-- 			graySprite( sp )
+	-- 		elseif self._brackState[v.col][v.row] == 2 then
+	-- 			-- 将被占用
+	-- 			-- img:loadTexture("image/box_unlock.png",1)
+	-- 			redSprite( sp )
+	-- 		end
+	-- 	end
+	-- 	-- 射线
+	-- 	for i,v in ipairs( self._peopleList ) do
+	-- 		if v.xianSp == nil then
+	-- 			local color_layer = cc.LayerColor:create( cc.c4b(255,0,0,255 ) )
+	-- 			color_layer:setContentSize( cc.size( 20,5 ) )
+	-- 			color_layer:setAnchorPoint(cc.p(0,0))
+	-- 			color_layer:setRotation( 45 )
+	-- 			v:addChild( color_layer )
+	-- 			v.xianSp = color_layer
+	-- 		end
+	-- 		-- 设置长度
+	-- 		if v._destEnemy then
+	-- 			local my_pos = v:getParent():convertToWorldSpace( cc.p(v:getPosition()) )
+	-- 			local enemy_pos = v._destEnemy:getParent():convertToWorldSpace( cc.p(v._destEnemy:getPosition()) )
+	-- 			local dis = cc.pGetDistance( my_pos,enemy_pos )
+	-- 			v.xianSp:setContentSize( cc.size(dis,5) )
+	-- 			-- 设置角度
+	-- 			local r = self:getRotationDegree( my_pos,enemy_pos )
+	-- 			v.xianSp:setRotation( r )
+	-- 		else
+	-- 			v.xianSp:setContentSize( cc.size(20,5) )
+	-- 		end
+	-- 	end
+
+	-- 	for i,v in ipairs( self._enemyList ) do
+	-- 		if v.xianSp == nil then
+	-- 			local color_layer = cc.LayerColor:create( cc.c4b( 0,255,0,255 ) )
+	-- 			color_layer:setContentSize( cc.size( 20,5 ) )
+	-- 			v:addChild( color_layer )
+	-- 			color_layer:setAnchorPoint(cc.p(0,0))
+	-- 			v.xianSp = color_layer
+	-- 		end
+	-- 		-- 设置长度
+	-- 		if v._destEnemy then
+	-- 			local my_pos = v:getParent():convertToWorldSpace( cc.p(v:getPosition()) )
+	-- 			local enemy_pos = v._destEnemy:getParent():convertToWorldSpace( cc.p(v._destEnemy:getPosition()) )
+	-- 			local dis = cc.pGetDistance( my_pos,enemy_pos )
+	-- 			v.xianSp:setContentSize( cc.size(dis,5) )
+	-- 			-- 设置角度
+	-- 			local r = self:getRotationDegree( my_pos,enemy_pos )
+	-- 			v.xianSp:setRotation( r )
+	-- 		else
+	-- 			v.xianSp:setContentSize( cc.size(20,5) )
+	-- 		end
+	-- 	end
+	-- end )
 end
 
 function MainGame:getAngleByPos(p1,p2)
@@ -143,9 +159,40 @@ function MainGame:getRotationDegree( p1,p2 )
 	elseif len_x == 0 and len_y < 0 then
 		angle = 90
 	end
-
-
 	return angle
+end
+-- 创建士兵
+function MainGame:createSoider(id,imageInformation)
+	local people = PeopleSolider.new( id ,self )
+	local pos = self:getBrackPos( imageInformation.col,imageInformation.row )
+	self:addChild( people )
+	people:setPosition( pos )
+	-- 初始化砖块坐标
+	people:setBlockPos( imageInformation.col,imageInformation.row )
+
+	-- 写入数据
+	table.insert( self._peopleList,people )
+	self._brackState[imageInformation.col][imageInformation.row] = 1
+end
+-- 可放置位置变色
+function MainGame:setSeatBlink()
+	self:onUpdate( function()
+		for i,v in ipairs(self._brackImageInformation) do
+			if self:getBrackStatus(v.col,v.row) == 0 then
+				v.img:setOpacity(150)
+			else
+				v.img:setOpacity(0)
+			end
+		end
+	end )
+end
+-- 放置位置透明
+function MainGame:seatOpacity()
+	self:unscheduleUpdate()
+	for i,v in ipairs(self._brackImageInformation) do
+		v.img:setOpacity(0)
+		-- v.img:setVisible( false )
+	end
 end
 
 
@@ -167,9 +214,13 @@ function MainGame:loadBrick()
 			img:setOpacity( 150 )
 			self._brackPos[i][j] = cc.p( x_pos,y_pos )
 			self._brackState[i][j] = 0
-			-- 存储砖块的sprite
-			local meta = { img = img,col = i,row = j }
-			table.insert( self._brackImgList,meta )
+
+			-- -- 存储砖块的sprite
+			-- local meta = { img = img,col = i,row = j }
+			-- table.insert( self._brackImgList,meta )
+
+			local imageInformation = { img = img,col = i,row = j }
+			table.insert(self._brackImageInformation,imageInformation)
 		end
 	end
 end
@@ -268,6 +319,15 @@ end
 
 function MainGame:setBrackStatus( col,row,value )
 	self._brackState[col][row] = value
+end
+function MainGame:getBrackStatus( col,row )
+	return self._brackState[col][row]
+end
+function MainGame:getBrackSize()
+	return self._brackSize
+end
+function MainGame:getBrackImageInformation( ... )
+	return self._brackImageInformation
 end
 
 return MainGame

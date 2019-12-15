@@ -70,6 +70,7 @@ function GameLoading:loadEffect()
 			local mainUi = addUIToScene( UIDefine.RPGFIGHT_KEY.Main_UI )
 			local data = {enemyList = mainUi._enemyList,peopleList = mainUi._peopleList}
 			addUIToScene( UIDefine.RPGFIGHT_KEY.Skill_UI,data )
+			addUIToScene( UIDefine.RPGFIGHT_KEY.Operation_UI,mainUi )
 		end
 	end,0.02 )
 end

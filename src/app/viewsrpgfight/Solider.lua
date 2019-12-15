@@ -22,7 +22,7 @@ function Solider:ctor( soliderId,gameLayer )
 	self._config = rpgsolider_config[self._id]
 	self._status = self.STATUS.SEARCH
 	self._hp = self._config.hp
-	self._mode = 2 -- 1,士兵，2,英雄
+	self._mode = self._config.mode -- 1,士兵，2,英雄
 	
 	self._modeType = "" -- "people" 玩家 "enemy" 敌人
 
@@ -90,8 +90,8 @@ function Solider:getHp()
 end
 function Solider:addHp( hp )
 	self._hp = self._hp + hp
-	if self._hp > hunsolider_config[self._id].hp then
-		self._hp = hunsolider_config[self._id].hp
+	if self._hp > self._config.hp then
+		self._hp = self._config.hp
 	end
 	self.Hp:setPercent( self._hp / self._config.hp * 100 )
 end
@@ -526,6 +526,10 @@ function Solider:chooseMinDisBrack( myAround )
 			meta.dir_type = v.dir_type
 			table.insert( all_line,meta )
 		end
+	end
+	-- 返回
+	if #all_line == 0 then
+		return false
 	end
 	table.sort( all_line,function(a,b)
 		-- 1:距离不等
