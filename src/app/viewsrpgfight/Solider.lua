@@ -3,17 +3,8 @@
 local Solider = class("Solider",BaseNode) 
 
 Solider.STATUS = {
-	-- CREATE = "create", -- 刚刚创建的状态
-	-- MARCH = "march", -- 行军状态
-	
-	
-	
-	-- SELECT = "select", -- 选中状态
-	
-
-
 	DEAD = "dead", -- 死亡状态
-	CANFIGHT = "can_fight", -- 可以战斗的状态 搜索敌人
+	SEARCH = "search", -- 搜索敌人状态
 	ATTACK = "attack", -- 攻击敌人状态
 	MOVE = "move", -- 移动状态
 }
@@ -27,18 +18,19 @@ function Solider:ctor( soliderId,gameLayer )
 	self._gameLayer = gameLayer
 	self._guid = getGUID()
 	self._config = rpgsolider_config[self._id]
-	self._status = self.STATUS.CANFIGHT
+	self._status = self.STATUS.SEARCH
 	self._hp = self._config.hp
 	
 	self._modeType = "" -- "people" 玩家 "enemy" 敌人
 
-	
 	local path = self._config["idle_frame"].path.."1.png"
 	self.Icon:loadTexture( path,1 )
 
 
-	-- 地图中坐标
+	-- 自己在地图中当前坐标
 	self._blockMapPos = nil
+	-- 自己在地图中的下一个坐标
+	self._nextBlockMapPos = nil
 	-- 方向 1:向左 2:向右
 	self._dir = 1
 	-- 自己的目标敌人
@@ -46,9 +38,6 @@ function Solider:ctor( soliderId,gameLayer )
 	-- 攻击自己的近战敌人列表
 	self._attackedMyEnemyList = {} 
 end
-
-
-
 
 
 -- 设置在地图中的坐标
@@ -90,6 +79,30 @@ end
 function Solider:getSoliderGUID()
 	return self._guid
 end
+function Solider:getHp()
+	return self._hp
+end
+function Solider:addHp( hp )
+	self._hp = self._hp + hp
+	if self._hp > hunsolider_config[self._id].hp then
+		self._hp = hunsolider_config[self._id].hp
+	end
+	self.Hp:setPercent( self._hp / self._config.hp * 100 )
+end
+function Solider:getId()
+	return self._id
+end
+function Solider:getAttackDistance()
+	return self._config.attack_distance
+end
+function Solider:getSpeed()
+	return self._config.speed
+end
+function Solider:getModeType()
+	return self._modeType
+end
+
+
 
 function Solider:playFrameAction( frameName,isRepeate,callBack )
 	if self._curFrameName and self._curFrameName == frameName then
@@ -131,57 +144,133 @@ end
 
 function Solider:onEnter()
 	Solider.super.onEnter( self )
-	-- 开帧
-	self:onUpdate( function() self:updateStatus() end )
+
+	-- 开帧 搜索敌人
+	self:onUpdate( function() self:searchEnemy() end )
 end
 
 
 function Solider:updateStatus( dt )
+	-- -- 处于攻击的标志 节约性能 直接return
+	-- if self.m_attackMark then
+	-- 	return
+	-- end
+	-- -- 1:自己当前是否死亡
+	-- if self._status == self.STATUS.DEAD then
+	-- 	self:printLog(" updateStatus 自己死亡")
+	-- 	return
+	-- end
+	-- -- 2:自己正在移动
+	-- if self._status == self.STATUS.MOVE then
+	-- 	self:printLog(" updateStatus 自己正在移动")
+	-- 	return
+	-- end
+	-- -- 3:当自己有敌人
+	-- if self._destEnemy then
+	-- 	-- 1:敌人是否死亡
+	-- 	if self._destEnemy:isDead() then
+	-- 		self:printLog(" updateStatus 目标死亡 出错")
+	-- 		self._destEnemy = nil
+	-- 		return
+	-- 	end
+	-- 	-- 2:存在
+	-- 	if self._config.attack_type == 1 then
+	-- 		-- 自己是近战 判断要攻击的目标 他的近战敌人是否已经满了
+	-- 		if self._destEnemy:isCloseCombatFull() then
+	-- 			self:printLog(" updateStatus 自己是近战 攻击目标的近战单位已满")
+	-- 			self._destEnemy = nil
+	-- 			return
+	-- 		end
+	-- 	end
+	-- 	-- >> 根据距离判断能否攻击敌人
+	-- 	if self:canFightDestEnemy() then
+	-- 		-- 开始攻击敌人
+	-- 		self:setStatus( self.STATUS.ATTACK )
+	-- 		self:attackEnemy()
+	-- 		self:printLog(" updateStatus 攻击目标")
+	-- 		return
+	-- 	end
+	-- 	-- 3:不能攻击
+	-- 	-- >> 判断当前的敌人下一个移动点位是否在自己的攻击范围内 是：等待 
 
-	-- 处于攻击的标志 节约性能 直接return
-	if self.m_attackMark then
+
+	-- 	-- 否:行走一个单元格
+	-- 	-- 判断能否移动
+	-- 	local can_move,brack = self:canMove()
+	-- 	if can_move then
+	-- 		self:setStatus( self.STATUS.MOVE )
+	-- 		-- 开始移动
+	-- 		self:printLog(" updateStatus 移向目标")
+	-- 		self:runToEnemy( brack )
+	-- 	end
+	-- 	return
+	-- end
+
+	-- -- 4:没有敌人目标 搜索敌人
+	-- self:searchEnemy()
+end
+
+
+---------------------------- 搜索相关 START -----------------------
+function Solider:searchEnemy()
+	assert( not self._destEnemy," !! error aleary has enemy !! " )
+	-- 1:没有敌人
+	if #self._enemyList == 0 then
 		return
 	end
-
-	-- 1:自己当前是否死亡
-	if self._status == self.STATUS.DEAD then
-		self:printLog(" updateStatus 自己死亡")
-		return
-	end
-	-- 2:当自己有敌人
-	if self._destEnemy then
-		-- 1:敌人是否死亡
-		if self._destEnemy:isDead() then
-			self:printLog(" updateStatus 目标死亡 出错")
-			self._destEnemy = nil
-			return
-		end
-		-- 2:存在
-		if self._config.attack_type == 1 then
-			-- 自己是近战 判断要攻击的目标 他的近战敌人是否已经满了
-			if self._destEnemy:isCloseCombatFull() then
-				self:printLog(" updateStatus 自己是近战 攻击目标的近战单位已满")
-				self._destEnemy = nil
-				return
+	-- 2:确定敌人列表
+	local enemy_list = {}
+	if self._config.attack_type == 1 then
+		-- 近战 找出有空闲砖块的敌人
+		for i,v in ipairs( self._enemyList ) do
+			local empty_brack = v:getEmptyAroundBrack()
+			if #empty_brack > 0 then
+				table.insert( enemy_list,v )
 			end
 		end
-		-- >> 根据距离判断能否攻击敌人
-		if self:canFightDestEnemy() then
-			-- 开始攻击敌人
-			self:setStatus( self.STATUS.ATTACK )
-			self:attackEnemy()
+		if #enemy_list == 0 then
 			return
 		end
-
-		-- >> 不能攻击 行走一个单元格
-		-- 判断能否移动
-
-
-		return
+	else
+		-- 远程
+		enemy_list = self._enemyList
 	end
-
-	-- 3:没有敌人目标
+	-- 3:找出距离自己最近的敌人
+	local choose_list = {}
+	for i,v in ipairs( enemy_list ) do
+		local enemy_block_pos = v:getBlockPos()
+		local dis = math.abs( self._blockMapPos.col - enemy_block_pos.col ) + math.abs( self._blockMapPos.row - enemy_block_pos.row )
+		local meta = { dis = dis,enemy = v }
+		table.insert( choose_list,meta )
+	end
+	table.sort( choose_list,function(a,b)
+		return a.dis < b.dis
+	end )
+	-- 设置敌人目标
+	self._destEnemy = choose_list[1].enemy
+	-- 关闭搜索帧
+	self:unscheduleUpdate()
+	-- 进入计算状态模块
+	self:calSetStatusByDestEnemy()
 end
+
+---------------------------- 搜索相关 END -----------------------
+
+
+---------------------------- 当搜索到敌人 进入计算状态模块 START ---------------
+function Solider:calSetStatusByDestEnemy()
+end
+
+---------------------------- 当搜索到敌人 进入计算状态模块 END ---------------
+
+
+
+
+
+
+
+
+
 
 
 ----------------------------------死亡相关 START --------------------
@@ -356,67 +445,123 @@ end
 
 -- 判断自己能否移动
 function Solider:canMove()
-
-	local enabled_brack = {}
-	local top = { col = self._blockMapPos.col,row = self._blockMapPos.row + 1 }
-	if top.row <= self._gameLayer:getMaxRow() then
-		table.insert( enabled_brack,top )
-	end
-	local down = { col = self._blockMapPos.col,row = self._blockMapPos.row - 1 }
-	if down.row >= 1 then
-		table.insert( enabled_brack,down )
-	end
-	local left = { col = self._blockMapPos.col - 1 ,row = self._blockMapPos.row }
-	if left.col >= 1 then
-		table.insert( enabled_brack,left )
-	end
-	local right = { col = self._blockMapPos.col + 1 ,row = self._blockMapPos.row }
-	if right.col <= self._gameLayer:getMaxCol() then
-		table.insert( enabled_brack,right )
-	end
-
 	-- 筛选出可以移动的点
-	local can_move_brack = {}
-	for k,v in ipairs( enabled_brack ) do
-		if self._gameLayer:isEmptyBrack( v.col,v.row ) then
-			table.insert( can_move_brack,v )
-		end
-	end
-
+	local empty_brack = self:getEmptyAroundBrack()
 	-- 当只有一个点
-	if #can_move_brack == 1 then
-		return true,can_move_brack[1]
+	if #empty_brack == 1 then
+		return true,empty_brack[1]
 	end
-
-	if #can_move_brack > 1 then
+	-- 选出最小的点
+	if #empty_brack > 1 then
 		-- 朝目标最近的能攻击点位方向筛选(优先横着走 列的移动)
-
+		local brack = self:chooseMinDisBrack( empty_brack )
+		return true,brack
 	end
-
 	return false
 end
 
+-- 获取自己周围4个点 没有被占用的
+function Solider:getEmptyAroundBrack()
+	local top = { col = self._blockMapPos.col,row = self._blockMapPos.row + 1 }
+	local down = { col = self._blockMapPos.col,row = self._blockMapPos.row - 1 }
+	local left = { col = self._blockMapPos.col - 1 ,row = self._blockMapPos.row }
+	local right = { col = self._blockMapPos.col + 1 ,row = self._blockMapPos.row }
+	-- 1:检查是否在方块内
+	local enabled_brack = {}
+	if top.row <= self._gameLayer:getMaxRow() then
+		table.insert( enabled_brack,top )
+	end
+	if down.row >= 1 then
+		table.insert( enabled_brack,down )
+	end
+	if left.col >= 1 then
+		table.insert( enabled_brack,left )
+	end
+	if right.col <= self._gameLayer:getMaxCol() then
+		table.insert( enabled_brack,right )
+	end
+	-- 2:检查这几个点是否有被占用
+	-- 筛选出可以移动的点
+	local empty_brack = {}
+	for k,v in ipairs( enabled_brack ) do
+		if self._gameLayer:isEmptyBrack( v.col,v.row ) then
+			table.insert( empty_brack,v )
+		end
+	end
+	return empty_brack
+end
+
+--[[
+	当自己有多个点可以移动到目标 选择最近的点移动
+	myAround:自己周围可以移动的点
+]]
+function Solider:chooseMinDisBrack( myAround )
+	assert( myAround," !! myAround is nil !! " )
+	assert( #myAround > 1," !! 自己必须存在1个点以上 才可以进行赛选操作 !! " )
+	assert( self._destEnemy," !! self._destEnemy is nil !! " )
+	local dest_around = self._destEnemy:getEmptyAroundBrack()
+	assert( #dest_around > 0," !! 敌人周围必须有空格的点 不然不应该调用此方法 !! " )
+
+	local all_line = {}
+	for i,v in ipairs( myAround ) do
+		for a,b in ipairs( dest_around ) do
+			local meta = {}
+			local my_pos = clone(v) -- 表示自己可以移动的下一个位置
+			local enemy_pos = clone(b)
+			local dis = math.abs(my_pos.col - enemy_pos.col) + math.abs(my_pos.row - enemy_pos.row)
+			meta.my_pos = my_pos
+			meta.enemy_pos = enemy_pos
+			meta.dis = dis
+			table.insert( all_line,meta )
+		end
+	end
+	table.sort( all_line,function(a,b)
+		return a.dis < b.dis
+	end )
+
+	local min_dis = all_line[1].dis
+	local min_list = {}
+	for i,v in ipairs( all_line ) do
+		if v.dis == min_dis then
+			table.insert(min_list,v)
+		end
+	end
+	return min_list[random(1,#min_list)].my_pos
+end
 
 -- 跑向敌人 只移动一个单元格
-function Solider:runToEnemy()
+function Solider:runToEnemy( brack )
+	assert( brack," !! runToEnemy is nil !! " )
 
-	self:setStatus( self.STATUS.MOVE )
+	-- 设置自己的下一个点位
+	self._nextBlockMapPos = clone(brack)
+	-- 设置将要移动的砖块被占用
+	self._gameLayer:setBrackStatus( brack.col,brack.row,1 )
+	-- 播放移动帧动画
+	self:playMove()
 
-	local enemy_block = self._destEnemy:getBlockPos()
-	
-
-	
-	local pos = self._gameLayer:getBrackPos(self._brickId.col,self._brickId.row)
-	local move_to = cc.MoveTo:create(1,pos)
+	local pos = self._gameLayer:getBrackPos(brack.col,brack.row)
+	local move_to = cc.MoveTo:create( self._config.speed,pos)
 	local call = cc.CallFunc:create(function ()
-		self._status = self.STATUS.CANFIGHT
+		-- 移动完之后 重置目标
+		self:printLog(" runToEnemy 移动结束 ")
+		self:playIdle( false )
+		self._status = self.STATUS.SEARCH
+		-- 将之前占用的砖块设置为空闲
+		self._gameLayer:setBrackStatus( self._blockMapPos.col,self._blockMapPos.row,1 )
+		-- 重置自己的砖块位置
+		self._blockMapPos = clone( brack )
+		-- 重置自己的下一个位置
+		self._nextBlockMapPos = nil
+		self._destEnemy = nil
 	end)
 	local seq = cc.Sequence:create(move_to,call)
 	self:runAction(seq)
 end
 
--- 获取自己周围的4个点
-function Solider:getAroundBrack()
+-- 播放移动动画
+function Solider:playMove()
+	self:playFrameAction("move_frame",true)
 end
 
 -------------------------------- 移动相关 END -------------------------
@@ -424,106 +569,21 @@ end
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-- 重置自己的状态为可以战斗的状态
+function Solider:resetCanFightStatus()
+	-- 开帧
+	self:setStatus( self.STATUS.SEARCH )
+	self._curFrameName = nil
+	self:playIdle( true )
+	self:unscheduleUpdate()
+	self:onUpdate( function() self:updateStatus() end )
+end
 
 
 
 function Solider:printLog( str )
 	print( string.format( " 自己的 type = %s hp= %s guid = %s,statue= %s 额外信息 = %s",self._modeType,self._hp,self._guid,self._status,str ) )
 end
-
-
-
-
-
--- 播放移动动画
-function Solider:playMove()
-	self:playFrameAction("move_frame",true)
-end
-
-
-
-
-
-
-
-
-
-function Solider:getHp()
-	return self._hp
-end
-function Solider:addHp( hp )
-	self._hp = self._hp + hp
-	if self._hp > hunsolider_config[self._id].hp then
-		self._hp = hunsolider_config[self._id].hp
-	end
-	self.Hp:setPercent( self._hp / self._config.hp * 100 )
-end
-
-
-function Solider:getId()
-	return self._id
-end
-function Solider:getAttackDistance()
-	return self._config.attack_distance
-end
-function Solider:getSpeed()
-	return self._config.speed
-end
-function Solider:getModeType()
-	return self._modeType
-end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 -- 检查目标敌人是否存在
@@ -533,21 +593,6 @@ function Solider:isDestEnemyLife()
 	end
 	return true
 end
-
-
-
-
--- -- 重置自己的状态为可以战斗的状态
--- function Solider:resetCanFightStatus()
--- 	-- 开帧
--- 	self:setStatus( self.STATUS.CANFIGHT )
--- 	self._curFrameName = nil
--- 	self:playIdle( true )
--- 	self:unscheduleUpdate()
--- 	self:onUpdate( function() self:updateStatus() end )
--- end
-
-
 
 
 

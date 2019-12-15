@@ -137,8 +137,6 @@ function MainGame:soliderDead( guid,modeType )
 	end
 end
 
-
-
 function MainGame:getMaxCol()
 	return self._maxCol
 end
@@ -147,10 +145,17 @@ function MainGame:getMaxRow()
 	return self._maxRow
 end
 
+--[[
+	0:没有被占用 1:被占用
+]]
 function MainGame:isEmptyBrack( col,row )
 	assert( col," !! col is nil !! ")
 	assert( row," !! row is nil !! ")
 	return self._brackState[col][row] == 0
+end
+
+function MainGame:setBrackStatus( col,row,value )
+	self._brackState[col][row] = value
 end
 
 return MainGame
