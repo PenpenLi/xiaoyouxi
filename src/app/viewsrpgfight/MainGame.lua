@@ -16,6 +16,7 @@ function MainGame:ctor( param )
     self._maxCol = 11
     self._maxRow = 6
     self._brackSize = cc.size(160,160)
+    self._brackImgList = {}
     self:initData()
 end
 
@@ -38,6 +39,113 @@ function MainGame:onEnter()
 	self:createPeopleSolider()
 	-- 创建一个敌人
 	self:createEnemySolider()
+
+	-- 测试 检查砖块
+	self:onUpdate( function()
+		-- 砖块
+		for i,v in ipairs( self._brackImgList ) do
+			local img = v.img
+			local sp = img:getVirtualRenderer():getSprite()
+			if self._brackState[v.col][v.row] == 0 then
+				-- 空闲
+				-- img:loadTexture("image/box_Pass.png",1)
+				ungraySprite( sp )
+			elseif self._brackState[v.col][v.row] == 1 then
+				-- 占用
+				-- img:loadTexture("image/box_locked.png",1)
+				graySprite( sp )
+			elseif self._brackState[v.col][v.row] == 2 then
+				-- 将被占用
+				-- img:loadTexture("image/box_unlock.png",1)
+				redSprite( sp )
+			end
+		end
+		-- 射线
+		for i,v in ipairs( self._peopleList ) do
+			if v.xianSp == nil then
+				local color_layer = cc.LayerColor:create( cc.c4b(255,0,0,255 ) )
+				color_layer:setContentSize( cc.size( 20,5 ) )
+				color_layer:setAnchorPoint(cc.p(0,0))
+				color_layer:setRotation( 45 )
+				v:addChild( color_layer )
+				v.xianSp = color_layer
+			end
+			-- 设置长度
+			if v._destEnemy then
+				local my_pos = v:getParent():convertToWorldSpace( cc.p(v:getPosition()) )
+				local enemy_pos = v._destEnemy:getParent():convertToWorldSpace( cc.p(v._destEnemy:getPosition()) )
+				local dis = cc.pGetDistance( my_pos,enemy_pos )
+				v.xianSp:setContentSize( cc.size(dis,5) )
+				-- 设置角度
+				local r = self:getRotationDegree( my_pos,enemy_pos )
+				v.xianSp:setRotation( r )
+			else
+				v.xianSp:setContentSize( cc.size(20,5) )
+			end
+		end
+
+		for i,v in ipairs( self._enemyList ) do
+			if v.xianSp == nil then
+				local color_layer = cc.LayerColor:create( cc.c4b( 0,255,0,255 ) )
+				color_layer:setContentSize( cc.size( 20,5 ) )
+				v:addChild( color_layer )
+				color_layer:setAnchorPoint(cc.p(0,0))
+				v.xianSp = color_layer
+			end
+			-- 设置长度
+			if v._destEnemy then
+				local my_pos = v:getParent():convertToWorldSpace( cc.p(v:getPosition()) )
+				local enemy_pos = v._destEnemy:getParent():convertToWorldSpace( cc.p(v._destEnemy:getPosition()) )
+				local dis = cc.pGetDistance( my_pos,enemy_pos )
+				v.xianSp:setContentSize( cc.size(dis,5) )
+				-- 设置角度
+				local r = self:getRotationDegree( my_pos,enemy_pos )
+				v.xianSp:setRotation( r )
+			else
+				v.xianSp:setContentSize( cc.size(20,5) )
+			end
+		end
+	end )
+end
+
+function MainGame:getAngleByPos(p1,p2)
+    local p = {}
+    p.x = p2.x - p1.x
+    p.y = p2.y - p1.y
+    local r = math.atan2(p.y,p.x)*180/math.pi
+    return r
+end
+
+-- 获取两点之间的旋转角度
+function MainGame:getRotationDegree( p1,p2 )
+	local len_x = p2.x - p1.x
+	local len_y = p2.y - p1.y
+	local tan_yx = math.abs(len_y) / math.abs(len_x)
+	local angle = 0
+	if len_y > 0 and len_x < 0 then
+		angle = math.atan(tan_yx)*180/math.pi - 90
+		angle = angle - 90
+	elseif len_y > 0 and len_x > 0 then
+		angle = 90 - math.atan(tan_yx)*180/math.pi
+		angle = angle - 90
+	elseif len_y < 0 and len_x < 0 then
+		angle = -math.atan(tan_yx)*180/math.pi - 90
+		angle = angle - 90
+	elseif len_y < 0 and len_x > 0 then
+		angle = math.atan(tan_yx)*180/math.pi + 90
+		angle = angle - 90
+	elseif len_y == 0 and len_x > 0 then
+		angle = 0
+	elseif len_y == 0 and len_x < 0 then
+		angle = 180
+	elseif len_x == 0 and len_y > 0 then
+		angle = -90
+	elseif len_x == 0 and len_y < 0 then
+		angle = 90
+	end
+
+
+	return angle
 end
 
 
@@ -59,6 +167,9 @@ function MainGame:loadBrick()
 			img:setOpacity( 150 )
 			self._brackPos[i][j] = cc.p( x_pos,y_pos )
 			self._brackState[i][j] = 0
+			-- 存储砖块的sprite
+			local meta = { img = img,col = i,row = j }
+			table.insert( self._brackImgList,meta )
 		end
 	end
 end
@@ -75,7 +186,7 @@ function MainGame:createPeopleSolider()
 	-- body
 	local stage = self._stage
 	local people_list = rpgfight_config[stage].people
-	for i,v in ipairs( people_list ) do
+	for i,v in pairs( people_list ) do
 		local people = PeopleSolider.new( v.id ,self )
 		local pos = self:getBrackPos( v.position.col,v.position.row )
 		self:addChild( people )
@@ -93,7 +204,7 @@ end
 function MainGame:createEnemySolider()
 	local stage = self._stage
 	local enemy_list = rpgfight_config[stage].enemy
-	for i,v in ipairs( enemy_list ) do
+	for i,v in pairs( enemy_list ) do
 		local enemy = EnemySolider.new( v.id ,self )
 		local pos = self:getBrackPos( v.position.col,v.position.row )
 		self:addChild( enemy )
@@ -147,7 +258,7 @@ function MainGame:getMaxRow()
 end
 
 --[[
-	0:没有被占用 1:被占用
+	0:没有被占用 1:被占用 2:将被占用
 ]]
 function MainGame:isEmptyBrack( col,row )
 	assert( col," !! col is nil !! ")

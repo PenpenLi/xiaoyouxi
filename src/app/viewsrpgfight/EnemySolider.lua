@@ -6,7 +6,6 @@ local EnemySolider = class("EnemySolider",BaseSolider)
 
 function EnemySolider:ctor( soliderId,gameLayer )
 	EnemySolider.super.ctor( self,soliderId,gameLayer )
-
 	-- 默认 向左边
 	self._modeType = "enemy"
 	self._enemyList = self._gameLayer._peopleList
@@ -14,8 +13,7 @@ function EnemySolider:ctor( soliderId,gameLayer )
 	self.Icon:getVirtualRenderer():getSprite():setFlippedX( true )
 	-- 变色
 	local loading_sp = self.Hp:getVirtualRenderer():getSprite()
-	--redSprite( loading_sp )
-
+	redSprite( loading_sp )
 end
 
 

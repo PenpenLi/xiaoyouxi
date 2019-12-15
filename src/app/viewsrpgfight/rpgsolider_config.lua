@@ -7,7 +7,7 @@ local rpgsolider_config = {
 		move_frame = { frames = {1,2,3,4,5,6,7,8},path = "frame/role1/move/" },
 		attack_frame = { frames = {1,2,3,4,5,6,7,8,9,10,1},path = "frame/role1/attack/" },
 		dead_frame = { frames = {1,2,3,4,5,6,7},path = "frame/role1/dead/" },
-		hp = 100,
+		hp = 50,
 		size = { width = 150,height = 150 },
 		image_offsetx = 0, -- 由于每个士兵的图片制作的时候 偏移了 需要一个偏移量 来设置x轴的坐标
 		attack_value = 1, -- 攻击力
@@ -30,7 +30,7 @@ local rpgsolider_config = {
 		image_offsetx = 20,
 		attack_value = 2, -- 攻击力
 		attack_interval = 0.2, -- 攻击间隔 1秒
-		attack_distance = 50,-- 攻击距离 10像素
+		attack_distance = 1,-- 攻击距离 10像素
 		attack_type = 1, -- 1:近战 2:远程
 		cd = 15,
 		mode = 1,-- mode 1:士兵 2:boss
@@ -43,12 +43,12 @@ local rpgsolider_config = {
 		move_frame = { frames = {1,2,3,4,5,6,7,8},path = "frame/role3/move/" },
 		attack_frame = { frames = {1,2,3,4,5,6,7,8,1},path = "frame/role3/attack/" },
 		dead_frame = { frames = {1,2,3,4},path = "frame/role3/dead/" },
-		hp = 500,
+		hp = 100,
 		size = { width = 150,height = 150 },
 		image_offsetx = 20,
 		attack_value = 1, -- 攻击力
 		attack_interval = 0.2, -- 攻击间隔 1秒
-		attack_distance = 50,-- 攻击距离 10像素
+		attack_distance = 1,-- 攻击距离 10像素
 		attack_type = 1, -- 1:近战 2:远程
 		cd = 15,
 		mode = 1,-- mode 1:士兵 2:boss
@@ -66,7 +66,7 @@ local rpgsolider_config = {
 		image_offsetx = 20,
 		attack_value = 2, -- 攻击力
 		attack_interval = 0.2, -- 攻击间隔 1秒
-		attack_distance = 50,-- 攻击距离 10像素
+		attack_distance = 1,-- 攻击距离 10像素
 		attack_type = 1, -- 1:近战 2:远程
 		cd = 15,
 		mode = 1,-- mode 1:士兵 2:boss
@@ -84,7 +84,7 @@ local rpgsolider_config = {
 		image_offsetx = 20,
 		attack_value = 2, -- 攻击力
 		attack_interval = 0.2, -- 攻击间隔 1秒
-		attack_distance = 550,-- 攻击距离 10像素
+		attack_distance = 5,-- 5个单元格
 		attack_type = 2, -- 1:近战 2:远程
 		cd = 10,
 		mode = 1,-- mode 1:士兵 2:boss
@@ -102,7 +102,7 @@ local rpgsolider_config = {
 		image_offsetx = 20,
 		attack_value = 1, -- 攻击力
 		attack_interval = 0.2, -- 攻击间隔 1秒
-		attack_distance = 50,-- 攻击距离 10像素
+		attack_distance = 1,-- 攻击距离 10像素
 		attack_type = 1, -- 1:近战 2:远程
 		cd = 10,
 		mode = 1,-- mode 1:士兵 2:boss
@@ -120,7 +120,7 @@ local rpgsolider_config = {
 		image_offsetx = 20,
 		attack_value = 2, -- 攻击力
 		attack_interval = 0.2, -- 攻击间隔 1秒
-		attack_distance = 50,-- 攻击距离 10像素
+		attack_distance = 1,-- 攻击距离 10像素
 		attack_type = 1, -- 1:近战 2:远程
 		cd = 15,
 		mode = 1,-- mode 1:士兵 2:boss
@@ -138,7 +138,7 @@ local rpgsolider_config = {
 		image_offsetx = 20,
 		attack_value = 1, -- 攻击力
 		attack_interval = 0.2, -- 攻击间隔 1秒
-		attack_distance = 600,-- 攻击距离 10像素
+		attack_distance = 3,-- 攻击距离 10像素
 		attack_type = 2, -- 1:近战 2:远程
 		cd = 15,
 		mode = 1,-- mode 1:士兵 2:boss
