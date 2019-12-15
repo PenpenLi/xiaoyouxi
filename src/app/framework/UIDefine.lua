@@ -349,6 +349,7 @@ UIDefine.RPGFIGHT_KEY = {
 	Main_UI = { layer = import("app.viewsrpgfight.MainGame"),flag = UIDefine.LayerFlag.Main.name,name = "RpgFight_MainGame_UI" },
 	Skill_UI = { layer = import("app.viewsrpgfight.GameSkill"),flag = UIDefine.LayerFlag.Main.name,name = "RpgFight_Skill_UI" },
 	FightOp_UI = { layer = import("app.viewsrpgfight.GameFightOperation"),flag = UIDefine.LayerFlag.Main.name,name = "RpgFight_FightOp_UI" },
+	Operation_UI = { layer = import("app.viewsrpgfight.GameOperation"),flag = UIDefine.LayerFlag.Main.name,name = "RpgFight_Operation_UI" },
 }
 
 

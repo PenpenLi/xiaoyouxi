@@ -13,6 +13,7 @@ function MainGame:ctor( param )
 
     self:addCsb( "csbrpgfight/FightLayer.csb" )
     self._brackPos = {}
+    self._brackImageInformation = {}
     self._maxCol = 11
     self._maxRow = 6
     self._brackSize = cc.size(160,160)
@@ -38,6 +39,50 @@ function MainGame:onEnter()
 	self:createPeopleSolider()
 	-- 创建一个敌人
 	self:createEnemySolider()
+
+	-- 注册消息监听,点击人物时，放置位置闪烁
+    self:addMsgListener( InnerProtocol.INNER_EVENT_RPGFIGHT_LOADPEOPLE_TOUCHBEGAN,function ()
+		self:setSeatBlink()
+	end )
+	-- 注册消息监听,点击人物end时，放置位置成功闪烁停止
+    self:addMsgListener( InnerProtocol.INNER_EVENT_RPGFIGHT_LOADPEOPLE_TOUCHEND_TRUE,function (event)
+    	self:createSoider(event.data[1].id,event.data[1].imageInformation)
+		self:seatOpacity()
+	end )
+	-- 注册消息监听,点击人物end时，放置位置失败闪烁停止
+    self:addMsgListener( InnerProtocol.INNER_EVENT_RPGFIGHT_LOADPEOPLE_TOUCHEND_FALSE,function ()
+		self:seatOpacity()
+	end )
+	self:seatOpacity()
+end
+-- 创建士兵
+function MainGame:createSoider(id,imageInformation)
+	local people = PeopleSolider.new( id ,self )
+	local pos = self:getBrackPos( imageInformation.col,imageInformation.row )
+	self:addChild( people )
+	people:setPosition( pos )
+	-- 初始化砖块坐标
+	people:setBlockPos( imageInformation.col,imageInformation.row )
+
+	-- 写入数据
+	table.insert( self._peopleList,people )
+	self._brackState[imageInformation.col][imageInformation.row] = 1
+end
+-- 可放置位置变色
+function MainGame:setSeatBlink()
+	for i,v in ipairs(self._brackImageInformation) do
+		if self:getBrackStatus(v.col,v.row) == 0 then
+			v.img:setOpacity(150)
+		else
+			v.img:setOpacity(0)
+		end
+	end
+end
+-- 放置位置透明
+function MainGame:seatOpacity()
+	for i,v in ipairs(self._brackImageInformation) do
+		v.img:setOpacity(0)
+	end
 end
 
 
@@ -59,6 +104,9 @@ function MainGame:loadBrick()
 			img:setOpacity( 150 )
 			self._brackPos[i][j] = cc.p( x_pos,y_pos )
 			self._brackState[i][j] = 0
+			local imageInformation = { img = img,col = i,row = j }
+			table.insert(self._brackImageInformation,imageInformation)
+			
 		end
 	end
 end
@@ -157,6 +205,15 @@ end
 
 function MainGame:setBrackStatus( col,row,value )
 	self._brackState[col][row] = value
+end
+function MainGame:getBrackStatus( col,row )
+	return self._brackState[col][row]
+end
+function MainGame:getBrackSize()
+	return self._brackSize
+end
+function MainGame:getBrackImageInformation( ... )
+	return self._brackImageInformation
 end
 
 return MainGame

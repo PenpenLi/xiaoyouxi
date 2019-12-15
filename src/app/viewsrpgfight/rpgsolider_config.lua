@@ -15,7 +15,7 @@ local rpgsolider_config = {
 		attack_distance = 1,-- 攻击距离 单位 砖块
 		attack_type = 1, -- 1:近战 2:远程
 		cd = 15,
-		mode = 1,-- mode 1:士兵 2:boss
+		mode = 2,-- mode 1:士兵 2:boss
 		speed = 2 -- 移动速度 单位秒 移动一个单元格的花费的时间
 	},
 	[2] = {

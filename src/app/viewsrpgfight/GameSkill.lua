@@ -29,7 +29,7 @@ function GameSkill:ctor( param )
 	self._skillTwoMaxDistance = 400 -- 技能2释放距离，半径
 	self._skillTwoHurtRatian = 200 -- 技能2，作用范围直径
 	--
-    self:addCsb("csbhunzhan/SkillLayer.csb")
+    self:addCsb("csbrpgfight/SkillLayer.csb")
 
     self._scheduleTime = 0.02
 
