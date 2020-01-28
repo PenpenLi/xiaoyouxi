@@ -19,6 +19,17 @@ function PeopleSolider:onEnter()
 end
 
 
+-- 设置要移动的目标点
+function PeopleSolider:setMoveSelectPos( col,row )
+	if self._status ~= self.STATUS.MOVE then
+		self:unscheduleUpdate()
+		self:stopAllActions()
+		self:setStatus( self.STATUS.MOVE )
+		self:runToEnemy( { col = col,row = row } )
+		self._gameLayer:createTargetCsb( col,row )
+		self._gameLayer:clearSelectPeople()
+	end
+end
 
 
 return PeopleSolider

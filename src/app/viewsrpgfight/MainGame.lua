@@ -18,6 +18,7 @@ function MainGame:ctor( param )
     self._maxRow = 6
     self._brackSize = cc.size(160,160)
     self._brackImgList = {}
+    self._brackSpriteList = {}
     self:initData()
 end
 
@@ -205,6 +206,7 @@ function MainGame:loadBrick()
 	for i = 1,col do
 		self._brackPos[i] = {}
 		self._brackState[i] = {}
+		self._brackSpriteList[i] = {}
 		for j = 1,row do
 			local img = ccui.ImageView:create("image/box_Pass.png",1)
 			self:addChild( img )
@@ -218,6 +220,9 @@ function MainGame:loadBrick()
 			-- -- 存储砖块的sprite
 			-- local meta = { img = img,col = i,row = j }
 			-- table.insert( self._brackImgList,meta )
+
+			-- 存储砖块的sprite
+			self._brackSpriteList[i][j] = img
 
 			local imageInformation = { img = img,col = i,row = j }
 			table.insert(self._brackImageInformation,imageInformation)
@@ -298,6 +303,13 @@ function MainGame:soliderDead( guid,modeType )
 		v:clearDestByGuid( guid )
 		v:removeAttackMyEnemyList( guid )
 	end
+
+	-- 清空选中的要操作的指针
+	if self._selectPeople then
+		if self._selectPeople:getSoliderGUID() == guid then
+			self:clearSelectPeople()
+		end
+	end
 end
 
 function MainGame:getMaxCol()
@@ -329,5 +341,122 @@ end
 function MainGame:getBrackImageInformation( ... )
 	return self._brackImageInformation
 end
+
+
+
+
+
+
+
+
+function MainGame:onTouchBegan( touch, event )
+	local location = cc.p(touch:getLocation())
+	for i,v in ipairs( self._peopleList ) do
+		if not v:isDead() then
+			local rect = v:getDesignBoundingBox()
+			if cc.rectContainsPoint( rect,location ) then
+				if self._selectPeople then
+					if self._selectPeople ~= v then
+						self:clearSelectPeople()
+						self._touchStartPos = location
+						self._selectPeople = v
+						self:createSelectCsb()
+						return true
+					end
+				else
+					self._touchStartPos = location
+					self._selectPeople = v
+					self:createSelectCsb()
+					return true
+				end
+			end
+		end
+	end
+	if self._selectPeople then
+		return true
+	end
+	return false
+end
+
+function MainGame:onTouchEnded( touch, event )
+	if not self._touchStartPos or not self._selectPeople then
+		return
+	end
+	if self._selectPeople:isDead() then
+		self:clearSelectPeople()
+		return
+	end
+    local location = cc.p(touch:getLocation())
+    local dis = cc.pGetDistance( self._touchStartPos,location )
+    if dis <= 30 then
+    	return
+    end
+    -- 移动到当前的位置
+    for i,v in ipairs(self._brackImageInformation) do
+		local brack_boundingBox = v.img:getBoundingBox()
+		if cc.rectContainsPoint(brack_boundingBox, location) then
+			local around = self._selectPeople:getEmptyAroundBrack()
+			for a,b in ipairs( around ) do
+				if b.col == v.col and b.row == v.row then
+					self._selectPeople:setMoveSelectPos( v.col,v.row )
+					break
+				end
+			end
+		end
+	end
+end
+
+function MainGame:clearSelectPeople()
+	if self._selectPeople then
+		local node = self._selectPeople:getChildByTag(1990)
+		if node then
+			node:removeFromParent()
+		end
+	end
+	self:seatOpacity()
+	self._touchStartPos = nil
+	self._selectPeople = nil
+end
+
+function MainGame:createSelectCsb()
+	if self._selectPeople then
+		-- 创建 选中的csb
+		local m_selectVar = {}
+		local node,act = CSBUtil.readLayerCSB( "csbrpgfight/select.csb",m_selectVar )
+		self._selectPeople:addChild( node,100 )
+		local rect = self._selectPeople:getDesignBoundingBox()
+		node:setPosition( cc.p( 0, rect.height / 2) )
+		act:gotoFrameAndPlay(1,75, true)
+		node:setTag(1990)
+
+		-- self:unscheduleUpdate()
+		self:seatOpacity()
+		self:onUpdate( function()
+			for i,v in ipairs(self._brackImageInformation) do
+				v.img:setOpacity(0)
+			end
+			-- 显示它周围可以移动的砖块
+			local around = self._selectPeople:getEmptyAroundBrack()
+			for i,v in ipairs( around ) do
+				self._brackSpriteList[v.col][v.row]:setOpacity( 150 )
+			end
+		end )
+	end
+end
+
+function MainGame:createTargetCsb( col,row )
+	local m_targetVar = {}
+	local node,act = CSBUtil.readLayerCSB( "csbrpgfight/target.csb",m_targetVar )
+	self:addChild( node,100 )
+	local pos = self:getBrackPos( col,row )
+	node:setPosition( pos )
+	act:gotoFrameAndPlay(1,45, true)
+	node:setTag(1991)
+
+	performWithDelay( node,function()
+		node:removeFromParent()
+	end,1.5 )
+end
+
 
 return MainGame

@@ -125,7 +125,6 @@ function GameFightOperation:onTouchBegan( touch, event )
 	return false
 end
 
-
 function GameFightOperation:onTouchEnded( touch, event )
 	if not self._touchStartPos or not self._selectPeople then
 		return

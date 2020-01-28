@@ -9,6 +9,7 @@ Solider.STATUS = {
 	MOVE = "move", -- 移动状态
 	NOTMOVE = "not_move",--不可移动状态
 	WAIT = "wait", --等待状态
+	SELECT = "select",-- 选中状态
 }
 
 function Solider:ctor( soliderId,gameLayer )
@@ -28,7 +29,6 @@ function Solider:ctor( soliderId,gameLayer )
 
 	local path = self._config["idle_frame"].path.."1.png"
 	self.Icon:loadTexture( path,1 )
-
 
 	-- 自己在地图中当前坐标
 	self._blockMapPos = nil
@@ -78,6 +78,9 @@ function Solider:getStatus()
 	return self._status
 end
 function Solider:setStatus( status )
+	if self._status == self.STATUS.DEAD then
+		return
+	end
 	if self._status ~= status then
 		self._status = status
 	end
@@ -166,6 +169,11 @@ function Solider:searchEnemy()
 	if #self._enemyList == 0 then
 		return
 	end
+
+	if self:isDead() then
+		return
+	end
+
 	-- 2:检查自己周围有没有敌人
 	for i,v in ipairs( self._enemyList ) do
 		if self:canFightDestEnemy( v:getBlockPos() ) then
@@ -225,6 +233,11 @@ end
 
 ---------------------------- 当搜索到敌人 进入计算状态模块 START ---------------
 function Solider:calSetStatusByDestEnemy()
+	-- 当自己死亡
+	if self:isDead() then
+		return
+	end
+
 	-- 1:当没有敌人了
 	if not self._destEnemy  then
 		-- 开帧从新搜索
@@ -362,6 +375,10 @@ end
 
 -- 攻击自己的敌人
 function Solider:attackEnemy()
+	-- 当自己死亡
+	if self:isDead() then
+		return
+	end
 	-- 检查状态
 	if self._status ~= self.STATUS.ATTACK then
 		self:printLog(" attackEnemy 状态出错 不是攻击状态")
@@ -396,15 +413,20 @@ function Solider:playAttack( callBack )
 	local call_set = function()
 		-- 添加箭头
 		if self._destEnemy and self._config.attack_type == 2 then
-			local color_layer = cc.LayerColor:create( cc.c4b( 255,0,0,255 ) )
-			color_layer:setContentSize( cc.size( 20,5 ) )
+			local color_layer = ccui.ImageView:create("image/Arrow1.png",1)
+			-- color_layer:setAnchorPoint(cc.p(0,0))
 			self:addChild( color_layer )
+
 			local world_pos = self._destEnemy:getParent():convertToWorldSpace( cc.p( self._destEnemy:getPosition() ) )
 			local node_pos = self:convertToNodeSpace( world_pos )
-			local move_to = cc.MoveTo:create(0.1,node_pos)
+			local move_to = cc.MoveTo:create(0.2,node_pos)
 			local remove = cc.RemoveSelf:create()
 			local seq = cc.Sequence:create({ move_to,remove })
 			color_layer:runAction( seq )
+
+			-- local jian_world_pos = color_layer:getParent():convertToWorldSpace( cc.p( color_layer:getPosition() ) )
+			-- local angle = self._gameLayer:getAngleByPos(jian_world_pos,node_pos )
+			-- color_layer:setRotation( angle )
 		end
 		if callBack then
 			callBack()
@@ -433,6 +455,10 @@ end
 
 -- 判断自己能否移动
 function Solider:canMove()
+	-- 当自己死亡
+	if self:isDead() then
+		return false
+	end
 	-- 筛选出可以移动的点
 	local empty_brack = self:getEmptyAroundBrack()
 	-- 当只有一个点
@@ -576,6 +602,11 @@ end
 function Solider:runToEnemy( brack )
 	assert( brack," !! brack is nil !! " )
 
+	-- 当自己死亡
+	if self:isDead() then
+		return
+	end
+
 	-- 设置自己的下一个点位
 	self._nextBlockMapPos = clone(brack)
 	-- 设置将要移动的砖块被占用
@@ -609,7 +640,7 @@ function Solider:runToEnemy( brack )
 		self._destEnemy = nil
 		-- 开帧从新搜索
 		local delay_time = random(10,20) / 100
-		performWithDelay( self.HpBg,function()
+		performWithDelay( self,function()
 			self:aiLogicBegan()
 		end,delay_time )
 	end)
@@ -640,6 +671,20 @@ function Solider:isDestEnemyLife()
 end
 
 
+
+-- 获取设计尺寸的bouningBox
+function Solider:getDesignBoundingBox()
+	local pos = cc.p( self:getPosition() )
+	local world_pos = self:getParent():convertToWorldSpace( pos )
+	local size = self._config.size
+	local box_size = {
+		width = size.width,
+		height = size.height,
+		x = world_pos.x - size.width / 2,
+		y = world_pos.y - size.height / 2
+	}
+	return box_size
+end
 
 
 return Solider
